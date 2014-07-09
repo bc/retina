@@ -7,15 +7,25 @@ Tools for visualizing and comparing retinal cell density data.
 Overview
 ======
 After measuring the density of retinal ganglion cells on the rear surface of the eye under microscope:
+
 Use **retina** to
+
   Import retinal cell density data collected under microscope
+  
   Reinstate the hemispherical shape of the data (making use of the retistruct package[Sterratt et al 2013])
+  
   Assign the data to a 'retina object' which can be
+  
     combined with other retinas to make a species/specimen average
+    
       'Spin Opimization' (optional) to ensure proper orientation across samples.
+      
     Custom-smoothed with a Thin Plate Spline interpolator
+    
     Projected into 2d space with an azimuthal equidistant transformation
+    
     Visualized with a contoured topographic heat-map
+    
       Carefully designed to be readable by viewers who may have colorblindness or black-and-white photocopiers.
   
 What's a retina topographic map?
