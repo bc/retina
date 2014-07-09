@@ -1,0 +1,27 @@
+Package: retina
+Title: Tools for retinal plotting and analysis
+Version: 0.5
+Date: 2014-06-18
+Author: Brian Cohn and Lars Schmitz <brian_cohn14@pitzer.edu> [aut, cre]
+Copyright: 2013-2014 Brian Cohn and Lars Schmitz
+Maintainer: Brian Cohn <brian_cohn14@pitzer.edu>
+Authors@R: c( person("Brian", "Cohn", email = "brian_cohn14@pitzer.edu", role =
+    c("aut", "cre")), person("Lars", "Schmitz", role = c("aut", "cre")))
+Description: Tools for retinal plotting and analysis
+Additional_repositories: http://www.neuralmapformation.org/R,
+    http://cran.r-project.org,
+    http://R-Forge.R-project.org,
+Depends:
+    R (>= 3.0.0),
+    retistruct,
+    retistructgui,
+    rgl,
+    fields,
+    RColorBrewer,
+    sphereplot,
+    mapproj
+Suggests:
+    testthat
+Roxygen: list(wrap = TRUE)
+License: GPL-2
+LazyData: true

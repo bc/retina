@@ -1,0 +1,6 @@
+spin_optimization   Optimized a spin optimization between Pmol_753 and P_mol_752.
+fit_diagnostics   Creates diagnostics plots for a given Thin Plate Spline Fit (3 retinas shown).
+retinaplot_demo   Plots a retinal map using the retina package.
+composite_retina   Averages two retinas into one composite map.
+process_retinas   Constructs retina_objects of three retians. Includes retistruction.
+smoothing_params   Demonstrate the effects of changing lambda and the polynomial degree
