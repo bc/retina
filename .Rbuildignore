@@ -1,4 +1,11 @@
 ^\.travis\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-.git
+^\.DS_Store
+^\.git
+^\.Rapp.history
+^\.Rbuildignore
+^\.RData
+^\.Rhistory
+^\.Rproj.user
+retina.Rproj

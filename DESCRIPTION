@@ -1,6 +1,6 @@
 Package: retina
 Title: Tools for retinal plotting and analysis
-Version: 0.5
+Version: 0.6
 Date: 2014-06-18
 Author: Brian Cohn and Lars Schmitz <brian_cohn14@pitzer.edu> [aut, cre]
 Copyright: 2013-2014 Brian Cohn and Lars Schmitz
@@ -13,7 +13,7 @@ Additional_repositories:
     http://R-Forge.R-project.org,
     http://www.neuralmapformation.org/R
 Depends:
-    R (>= 3.1.0),
+    R (>= 3.0.3),
     rgl,
     fields,
     RColorBrewer,

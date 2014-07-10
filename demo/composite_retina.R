@@ -13,6 +13,7 @@ boxplot(Pmol_752$azimuthal_data.datapoints[[1]]$z,
 		Pmol_av,
 		Pmol_753$azimuthal_data.datapoints[[1]]$z ,
 		names=c("Sample 752","Average","Sample 753"),
+		xlab="Retinal ganglion cells per square mm",
 		horizontal=TRUE,
 		pch=20, cex=0.5, col="lightgray")
 rho_max <- max(Pmol_av)
