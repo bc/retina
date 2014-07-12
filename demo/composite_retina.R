@@ -2,7 +2,7 @@
 # composite_map evaluates the density across an interpolation grid at the desired *spatial_res = n* spatial resolution, and saves this data into an n by n matrtix.
 # Finally, both matrices are added, and divided by two to produce the 'matrix average'. This map can be plotted by passing the matrix to the plot_from_MAT function. 
 # **note: the resultant map does not contain a combined falciform process, and the original sampling site points are not visible on the species average.
-RESOLUTION_var <- 800
+RESOLUTION_var <- 100
 
 # pdf("composite_map_steps.pdf", width=8.5, height=6)
 
@@ -47,6 +47,7 @@ plot_from_MAT(Pmol_av,
 	z1 = Pmol_753$azimuthal_data.datapoints[[1]]$z,
 	z2 = Pmol_752$azimuthal_data.datapoints[[1]]$z
 	)
+
 
 
 # dev.off()
