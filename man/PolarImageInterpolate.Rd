@@ -77,7 +77,8 @@ PolarImageInterpolate(x, y, z, contours = TRUE, legend = TRUE,
   \item{...}{passed arguments}
 }
 \description{
-This function will soon be split into smaller helper
-functions.
+This function will make a plot. Code from
+http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot
+was highly modified to meet retinal plotting funtionality.
 }
 

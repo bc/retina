@@ -4,11 +4,14 @@
 \title{Optimal rotation (for min_err) for rotation error matrix
 Computes the argmax of the min error, returning both the error and its theta rotation value in degrees.}
 \usage{
-optimal_rotation(df_spin)
+optimal_rotation(df_spin, quiet = TRUE)
 }
 \arguments{
   \item{df_spin}{Two column matrix of theta (rotation in
   degrees) at [,1] and error at [,2].}
+
+  \item{quiet}{logical. when false, it will print what the
+  absolute mean difference is between maps.}
 }
 \value{
 optimal_degree The optimal (minimum) degree and its error

@@ -8,8 +8,7 @@ Maintainer: Brian Cohn <brian_cohn14@pitzer.edu>
 Authors@R: c( person("Brian", "Cohn", email = "brian_cohn14@pitzer.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut", "cre")))
 Description: Tools for retinal plotting and analysis
-Additional_repositories: 
-    http://cran.r-project.org,
+Additional_repositories: http://cran.r-project.org,
     http://R-Forge.R-project.org,
     http://www.neuralmapformation.org/R
 Depends:

@@ -824,13 +824,16 @@ rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30,
 ##' Optimal rotation (for min_err) for rotation error matrix
 ##' Computes the argmax of the min error, returning both the error and its theta rotation value in degrees.
 ##' @param df_spin Two column matrix of theta (rotation in degrees) at [,1] and error at [,2].
+##' @param quiet logical. when false, it will print what the absolute mean difference is between maps.
 ##' @return optimal_degree The optimal (minimum) degree and its error value.
 ##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
 ##' @family species_average
 ##' @export
-optimal_rotation<- function(df_spin){
+optimal_rotation<- function(df_spin, quiet=TRUE){
   optimal_degree <- df_spin[which.min(df_spin[,2]), ] 
-  message(paste("Absolute mean difference between maps (", optimal_degree[2], "RGC/sqmm)  minimized when map2 ccw is ", optimal_degree[1], "degrees"))
+  if (!quiet) {
+  	message(paste("Absolute mean difference between maps (", optimal_degree[2], "RGC/sqmm)  minimized when map2 ccw is ", optimal_degree[1], "degrees"))
+  }
   return(optimal_degree)
 
 }
