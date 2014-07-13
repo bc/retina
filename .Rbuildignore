@@ -10,3 +10,6 @@
 ^\.Rproj.user
 retina.Rproj
 .travis.yml
+tutorial.md
+README.md
+tutorial_pix
