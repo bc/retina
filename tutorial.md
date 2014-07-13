@@ -3,20 +3,7 @@ Retina Package Tutorial
 
 
 #Overview
-- [Retina Package Tutorial](#user-content-retina-package-tutorial)
-		- [Questions, Errors, and Comments?](#user-content-questions-errors-and-comments)
-- [Retinal data pre-processing](#user-content-retinal-data-pre-processing)
-	- [1. Manually set up a folder containing your starting retina files](#user-content-1-manually-set-up-a-folder-containing-your-starting-retina-files)
-		- [Create a folder called 'diagram_retina', which will contain at first:](#user-content-create-a-folder-called-diagram_retina-which-will-contain-at-first)
-	- [2. Manually make xyz.csv, a file of cell counts with their unique x and y positions.](#user-content-2-manually-make-xyzcsv-a-file-of-cell-counts-with-their-unique-x-and-y-positions)
-	- [3. Use ImageJ to record outline vertices and calibrate datapoints.](#user-content-3-use-imagej-to-record-outline-vertices-and-calibrate-datapoints)
-		- [Trace the retinal outline to make an outline.ROI file](#user-content-trace-the-retinal-outline-to-make-an-outlineroi-file)
-		- [Outline the falciform process](#user-content-outline-the-falciform-process)
-		- [Record the ImageJ coordinates of the sampling location bounds](#user-content-record-the-imagej-coordinates-of-the-sampling-location-bounds)
-- [4. Markup the locations of retinal incisions](#user-content-4-markup-the-locations-of-retinal-incisions)
-- [Visualization and Analysis](#user-content-visualization-and-analysis)
-- [Further functionality](#user-content-further-functionality)
-- [Saving to a paginated PDF](#user-content-saving-to-a-paginated-pdf)
+
 
 --------
 You should be able to run the demos below at this point. If not, please follow the [README Instructions](README.md "Readme instructions on bcohn12/retina")  
@@ -120,7 +107,7 @@ IJ<-data.frame(minX   = 42,  		# leftmost counting location's X value
 			   deltaY = (584-32)/17 # average ImageJ pixel distance (in the Y axis) between counting locations.
 			   ) 
 ```
---------------
+
 
 4. Markup the locations of retinal incisions
 =====
@@ -145,7 +132,9 @@ Instructions for marking up the retina [Sterratt et al 2013]:
 **Remove tear** To remove a tear, click on this button, then click on the apex of the tear (marked in cyan on the plot)  
 **Mark nasal** To mark the nasal pole, click on this button, then click on the point which is the nasal pole. If the nasal or dorsal pole has already been marked, the marker is removed from the existing location. The nasal pole should not be in a tear. If the nasal tear is placed within a tear, no error is reported at this stage, but it will be reported later.  
 
-
+--------------
+Begin analysis and visualization with the retina package
+=====
 ![Minx](tutorial_pix/newRfile.png "")  
 Create a new R Document, and work with the code snippets below to set up your retinal processing script.
 ![Minx](tutorial_pix/source_or_run_line.png "")  
@@ -189,7 +178,7 @@ my_retina <- retina_object(
 	#ImageJ Datapoint Calibration Measurements
 		IJcoords = IJ)
 ```
-#Visualization and Analysis
+#Visualization and Diagnostics
 
 ```R
 retinaplot(my_retina) ##Plot the retina
