@@ -37,17 +37,19 @@ Developed and tested on R 3.0.3 with Windows 7, Windows 8, Ubuntu 13.04 Linux, M
 ##### Linux
 Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 
-2. Load package and dependencies from R Console:
+####Open R and load dependencies:
 ```R
 source("http://retistruct.r-forge.r-project.org/install.R") ## retistruct
 source("http://retistruct.r-forge.r-project.org/install-gui.R") ## retistruct interface
 install.packages('devtools') 
-devtools::install_github('bcohn12/retina'); library(retina)
+devtools::install_github('bcohn12/retina')
 ```
-3. Demo:
+####Load _retina_ and  Pseudodax Moluccanus:
 ```R
-demo('retinaplot')
+library(retina)
+retinaplot(Pmol_753)
 ```
+####Use your own retina
 
 
 Support
