@@ -1,11 +1,10 @@
-retina Package for R
+retina in R
 ======
 
 Open-source tools for visualizing and comparing retinal cell density data.
 
 
-> A retinal ganglion cell map helps biologists visualize the distribution of receptive cells across the rear surface of the vertebrate eye. This topographic map shows density in a way which highlights areas of higher visual performance.
-
+> Retinal ganglion cell density map: helps biologists visualize receptive cells across the rear surface of the vertebrate eye. The topographic map shows density in a way which highlights areas of higher visual performance.
 
 Make a retinal map:
 ======
@@ -25,35 +24,43 @@ Plots were carefully designed to be readable by viewers who may have colorblindn
 Install
 =====
 
-1. [Install R from R-Project](http://www.r-project.org/ "R Project Homepage")
-The retina package is compatible with 3.1.0 on Windows 7 and Windows 8
+Developed and tested on R 3.0.3 with Windows 7, Windows 8, Ubuntu 13.04 Linux, Mac OS X 10.9.3.
+
+####Setup:
+##### Windows
+      -[Install R 3.0.3](http://cran.r-project.org/bin/windows/base/old/3.0.3/ "Windows")
+##### Mac
+      -[Install R-3.0.3.pkg](http://cran.r-project.org/bin/macosx/old/ "Mac OS X")
+      -[Install GTK](http://r.research.att.com/libs/GTK_2.24.17-X11.pkg "Mac OS X")
+      -Install Xcode from the App Store
+      -[Install Xquartz](http://xquartz.macosforge.org/)
+##### Linux
+Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 
 2. Load package and dependencies from R Console:
 ```R
 source("http://retistruct.r-forge.r-project.org/install.R") ## retistruct
 source("http://retistruct.r-forge.r-project.org/install-gui.R") ## retistruct interface
-install.packages('devtools')
+install.packages('devtools') 
 devtools::install_github('bcohn12/retina'); library(retina)
 ```
-3. Demo the plots:
+3. Demo:
 ```R
 demo('retinaplot')
 ```
-required:R 3.1
-Retistruct and gui
-retina package
-run demo
 
-Support and Suggestions
+
+Support
 =====
+In-package documentation
+```R
+?retinaplot
+```
 [Post a github issue ticket (15 seconds)](https://github.com/bcohn12/retina/issues/new "Post an issue ticket")
-
-
-Package documentation (PDF link)
 
 References
 =====
-1. Sterratt et al 2013
+Sterratt et al 2013
 
 GPL-2 License
 
