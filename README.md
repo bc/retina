@@ -4,7 +4,7 @@ retina in R
 Open-source tools for visualizing and comparing retinal cell density data.
 
 
-> Retinal ganglion cell density map: helps biologists visualize receptive cells across the rear surface of the vertebrate eye. The topographic map shows density in a way which highlights areas of higher visual performance.
+> A retinal ganglion cell map helps biologists visualize receptive cells across the rear surface of the vertebrate eye. This topographic map shows density in a way which highlights areas of higher visual performance.
 
 Make a retinal map:
 ======
