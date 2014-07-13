@@ -66,7 +66,7 @@ semi_ellipse_perimeter <- function( a, b)
 
 ##'' Retinal Perimeter Estimation (spherical assumption)
 ##' @description
-##' Calculates the retinal perimeter distance [mm], with the assumption that the retinal shape is hemispherical.
+##' Calculates the retinal perimeter distance in same units as input, with the assumption that the retinal shape is hemispherical.
 ##' @details Assumes a spherical eye, where eye diameter approximates twice the sphere's radius.
 ##' @param ED Eye Diameter of the eye sample, measured at the widest point of the eye.
 ##' @return Retinal Arclength in millimeters
@@ -712,6 +712,10 @@ retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_vi
 			AZx,
 			AZy,
 			AZz,
+			contour_breaks_source  =  c(min(AZz),max(AZz)), 
+			col_breaks_source      =  c(min(AZz),max(AZz)),
+			col_levels=50,
+  			contour_levels=20,
 			outer.radius=1.6,
 			spatial_res=spatial_res,
 			falciform_coords=retina_object$azimuthal_data.falciform[[1]],

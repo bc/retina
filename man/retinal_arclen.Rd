@@ -13,8 +13,9 @@ retinal_arclen(ED)
 Retinal Arclength in millimeters
 }
 \description{
-Calculates the retinal perimeter distance [mm], with the
-assumption that the retinal shape is hemispherical.
+Calculates the retinal perimeter distance in same units as
+input, with the assumption that the retinal shape is
+hemispherical.
 }
 \details{
 Assumes a spherical eye, where eye diameter approximates

@@ -1,6 +1,6 @@
 Package: retina
 Title: Tools for retinal plotting and analysis
-Version: 0.6
+Version: 0.7
 Date: 2014-06-18
 Author: Brian Cohn and Lars Schmitz <brian_cohn14@pitzer.edu> [aut, cre]
 Copyright: 2013-2014 Brian Cohn and Lars Schmitz
