@@ -24,11 +24,18 @@ Plots were carefully designed to be readable by viewers who may have colorblindn
 Install
 =====
 
-Developed and tested on R 3.0.3 with Windows 7, Windows 8, Ubuntu 13.04 Linux Desktop, Mac OS X 10.9.3.
+Developed and tested on R 3.0.3 with Windows 7, Windows 8, Ubuntu 13.04 Linux, Mac OS X 10.9.3.
 
-- Windows: [Install R 3.0.3](http://cran.r-project.org/bin/windows/base/old/3.0.3/ "Windows")
-- Mac: [Install R-3.0.3.pkg](http://cran.r-project.org/bin/macosx/old/ "Mac OS X")
-- Linux: `sudo apt-get install r-base=3.0.3-1precise0 r-base-core=3.0.3-1precise0`
+####Setup:
+##### Windows
+      -[Install R 3.0.3](http://cran.r-project.org/bin/windows/base/old/3.0.3/ "Windows")
+##### Mac
+      -[Install R-3.0.3.pkg](http://cran.r-project.org/bin/macosx/old/ "Mac OS X")
+      -[Install GTK](http://r.research.att.com/libs/GTK_2.24.17-X11.pkg "Mac OS X")
+      -Install Xcode from the App Store
+      -[Install Xquartz](http://xquartz.macosforge.org/)
+##### Linux
+Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 
 2. Load package and dependencies from R Console:
 ```R
