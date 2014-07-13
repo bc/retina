@@ -49,8 +49,8 @@ devtools::install_github('bcohn12/retina')
 library(retina)
 retinaplot(Pmol_753)
 ```
-####Use your own retina
-Detailed instructions are in the works!
+####Full walkthrough tutorial to use your own retina
+[Link to Tutorial on Github](tutorial.md "Tutorial.md")
 
 Support
 =====
