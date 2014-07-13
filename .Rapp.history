@@ -1,0 +1,250 @@
+sum_mat <- sum_mat + partial_av(retina_list[[i]], 1, spatial_res=100)
+return(sum_mat/n)
+sum <- map_vec_average(list(Pmol_752,Pmol_753, Ntae_381), c(0,0,0))
+sum <- map_vec_average(list(Pmol_752,Pmol_753, Ntae_381), c(0,0,90))
+plot_from_MAT(sum)
+sum_mat <- partial_av(retina_list[[1]], 1, spatial_res=1000)
+retina_list[[1]]
+names(retina_list[[2]])
+names(retina_list[[3]])
+names(retina_list[[1]])
+browser()
+sum <- map_vec_average(list(Pmol_752,Pmol_753, Ntae_381), c(0,0,179))
+mat_vec
+sum_mat
+image(sum_mat)
+c
+str(sum)
+#Retinal Plotter Example Code: Brian Cohn March 28, 2014
+#Bring in package/function files
+require(testthat); require(retistruct); require(retistructgui);
+require(sphereplot); require(mapproj); require(rgl);
+require(fields); require(RColorBrewer);
+require(retina)
+#variable numbers
+RESOLUTION_var <- 100
+SPIN_resolution <- 64
+my_lambda <- 0.001
+# Run retistruct()
+# Markup the retina's incisions
+# Set eye to Left or Right eye
+# Set a most dorsal, or most nasal point on the retina
+# 'Save' and close the retistruct GUI
+Ntae_381_coords <- data.frame(  minX   = 42,  #the leftmost counting frame's X value
+maxX   = 597, #the rightmost counting frame's X value (from the ImageJ outline PNG)
+deltaX = ((597-42)/17), #the average ImageJ pixel distance (in the X axis) between counting frame locations from the outline image.
+minY   = -584, #bottommost counting frame's Y value
+maxY   = -32, #the topmost counting frame's Y value
+deltaY = (584-32)/17   ) #the average ImageJ pixel distance (in the Y axis) between counting frame locations from the outline image.
+Ntae_381<- retina_object(
+path = system.file(package = "retina", 'extdata/Ntae_381'),
+LD = NULL,
+ED = 4.508 , #ED EYE DIAMETER (at the hemisphere) in mm
+AL = 3.1395 ,#AL Axial Length (from front to back of eye) in mm
+width = 25, # width of the counting frame in microns
+lambda=my_lambda ,#defines the smoothing parameter for thin plate spline interpolation (see fields::Tps for more information)
+extrapolate=TRUE ,#when true, the plotter will create a full representation of the hemisphere even outside of the bounds of measured points.
+spatial_res=RESOLUTION_var, #number of pixels wide the plotter will use. a value of 1000 will create a 1000x1000 pixel plot
+rotation_ccw= -90, # when set to -90 degrees, the rotation is unaltered from the measured orientation.
+IJcoords = Ntae_381_coords,
+plot_suppress=TRUE
+#End parameter Specification
+)
+Pmol_753_coords <- data.frame(  maxX=1437,
+maxY=-45,
+minX=469,
+minY=-1029,
+deltaX=60,
+deltaY=61) #the average ImageJ pixel distance (in the Y axis) between counting frame locations from the outline image.
+Pmol_753<- retina_object(
+path = system.file(package = "retina", 'extdata/Pmol_753'),
+#Eye Measurements
+ED = 4.8,
+AL = 3.43,
+LD = 1.8,
+#Stereology Parameters
+height = 25 ,# height of the counting frame in microns
+width  = 25, # width of the counting frame in microns
+#Plotting Parameters
+lambda = my_lambda ,#defines the smoothing parameter for thin plate spline interpolation (see fields::Tps for more information)
+extrapolate = TRUE ,#when true, the plotter will create a full representation of the hemisphere even outside of the bounds of measured points.
+spatial_res = RESOLUTION_var, #number of pixels wide the plotter will use. a value of 1000 will create a 1000x1000 pixel plot
+rotation_ccw = -90, # when set to -90 degrees, the rotation is unaltered from the measured orientation.
+#ImageJ Datapoint Calibration Measurements
+IJcoords = Pmol_753_coords)
+Pmol_752_coords <- data.frame(maxX=848,
+maxY=-48,
+minX=40,
+minY=-965,
+deltaX=(848-40)/15,
+deltaY=(965-48)/17) #the average ImageJ pixel distance (in the Y axis) between counting frame locations from the outline image.
+## this part demonstrates how to combine sampling site count data, with your manually recorded XY location of each sampling site.
+ssites<- read.csv(system.file(package = "retina", 'extdata/Pmol_752/Pmol_752_ssite_locations.csv'))
+counts<- read.csv(system.file(package = "retina", 'extdata/Pmol_752/Pmol_site_counts.csv'))
+colnames(ssites) <- c("x", "y", "samplingsite")
+colnames(counts) <- c("samplingsite", "count")
+Pmol_752_xyz <- ssite_merge(ssites,counts)
+colnames(Pmol_752_xyz) <- c("x","y","z")
+write.csv(Pmol_752_xyz, system.file(package = "retina", 'extdata/Pmol_752/xyz.csv'), row.names=FALSE)
+Pmol_752<- retina_object(
+path = system.file(package = "retina", 'extdata/Pmol_752'),
+ED=5.225,
+AL=3.9,
+LD=2.05,
+height = 25,
+width = 25,
+lambda = my_lambda,
+spatial_res = RESOLUTION_var,
+rotation_ccw = -90,
+plot_suppress=TRUE,
+IJcoords = Pmol_752_coords)
+##alpha.
+partial_av<- function(retina_object, rotation, spatial_res, reflect=TRUE, ...){
+x2 <- retina_object$azimuthal_data.datapoints[[1]]$x
+y2 <- retina_object$azimuthal_data.datapoints[[1]]$y
+z2 <- retina_object$azimuthal_data.datapoints[[1]]$z
+# Rotation
+ori <- c(-90, 90, rotation)
+az <- mapproject(x=retina_object$trimmed_data[,2], retina_object$trimmed_data[,1],
+projection="azequidistant", orientation=ori)
+x2 <- az$x #overwirte old value
+ifelse(reflect,x2<-(-1.0*x2), message(''))
+y2 <- az$y #overwrite old value
+# Fitting models
+map2fit <- PolarImageInterpolate(x2,y2,z2, spatial_res,
+plot_suppress=TRUE, extrapolate=TRUE,
+outer.radius=pi/2.0,
+falciform_coords = retina_object$azimuthal_data.falciform[[1]],...)
+MAT <- map2fit[[2]]$z
+#reflect the eye
+return(MAT/n)
+partial_Pmol_752 <- partial_av(Pmol_752, 1, spatial_res=100)
+partial_Pmol_753 <- partial_av(Pmol_753, 1, spatial_res=100)
+partial_Ntae_381 <- partial_av(Ntae_381, 1, spatial_res=100)
+sum_mat <- partial_av(retina_list[[1]], n, spatial_res=1000)
+sum_mat <- sum_mat + partial_av(retina_list[[i]], n, spatial_res=1000)
+sum <- map_vec_average(list(Pmol_752,Pmol_753, Ntae_381, Pmol_752), c(0,90,90,90))
+sum <- map_vec_average(list(Pmol_752, Ntae_381), c(0,90))
+sum_mat <- partial_av(retina_list[[1]], n, spatial_res=100)
+sum_mat <- sum_mat + partial_av(retina_list[[i]], n, spatial_res=100)
+sum <- map_vec_average(list(Pmol_752, Ntae_381), c(0,0))
+retinaplot(Ntae_381)
+sum <- map_vec_average(list(Pmol_752, Pmol_752), c(0,0))
+compute_rotation_matrix <- function(retina_list, spatial_res=16, theta_interval=10){
+ret_list_len <- length(retina_list)
+total_entries <- ret_list_len^2
+mat_vec <- c()
+counter=1
+for (map1 in names(retina_list)) {
+for (map2 in names(retina_list)) {
+message(paste(counter, 'of',total_entries))
+rotation_df <- rotation_optimize(retina_list[[map1]],
+retina_list[[map2]],
+spatial_res    = 4,
+theta_interval = 10)
+map1_map2_rotation_value<- as.numeric(optimal_rotation(rotation_df)[1])
+message(paste(map2 , 'is',
+map1_map2_rotation_value,'degrees off, when',
+map1, "is fixed" ))
+print(map1_map2_rotation_value)
+mat_vec <- c(mat_vec, map1_map2_rotation_value)
+counter=counter+1
+MAT <- t(matrix(mat_vec, ret_list_len, ret_list_len)) #coerce the vector into matrix
+return(MAT)
+compute_rotation_matrix(retina_list)
+test()
+retina_list = list(Pmol_753=Pmol_753, Pmol_752=Pmol_752, Ntae_381=Ntae_381)
+document()
+load_all()
+mat_Pmol_752 <- mat_from_ret_obj(Pmol_752, 1, spatial_res=100)
+mat_Pmol_752
+retina_spin_mat <- compute_rotation_matrix(retina_list)
+retina_spin_mat <- compute_rotation_matrix(retina_list,spatial_res=8, theta_interval=30)
+retina_spin_mat
+sum
+hist(sum)
+retina_spin_mat <- compute_rotation_matrix(retina_list,spatial_res=8, theta_interval=60)
+message('This is a beta feature and is on it\'s way toward relase.\n -Brian July 11, 2014')
+map_vec_average <- function(retina_list, rotation_indices){
+sum_mat <- sum_mat + mat_from_ret_obj(retina_list[[i]], rotation_indices[i], spatial_res=100)
+retina_list <- list(Pmol_752=Pmol_752,Pmol_753=Pmol_753 )
+retina_spin_mat <- compute_rotation_matrix(retina_list,spatial_res=64, theta_interval=10)
+plot_from_MAT(MATRIX=sum)
+retinaplot(Pmol_752)
+retinaplot(Pmol_753)
+retina_spin_mat <- compute_rotation_matrix(retina_list,spatial_res=64, theta_interval=5)
+sum <- map_vec_average(retina_list, retina_spin_mat[1,])
+composite_mat <- sum/length(retina_list)
+spatial_res = 100,
+contour_breaks_source  =  c(min(composite_mat),max(composite_mat)),
+col_breaks_source      =  c(min(composite_mat),max(composite_mat)),
+list()
+c(list(), h=6)
+c(list(), paste('hi')=6)
+c(list(), pa=6)
+names(c(list(), pa=6))
+a<- c(list(), pa=6)
+names(a) <- c("hi")
+a
+##' @return composite_mat Matrix of the composite retina.
+composite_mat_list <- c(composite_mat_list, composite_mat)
+vector_retina_composite(retina_list)
+map_vec_sum <- function(retina_list, rotation_indices, ...){
+sum_mat <- mat_from_ret_obj(retina_list[[1]], rotation=0, spatial_res=100)
+for (i in 2:n) {
+sum_mat <- sum_mat + mat_from_ret_obj(retina_list[[i]],
+rotation_indices[i],
+spatial_res=100,
+...)
+return(sum_mat)
+warnings()
+composite_mat_list <- list() #create empty list to hold the sum matrices
+for (fixed_index in 1:n) {
+sum <- map_vec_sum(retina_list, retina_spin_mat[fixed_index,])
+} #end loop
+ret_list <- vector_retina_composite(retina_list)
+ret_list
+' @return composite_mat Matrix of the composite retina.
+composite_mat_list <- c(composite_mat_list, "temp"=composite_mat)
+names(composite_mat_list) <- names(retina_list)
+return (composite_mat_list)
+##' @title Generate a retinal composite
+##' @param retina_list A list containing retina objects, with names(retina_list) all defined.
+##' @param spin_spatial_res Resolution passed to the spin-optimization.
+##' @param theta_interval number of degrees to traverse in spin-optimization
+##' @param plot_spatial_res Resolution passed to the final plotter
+##' @param plot Logical, by default false, but when true it will output the plot where the first element in the list is fixed.
+##' @param ... Arguments passed from other functions. You can access the thin plate spline interpolator here.
+##' @return composite_mat Matrix of the composite retina, where the first element of the retina list is fixed.
+##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu} and Lars Schmitz
+##' @export
+vector_retina_composite <- function(retina_list,
+spin_spatial_res=128,
+plot_spatial_res=512,
+theta_interval=10,
+plot=FALSE)
+{
+retina_spin_mat <- compute_rotation_matrix( retina_list,
+spatial_res=spin_spatial_res,
+theta_interval=theta_interval)
+n <- length(retina_list)
+sum <- map_vec_sum(retina_list, retina_spin_mat[1,])
+composite_mat <- sum/n #get the average
+if (plot){
+message('Plotting')
+dev.new()
+plot_from_MAT(  MATRIX=composite_mat,
+extrapolate=TRUE,
+spatial_res = plot_spatial_res,
+col_levels=50,
+contour_levels=20,
+contour_breaks_source =  c(min(composite_mat),max(composite_mat)),
+col_breaks_source     =  c(min(composite_mat),max(composite_mat)),
+z1 = Pmol_753$azimuthal_data.datapoints[[1]]$z,
+z2 = Pmol_752$azimuthal_data.datapoints[[1]]$z)
+} #end plotif
+return (composite_mat)
+}
+retina_list <- list(Pmol_752=Pmol_752,Pmol_753=Pmol_753, Ntae_381=Ntae_381 )
+retina_list <- list(Pmol_752=Pmol_752,Pmol_753=Pmol_753, Pmol_751=Pmol_752 )
+ret_list <- vector_retina_composite(retina_list, plot=TRUE)
