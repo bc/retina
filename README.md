@@ -28,12 +28,12 @@ Developed and tested on R 3.0.3 with Windows 7, Windows 8, Ubuntu 13.04 Linux, M
 
 ####Setup:
 ##### Windows
-      -[Install R 3.0.3](http://cran.r-project.org/bin/windows/base/old/3.0.3/ "Windows")
+[Install R 3.0.3](http://cran.r-project.org/bin/windows/base/old/3.0.3/ "Windows")
 ##### Mac
-      -[Install R-3.0.3.pkg](http://cran.r-project.org/bin/macosx/old/ "Mac OS X")
-      -[Install GTK](http://r.research.att.com/libs/GTK_2.24.17-X11.pkg "Mac OS X")
-      -Install Xcode from the App Store
-      -[Install Xquartz](http://xquartz.macosforge.org/)
+[Install R-3.0.3.pkg](http://cran.r-project.org/bin/macosx/old/ "Mac OS X")  
+[Install GTK](http://r.research.att.com/libs/GTK_2.24.17-X11.pkg "Mac OS X")  
+Install Xcode from the App Store  
+[Install Xquartz](http://xquartz.macosforge.org/)
 ##### Linux
 Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 
@@ -50,7 +50,7 @@ library(retina)
 retinaplot(Pmol_753)
 ```
 ####Use your own retina
-
+Detailed instructions are in the works!
 
 Support
 =====
@@ -62,7 +62,7 @@ In-package documentation
 
 References
 =====
-Sterratt et al 2013
+1. Sterratt et al 2013
 
 GPL-2 License
 
