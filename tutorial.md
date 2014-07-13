@@ -1,6 +1,24 @@
 Retina Package Tutorial
 =====
 
+
+#Overview
+- [Retina Package Tutorial](#user-content-retina-package-tutorial)
+		- [Questions, Errors, and Comments?](#user-content-questions-errors-and-comments)
+- [Retinal data pre-processing](#user-content-retinal-data-pre-processing)
+	- [1. Manually set up a folder containing your starting retina files](#user-content-1-manually-set-up-a-folder-containing-your-starting-retina-files)
+		- [Create a folder called 'diagram_retina', which will contain at first:](#user-content-create-a-folder-called-diagram_retina-which-will-contain-at-first)
+	- [2. Manually make xyz.csv, a file of cell counts with their unique x and y positions.](#user-content-2-manually-make-xyzcsv-a-file-of-cell-counts-with-their-unique-x-and-y-positions)
+	- [3. Use ImageJ to record outline vertices and calibrate datapoints.](#user-content-3-use-imagej-to-record-outline-vertices-and-calibrate-datapoints)
+		- [Trace the retinal outline to make an outline.ROI file](#user-content-trace-the-retinal-outline-to-make-an-outlineroi-file)
+		- [Outline the falciform process](#user-content-outline-the-falciform-process)
+		- [Record the ImageJ coordinates of the sampling location bounds](#user-content-record-the-imagej-coordinates-of-the-sampling-location-bounds)
+- [4. Markup the locations of retinal incisions](#user-content-4-markup-the-locations-of-retinal-incisions)
+- [Visualization and Analysis](#user-content-visualization-and-analysis)
+- [Further functionality](#user-content-further-functionality)
+- [Saving to a paginated PDF](#user-content-saving-to-a-paginated-pdf)
+
+--------
 You should be able to run the demos below at this point. If not, please follow the [README Instructions](README.md "Readme instructions on bcohn12/retina")  
 ```R
 demo('fit_diagnostics')
