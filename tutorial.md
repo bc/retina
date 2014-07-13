@@ -214,7 +214,7 @@ fit_plots(my_retina$fit_data1)
 ```
 #Saving to a paginated PDF
 ```R
-pdf("composite_map_steps.pdf", width=8.5, height=6)
+pdf("maps.pdf", width=8.5, height=6)
 #Plot retina(s)
 dev.off()
 ```
