@@ -1,5 +1,5 @@
-RESOLUTION_var = 265
-my_lambda = 0.01
+RESOLUTION_var = 512
+my_lambda = 0.001
 retinaplot(Pmol_752, spatial_res=RESOLUTION_var, polynomial_m = 3) #quick big
 retinaplot( Pmol_752,
 			spatial_res=RESOLUTION_var,

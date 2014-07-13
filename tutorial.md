@@ -11,7 +11,7 @@ demo('spin_optimization')
 
 This tutorial includes screenshots from a **Mac**. This guide is still very helpful for Windows and Linux users.
 
-#####Questions, Errors, and Comments?
+###Questions, Errors, and Comments?
 [Submit a quick help ticket](https://github.com/bcohn12/retina/issues/new "") or brian_cohn14 (at) pitzer.edu
 
 
@@ -19,7 +19,7 @@ Retinal data pre-processing
 =====
 
 ##1. Manually set up a folder containing your starting retina files
-#####Create a folder called 'diagram_retina', which will contain at first:  
+###Create a folder called 'diagram_retina', which will contain at first:  
 1. `diagram_retina_screenshot.png`
 A screen shot of the stereology software, showing the sampling locations on top of the retinal outline. 
 
@@ -48,7 +48,7 @@ Save this as `xyz.csv` in the 'diagram_retina' folder.
 Install [ImageJ](http://imagej.nih.gov/ij/download.html "Download link") (for PC/Mac/Linux.  
 Open `diagram_retina_screenshot.png`
 
-#####Trace the retinal outline to make an outline.ROI file
+###Trace the retinal outline to make an outline.ROI file
 
 ![Select the polygon](tutorial_pix/select_polygon.png "Select the polygon tool in ImageJ")  
 Select the polygon selection tool  
@@ -70,7 +70,7 @@ A window will pop up with some buttons. Press the "Add [t]" button, then press t
 save it as `outline.ROI` in the `/diagram_retina` folder.
 Fresh slate: Close the image, exit ImageJ, start ImageJ again, and open `diagram_retina_screenshot.png`.
 
-#####Outline the falciform process
+###Outline the falciform process
 ![Trace the falciform process](tutorial_pix/falc_traced.png "")  
 
 This time, use the same polygon tool to make an outline of just the falciform process/optic disk (the entire black shape in the middle of the retina).
@@ -80,7 +80,7 @@ Once you've drawn the outline, **Don't save the falciform as .ROI.**.
 Choose File > Save As > XY Coordinates... 
 Save as `falc.txt` to the `/diagram_retina` folder. 
 
-#####Record the ImageJ coordinates of the sampling location bounds
+###Record the ImageJ coordinates of the sampling location bounds
 ![Minx](tutorial_pix/minx.png "")  
 Find the coordinates of the outermost sampling locations. Hover with your mouse and look at the live-updated (x,y) coordinates in the tool bar.  
 **minX Example** Sampling location 10 is the furthest point to the left, and it's at `x=25`.  
@@ -104,7 +104,7 @@ IJ<-data.frame(minX   = 42,  		# leftmost counting location's X value
 ```
 --------------
 
-Markup the locations of retinal incisions
+4. Markup the locations of retinal incisions
 =====
 ![Set Working Directory](tutorial_pix/setwd.png "")  
 Open the R Console, load the **retina** package, and set the working directry to the folder enclosing the `diagram_retina` folder.
