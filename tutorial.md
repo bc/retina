@@ -153,7 +153,7 @@ Begin analysis and visualization with the retina package
 =====
 ![Minx](tutorial_pix/newRfile.png "")  
 Create a new R Document, and work with the code snippets below to set up your retinal processing script.
-![Minx](tutorial_pix/source_or_run_line.png "")  
+
 
 Set your parameters
 ```R
@@ -205,6 +205,9 @@ ret_perimeter_len <- semi_ellipse_perimeter(a=ED, b=AL)/2
 #Fit diagnostics
 fit_plots(my_retina$fit_data1)
 ```
+
+How to run your code:
+![Minx](tutorial_pix/source_or_run_line.png "")  
 
 #Further functionality
 ```R
