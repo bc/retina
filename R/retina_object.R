@@ -65,10 +65,10 @@ falc_az<-mapproject(x=falc_coords[,2], falc_coords[,1],
 # plot3d(az$x,az$y,az$z) #plot with density to show the distribution in 3 dimensions (to verify proper orientation and density magnitude)
 
 
-#PolarImageInterpolate fits the azimuthal data to a thin plate spline interpolator
+#fit_plot_azimuthal fits the azimuthal data to a thin plate spline interpolator
 #The funciton then uses this model fit to predict what density would be across the hemispherical surface.
 #The smooth predicted surface is colored by it's density; Purple:White:Orange for low to high density.
-fit_data <- PolarImageInterpolate(az$x,
+fit_data <- fit_plot_azimuthal(az$x,
 							  az$y,
 							  z=az$z,
 							  outer.radius=1.6,

@@ -420,7 +420,7 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 ##' @param ... passed arguments
 ##' @import fields rgl RColorBrewer
 ##' @export
-PolarImageInterpolate<- function(
+fit_plot_azimuthal<- function(
   ### Plotting data (in cartesian) - will be converted to polar space.
   x, y, z, 
   ### Plot component flags
@@ -432,7 +432,7 @@ PolarImageInterpolate<- function(
   ### Data splitting params for color scale and contours
   col_breaks_source = 2, # Where to calculate the color breaks from (1=data,2=surface)
   # If you know the levels, input directly (i.e. c(0,1))
-  col_levels = 10,    # Number of color levels to use - must match length(col) if 
+  col_levels = 50,    # Number of color levels to use - must match length(col) if 
   #col specified separately
   col = rev(colorRampPalette(brewer.pal(11,"PuOr"))(col_levels)),  # Colors to plot
   contour_breaks_source = 1, # 1=z data, 2=calculated surface data
@@ -568,7 +568,7 @@ PolarImageInterpolate<- function(
 	  cbind(xcoords, ycoords)
 	}
 	
-	# draw circles
+	# draw latitude markings
 	if (missing(circle.rads)){
 	  circle.rads <- pretty(c(0,outer.radius-.4))
 	}
@@ -708,14 +708,11 @@ retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_vi
   	AZx = AZx*-1.0
   	retina_object$azimuthal_data.falciform[[1]]$x <- retina_object$azimuthal_data.falciform[[1]]$x*-1.0
   }
-  temp = PolarImageInterpolate(
+
+  temp = fit_plot_azimuthal(
 			AZx,
 			AZy,
 			AZz,
-			contour_breaks_source  =  c(min(AZz),max(AZz)), 
-			col_breaks_source      =  c(min(AZz),max(AZz)),
-			col_levels=50,
-  			contour_levels=20,
 			outer.radius=1.6,
 			spatial_res=spatial_res,
 			falciform_coords=retina_object$azimuthal_data.falciform[[1]],
@@ -905,12 +902,12 @@ composite_map <- function (map1,
 	}
 	message("Fitting Tps Model for Map1")
 	##Step 2 Interpolate map1 and map2 azimuthal data with the same interpolation options
-	map1fit <- PolarImageInterpolate(x1,y1,z1, spatial_res,
+	map1fit <- fit_plot_azimuthal(x1,y1,z1, spatial_res,
 									plot_suppress=TRUE, extrapolate=TRUE,
 									outer.radius=pi/2,
 									falciform_coords = map1$azimuthal_data.falciform[[1]],...)
 	message("Fitting Tps Model for Map2")
-	map2fit <- PolarImageInterpolate(x2,y2,z2, spatial_res,
+	map2fit <- fit_plot_azimuthal(x2,y2,z2, spatial_res,
 									plot_suppress=TRUE, extrapolate=TRUE,
 									outer.radius=pi/2,
 									falciform_coords = map2$azimuthal_data.falciform[[1]],...)

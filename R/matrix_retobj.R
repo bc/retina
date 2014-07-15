@@ -23,7 +23,7 @@ mat_from_ret_obj<- function(retina_object, rotation=0, n=1, reflect=TRUE, ...){
 	y2 <- az$y #overwrite old value
 
 	# Fitting models
-	map2fit <- PolarImageInterpolate(x2,y2,z2, spatial_res,
+	map2fit <- fit_plot_azimuthal(x2,y2,z2,
 									plot_suppress=TRUE, extrapolate=TRUE,
 									outer.radius=pi/2.0,
 									falciform_coords = retina_object$azimuthal_data.falciform[[1]],...)

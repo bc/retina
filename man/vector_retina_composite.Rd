@@ -4,7 +4,7 @@
 \title{Generate a retinal composite}
 \usage{
 vector_retina_composite(retina_list, spin_spatial_res = 128,
-  plot_spatial_res = 512, theta_interval = 10, plot = FALSE)
+  plot_spatial_res = 512, theta_interval = 10, plot = FALSE, ...)
 }
 \arguments{
   \item{retina_list}{A list containing retina objects, with
