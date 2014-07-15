@@ -3,7 +3,7 @@ Install
 
 Developed and tested on R 3.0.3 with Windows 7, Windows 8, Ubuntu 13.04 Linux, Mac OS X 10.9.3.
 
-####Setup:
+####1. Setup:
 ##### Windows
 [Install R 3.0.3](http://cran.r-project.org/bin/windows/base/old/3.0.3/ "Windows")
 ##### Mac
@@ -14,14 +14,14 @@ Install Xcode from the App Store
 ##### Linux
 Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 
-####Open R and load dependencies:
+####2. Open R and load dependencies:
 ```R
 source("http://retistruct.r-forge.r-project.org/install.R") ## retistruct
 source("http://retistruct.r-forge.r-project.org/install-gui.R") ## retistruct interface
 install.packages('devtools') 
 devtools::install_github('bcohn12/retina')
 ```
-####Load _retina_ and  Pseudodax Moluccanus:
+####3. Load _retina_ and  Pseudodax Moluccanus:
 ```R
 library(retina)
 retinaplot(Pmol_753)
