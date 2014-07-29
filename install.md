@@ -17,7 +17,7 @@ Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 ####2. Open R and load dependencies:
 ```R
 source("http://retistruct.r-forge.r-project.org/install.R") ## retistruct
-source("http://retistruct.r-forge.r-project.org/install-gui.R") ## retistruct interface
+source("http://retistruct.r-forge.r-project.org/install-gui.R") ## retistruct interface (accept the 'install gtk' prompt)
 install.packages('devtools') 
 devtools::install_github('bcohn12/retina')
 ```
