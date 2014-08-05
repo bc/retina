@@ -14,7 +14,6 @@ require(RColorBrewer)
 require(sphereplot)
 require(mapproj)
 
-
 ##' Reef Fish
 ##'
 ##' A dataset containing three retinal objects, computed using the retina package: Pmol 753,Pmol 752 and Ntae 381.
