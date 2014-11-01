@@ -12,16 +12,15 @@ Additional_repositories: http://cran.r-project.org,
     http://R-Forge.R-project.org,
     http://www.neuralmapformation.org/R
 Depends:
-    R (>= 3.0.3),
+    R (>= 3.1.1),
     rgl,
     fields,
     RColorBrewer,
     sphereplot,
     mapproj,
-    retistruct,
-    retistructgui
 Suggests:
-    testthat
+    testthat,
+    retistruct
 Roxygen: list(wrap = TRUE)
 License: GPL-2
 LazyData: true
