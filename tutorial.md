@@ -1,4 +1,4 @@
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+**Table of Contents** 
 
 - [Retina Package Tutorial](#user-content-retina-package-tutorial)
 - [Overview](#user-content-overview)

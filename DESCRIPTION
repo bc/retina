@@ -1,14 +1,15 @@
 Package: retina
-Title: Tools for retinal plotting and analysis
-Version: 0.7
-Date: 2014-06-18
+Title: Tools for plotting and analyzing vertebrate retinas.
+Version: 1.1.0
+Date: 2014-10-31
 Author: Brian Cohn and Lars Schmitz <brian_cohn14@pitzer.edu> [aut, cre]
 Copyright: 2013-2014 Brian Cohn and Lars Schmitz
 Maintainer: Brian Cohn <brian_cohn14@pitzer.edu>
 Authors@R: c( person("Brian", "Cohn", email = "brian_cohn14@pitzer.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut", "cre")))
-Description: Tools for retinal plotting and analysis
-Additional_repositories: http://cran.r-project.org,
+Description: Tools for plotting and analyzing vertebrate retinas. Refer to http://github.com/bcohn12/retina for the bleeding edge edition.
+Additional_repositories: 
+    http://cran.r-project.org,
     http://R-Forge.R-project.org,
     http://www.neuralmapformation.org/R
 Depends:

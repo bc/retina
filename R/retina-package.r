@@ -618,6 +618,7 @@ return(list(t,tmp, error))
 ##' \item{\code{Ssc}}{Landmarks on reconstructed sphere in cartesian coordinates}
 ##' \item{\code{Sss}}{Landmarks on reconstructed sphere in spherical coordinates}
 ##' @author David Sterratt
+##' @import geometry
 ##' @export
 getDssRemoved <- function(r, report=message) {
   ###Function by David Sterratt, 2013
