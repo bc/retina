@@ -1,6 +1,6 @@
 #Retinal Plotter Example Code: Brian Cohn March 28, 2014
 #Bring in package/function files
-require(testthat); require(retistruct); require(retistructgui); 
+require(testthat); require(retistruct);
 require(sphereplot); require(mapproj); require(rgl); 
 require(fields); require(RColorBrewer);
 require(retina)

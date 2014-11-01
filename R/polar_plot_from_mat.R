@@ -1,5 +1,4 @@
 require(retistruct)
-require(retistructgui)
 require(rgl)
 require(fields)
 require(RColorBrewer)

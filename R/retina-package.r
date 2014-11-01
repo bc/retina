@@ -7,7 +7,6 @@
 NULL
 
 require(retistruct)
-require(retistructgui)
 require(rgl)
 require(fields)
 require(RColorBrewer)
@@ -169,7 +168,7 @@ ssite_merge <- function(location, counts, ...){
 ##' @return data.frame with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 ##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
 ##' @references https://r-forge.r-project.org/scm/?group_id=1436
-##' @import retistruct retistructgui
+##' @import retistruct
 ##' @export
 spherical_coords <- function (path, height, width, IJ_limits, falciform=TRUE){
 	#Read in the xyz dataset from stereology data collection.
