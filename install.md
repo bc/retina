@@ -1,13 +1,13 @@
 Install
 =====
 
-Developed and tested on R 3.0.3 with Windows 7, Windows 8, Ubuntu 13.04 Linux, Mac OS X 10.9.3.
+Developed and tested on R 3.1.1 with Windows 7, Windows 8, Ubuntu 13.04 Linux, Mac OS X 10.9.3.
 
 ####1. Setup:
 ##### Windows
-[Install R 3.0.3](http://cran.r-project.org/bin/windows/base/old/3.0.3/ "Windows")
+[Install R 3.1.1](http://cran.r-project.org/bin/windows/base/ "Windows")
 ##### Mac
-[Install R-3.0.3.pkg](http://cran.r-project.org/bin/macosx/old/ "Mac OS X")  
+[Install R 3.1.1](http://cran.r-project.org/bin/macosx/ "Mac OS X")  
 [Install GTK](http://r.research.att.com/libs/GTK_2.24.17-X11.pkg "Mac OS X")  
 Install Xcode from the App Store  
 [Install Xquartz](http://xquartz.macosforge.org/)
