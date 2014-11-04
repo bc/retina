@@ -14,11 +14,11 @@ Install Xcode from the App Store
 ##### Linux
 Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 
-####2. Open R and load dependencies:
+####2. Load dependencies from the R console:
 ```R
-source("http://retistruct.r-forge.r-project.org/install.R") ## retistruct
-source("http://retistruct.r-forge.r-project.org/install-gui.R") ## retistruct interface (accept the 'install gtk' prompt)
-install.packages('devtools') 
+install.packages(c("retistruct", "geometry"), repos="http://R-Forge.R-project.org") ## retistruct interface
+retistruct::retistruct() #On windows, Accept the 'Install GTK+' popup
+install.packages('devtools')
 devtools::install_github('bcohn12/retina')
 ```
 ####3. Load _retina_ and  Pseudodax Moluccanus:
