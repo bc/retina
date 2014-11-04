@@ -1,7 +1,7 @@
 Install
 =====
 
-Developed and tested on R 3.1.1 with Windows 7, Windows 8, Ubuntu 13.04 Linux, Mac OS X 10.9.3.
+Developed and tested on R 3.1.1 with Windows 8.1
 
 ####1. Setup:
 ##### Windows
