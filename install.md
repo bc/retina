@@ -16,12 +16,12 @@ Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 
 ####2. Load dependencies from the R console:
 ```R
-install.packages(c("retistruct", "geometry"), repos="http://R-Forge.R-project.org") ## retistruct interface
+install.packages(c("retistruct", "geometry"), repos="http://R-Forge.R-project.org", type="source")
 retistruct::retistruct() #On windows, Accept the 'Install GTK+' popup
 install.packages('devtools')
 devtools::install_github('bcohn12/retina')
 ```
-####3. Load _retina_ and  Pseudodax Moluccanus:
+####3. Load _retina_ and plot the retina of a reef fish (*Pseudodax moluccanus*):
 ```R
 library(retina)
 retinaplot(Pmol_753)
