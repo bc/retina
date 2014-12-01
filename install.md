@@ -6,6 +6,8 @@ Developed and tested on R 3.1.1 with Windows 8.1
 ####1. Setup:
 ##### Windows
 [Install R 3.1.2](http://cran.r-project.org/bin/windows/base/ "Windows")
+[Install RTools](http://cran.r-project.org/bin/windows/Rtools/ "Windows")
+
 ##### Linux
 Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
 ##### Mac (experimental)
