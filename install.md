@@ -18,7 +18,7 @@ Install Xcode from the App Store
 
 ####2. Load dependencies from the R console:
 ```R
-install.packages(c("retistruct", "geometry"), repos="http://R-Forge.R-project.org", type="source")
+install.packages('retistruct')
 retistruct::retistruct() #On Windows, Accept the 'Install GTK+' popup
 install.packages('devtools')
 devtools::install_github('bcohn12/retina')
