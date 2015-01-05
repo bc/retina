@@ -9,9 +9,7 @@ Authors@R: c( person("Brian", "Cohn", email = "brian_cohn14@pitzer.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut", "cre")))
 Description: Tools for plotting and analyzing vertebrate retinas. Refer to http://github.com/bcohn12/retina for the bleeding edge edition.
 Additional_repositories: 
-    http://cran.r-project.org,
-    http://R-Forge.R-project.org,
-    http://www.neuralmapformation.org/R
+    http://cran.r-project.org
 Depends:
     R (>= 3.1.1),
     rgl,
@@ -19,9 +17,10 @@ Depends:
     RColorBrewer,
     sphereplot,
     mapproj,
+    retistruct,
+    geometry
 Suggests:
-    testthat,
-    retistruct
+    testthat
 Roxygen: list(wrap = TRUE)
 License: GPL-2
 LazyData: true
