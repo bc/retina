@@ -13,3 +13,5 @@ retina.Rproj
 tutorial.md
 README.md
 tutorial_pix
+^install.md$
+^tutorial.md$
