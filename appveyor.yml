@@ -9,7 +9,17 @@ init:
 install:
   ps: Bootstrap
 
+
+
 # Adapt as necessary starting from here
+
+version: 1.0.{build}
+platform:
+- x64
+- x86
+- Any CPU
+- ARM
+
 
 build_script:
   - travis-tool.sh install_deps
