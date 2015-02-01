@@ -1,13 +1,12 @@
 Package: retina
 Title: Tools for plotting and analyzing vertebrate retinas.
 Version: 1.2.0
-Date: 2014-10-31
-Author: Brian Cohn and Lars Schmitz <brian_cohn14@pitzer.edu> [aut, cre]
+Date: 2015-2-1
 Copyright: 2013-2015 Brian Cohn and Lars Schmitz
 Maintainer: Brian Cohn <brian_cohn14@pitzer.edu>
 Authors@R: c( person("Brian", "Cohn", email = "brian_cohn14@pitzer.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut", "cre")))
-Description: Tools for plotting and analyzing vertebrate retinas. Refer to http://github.com/bcohn12/retina for the bleeding edge edition.
+Description: Tools for Plotting and Analyzing Vertebrate Retinas Refer to http://github.com/bcohn12/retina for the bleeding edge edition.
 Additional_repositories: 
     http://cran.r-project.org
 Depends:
@@ -22,5 +21,5 @@ Depends:
 Suggests:
     testthat
 Roxygen: list(wrap = TRUE)
-License: GPL-2
+License: CC BY-NC-SA 4.0
 LazyData: true
