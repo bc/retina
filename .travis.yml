@@ -3,9 +3,6 @@
 
 language: c
 
-os:
-  - linux
-  - osx
 
 before_install:
   - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
@@ -27,9 +24,11 @@ notifications:
     on_failure: change
 
 env:
+  os:
+    - linux
+    - osx
+
   matrix:
-    - RVERSION=3.0.3
-    - RVERSION=3.1.0
     - RVERSION=3.1.1
     - RVERSION=3.1.2
     - RVERSION=devel
