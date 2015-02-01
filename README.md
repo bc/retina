@@ -1,4 +1,6 @@
-[![Travis-CI Build Status](https://travis-ci.org/bcohn12/retina.png?branch=master)](https://travis-ci.org/bcohn12/retina)
+Linux:[![Travis-CI Build Status](https://travis-ci.org/bcohn12/retina.png?branch=master)](https://travis-ci.org/bcohn12/retina), Windows:[![Build status](https://ci.appveyor.com/api/projects/status/v7vav80absnsh9jf?svg=true)](https://ci.appveyor.com/project/bcohn12/retina)
+
+
 retina in R
 ======
 
