@@ -1,3 +1,4 @@
+[![Travis-CI Build Status](https://travis-ci.org/bcohn12/retina.png?branch=master)](https://travis-ci.org/bcohn12/retina)
 retina in R
 ======
 
