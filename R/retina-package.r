@@ -2,7 +2,6 @@
 ##' @description
 ##' Copyright (c) 2013-2014 Brian Cohn and Lars Schmitz
 ##' @name retina
-##' @importFrom retistruct bary.to.sphere.cart sphere.cart.to.sphere.spherical
 ##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
 ##' @docType package
 NULL

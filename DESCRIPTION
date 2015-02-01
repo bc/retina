@@ -11,8 +11,7 @@ Description: Tools for plotting and analyzing vertebrate retinas. Refer to http:
 Additional_repositories: 
     http://cran.r-project.org
 Depends:
-    R (>= 3.1.1)
-Imports:
+    R (>= 3.1.1),
     rgl,
     fields,
     RColorBrewer,
