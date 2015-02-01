@@ -5,7 +5,7 @@ retina in R
 ======
 
 Open-source tools for visualizing and comparing retinal cell density data.
-
+<img src="tutorial_pix/retina_plot_output_pmol753.jpg" width=400 alt="some_text">
 
 > A retinal ganglion cell map helps biologists visualize receptive cells across the rear surface of the vertebrate eye. This topographic map shows density in a way which highlights areas of higher visual performance.
 

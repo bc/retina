@@ -10,6 +10,7 @@
 ^\.Rproj.user
 retina.Rproj
 .travis.yml
+appveyor.yml
 tutorial.md
 README.md
 tutorial_pix
