@@ -12,7 +12,7 @@ Additional_repositories:
     http://cran.r-project.org
 Depends:
     R (>= 3.1.1)
-Import:
+Imports:
     rgl,
     fields,
     RColorBrewer,
