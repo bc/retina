@@ -3,7 +3,6 @@ Title: Tools for plotting and analyzing vertebrate retinas.
 Version: 1.2.0
 Date: 2015-2-1
 Copyright: 2013-2015 Brian Cohn and Lars Schmitz
-Maintainer: Brian Cohn <brian_cohn14@pitzer.edu>
 Authors@R: c( person("Brian", "Cohn", email = "brian_cohn14@pitzer.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut", "cre")))
 Description: Tools for Plotting and Analyzing Vertebrate Retinas Refer to http://github.com/bcohn12/retina for the bleeding edge edition.
