@@ -640,8 +640,8 @@ getDssRemoved <- function(r, report=message) {
 	  Dsb[[name]]$idx <- Dsb[[name]]$idx
 	  # Dsc[[name]] <- bary.to.sphere.cart(r$phi, r$lambda, r$R, r$Tt, Dsb[[name]]) #ORIGINAL LINES
 	  # Dss[[name]] <- sphere.cart.to.sphere.spherical(Dsc[[name]], r$R)
-	  Dsc[[name]] <- retistruct:::bary.to.sphere.cart(r$phi, r$lambda, r$R, r$Tt, Dsb[[name]]) #MODIFIED LINE, BRIAN COHN 05/30/2014
-	  Dss[[name]] <- retistruct:::sphere.cart.to.sphere.spherical(Dsc[[name]], r$R)
+	  Dsc[[name]] <- bary.to.sphere.cart(r$phi, r$lambda, r$R, r$Tt, Dsb[[name]]) #MODIFIED LINE, BRIAN COHN 05/30/2014
+	  Dss[[name]] <- sphere.cart.to.sphere.spherical(Dsc[[name]], r$R)
 	}
   }
   return(Dss)#ADDED LINE, BRIAN COHN 05/30/2014

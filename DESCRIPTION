@@ -1,7 +1,7 @@
 Package: retina
 Title: Tools for plotting and analyzing vertebrate retinas.
-Version: 1.2.0
-Date: 2015-2-1
+Version: 1.2.1
+Date: 2015-2-17
 Copyright: 2013-2015 Brian Cohn and Lars Schmitz
 Authors@R: c( person("Brian", "Cohn", email = "brian_cohn14@pitzer.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut")))
