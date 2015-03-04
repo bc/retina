@@ -157,7 +157,7 @@ We include the retinal_arclen function to help users make an approximation of th
 #Eye Measurements from dissection
 ED = 4.8,    #Eye diameter (mm)
 AL = 3.43,   #Eye axial length (mm)
-retinal_arclen(ED, AL)
+retinal_phi0(ED, AL)
 '''
 
 --------------

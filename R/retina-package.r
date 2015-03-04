@@ -85,7 +85,7 @@ retinal_arclen <- function(ED){
 ##' @return Retinal latitude in degrees
 ##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
 ##' @export
-retinal_arclen <- function(ED, AL){
+retinal_phi0 <- function(ED, AL){
 	return(90-180/pi*acos(2*(AL/ED)-1)) ##This line written by manuscript reviewer via Journal of Vision
 }
 
