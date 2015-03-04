@@ -2,27 +2,43 @@
 % Please edit documentation in R/retina-package.r
 \name{retinal_arclen}
 \alias{retinal_arclen}
-\title{' Retinal Perimeter Estimation (spherical assumption)}
+\title{Retinal Perimeter Estimation (spherical assumption)}
 \usage{
-retinal_arclen(ED)
+retinal_arclen(ED, AL)
+
+retinal_arclen(ED, AL)
 }
 \arguments{
   \item{ED}{Eye Diameter of the eye sample, measured at the
   widest point of the eye.}
+
+  \item{AL}{Axial Length of the eye sample, measured at the
+  longest measure of the eye from anterior to posterior.}
+
+  \item{ED}{Eye Diameter of the eye sample, measured at the
+  widest points of the eye.}
 }
 \value{
 Retinal Arclength in millimeters
+
+Retinal latitude in degrees
 }
 \description{
 Calculates the retinal perimeter distance in same units as
 input, with the assumption that the retinal shape is
 hemispherical.
+
+Rim Latitude Estimation (Ellipsoidal assumption)
 }
 \details{
 Assumes a spherical eye, where eye diameter approximates
 twice the sphere's radius.
+
+Assumes an ellipsoidal eye
 }
 \author{
+Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
 

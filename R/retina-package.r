@@ -64,7 +64,7 @@ semi_ellipse_perimeter <- function( a, b)
 	return(p/2)
 }
 
-##'' Retinal Perimeter Estimation (spherical assumption)
+##' Retinal Perimeter Estimation (spherical assumption)
 ##' @description
 ##' Calculates the retinal perimeter distance in same units as input, with the assumption that the retinal shape is hemispherical.
 ##' @details Assumes a spherical eye, where eye diameter approximates twice the sphere's radius.
@@ -78,7 +78,16 @@ retinal_arclen <- function(ED){
 	return(retinal_arclen)
 }
 
-
+##' Rim Latitude Estimation (Ellipsoidal assumption)
+##' @details Assumes an ellipsoidal eye
+##' @param ED Eye Diameter of the eye sample, measured at the widest points of the eye.
+##' @param AL Axial Length of the eye sample, measured at the longest measure of the eye from anterior to posterior.
+##' @return Retinal latitude in degrees
+##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
+##' @export
+retinal_arclen <- function(ED, AL){
+	return(90-180/pi*acos(2*(AL/ED)-1)) ##This line written by manuscript reviewer via Journal of Vision
+}
 
 ##' @title import_xyz
 ##' @description
@@ -247,15 +256,16 @@ coordinate_IJ <- function(RET_count_data,	maxX,
 {
 	#data = XY sampling grid integer values are converted into imageJ coordinates based on image.
 	# make sure that maxY and minY are inputted as negative values.
+	browser()
 	if (min(RET_count_data$x)==1){
 		message("x starts at 1, no change committed")}
 	if (min(RET_count_data$y)==1){
 		message("y starts at 1, no change committed")}
 	if (min(RET_count_data$x)!=1){
-		message("x doesn't start at 1, change committed")
 		offset<-min(RET_count_data$x)-1
 		message(paste0(offset, " is the offset fixed for x"))
 		RET_count_data$x <- RET_count_data$x-offset
+		message("x doesn't start at 1, change committed")
 	}
 	if (min(RET_count_data$y)!=1){message("y doesn't start at 1, change committed")
 		offset<-min(RET_count_data$y)-1
