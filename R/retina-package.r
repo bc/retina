@@ -256,7 +256,6 @@ coordinate_IJ <- function(RET_count_data,	maxX,
 {
 	#data = XY sampling grid integer values are converted into imageJ coordinates based on image.
 	# make sure that maxY and minY are inputted as negative values.
-	browser()
 	if (min(RET_count_data$x)==1){
 		message("x starts at 1, no change committed")}
 	if (min(RET_count_data$y)==1){
