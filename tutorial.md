@@ -148,17 +148,16 @@ Instructions for marking up the retina [Sterratt et al 2013]:
 **Remove tear** To remove a tear, click on this button, then click on the apex of the tear (marked in cyan on the plot)  
 **Mark nasal** To mark the nasal pole, click on this button, then click on the point which is the nasal pole. If the nasal or dorsal pole has already been marked, the marker is removed from the existing location. The nasal pole should not be in a tear. If the nasal tear is placed within a tear, no error is reported at this stage, but it will be reported later.  
 
-#Optional: Adding retinal perimeter latitude for highly non-hemispherical retinae
+###Optional: Adding retinal perimeter latitude for highly non-hemispherical retinae
 If you would like to set the Retinal perimeter latitude, paste it into the phi0 box (in units of degrees).
-We include the retinal_arclen function to help users make an approximation of this value with recorded eye measurements.
+We include the retinal_phi0 function to help users make an approximation of this value with recorded eye measurements.
 
-###Sample calculation
-'''R
-#Eye Measurements from dissection
-ED = 4.8,    #Eye diameter (mm)
-AL = 3.43,   #Eye axial length (mm)
+####Sample calculation
+```R
+ED = 4.8
+AL = 3.43
 retinal_phi0(ED, AL)
-'''
+```
 
 --------------
 Begin analysis and visualization with the retina package
