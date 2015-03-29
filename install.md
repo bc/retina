@@ -9,7 +9,7 @@ Developed and tested on R 3.1.1 with Windows 8.1
 [Install RTools](http://cran.r-project.org/bin/windows/Rtools/ "Windows")
 
 ##### Linux
-Run in terminal: `sudo apt-get -y install r-base r-cran-rgl libgtk2.0-dev`
+Run in terminal: `sudo apt-get -y install r-base-core r-base r-cran-rgl libgtk2.0-dev`
 ##### Mac
 [Install R 3.1.2](http://cran.r-project.org/bin/macosx/ "Mac OS X")  
 Run in the terminal:
