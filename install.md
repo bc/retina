@@ -22,7 +22,7 @@ brew cask install xquartz
 ```
 Run in R
 ```R
-install.packages(c("cairoDevice", "RGTk2"), type="source") 
+install.packages(c("cairoDevice", "RGtk2"), type="source") 
 install.packages('devtools')
 devtools::install_github('bcohn12/retina')
 ```
