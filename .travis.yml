@@ -31,4 +31,5 @@ env:
   matrix:
     - RVERSION=3.1.1
     - RVERSION=3.1.2
+    - RVERSION=3.1.3
     - RVERSION=devel
