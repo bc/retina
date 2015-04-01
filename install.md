@@ -9,12 +9,24 @@ Developed and tested on R 3.1.1 with Windows 8.1
 [Install RTools](http://cran.r-project.org/bin/windows/Rtools/ "Windows")
 
 ##### Linux
-Run in terminal: `sudo apt-get install r-base r-cran-rgl libgtk2.0-dev`
-##### Mac (experimental)
+Run in terminal: `sudo apt-get -y install r-base-core r-base r-cran-rgl libgtk2.0-dev`
+##### Mac
 [Install R 3.1.2](http://cran.r-project.org/bin/macosx/ "Mac OS X")  
-[Install GTK](http://r.research.att.com/libs/GTK_2.24.17-X11.pkg "Mac OS X")  
-Install Xcode from the App Store  
-[Install Xquartz](http://xquartz.macosforge.org/)
+Run in the terminal:
+```bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install gtk+
+export PKG_CONFIG_PATH=/usr/X11/lib/pkgconfig:$PKG_CONFIG_PATH
+brew install caskroom/cask/brew-cask
+brew cask install xquartz
+```
+Run in R
+```R
+install.packages(c("cairoDevice", "RGtk2"), type="source") 
+install.packages('devtools')
+devtools::install_github('bcohn12/retina')
+```
+Finally, install Xcode from the App Store  
 
 ####2. Load dependencies from the R console:
 ```R
