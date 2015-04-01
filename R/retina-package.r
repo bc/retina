@@ -797,7 +797,7 @@ add_degrees <- function(theta, degrees){
 ##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
 ##' @family species_average
 ##' @export
-rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30, ...){
+rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30, projection_type="azequidistant",...){
   #define prediction frame for both maps
   map1 <- map1$azimuthal_data.datapoints[[1]]
   map2 <- map2$trimmed_data
@@ -815,7 +815,7 @@ rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30,
   for (rotation in 1:length(theta)){
 	#Create an azimuthal equidistant map projection with "rotation" variable.
 	  az<-mapproject(x=map2[,2], map2[,1], 
-		 projection="azequidistant", orientation=c(-90,0,theta[rotation])) 
+		 projection=projection_type, orientation=c(-90,0,theta[rotation])) 
 	  az$z <- map2[,3]
 	#get prediction frame
 	suppressWarnings(fit2 <- Tps(cbind(az$x,az$y),az$z,...))
@@ -876,7 +876,7 @@ reflect_across_vertical_line <- function(mat){
 ##' @export
 composite_map <- function (map1, 
 						   map2, 
-						   rotation=TRUE, spatial_res, plot_rotation=FALSE,
+						   rotation=TRUE, spatial_res, plot_rotation=FALSE, projection_type="azequidistant",
 						   ...){
 
 	###STEP 1 Convert map2 data into an azimuthal equidistant plot projection
@@ -906,7 +906,7 @@ composite_map <- function (map1,
 		theta <- optimal_rotation(rotation_df)
 		ori <- c(-90, 90, theta[1])
 			az <- mapproject(x=map2$trimmed_data[,2], map2$trimmed_data[,1], 
-						   projection="azequidistant", orientation=ori)
+						   projection=projection_type, orientation=ori)
 		x2 <- az$x
 		y2 <- az$y
 	}
