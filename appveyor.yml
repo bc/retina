@@ -11,7 +11,7 @@ install:
 
 
 
-# Adapt as necessary starting from here
+# Adapt as necessary starting from here:
 
 version: 1.0.{build}
 platform:
