@@ -226,6 +226,12 @@ How to run your code:
 ?vector_retina_composite 	#make an average of 3+ maps
 ?polynomial_vs_lambda 		#compare smoothing parameters on your map
 ```
+
+#Alternative plotting projections:
+As *retina* uses mapproj for its projections, our plotter will work with other polar projections, such as azimuthal equal-area, and geometric polar projections. This can be done by modifying the *projection* assignment in the *retina_object* and *mat_from_ret_obj* functions. Importantly, the axis labels will be innacurate, as they are based on the equidistant projection. See the options for alternative projection options in mapproj's CRAN documentation.
+
+
+
 #Saving to a paginated PDF
 ```R
 pdf("maps.pdf", width=8.5, height=6)
