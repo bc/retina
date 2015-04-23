@@ -230,6 +230,14 @@ How to run your code:
 #Alternative plotting projections:
 As *retina* uses mapproj for its projections, our plotter will work with other polar projections, such as azimuthal equal-area, and geometric polar projections. This can be done by modifying the *projection* assignment in the *retina_object* and *mat_from_ret_obj* functions. Importantly, the axis labels will be innacurate, as they are based on the equidistant projection. See the options for alternative projection options in mapproj's CRAN documentation.
 
+#Adding multiple ODs or Falciform Processes in an average map.
+The average map (Figure 3D) does not contain a combined optic nerve head or falciform process.
+When falciform processes are overlain, they are not all the same size. We did not research the concatenation or smoothing of falciform processes, and thereby exclude this from our manuscript. Users can plot multiple falciform processes atop one another by extracting them from the retinal composite, and plotting the polygons:
+```R
+#where fc1 is the first retina’s falciform/optic disc coordinates
+polygon(fc1[,1], fc1[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
+polygon(fc2[,1], fc2[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
+```
 
 
 #Saving to a paginated PDF
