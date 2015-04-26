@@ -13,6 +13,7 @@ Run in terminal:
 ```bash
 sudo apt-get -y build-dep libcurl4-gnutls-dev
 sudo apt-get -y install libcurl4-gnutls-dev
+sudo apt-get -y install libglu1-mesa-dev
 sudo apt-get -y install r-base-core r-base r-cran-rgl libgtk2.0-dev
 ```
 ##### Mac
