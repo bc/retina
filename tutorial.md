@@ -123,7 +123,7 @@ IJ<-data.frame(minX   = 42,  		# leftmost counting location's X value
 			   deltaY = (584-32)/17 # average ImageJ pixel distance (in the Y axis) between counting locations.
 			   ) 
 ```
-Note: If cell counts were collected on the basis of a non-uniform sampling grid, it is still possible to use retina, even though it takes some more effort from the user. Instead of supplying the min and max values of the sampled location, it is necessary to determine the (x, y) pixel location of every single sampling site manually. You can retrieve these location in ImageJ and saved in *.csv format."
+Note: If cell counts were collected on the basis of a non-uniform sampling grid, it is still possible to use retina, even though it takes some more effort from the user. Instead of supplying the min and max values of the sampled location, it is necessary to determine the (x, y) pixel location of every single sampling site manually. You can retrieve these location in ImageJ and save the coordinates in *.csv format."
 
 4. Markup the locations of retinal incisions
 =====
