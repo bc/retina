@@ -30,5 +30,4 @@ env:
 
   matrix:
     - RVERSION=devel
-    - RVERSION=oldrel
     - RVERSION=3.2.0
