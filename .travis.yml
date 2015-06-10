@@ -32,6 +32,3 @@ env:
     - RVERSION=devel
     - RVERSION=oldrel
     - RVERSION=3.2.0
-    - RVERSION=3.1.3
-    - RVERSION=3.1.2
-    - RVERSION=3.1.1
