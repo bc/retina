@@ -90,10 +90,10 @@ Click to add connected points along the retinal outline, being extra careful wit
 Come full circle back to the point your started with, and it should change colors to indicate that you're all finished with polygon drawing.
 
 ![Select ROI](tutorial_pix/roi_select.png "")  
-From the menubar, select Analyze, Tools, ROI Manager. 
+From the menubar, select Analyze, Tools, ROI Manager. A window will pop up with some buttons. Press the "Add [t]" button.
 
 ![Save Roi](tutorial_pix/save_roi.png "")  
-A window will pop up with some buttons. Press the "Add [t]" button, then press the More button. Select "Save"
+Next, press the More button. Select "Save"
 save it as `outline.ROI` in the `/diagram_retina` folder.
 Fresh slate: Close the image, exit ImageJ, start ImageJ again, and open `diagram_retina_screenshot.png`.
 
