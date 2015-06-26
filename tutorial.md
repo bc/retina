@@ -225,7 +225,7 @@ my_retina <- retina_object(
 		IJcoords = IJ)
 ```
 #Visualization and Diagnostics
-How to run your code:
+Run your code:
 ![Minx](tutorial_pix/source_or_run_line.png "")  
 
 ```R
