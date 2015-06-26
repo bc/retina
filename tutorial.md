@@ -111,9 +111,13 @@ Save as `falc.txt` to the `/diagram_retina` folder.
 ![Minx](tutorial_pix/minx.png "")  
 Find the coordinates of the outermost sampling locations. Hover with your mouse and look at the live-updated (x,y) coordinates in the tool bar.  
 **minX Example** Sampling location 10 is the furthest point to the left, and it's at `x=25`.  
+
 **maxX Example** Sampling locations 5, 15, and 16 are on the far right, and share the same edge. They all have `x=566`, so set `maxX` to `566`.  
+
 **deltaX Example** deltaX=6, because there are six vertical lines.
+
 **deltaY Example** deltaX=5, because there are five horizontal lines.
+
 **NOTE** Convert both minY and maxY so they are negative numbers (even though they may look like they're positive in ImageJ.
 Write down the minX, maxX, minY, maxY somewhere safe. You'll use it when you call the retina_object function.
 
