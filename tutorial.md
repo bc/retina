@@ -175,6 +175,7 @@ Begin analysis and visualization with the retina package
 ![Minx](tutorial_pix/newRfile.png "")  
 Create a new R Document, and work with the code snippets below to set up your retinal processing script.
 
+Set the working directory to the folder which contains the *diagram_retina* folder.
 
 Set your parameters
 ```R
