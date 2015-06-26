@@ -115,9 +115,11 @@ Find the coordinates of the outermost sampling locations. Hover with your mouse 
 
 **maxX Example** Sampling locations 5, 15, and 16 are on the far right, and share the same edge. They all have `x=566`, so set `maxX` to `566`.  
 
-**deltaX Example** deltaX=6, because there are six vertical lines.
+**deltaX Example** deltaX=(maxX-minX)/6, because there are six vertical lines.
 
-**deltaY Example** deltaY=5, because there are five horizontal lines.
+**deltaY Example** deltaY=(maxY-minY)/5, because there are five horizontal lines.
+
+Delta X and Delta Y are positive numbers.
 
 **NOTE** Convert both minY and maxY so they are negative numbers (even though they may look like they're positive in ImageJ.
 Write down the minX, maxX, minY, maxY somewhere safe. You'll use it when you call the retina_object function.
