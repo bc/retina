@@ -230,6 +230,9 @@ retinaplot(my_retina, spatial_res = 1000) ##Plot a 1000x1000 pixel sized-retinap
 retinaplot(my_retina, spatial_res = 100) ##Plot a 100x100 pixel sized-retinaplot (short computation time, low resolution)
 retinaplot(my_retina, extrapolate=FALSE) ##Turn off extrapolation to only show the prediction within the section of the retina that was sampled.
 retinaplot(my_retina, contour_levels=20) ##Define how many topographic lines you want to define the contours.
+These are fitting parameters you can also modify:
+`lambda`
+`polynomial_m`
 
 #Compute the retinal perimeter, to define the width of the plot in mm.
 ret_perimeter_len <- semi_ellipse_perimeter(a=ED, b=AL)/2 
