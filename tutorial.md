@@ -76,7 +76,7 @@ Install [ImageJ](http://imagej.nih.gov/ij/download.html "Download link") (for PC
 Open `diagram_retina_screenshot.png`
 
 ###Trace the retinal outline to make an outline.ROI file
-
+The file name has to be outline.roi, otherwise the program will note that 'No valid dataset is detected'.
 ![Select the polygon](tutorial_pix/select_polygon.png "Select the polygon tool in ImageJ")  
 Select the polygon selection tool  
 ![Finish tracing the polygon](tutorial_pix/polygon_tracing.png "")  
