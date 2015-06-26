@@ -48,6 +48,7 @@ A screen shot of the stereology software, showing the sampling locations on top 
 2 column file with cell counts for each sampling location. This comes from your stereology software or from manual recording.
 
 If you'd like to use the exact retina used in the tutorial images, download and use these data:
+This is a Left Eye.
 
 [Screenshot PNG](https://github.com/bcohn12/retina/blob/master/inst/extdata/tutorial_data/diagram_retina_screenshot.png ""),
 [Site Count CSV](https://github.com/bcohn12/retina/blob/master/inst/extdata/tutorial_data/site_counts_from_stereology.csv "")
@@ -160,6 +161,7 @@ Instructions for marking up the retina [Sterratt et al 2013]:
 **Remove tear** To remove a tear, click on this button, then click on the apex of the tear (marked in cyan on the plot)  
 **Mark nasal** REQUIRED STEP: To mark the nasal pole, click on this button, then click on the point which is the nasal pole. If the nasal or dorsal pole has already been marked, the marker is removed from the existing location. The nasal pole should not be in a tear. If the nasal tear is placed within a tear, no error is reported at this stage, but it will be reported later.  
 
+Set the eye to Right or Left. The example schematic retina is of a left eye.
 ####Before continuing, press the **Save** button, and ensure that in your diagram_retina folder the T.csv, and P.csv files have been generated.
 
 ###Optional: Adding retinal perimeter latitude for highly non-hemispherical retinae
