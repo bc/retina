@@ -47,6 +47,9 @@ A screen shot of the stereology software, showing the sampling locations on top 
 2. `site_counts_from_stereology.csv`
 2 column file with cell counts for each sampling location. This comes from your stereology software or from manual recording.
 
+If you'd like to use the exact retina used in the tutorial images, download and use these data:
+[Screenshot PNG](https://github.com/bcohn12/retina/blob/master/inst/extdata/tutorial_data/diagram_retina_screenshot.png ""),
+[Site Count CSV](https://github.com/bcohn12/retina/blob/master/inst/extdata/tutorial_data/site_counts_from_stereology.csv "")
 <img src="tutorial_pix/diagram_retina_screenshot.png" width=400 alt="some_text"> 
 <img src="tutorial_pix/site_counts_pic.png" width=400 alt="some_text">  
 
