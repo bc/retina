@@ -154,7 +154,7 @@ Instructions for marking up the retina [Sterratt et al 2013]:
 > **Add tear** To add a tear, click on this button, then click on three points in turn which define a tear. The order in which the points are added does not matter. Tears contained within a tear can be marked up, but tears cannot cross over one another.  
 **Move Point** To move one of the points defining a tear, click on this button, then click on the point which you desire to move, then click on the point to which it should be moved.  
 **Remove tear** To remove a tear, click on this button, then click on the apex of the tear (marked in cyan on the plot)  
-**Mark nasal** To mark the nasal pole, click on this button, then click on the point which is the nasal pole. If the nasal or dorsal pole has already been marked, the marker is removed from the existing location. The nasal pole should not be in a tear. If the nasal tear is placed within a tear, no error is reported at this stage, but it will be reported later.  
+**Mark nasal** REQUIRED STEP: To mark the nasal pole, click on this button, then click on the point which is the nasal pole. If the nasal or dorsal pole has already been marked, the marker is removed from the existing location. The nasal pole should not be in a tear. If the nasal tear is placed within a tear, no error is reported at this stage, but it will be reported later.  
 
 ####Before continuing, press the **Save** button, and ensure that in your diagram_retina folder the T.csv, and P.csv files have been generated.
 
