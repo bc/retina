@@ -141,7 +141,7 @@ Note: If cell counts were collected on the basis of a non-uniform sampling grid,
 4. Markup the locations of retinal incisions
 =====
 ![Set Working Directory](tutorial_pix/setwd.png "")  
-Open the R Console, load the **retina** package, and set the working directry to the folder enclosing the `diagram_retina` folder. On windows use *File > Change dir*
+Open the R Console, load the **retina** package, and set the working directory to the folder enclosing the `diagram_retina` folder. On windows use *File > Change dir*
 ```R
 library(retina)
 ```
