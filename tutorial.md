@@ -225,6 +225,8 @@ my_retina <- retina_object(
 		IJcoords = IJ)
 ```
 #Visualization and Diagnostics
+How to run your code:
+![Minx](tutorial_pix/source_or_run_line.png "")  
 
 ```R
 retinaplot(my_retina) ##Plot the retina
@@ -243,8 +245,7 @@ ret_perimeter_len <- semi_ellipse_perimeter(a=ED, b=AL)/2
 fit_plots(my_retina$fit_data1)
 ```
 
-How to run your code:
-![Minx](tutorial_pix/source_or_run_line.png "")  
+
 
 #Further functionality
 ```R
