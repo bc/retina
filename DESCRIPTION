@@ -5,7 +5,7 @@ Date: 2015-2-17
 Copyright: 2013-2015 Brian Cohn and Lars Schmitz
 Authors@R: c( person("Brian", "Cohn", email = "brian_cohn14@pitzer.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut")))
-Description: Tools for Plotting and Analyzing Vertebrate Retinas Refer to http://github.com/bcohn12/retina for the bleeding edge edition.
+Description: Tools for Plotting and Analyzing Vertebrate Retinas Refer to http://github.com/bcohn12/retina for the bleeding edge edition. Journal of Vision July 2015, Vol.15, 19. doi:10.1167/15.9.19
 Additional_repositories: 
     http://cran.r-project.org
 Depends:
