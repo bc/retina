@@ -273,3 +273,7 @@ pdf("maps.pdf", width=8.5, height=6)
 #Plot retina(s)
 dev.off()
 ```
+
+
+#Bugs people have encountered and how to fix them:
+1. When attempting to run the retina_object command, I get an error message: `Error in Summary.factor(c(34L, 15L, 240L, 225L, 239L, 14L, 33L, 101L,  : ‘min’ not meaningful for factors` . In this case, make sure your `xyz.csv` file is 'comma separated', and not colon-separated, by opening it up in a text editor. You can use find-and-replace to convert between the two.
