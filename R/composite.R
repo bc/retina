@@ -12,13 +12,17 @@ vector_retina_composite <- function(retina_list,
   									spin_spatial_res=128,
   									plot_spatial_res=512,
   									theta_interval=10,
-  									plot=FALSE, ...)
+  									plot=FALSE,
+                    rotation_degree_list, ...)
 {
-	retina_spin_mat <- compute_rotation_matrix( retina_list,
+if (class(rotation_degree_list)!="matrix") {
+	rotation_degree_list <- compute_rotation_matrix( retina_list,
 												spatial_res=spin_spatial_res,
-												theta_interval=theta_interval, ...)
+												theta_interval=theta_interval, ...)[1,]
+message('No coordinates submitted, spin optimization chosen')
+}
 	n <- length(retina_list)
-	sum <- map_vec_sum(retina_list, retina_spin_mat[1,], spatial_res=plot_spatial_res)
+	sum <- map_vec_sum(retina_list, rotation_degree_list, spatial_res=plot_spatial_res)
 	composite_mat <- sum/n #get the average
 	if (plot){
 		message('Plotting')
