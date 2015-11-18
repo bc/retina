@@ -254,6 +254,14 @@ fit_plots(my_retina$fit_data1)
 ?polynomial_vs_lambda 		#compare smoothing parameters on your map
 ```
 
+#Composite Maps of many retinae
+Once you have 2 or more retinal objects from the tutorial, run the vector_retina_composite function, as in this demo:
+https://github.com/bcohn12/retina/blob/master/demo/tricomposite.R
+
+
+And here's the source code for the function, that shows more specifics on what the input parameters can be.  There's also a map_sum function, if you want to add up all of the maps without dividing.
+
+
 #Alternative plotting projections:
 As *retina* uses mapproj for its projections, our plotter will work with other polar projections, such as azimuthal equal-area, and geometric polar projections. This can be done by modifying the *projection* assignment in the *retina_object* and *mat_from_ret_obj* functions. Importantly, the axis labels will be innacurate, as they are based on the equidistant projection. See the options for alternative projection options in mapproj's CRAN documentation.
 
