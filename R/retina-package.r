@@ -686,6 +686,7 @@ spline.poly <- function(xy, vertices, k=3, ...) {
 ##'
 ##' @description
 ##' \code{retinaplot} Generates an Azimuthal Equidistant plot projection of a retina object.
+##' You can also set lambda(floating point number) and polynomial_m(integer), as well as extrapolate (TRUE, FALSE).
 ##' @param inner_eye_view boolean, default is TRUE. If set to false, the plotted view of the retina will have the viewpoint within the skull looking at the rear of the eye. inner_eye_view has the same view as the traditional wholemount.
 ##' @param ... further arguments passed to or from other methods.
 ##' @param rotation degrees to rotate CCW (int or floating point)
