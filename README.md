@@ -46,6 +46,8 @@ In-package documentation
 ```
 [Post a github issue ticket (15 seconds)](https://github.com/bcohn12/retina/issues/new "Post an issue ticket")
 
+
+
 References
 =====
 1. Sterratt et al 2013
@@ -53,4 +55,7 @@ References
 GPL-2 License
 
 
+Press
+=====
+[Keck Science Department Announcement](http://www.kecksci.claremont.edu/News/Newsdetail.asp?NewsID=92 "KSD")
 
