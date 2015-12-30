@@ -94,6 +94,7 @@ Come full circle back to the point your started with, and it should change color
 From the menubar, select Analyze, Tools, ROI Manager. A window will pop up with some buttons. Press the "Add [t]" button.
 
 ![Save Roi](tutorial_pix/save_roi.png "")  
+![outline roi_save](https://cloud.githubusercontent.com/assets/4623063/12045123/027fcb7a-ae52-11e5-99c0-42de86a595e3.gif)
 Next, press the More button. Select "Save"
 save it as `outline.ROI` in the `/diagram_retina` folder.
 Fresh slate: Close the image, exit ImageJ, start ImageJ again, and open `diagram_retina_screenshot.png`.
@@ -104,6 +105,7 @@ Fresh slate: Close the image, exit ImageJ, start ImageJ again, and open `diagram
 This time, use the same polygon tool to make an outline of just the falciform process/optic disk (the entire black shape in the middle of the retina).
 
 ![Trace the falciform process](tutorial_pix/menu_xy_coords.png "")  
+![falc_save](https://cloud.githubusercontent.com/assets/4623063/12045122/fdced68e-ae51-11e5-8ea9-e05705ea63a9.gif)
 Once you've drawn the outline, **Don't save the falciform as .ROI.**.  
 Choose File > Save As > XY Coordinates... 
 Save as `falc.txt` to the `/diagram_retina` folder. 
