@@ -7,6 +7,8 @@ env:
   matrix:
     - RVERSION=devel
     - RVERSION=3.2.0
+    - RVERSION=3.3.1
+    - RVERSION=3.3.2
 notifications:
   email:
     on_success: change
