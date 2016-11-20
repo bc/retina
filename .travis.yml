@@ -11,8 +11,10 @@ env:
     - RVERSION=3.3.1
     - RVERSION=3.3.2
 notifications:
-    slack: kaspectscientists:OFGveqm4qxt26CPytZrHUxSV
+     slack: kaspectscientists:OFGveqm4qxt26CPytZrHUxSV
 r_packages:
       - covr
 after_success:
       - Rscript -e 'library(covr); codecov()'
+after_success:
+      - bash <(curl -s https://codecov.io/bash)
