@@ -55,6 +55,13 @@ References
 GPL-2 License
 
 
+Development Notes
+=====
+run R from the retina directory after cloning
+```
+library(devtools)
+```
+
 Press
 =====
 [Keck Science Department Announcement](http://www.kecksci.claremont.edu/News/Newsdetail.asp?NewsID=92 "KSD")
