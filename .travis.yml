@@ -6,10 +6,13 @@ env:
     - osx
   matrix:
     - RVERSION=devel
-    - RVERSION=3.2.0
+    - RVERSION=release
+    - RVERSION=oldrel
     - RVERSION=3.3.1
     - RVERSION=3.3.2
 notifications:
-  email:
-    on_success: change
-    on_failure: change
+    slack: kaspectscientists:OFGveqm4qxt26CPytZrHUxSV
+r_packages:
+      - covr
+after_success:
+      - Rscript -e 'library(covr); codecov()'
