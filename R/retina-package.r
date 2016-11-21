@@ -13,8 +13,6 @@ require(RColorBrewer)
 require(sphereplot)
 require(mapproj)
 
-
-
 ##' Reef Fish
 ##'
 ##' A dataset containing three retinal objects, computed using the retina package: Pmol 753,Pmol 752 and Ntae 381.
@@ -102,9 +100,6 @@ import_xyz <- function(path){
 	return(xyz)
 }
 
-
-
-
 ##' Polynomial vs Lambda Visualization
 ##'
 ##' @description
@@ -150,7 +145,6 @@ polynomial_vs_lambda<- function(retina_obj, spatial_res= 1000, polynomial_m_vec=
 	return(DAT)
 }
 
-
 ##' @title Merge Sampling Site location and Counting Frame counts.
 ##' @description
 ##' X represents the row index on the sampling grid, and Y represents the column index. Numbers start at 1.
@@ -167,7 +161,6 @@ ssite_merge <- function(location, counts, ...){
 	return(data.frame(xycount))
 }
 
-
 ##' @title ImageJ and Retistruction of Input Retinal Data from Flattened State
 ##' @description
 ##' Converts flat retina to a spherical representation of the data. Spherical coords path must contain:  outline.roi  Datapoints in barycentric coordinates. P.csv  Datapoints on reconstructed sphere in cartesian coordinates. T.csv  Datapoints on reconstructed sphere in spherical coordinates.  xyz.csv  Cell density site locations with density measurements. Columns of x(integer column starting at 1 at the left) , y (integer column starting at 1 on the bottom) and z (counts)
@@ -181,10 +174,9 @@ ssite_merge <- function(location, counts, ...){
 ##' @references https://r-forge.r-project.org/scm/?group_id=1436
 ##' @import retistruct
 ##' @export
-spherical_coords <- function (path, height, width, IJ_limits, falciform=TRUE){
+spherical_coords <- function(path, height, width, IJ_limits, falciform=TRUE){
 	#Read in the xyz dataset from stereology data collection.
 	xyz <- import_xyz(path)
-
 	#Read in the Falciform Process x y outline coordinates.
 	if (falciform==TRUE){
 		falc <- read.table(paste0(path, "/falc.txt"), col.names=c("x", "cyan")) 
@@ -233,7 +225,6 @@ spherical_coords <- function (path, height, width, IJ_limits, falciform=TRUE){
 		function(x) count_to_rho(x, height=height, width=width)))
 	return(list(trimmed_data=trimmed_data, falciform_outline=falciform_outline))
 }
-
 
 ##' @title ImageJ Coordinate Conversion
 ##' @param RET_count_data XYZ dataframe. X and Y are integer values starting at 1.

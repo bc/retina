@@ -1,4 +1,5 @@
 language: r
+warnings_are_errors: false
 sudo: required
 env:
   os:
@@ -11,8 +12,12 @@ env:
     - RVERSION=3.3.1
     - RVERSION=3.3.2
 notifications:
-    slack: kaspectscientists:OFGveqm4qxt26CPytZrHUxSV
+     slack: kaspectscientists:OFGveqm4qxt26CPytZrHUxSV
 r_packages:
       - covr
+r_github_packages:
+  - jimhester/lintr
 after_success:
       - Rscript -e 'library(covr); codecov()'
+      - bash <(curl -s https://codecov.io/bash)
+      - Rscript -e 'lintr::lint_package()'
