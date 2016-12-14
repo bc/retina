@@ -110,6 +110,9 @@ Once you've drawn the outline, **Don't save the falciform as .ROI.**.
 Choose File > Save As > XY Coordinates... 
 Save as `falc.txt` to the `/diagram_retina` folder. 
 
+# If your falciform coordinate values are totally different than the values of the sampling site coordinates:
+Use Analyze > Set Scale, and click to **Remove Scale**. This will make sure that the values in `falc.txt` are in pixel units.
+
 ###Record the ImageJ coordinates of the sampling location bounds
 ![Minx](tutorial_pix/minx.png "")  
 Find the coordinates of the outermost sampling locations. Hover with your mouse and look at the live-updated (x,y) coordinates in the tool bar.  
