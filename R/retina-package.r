@@ -389,7 +389,49 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 	hist(predictSE(x), col="black", xlab="Fit Error (RGC/sq.mm)", main=NULL)
 	return(predictSE(x))
 }
+### Set contour_breaks based on requested source
+##' @title Set Contour Breaks Based on Requested Source
+##' @description This function will make a set of contour topography lines. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @param contour_breaks_source See fit_plot_azimuthal
+##' @param z See fit_plot_azimuthal
+##' @param contour_levels See fit_plot_azimuthal
+##' @param Mat See fit_plot_azimuthal
+##' @value 0 returns 0 if no issue
+set_contour_breaks_based_on_requested_source <- function(contour_breaks_source, z, contour_levels, Mat) {
+  if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 1)){
+	contour_breaks = seq(min(z,na.rm=TRUE),max(z,na.rm=TRUE),
+						 by=(max(z,na.rm=TRUE)-min(z,na.rm=TRUE))/(contour_levels-1))
+  }
+  else if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 2)){
+	contour_breaks = seq(min(Mat,na.rm=TRUE),max(Mat,na.rm=TRUE),
+						 by=(max(Mat,na.rm=TRUE)-min(Mat,na.rm=TRUE))/(contour_levels-1))
+  } 
+  else if ((length(contour_breaks_source) == 2) & (is.numeric(contour_breaks_source))){
+	print(paste0("Manual contour range set from ", contour_breaks_source[1], " to ", contour_breaks_source[2]))
+	contour_breaks = pretty(contour_breaks_source,n=contour_levels)
+	contour_breaks = seq(contour_breaks_source[1],contour_breaks_source[2],
+						 by=(contour_breaks_source[2]-contour_breaks_source[1])/(contour_levels-1))
+  }
+  else {stop("Invalid selection for \"contour_breaks_source\"")}
+  return(contour_breaks)
+}
 
+### Add contours to the retina plot
+##' @title Print contour lines onto the retina plot
+##' @description Makes a set of contours to the retinaplot. Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @param minitics See fit_plot_azimuthal
+##' @param Mat See fit_plot_azimuthal
+##' @param contour_breaks See fit_plot_azimuthal
+##' @import grDevices
+##' @value 0 returns 0 if no issue
+add_contours <- function(minitics, Mat, contour_breaks, xy){
+	require(grDevices)
+	CL <- grDevices::contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
+	A <- lapply(CL, function(xy){
+  			lines(xy$x, xy$y, col = gray(.2), lwd = .5)
+		})
+	return(0)
+}
 
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
@@ -407,7 +449,6 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 ##' @param outer.radius size of plot
 ##' @param circle.rads radius lines
 ##' @param spatial_res Used to define a spatial_res by spatial_res plotting resolution.
-##' @param single_point_overlay Overlay "key" data point with square (0 = No, Other = number of pt)
 ##' @param interp.type depreciated
 ##' @param lambda lambda value for thin plate spline interpolation
 ##' @param xyrelief scaling factor for interpolation matrix.
@@ -484,23 +525,6 @@ fit_plot_azimuthal<- function(
   markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res) 
   Mat[!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius] <- NA 
   
-  ### Set contour_breaks based on requested source
-  if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 1)){
-	contour_breaks = seq(min(z,na.rm=TRUE),max(z,na.rm=TRUE),
-						 by=(max(z,na.rm=TRUE)-min(z,na.rm=TRUE))/(contour_levels-1))
-  }
-  else if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 2)){
-	contour_breaks = seq(min(Mat,na.rm=TRUE),max(Mat,na.rm=TRUE),
-						 by=(max(Mat,na.rm=TRUE)-min(Mat,na.rm=TRUE))/(contour_levels-1))
-  } 
-  else if ((length(contour_breaks_source) == 2) & (is.numeric(contour_breaks_source))){
-	print(paste0("Manual contour range set from ", contour_breaks_source[1], " to ", contour_breaks_source[2]))
-	contour_breaks = pretty(contour_breaks_source,n=contour_levels)
-	contour_breaks = seq(contour_breaks_source[1],contour_breaks_source[2],
-						 by=(contour_breaks_source[2]-contour_breaks_source[1])/(contour_levels-1))
-  }
-  else {stop("Invalid selection for \"contour_breaks_source\"")}
-  
   ### Set color breaks based on requested source
   if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 1))
   {zlim=c(min(z,na.rm=TRUE),max(z,na.rm=TRUE))}
@@ -517,13 +541,7 @@ fit_plot_azimuthal<- function(
   Mat_plot[which(Mat_plot>zlim[2])]=zlim[2]
   image(x = minitics, y = minitics, Mat_plot , useRaster = TRUE, asp = 1, axes = FALSE, xlab = "", ylab = "", zlim = zlim, col = col)
   
-  # add contours if desired
-  if (contours){
-	CL <- contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
-	A <- lapply(CL, function(xy){
-	  lines(xy$x, xy$y, col = gray(.2), lwd = .5)
-	})
-  }
+  if (contours){ add_contours(minitics, Mat, contour_breaks=set_contour_breaks_based_on_requested_source(contour_breaks_source, z, contour_levels, Mat), xy)}
   
   #Produce spline polygon for falciform 1
 	fc1 <- cbind(falciform_coords$x, falciform_coords$y)
@@ -549,11 +567,7 @@ fit_plot_azimuthal<- function(
 	points(x,y,pch=4, cex=0.5, col="black")
    
   }
-  # add overlay point (used for trained image marking) if desired
-  if (single_point_overlay!=0){
-	points(x[single_point_overlay],y[single_point_overlay],pch=0)
-  }
-  
+
   # add radial axes if desired
   if (axes){ 
 	# internals for axis markup
@@ -710,8 +724,7 @@ retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_vi
   	AZx = AZx*-1.0
   	retina_object$azimuthal_data.falciform[[1]]$x <- retina_object$azimuthal_data.falciform[[1]]$x*-1.0
   }
-
-  temp = fit_plot_azimuthal(
+  temp <- fit_plot_azimuthal(
 			AZx,
 			AZy,
 			AZz,
