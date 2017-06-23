@@ -433,6 +433,20 @@ add_contours <- function(minitics, Mat, contour_breaks, xy){
 	return(0)
 }
 
+##' @title Initiate the Square Matrix plot to prepare for polar plotting
+##' @description instantiates the square plotting area Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @param zlim See fit_plot_azimuthal
+##' @param col See fit_plot_azimuthal
+##' @param Mat See fit_plot_azimuthal
+##' @param minitics See fit_plot_azimuthal
+##' @value 0 returns 0 if no issue
+init_square_mat_plot <- function(Mat, zlim, minitics, col){
+	Mat[which(Mat<zlim[1])]=zlim[1]
+  	Mat[which(Mat>zlim[2])]=zlim[2]
+  	image(x = minitics, y = minitics, Mat , useRaster = TRUE, asp = 1, axes = FALSE, xlab = "", ylab = "", zlim = zlim, col = col)
+  	return(0)
+}
+
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param x,y,z cartesian input in azimuthal format
@@ -535,11 +549,8 @@ fit_plot_azimuthal<- function(
   else {stop("Invalid selection for \"col_breaks_source\"")}
   
 
-  # begin plot
-  Mat_plot = Mat
-  Mat_plot[which(Mat_plot<zlim[1])]=zlim[1]
-  Mat_plot[which(Mat_plot>zlim[2])]=zlim[2]
-  image(x = minitics, y = minitics, Mat_plot , useRaster = TRUE, asp = 1, axes = FALSE, xlab = "", ylab = "", zlim = zlim, col = col)
+
+  init_square_mat_plot(Mat, zlim, minitics, col)
   
   if (contours){ add_contours(minitics, Mat, contour_breaks=set_contour_breaks_based_on_requested_source(contour_breaks_source, z, contour_levels, Mat), xy)}
   
