@@ -503,6 +503,17 @@ plot_falciform_process <- function(falciform_x, falciform_y){
 	polygon(fc_smoothed[,1], fc_smoothed[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
 }
 
+
+##' @title plot points of XY
+##' @description visualize xy points
+##' @author Brian Cohn
+##' @param falciform_x numeric vector of x coordinates
+##' @param falciform_y numeric vector of y coordinates
+  plot_original_xy_locations <- function(x,y) {
+  	points(x+0.005,y,pch=4, cex=0.5, col="gainsboro")
+	points(x,y,pch=4, cex=0.5, col="black")
+  }
+
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param x,y,z cartesian input in azimuthal format
@@ -532,7 +543,7 @@ plot_falciform_process <- function(falciform_x, falciform_y){
 ##' @import fields rgl RColorBrewer
 ##' @export
 fit_plot_azimuthal<- function(
-  ### Plotting data (in cartesian) - will be converted to polar space.
+  ### Plotting data already post-azimuthal transformation
   x, y, z, 
   ### Plot component flags
   contours=TRUE,   # Add contours to the plotted surface
@@ -610,13 +621,8 @@ fit_plot_azimuthal<- function(
   #Plug in the secondary plot if it is available
   if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y)
 
+  if (points) plot_original_xy_locations(x,y)
 
-  # add interpolated point if desired
-  if (points){
-	points(x+0.005,y,pch=4, cex=0.5, col="gainsboro")
-	points(x,y,pch=4, cex=0.5, col="black")
-   
-  }
 
   # add radial axes if desired
   if (axes){ 
