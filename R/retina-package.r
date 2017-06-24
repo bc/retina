@@ -464,9 +464,32 @@ compute_thin_plate_spline_error <- function(x,y,thin_plate_spline_object) {
 ##' @author Brian Cohn
 ##' @param number_of_circles the number of radius lines to plot
 plot_circle_radial_lines <- function(number_of_circles, color_hex = "#66666650"){
+	circle <- function(x, y, rad = 1, nvert = 500){
+	  rads <- seq(0,2*pi,length.out = nvert)
+	  xcoords <- cos(rads) * rad + x
+	  ycoords <- sin(rads) * rad + y
+	  cbind(xcoords, ycoords)
+	}
 	for (i in number_of_circles){
 	  lines(circle(0, 0, i), col = color_hex)
 	}
+}
+
+##' @title Define Zlim by the requested color breaks source
+##' @description Set color breaks (zlim) based on requested source
+##' @author Brian Cohn
+##' @param col_breaks_source A 2 element vector with max and min
+##' @param z the response values from the input data (the retinal densities)
+##' @param Mat The predicted retinal densities across the xy space
+define_color_breaks_based_on_source <- function(col_breaks_source,z, Mat) {
+  if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 1))
+  	{zlim <- c(min(z,na.rm=TRUE),max(z,na.rm=TRUE))}
+  else if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 2))
+  	{zlim <- c(min(Mat,na.rm=TRUE),max(Mat,na.rm=TRUE))}
+  else if ((length(col_breaks_source) == 2) & (is.numeric(col_breaks_source)))
+  	{zlim <- col_breaks_source}
+  else {stop("Invalid selection for \"col_breaks_source\"")}
+  return(zlim)
 }
 
 ##' @title Polar Interpolation
@@ -563,16 +586,7 @@ fit_plot_azimuthal<- function(
   markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res) 
   Mat[!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius] <- NA 
   
-  ### Set color breaks based on requested source
-  if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 1))
-  {zlim=c(min(z,na.rm=TRUE),max(z,na.rm=TRUE))}
-  else if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 2))
-  {zlim=c(min(Mat,na.rm=TRUE),max(Mat,na.rm=TRUE))}
-  else if ((length(col_breaks_source) == 2) & (is.numeric(col_breaks_source)))
-  {zlim=col_breaks_source}
-  else {stop("Invalid selection for \"col_breaks_source\"")}
-  
-
+  zlim <- define_color_breaks_based_on_source(col_breaks_source,z, Mat)
 
   init_square_mat_plot(Mat, zlim, minitics, col)
   
@@ -609,13 +623,6 @@ fit_plot_azimuthal<- function(
 	RMat <- function(radians){
 	  matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2)
 	}    
-	
-	circle <- function(x, y, rad = 1, nvert = 500){
-	  rads <- seq(0,2*pi,length.out = nvert)
-	  xcoords <- cos(rads) * rad + x
-	  ycoords <- sin(rads) * rad + y
-	  cbind(xcoords, ycoords)
-	}
 	
 	# draw latitude markings
 	if (missing(circle.rads)){
