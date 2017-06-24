@@ -514,6 +514,14 @@ plot_falciform_process <- function(falciform_x, falciform_y){
 	points(x,y,pch=4, cex=0.5, col="black")
   }
 
+ interpolate_input_data <- function(minitics, x, y, z, lambda, polynomial_m, extrapolate){
+	grid.list = list(x=minitics,y=minitics) #choose locations to predict at
+	t <- Tps(cbind(x,y),z,lambda=lambda, m = polynomial_m) #computationally intensive
+	tmp <- predictSurface(t,grid.list,extrap=extrapolate)
+	Mat = tmp$z
+	return(list(t=t, tmp=tmp, Mat= Mat))
+  }
+
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param x,y,z cartesian input in azimuthal format
@@ -530,7 +538,6 @@ plot_falciform_process <- function(falciform_x, falciform_y){
 ##' @param outer.radius size of plot
 ##' @param circle.rads radius lines
 ##' @param spatial_res Used to define a spatial_res by spatial_res plotting resolution.
-##' @param interp.type depreciated
 ##' @param lambda lambda value for thin plate spline interpolation
 ##' @param xyrelief scaling factor for interpolation matrix.
 ##' @param tmp_input tmp_input
@@ -567,36 +574,26 @@ fit_plot_azimuthal<- function(
   single_point_overlay=0, #Overlay "key" data point with square 
   #(0 = No, Other = number of pt)
   ### Fitting parameters
-  interp.type = 1, #1 = Thin plate spline , null if you are inputting your own predicted surface
   lambda=0.001, xyrelief=1,tmp_input = NULL, plot_suppress=FALSE,
   compute_error=FALSE,
   falciform_coords=NULL,
   falc2=NA, 
   polynomial_m=NULL,
   ...){ 
-  
-  
-  #Used only when interp.type = 2
 
-  
+  minitics <- seq(-outer.radius, outer.radius, length.out = spatial_res)
   # interpolate the data
-  if (interp.type == 1){
-  
-	minitics <- seq(-outer.radius, outer.radius, length.out = spatial_res)
-	grid.list = list(x=minitics,y=minitics) #choose locations to predict at
-	t <- Tps(cbind(x,y),z,lambda=lambda, m = polynomial_m) #computationally intensive
-	tmp <- predictSurface(t,grid.list,extrap=extrapolate)
-	Mat = tmp$z
-  }
-  else {stop("interp.type value not valid")}
+
+  vals <- interpolate_input_data(minitics, x, y, z, lambda, polynomial_m, extrapolate)
+  browser()
+  # list(t=t, tmp=tmp, Mat= Mat))
+  t <- vals$t ; tmp <- vals$tmp; Mat <- vals$Mat;
+
   if (compute_error==TRUE){
   	error <- compute_thin_plate_spline_error(x,y,thin_plate_spline_object)
   } else {
   	error <- NULL
   }
-
-
-
 
   if (plot_suppress == TRUE){
 		error<-NULL
