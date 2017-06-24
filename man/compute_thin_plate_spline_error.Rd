@@ -12,6 +12,10 @@ compute_thin_plate_spline_error(x, y, thin_plate_spline_object)
   that were smoothed} \item{thin_plate_spline_object}{output
   object from fields::Tps}
 }
+\value{
+error A data frame of the error at each of the original
+points
+}
 \description{
 compute the error at a set of desired points
 }

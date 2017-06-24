@@ -361,10 +361,6 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 	std.residuals <- (out$residuals * sqrt(out$weights))/out$shat.GCV
 	if (any(which == 1)) {
 		temp <- summary(out)
-		# plot.new(xlim = c(min(fitted.values), max(fitted.values)), ylim = c(min(out$y), max(out$y)) ylab = "Y", xlab = " Predicted density", 
-		#     bty = "n", ...)
-		# points(fitted.values, out$y, col=black, alpha = 0.5)
-		# abline(0, 1)
 		plot(fitted.values, out$y, ylab = "Y", xlab = " Predicted density", 
 			bty = "n", ...)
 		abline(0, 1)
@@ -396,7 +392,7 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 ##' @param z See fit_plot_azimuthal
 ##' @param contour_levels See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
-##' @value 0 returns 0 if no issue
+##' @return contour_breaks See fit_plot_azimuthal
 define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat) {
   if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 1)){
 	contour_breaks = seq(min(z,na.rm=TRUE),max(z,na.rm=TRUE),
@@ -423,14 +419,12 @@ define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat)
 ##' @param Mat See fit_plot_azimuthal
 ##' @param contour_breaks See fit_plot_azimuthal
 ##' @import grDevices
-##' @value 0 returns 0 if no issue
 add_contours <- function(minitics, Mat, contour_breaks, xy){
 	require(grDevices)
 	CL <- grDevices::contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
 	A <- lapply(CL, function(xy){
   			lines(xy$x, xy$y, col = gray(.2), lwd = .5)
 		})
-	return(0)
 }
 
 ##' @title Initiate the Square Matrix plot to prepare for polar plotting
@@ -439,12 +433,10 @@ add_contours <- function(minitics, Mat, contour_breaks, xy){
 ##' @param col See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
 ##' @param minitics See fit_plot_azimuthal
-##' @value 0 returns 0 if no issue
 init_square_mat_plot <- function(Mat, zlim, minitics, col){
 	Mat[which(Mat<zlim[1])]=zlim[1]
   	Mat[which(Mat>zlim[2])]=zlim[2]
   	image(x = minitics, y = minitics, Mat , useRaster = TRUE, asp = 1, axes = FALSE, xlab = "", ylab = "", zlim = zlim, col = col)
-  	return(0)
 }
 
 ##' @title Compute fit error at original data points
@@ -453,7 +445,7 @@ init_square_mat_plot <- function(Mat, zlim, minitics, col){
 ##' @param x the x coordinates of the original points that were smoothed
 ##' @param y the y coordinates of the original points that were smoothed
 ##' @param thin_plate_spline_object output object from fields::Tps
-##' @value error A data frame of the error at each of the original points
+##' @return error A data frame of the error at each of the original points
 compute_thin_plate_spline_error <- function(x,y,thin_plate_spline_object) {
 	return(data.frame(x=x,y=y, se=predictSE(thin_plate_spline_object)))
 }
@@ -513,6 +505,16 @@ plot_falciform_process <- function(falciform_x, falciform_y){
   	points(x+0.005,y,pch=4, cex=0.5, col="gainsboro")
 	points(x,y,pch=4, cex=0.5, col="black")
   }
+##' @title Interpolate Input Data with Thin Plate Spline
+##' @description Interpolation
+##' @author Brian Cohn
+##' @param minitics values referring to the circle
+##' @param x input variable 1
+##' @param y input variable 2
+##' @param z response variable
+##' @param lambda TPS parameter
+##' @param polynomial_m TPS parameter
+##' @param extrapolate true/false whether we should interpolate past the points, all the way to the eye equator
 
  interpolate_input_data <- function(minitics, x, y, z, lambda, polynomial_m, extrapolate){
 	grid.list = list(x=minitics,y=minitics) #choose locations to predict at
@@ -521,6 +523,45 @@ plot_falciform_process <- function(falciform_x, falciform_y){
 	Mat = tmp$z
 	return(list(t=t, tmp=tmp, Mat= Mat))
   }
+
+##' @title Remove points that are outside of the plotting circle
+##' @description We do not need points plotted in the corners of the plotted circle.
+##' @author Brian Cohn
+##' @param minitics Spherical limit info
+##' @param spatial_res spatial width in pixels of the plotted image
+##' @param Mat Matrix of predicted points on the set grid
+##' @param outer.radius max value of the radius
+##' @param falciform_y numeric vector of y coordinates
+nullify_vals_outside_the_circle <- function(minitics, spatial_res, heatmap_matrix, outer.radius){
+  matrix_position_is_within_the_circle <- function() {!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius}
+  markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res) 
+  matrix_to_mask <- heatmap_matrix #matrix_to_mask is a mutable variable
+  matrix_to_mask[matrix_position_is_within_the_circle()] <- NA #MUTABLE
+  return(matrix_to_mask)
+}
+##' @title Plot the degree labels for latitudes
+##' @description Plot degree numbers
+##' @author Brian Cohn
+##' @param outer.radius the extent of the radius of the plot
+##' @param circle.rads the number of radian circles that are drawn
+plot_degree_label_for_latitudes <- function(outer.radius, circle.rads) {
+		axis(2, pos = -1.25 * outer.radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
+		text( -1.26 * outer.radius, 
+			sort(union(circle.rads, -circle.rads)),
+			sort(union(circle.rads, -circle.rads)), 
+			xpd = TRUE, pos = 2,family = "Palatino")
+}
+
+##' @title add a basic legend
+##' @description plot a basic legend
+##' @author Brian Cohn
+##' @import fields
+##' @param col Color vector
+##' @param zlim limits of the densities
+add_legend <- function(col, zlim) {
+	par(mai = c(1,1,1.5,1.5))
+	fields::image.plot(legend.only=TRUE, col=col, zlim=zlim, family = "Palatino")
+}
 
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
@@ -556,7 +597,7 @@ fit_plot_azimuthal<- function(
   contours=TRUE,   # Add contours to the plotted surface
   legend=TRUE,        # Plot a surface data legend?
   axes=TRUE,      # Plot axes?
-  points=TRUE,        # Plot individual data points
+  should_plot_points=TRUE,        # Plot individual data points
   extrapolate=TRUE, # Should we extrapolate outside data points?
   ### Data splitting params for color scale and contours
   col_breaks_source = 2, # Where to calculate the color breaks from (1=data,2=surface)
@@ -585,41 +626,31 @@ fit_plot_azimuthal<- function(
   # interpolate the data
 
   vals <- interpolate_input_data(minitics, x, y, z, lambda, polynomial_m, extrapolate)
-  browser()
-  # list(t=t, tmp=tmp, Mat= Mat))
   t <- vals$t ; tmp <- vals$tmp; Mat <- vals$Mat;
-
-  if (compute_error==TRUE){
-  	error <- compute_thin_plate_spline_error(x,y,thin_plate_spline_object)
+  if (compute_error) {
+  	error <- compute_thin_plate_spline_error(x,y,tmp)
   } else {
   	error <- NULL
   }
 
   if (plot_suppress == TRUE){
-		error<-NULL
 		return(list(t,tmp, error))
   }
-
-
-  #turn values outside of the circle to NA
-  markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res) 
-  Mat[!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius] <- NA 
+  heatmap_matrix <- nullify_vals_outside_the_circle(minitics, spatial_res, Mat, outer.radius)
   
-  zlim <- define_color_breaks_based_on_source(col_breaks_source,z, Mat)
+  zlim <- define_color_breaks_based_on_source(col_breaks_source,z, heatmap_matrix)
 
-  init_square_mat_plot(Mat, zlim, minitics, col)
+  init_square_mat_plot(heatmap_matrix, zlim, minitics, col)
   
-  if (contours){ add_contours(minitics, Mat,
-  	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, Mat), xy)}
+  if (contours){ add_contours(minitics, heatmap_matrix,
+  	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), xy)}
   
   #Produce spline polygon for falciform 1
 	plot_falciform_process(falciform_coords$x, falciform_coords$y)
 
   #Plug in the secondary plot if it is available
   if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y)
-
-  if (points) plot_original_xy_locations(x,y)
-
+  if (should_plot_points) plot_original_xy_locations(x,y)
 
   # add radial axes if desired
   if (axes){ 
@@ -649,16 +680,9 @@ fit_plot_azimuthal<- function(
 	  text(endpoints[3], endpoints[4], lab2, xpd = TRUE, family = "Palatino")
 	}
 
-	axis(2, pos = -1.25 * outer.radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
-	text( -1.26 * outer.radius, sort(union(circle.rads, -circle.rads)),sort(union(circle.rads, -circle.rads)), xpd = TRUE, pos = 2,family = "Palatino")
+	plot_degree_label_for_latitudes(outer.radius, circle.rads)
   }
-  
-#add legend
-  if (legend){
-		par(mai = c(1,1,1.5,1.5))
-		image.plot(legend.only=TRUE, col=col, zlim=zlim, family = "Palatino")
-
-  }
+  if (legend) add_legend(col, zlim)
 
 return(list(t,tmp, error))
 }
