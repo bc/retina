@@ -572,6 +572,21 @@ draw_axial_spokes <- function(endpoints, color_hex="#66666650"){
   segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = color_hex )
 }
 
+
+##' @title Write labels at endpoint locations
+##' @description put labels around the circle at each of the lines
+##' @author Brian Cohn
+##' @param r_label string of right label
+##' @param l_label string of left label
+##' @param degree the degree that is being placed in
+##' @param endpoints vector of 4 numerics, x,y and x',y' defining the line segment
+write_labels_at_endpoint_locations <- function(r_label, l_label, degree, endpoints){
+		  lab1 <- bquote(.(r_label) * degree)
+		  lab2 <- bquote(.(l_label) * degree)
+		  text(endpoints[1], endpoints[2], lab1, xpd = TRUE, family = "Palatino")
+		  text(endpoints[3], endpoints[4], lab2, xpd = TRUE, family = "Palatino")
+	}
+
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param x,y,z cartesian input in azimuthal format
@@ -679,16 +694,13 @@ fit_plot_azimuthal<- function(
 	r.labs <- c(90, 60, 30, 0, 330, 300)
 	l.labs <- c(270, 240, 210, 180, 150, 120)
 	
-endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
 
 
 	for (i in 1:length(axis.rads)){ 
+	  endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
 	  endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
 	  draw_axial_spokes(endpoints)
-	  lab1 <- bquote(.(r.labs[i]) * degree)
-	  lab2 <- bquote(.(l.labs[i]) * degree)
-	  text(endpoints[1], endpoints[2], lab1, xpd = TRUE, family = "Palatino")
-	  text(endpoints[3], endpoints[4], lab2, xpd = TRUE, family = "Palatino")
+	  write_labels_at_endpoint_locations(r.labs[i], l.labs[i], degree, endpoints)
 	}
 
 	plot_degree_label_for_latitudes(outer.radius, circle.rads)
