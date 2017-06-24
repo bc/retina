@@ -397,7 +397,7 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 ##' @param contour_levels See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
 ##' @value 0 returns 0 if no issue
-set_contour_breaks_based_on_requested_source <- function(contour_breaks_source, z, contour_levels, Mat) {
+define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat) {
   if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 1)){
 	contour_breaks = seq(min(z,na.rm=TRUE),max(z,na.rm=TRUE),
 						 by=(max(z,na.rm=TRUE)-min(z,na.rm=TRUE))/(contour_levels-1))
@@ -490,6 +490,17 @@ define_color_breaks_based_on_source <- function(col_breaks_source,z, Mat) {
   	{zlim <- col_breaks_source}
   else {stop("Invalid selection for \"col_breaks_source\"")}
   return(zlim)
+}
+
+
+##' @title Plot falciform process
+##' @description smooths and plots the falciform process
+##' @author Brian Cohn
+##' @param falciform_x numeric vector of x coordinates
+##' @param falciform_y numeric vector of y coordinates
+plot_falciform_process <- function(falciform_x, falciform_y){
+	fc_smoothed <- spline.poly(cbind(falciform_x,falciform_y), 50, k=10)
+	polygon(fc_smoothed[,1], fc_smoothed[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
 }
 
 ##' @title Polar Interpolation
@@ -590,24 +601,14 @@ fit_plot_azimuthal<- function(
 
   init_square_mat_plot(Mat, zlim, minitics, col)
   
-  if (contours){ add_contours(minitics, Mat, contour_breaks=set_contour_breaks_based_on_requested_source(contour_breaks_source, z, contour_levels, Mat), xy)}
+  if (contours){ add_contours(minitics, Mat,
+  	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, Mat), xy)}
   
   #Produce spline polygon for falciform 1
-	fc1 <- cbind(falciform_coords$x, falciform_coords$y)
-	fc1 <- spline.poly(fc1, 50, k=10)
+	plot_falciform_process(falciform_coords$x, falciform_coords$y)
 
-		#Plug in the secondary plot
-	if(is.na(falc2)){
-	  #only plot first
-	  polygon(fc1[,1], fc1[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42") #only plot first
-	} else {
-		fc2 <- cbind(falc2$x, falc2$y)
-		fc2 <- spline.poly(fc2, 50, k=10)
-		polygon(fc1[,1], fc1[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42") #plot first and
-		polygon(fc2[,1], fc2[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42") #plot second
-	}
-
-
+  #Plug in the secondary plot if it is available
+  if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y)
 
 
   # add interpolated point if desired
