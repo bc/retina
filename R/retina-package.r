@@ -447,6 +447,17 @@ init_square_mat_plot <- function(Mat, zlim, minitics, col){
   	return(0)
 }
 
+##' @title Compute fit error at original data points
+##' @description compute the error at a set of desired points
+##' @author Brian Cohn
+##' @param x the x coordinates of the original points that were smoothed
+##' @param y the y coordinates of the original points that were smoothed
+##' @param thin_plate_spline_object output object from fields::Tps
+##' @value error A data frame of the error at each of the original points
+compute_thin_plate_spline_error <- function(x,y,thin_plate_spline_object) {
+	return(data.frame(x=x,y=y, se=predictSE(thin_plate_spline_object)))
+}
+
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param x,y,z cartesian input in azimuthal format
@@ -523,10 +534,12 @@ fit_plot_azimuthal<- function(
   }
   else {stop("interp.type value not valid")}
   if (compute_error==TRUE){
-  	error <- data.frame(x=x,y=y, se=predictSE(t))#computationally intensive
+  	error <- compute_thin_plate_spline_error(x,y,thin_plate_spline_object)
   } else {
   	error <- NULL
   }
+
+
 
 
   if (plot_suppress == TRUE){
