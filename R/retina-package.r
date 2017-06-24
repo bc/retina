@@ -563,6 +563,15 @@ add_legend <- function(col, zlim) {
 	fields::image.plot(legend.only=TRUE, col=col, zlim=zlim, family = "Palatino")
 }
 
+##' @title draw axial spokes
+##' @description put the radial lines on the plot
+##' @author Brian Cohn
+##' @param endpoints a 4 element numeric vector descrbing the xy and x'y' for the line segment.
+##' @param color_hex hex string
+draw_axial_spokes <- function(endpoints, color_hex="#66666650"){
+  segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = color_hex )
+}
+
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param x,y,z cartesian input in azimuthal format
@@ -670,10 +679,12 @@ fit_plot_azimuthal<- function(
 	r.labs <- c(90, 60, 30, 0, 330, 300)
 	l.labs <- c(270, 240, 210, 180, 150, 120)
 	
+endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+
+
 	for (i in 1:length(axis.rads)){ 
-	  endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
-	  segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = "#66666650")
 	  endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
+	  draw_axial_spokes(endpoints)
 	  lab1 <- bquote(.(r.labs[i]) * degree)
 	  lab2 <- bquote(.(l.labs[i]) * degree)
 	  text(endpoints[1], endpoints[2], lab1, xpd = TRUE, family = "Palatino")
