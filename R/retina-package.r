@@ -458,6 +458,17 @@ compute_thin_plate_spline_error <- function(x,y,thin_plate_spline_object) {
 	return(data.frame(x=x,y=y, se=predictSE(thin_plate_spline_object)))
 }
 
+
+##' @title Draw circle radians about the center
+##' @description Draw N radius lines (circles)
+##' @author Brian Cohn
+##' @param number_of_circles the number of radius lines to plot
+plot_circle_radial_lines <- function(number_of_circles, color_hex = "#66666650"){
+	for (i in number_of_circles){
+	  lines(circle(0, 0, i), col = color_hex)
+	}
+}
+
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param x,y,z cartesian input in azimuthal format
@@ -610,11 +621,8 @@ fit_plot_azimuthal<- function(
 	if (missing(circle.rads)){
 	  circle.rads <- pretty(c(0,outer.radius-.4))
 	}
-	
-	for (i in circle.rads){
-	  lines(circle(0, 0, i), col = "#66666650")
-	}
-	
+	plot_circle_radial_lines(circle.rads)
+
 	# put on radial spoke axes:
 	axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
 	r.labs <- c(90, 60, 30, 0, 330, 300)

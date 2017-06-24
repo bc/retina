@@ -28,20 +28,18 @@ fit_plot_azimuthal(x, y, z, contours = TRUE, legend = TRUE, axes = TRUE,
   {number of contour levels} \item{outer.radius}{size of plot}
   \item{circle.rads}{radius lines} \item{spatial_res}{Used to
   define a spatial_res by spatial_res plotting resolution.}
-  \item{single_point_overlay}{Overlay "key" data point with
-  square (0 = No, Other = number of pt)} \item{interp.type}
-  {depreciated} \item{lambda}{lambda value for thin plate
-  spline interpolation} \item{xyrelief}{scaling factor
-  for interpolation matrix.} \item{tmp_input}{tmp_input}
-  \item{plot_suppress}{by default FALSE} \item{compute_error}
-  {whether to use fields::predictSE} \item{falciform_coords}
-  {vertices in xy format of the falciform process}
-  \item{falc2}{a second falficorm coordinate file}
-  \item{polynomial_m}{A polynomial function of degree (m-1)
-  will be included in the model as the drift (or spatial
-  trend) component. Default is the value such that 2m-d is
-  greater than zero where d is the dimension of x.} \item{...}
-  {passed arguments}
+  \item{interp.type}{depreciated} \item{lambda}{lambda
+  value for thin plate spline interpolation} \item{xyrelief}
+  {scaling factor for interpolation matrix.} \item{tmp_input}
+  {tmp_input} \item{plot_suppress}{by default FALSE}
+  \item{compute_error}{whether to use fields::predictSE}
+  \item{falciform_coords}{vertices in xy format of the
+  falciform process} \item{falc2}{a second falficorm
+  coordinate file} \item{polynomial_m}{A polynomial function
+  of degree (m-1) will be included in the model as the drift
+  (or spatial trend) component. Default is the value such that
+  2m-d is greater than zero where d is the dimension of x.}
+  \item{...}{passed arguments}
 }
 \description{
 This function will make a plot. Code from http://
