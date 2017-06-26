@@ -493,80 +493,7 @@ getDssRemoved <- function(r, report=message) {
   return(Dss)#ADDED LINE, BRIAN COHN 05/30/2014
 }
 
-##' @title Polygon Spline Fit
-##' @details enhance the resolution of a polygon verticies dataframe by creating a spline along each vertex.
-##' @param xy vertices in dataframe with x and y columns, in order (not all are used).
-##' @param vertices Number of spline vertices to create.
-##' @param k Wraps K vertices around each end. n >=k
-##' @param ... further arguments passed to or from other methods.
-##' @return Coords More finely placed vertices for the polygon.
-##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
-##' @references http://gis.stackexchange.com/questions/24827/how-to-smooth-the-polygons-in-a-contour-map
-spline.poly <- function(xy, vertices, k=3, ...) {
-	n <- dim(xy)[1]
-	if (k >= 1) {
-		data <- rbind(xy[(n-k+1):n,], xy, xy[1:k, ])
-	} else {
-		data <- xy
-	}
-	# Spline the x and y coordinates.
-	data.spline <- spline(1:(n+2*k), data[,1], n=vertices, ...)
-	x <- data.spline$x
-	x1 <- data.spline$y
-	x2 <- spline(1:(n+2*k), data[,2], n=vertices, ...)$y
 
-	# Retain only the middle part.
-	cbind(x1, x2)[k < x & x <= n+k, ]
-}
-
-##' @title Retina Plot
-##'
-##' @description
-##' \code{retinaplot} Generates an Azimuthal Equidistant plot projection of a retina object.
-##' You can also set lambda(floating point number) and polynomial_m(integer), as well as extrapolate (TRUE, FALSE).
-##' @param inner_eye_view boolean, default is TRUE. If set to false, the plotted view of the retina will have the viewpoint within the skull looking at the rear of the eye. inner_eye_view has the same view as the traditional wholemount.
-##' @param ... further arguments passed to or from other methods.
-##' @param rotation degrees to rotate CCW (int or floating point)
-##' @param return_fit logical, whether or not to return the interpolation fit data.
-##' @param spatial_res define the number of pixels (resolution) the plot will be
-##' @param retina_object A list containing an element \code{azimuthal_data.datapoints} with
-##' \code{x,y,z} datapoints. File must also include \code{azimuthal_data.falciform}.
-##' @return Base-R polar plot
-##' 
-##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
-##' 
-##' 
-##' @family visualization
-##' @export
-retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_view=TRUE, return_fit=FALSE, ...){
-  AZx   <- retina_object$azimuthal_data.datapoints[[1]]$x
-  AZy   <- retina_object$azimuthal_data.datapoints[[1]]$y
-  AZz   <- retina_object$azimuthal_data.datapoints[[1]]$z
-  # if (rotation !=0){
-	rotAZ <- cartesian_rotation(AZx, AZy, rotation)
-	AZx   <- rotAZ$x
-	AZy   <- rotAZ$y
-	rotFALC <- cartesian_rotation(retina_object$azimuthal_data.falciform[[1]]$x,
-								  retina_object$azimuthal_data.falciform[[1]]$y, rotation)
-	retina_object$azimuthal_data.falciform[[1]]$x <- rotFALC$x
-	retina_object$azimuthal_data.falciform[[1]]$y <- rotFALC$y
-	message(paste("rotated by", rotation, "degrees"))
-  # }
-  if (inner_eye_view==TRUE){
-  	AZx = AZx*-1.0
-  	retina_object$azimuthal_data.falciform[[1]]$x <- retina_object$azimuthal_data.falciform[[1]]$x*-1.0
-  }
-  temp <- fit_plot_azimuthal(
-			AZx,
-			AZy,
-			AZz,
-			outer.radius=1.6,
-			spatial_res=spatial_res,
-			falciform_coords=retina_object$azimuthal_data.falciform[[1]],
-			falc2=NA, ...
-		  )
-  if (return_fit){return(temp)}
-}
 
 
 
@@ -788,8 +715,7 @@ map_composites <- function(MAT1,MAT2, col_levels=5, showplots=FALSE,...){
 	#Matrix Combinations
 	max1 <- max(MAT1, na.rm=TRUE)
 	max2 <- max(MAT2, na.rm=TRUE)
-	avMAX <- mean(max1,max2)
-
+	avMAX <- mean(max1,max2)	
 	min1 <- min(MAT1, na.rm=TRUE)
 	min2 <- min(MAT2, na.rm=TRUE)
 	avmin <- mean(min1,min2)
