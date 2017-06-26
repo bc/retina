@@ -451,49 +451,6 @@ compute_thin_plate_spline_error <- function(x,y,thin_plate_spline_object) {
 }
 
 
-##' @title Draw circle radians about the center
-##' @description Draw N radius lines (circles)
-##' @author Brian Cohn
-##' @param number_of_circles the number of radius lines to plot
-plot_circle_radial_lines <- function(number_of_circles, color_hex = "#66666650"){
-	circle <- function(x, y, rad = 1, nvert = 500){
-	  rads <- seq(0,2*pi,length.out = nvert)
-	  xcoords <- cos(rads) * rad + x
-	  ycoords <- sin(rads) * rad + y
-	  cbind(xcoords, ycoords)
-	}
-	for (i in number_of_circles){
-	  lines(circle(0, 0, i), col = color_hex)
-	}
-}
-
-##' @title Define Zlim by the requested color breaks source
-##' @description Set color breaks (zlim) based on requested source
-##' @author Brian Cohn
-##' @param col_breaks_source A 2 element vector with max and min
-##' @param z the response values from the input data (the retinal densities)
-##' @param Mat The predicted retinal densities across the xy space
-define_color_breaks_based_on_source <- function(col_breaks_source,z, Mat) {
-  if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 1))
-  	{zlim <- c(min(z,na.rm=TRUE),max(z,na.rm=TRUE))}
-  else if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 2))
-  	{zlim <- c(min(Mat,na.rm=TRUE),max(Mat,na.rm=TRUE))}
-  else if ((length(col_breaks_source) == 2) & (is.numeric(col_breaks_source)))
-  	{zlim <- col_breaks_source}
-  else {stop("Invalid selection for \"col_breaks_source\"")}
-  return(zlim)
-}
-
- interpolate_input_data <- function(minitics, x, y, z, lambda, polynomial_m, extrapolate){
-	grid.list = list(x=minitics,y=minitics) #choose locations to predict at
-	t <- Tps(cbind(x,y),z,lambda=lambda, m = polynomial_m) #computationally intensive
-	tmp <- predictSurface(t,grid.list,extrap=extrapolate)
-	Mat = tmp$z
-	return(list(t=t, tmp=tmp, Mat= Mat))
-  }
-
-
-
 
 ##' @title Constructor for RecontructedDataset object *EDITED
 ##' @description This function was edited by Brian Cohn on 05/30/2014 in order to return DSS. One line was added.

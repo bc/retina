@@ -146,14 +146,58 @@ RMat <- function(radians){
 ##' @description plots radial lines, degree label for latitudes, and plots radial spokes with labels
 ##' @author Brian Cohn
 ##' @param radians vector of radians
-##' @param circle.rads see fitplotazimuthal
+##' @param radius_vals vector of radius values (for latitudes)
 ##' @param outer.radius see fitplotazimuthal
-draw_latitude_markings <- function(circle.rads, outer.radius) {
-	if (missing(circle.rads)){circle.rads <- pretty(c(0,outer.radius-.4))}
-	plot_circle_radial_lines(circle.rads)
-	plot_degree_label_for_latitudes(outer.radius, circle.rads)
+draw_latitude_markings <- function(radius_vals, outer.radius) {
+	plot_circle_radial_lines(radius_vals)
+	plot_degree_label_for_latitudes(outer.radius, radius_vals)
 	plot_radial_spokes_and_labels(outer.radius)
 }
+
+
+##' @title Draw circle radians about the center
+##' @description Draw N radius lines (circles)
+##' @author Brian Cohn
+##' @param radius_vals vector of radius values where the circles will be drawn
+plot_circle_radial_lines <- function(radius_vals, color_hex = "#66666650"){
+	circle <- function(x, y, rad = 1, nvert = 500){
+	  rads <- seq(0,2*pi,length.out = nvert)
+	  xcoords <- cos(rads) * rad + x
+	  ycoords <- sin(rads) * rad + y
+	  cbind(xcoords, ycoords)
+	}
+	for (i in radius_vals){
+	  lines(circle(0, 0, i), col = color_hex)
+	}
+}
+
+##' @title Define Zlim by the requested color breaks source
+##' @description Set color breaks (zlim) based on requested source
+##' @author Brian Cohn
+##' @param col_breaks_source A 2 element vector with max and min
+##' @param z the response values from the input data (the retinal densities)
+##' @param Mat The predicted retinal densities across the xy space
+define_color_breaks_based_on_source <- function(col_breaks_source,z, Mat) {
+  if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 1))
+  	{zlim <- c(min(z,na.rm=TRUE),max(z,na.rm=TRUE))}
+  else if ((length(col_breaks_source) == 1) & (col_breaks_source[1] == 2))
+  	{zlim <- c(min(Mat,na.rm=TRUE),max(Mat,na.rm=TRUE))}
+  else if ((length(col_breaks_source) == 2) & (is.numeric(col_breaks_source)))
+  	{zlim <- col_breaks_source}
+  else {stop("Invalid selection for \"col_breaks_source\"")}
+  return(zlim)
+}
+
+ interpolate_input_data <- function(minitics, x, y, z, lambda, polynomial_m, extrapolate){
+	grid.list = list(x=minitics,y=minitics) #choose locations to predict at
+	t <- Tps(cbind(x,y),z,lambda=lambda, m = polynomial_m) #computationally intensive
+	tmp <- predictSurface(t,grid.list,extrap=extrapolate)
+	Mat = tmp$z
+	return(list(t=t, tmp=tmp, Mat= Mat))
+  }
+
+
+
 
 ##' @title Plot radial axes
 ##' @description Put radial axes onto visualization
@@ -169,6 +213,20 @@ plot_radial_spokes_and_labels <- function(outer.radius) {
 	}
 }
 
+##' @title Create a pretty number list up to but not including the upper limit
+##' @description Remove the last element if it exceeds the upper limit
+##' @author Brian Cohn
+##' @param upper_limit numeric upper bound
+##' @param lower_limit numeric lower bound
+##' @param pretty_vec numeric vector
+pretty_list_not_including_max <- function(lower_limit, upper_limit){
+	radian_list <- pretty(c(lower_limit,upper_limit))
+	if (max(radian_list) > upper_limit){
+		return(a[1:length(a)-1])
+	} else {
+		return(radian_list)
+	}
+}
 
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
@@ -217,7 +275,7 @@ fit_plot_azimuthal<- function(
   contour_levels = col_levels+1,
   ### Plotting params
   outer.radius = pi/2.0,  
-  circle.rads = pretty(c(0,outer.radius)), #Radius lines
+  circle.rads = pretty_list_not_including_max(0,outer.radius), #Radius lines
   spatial_res=1000, #Resolution of fitted surface
   single_point_overlay=0, #Overlay "key" data point with square 
   #(0 = No, Other = number of pt)
