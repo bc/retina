@@ -646,6 +646,13 @@ RMat <- function(radians){
 }  
 
 
+draw_latitude_markings <- function(circle.rads, outer.radius, circle.rads) {
+	if (missing(circle.rads)){circle.rads <- pretty(c(0,outer.radius-.4))}
+	plot_circle_radial_lines(circle.rads)
+	plot_degree_label_for_latitudes(outer.radius, circle.rads)
+	plot_radial_spokes_and_labels(outer.radius)
+}
+
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param x,y,z cartesian input in azimuthal format
@@ -735,14 +742,7 @@ fit_plot_azimuthal<- function(
   # add radial axes if desired
   if (axes){   
 	# draw latitude markings
-	if (missing(circle.rads)){
-	  circle.rads <- pretty(c(0,outer.radius-.4))
-	}
-	plot_circle_radial_lines(circle.rads)
-
-	plot_radial_spokes_and_labels(outer.radius)
-
-	plot_degree_label_for_latitudes(outer.radius, circle.rads)
+	draw_latitude_markings(circle.rads, outer.radius, circle.rads) {
   }
   if (legend) add_legend(col, zlim)
 
