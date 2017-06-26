@@ -652,8 +652,7 @@ RMat <- function(radians){
 ##' @param radians vector of radians
 ##' @param circle.rads see fitplotazimuthal
 ##' @param outer.radius see fitplotazimuthal
-##' @param circle.rads see fitplotazimuthal
-draw_latitude_markings <- function(circle.rads, outer.radius, circle.rads) {
+draw_latitude_markings <- function(circle.rads, outer.radius) {
 	if (missing(circle.rads)){circle.rads <- pretty(c(0,outer.radius-.4))}
 	plot_circle_radial_lines(circle.rads)
 	plot_degree_label_for_latitudes(outer.radius, circle.rads)
@@ -748,9 +747,7 @@ fit_plot_azimuthal<- function(
 
   # add radial axes if desired
   if (axes){   
-	# draw latitude markings
-	draw_latitude_markings(circle.rads, outer.radius, circle.rads) {
-  }
+	draw_latitude_markings(circle.rads, outer.radius)
   if (legend) add_legend(col, zlim)
 
 return(list(t,tmp, error))
