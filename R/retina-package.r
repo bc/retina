@@ -563,12 +563,12 @@ add_legend <- function(col, zlim) {
 	fields::image.plot(legend.only=TRUE, col=col, zlim=zlim, family = "Palatino")
 }
 
-##' @title draw axial spokes
+##' @title draw line segments
 ##' @description put the radial lines on the plot
 ##' @author Brian Cohn
 ##' @param endpoints a 4 element numeric vector descrbing the xy and x'y' for the line segment.
 ##' @param color_hex hex string
-draw_axial_spokes <- function(endpoints, color_hex="#66666650"){
+draw_line_segments <- function(endpoints, color_hex="#66666650"){
   segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = color_hex )
 }
 
@@ -586,6 +586,65 @@ write_labels_at_endpoint_locations <- function(r_label, l_label, degree, endpoin
 		  text(endpoints[1], endpoints[2], lab1, xpd = TRUE, family = "Palatino")
 		  text(endpoints[3], endpoints[4], lab2, xpd = TRUE, family = "Palatino")
 	}
+
+
+##' @title Compute Longitude Label Location
+##' @description Find the location to put the label around the circle at each of the lines
+##' @author Brian Cohn
+##' @param axis.rads axis.rads
+##' @param outer.radius numeric value for radius limit
+##' @return label_locations the computed location for a label
+compute_longitude_label_location <- function(axis.rads, outer.radius){
+	return(c(RMat(axis.rads) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2)))
+}
+
+##' @title Plot longitudinal spoke lines
+##' @description put lines across the plotting circle
+##' @author Brian Cohn
+##' @param axis.radian radian
+##' @param outer.radius numeric value of the outer radius limit
+plot_longitudinal_lines <- function(axis_radian, outer.radius){
+  endpoints <- zapsmall(c(RMat(axis_radian) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+  draw_line_segments(endpoints)
+}
+
+##' @title Plot longitudinal labels
+##' @description put a degree label at the ends of the endpoints for each longitude
+##' @author Brian Cohn
+##' @param axis.rad axis radian
+##' @param outer.radius numeric value of the outer radius limit
+##' @param r_label label number
+##' @param l_label label number
+##' @param degree numeric, the degree of interest
+plot_longitudinal_labels <- function(axis.rad, outer.radius, r_label, l_label, degree) {
+  write_labels_at_endpoint_locations(r_label, l_label, degree, compute_longitude_label_location(axis.rad, outer.radius))
+}
+
+
+##' @title Plot radial axes
+##' @description Put radial axes onto visualization
+##' @author Brian Cohn
+##' @param outer.radius numeric value of the outer radius limit
+plot_radial_spokes_and_labels <- function(outer.radius) {
+	axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
+	r.labs <- c(90, 60, 30, 0, 330, 300)
+	l.labs <- c(270, 240, 210, 180, 150, 120)
+	for (i in 1:length(axis.rads)){ 
+	  plot_longitudinal_lines(axis.rads[i], outer.radius)
+	  plot_longitudinal_labels(axis.rads[i], outer.radius, r.labs[i], l.labs[i], degree)
+	}
+}
+
+
+##' @title Internal equation for axis markup
+##' @description define locations for radians with trigonometry
+##' @author Brian Cohn
+##' @param radians vector of radians
+##' @return RMat trigonometric positions
+RMat <- function(radians){
+  return(matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2))
+}  
+
 
 ##' @title Polar Interpolation
 ##' @description This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
@@ -669,39 +728,19 @@ fit_plot_azimuthal<- function(
   if (contours){ add_contours(minitics, heatmap_matrix,
   	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), xy)}
   
-  #Produce spline polygon for falciform 1
-	plot_falciform_process(falciform_coords$x, falciform_coords$y)
-
-  #Plug in the secondary plot if it is available
-  if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y)
+  plot_falciform_process(falciform_coords$x, falciform_coords$y)
+  if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y) #Plug in the secondary plot if it is available
   if (should_plot_points) plot_original_xy_locations(x,y)
 
   # add radial axes if desired
-  if (axes){ 
-	# internals for axis markup
-	RMat <- function(radians){
-	  matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2)
-	}    
-	
+  if (axes){   
 	# draw latitude markings
 	if (missing(circle.rads)){
 	  circle.rads <- pretty(c(0,outer.radius-.4))
 	}
 	plot_circle_radial_lines(circle.rads)
 
-	# put on radial spoke axes:
-	axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
-	r.labs <- c(90, 60, 30, 0, 330, 300)
-	l.labs <- c(270, 240, 210, 180, 150, 120)
-	
-
-
-	for (i in 1:length(axis.rads)){ 
-	  endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
-	  endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
-	  draw_axial_spokes(endpoints)
-	  write_labels_at_endpoint_locations(r.labs[i], l.labs[i], degree, endpoints)
-	}
+	plot_radial_spokes_and_labels(outer.radius)
 
 	plot_degree_label_for_latitudes(outer.radius, circle.rads)
   }
