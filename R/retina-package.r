@@ -646,6 +646,13 @@ RMat <- function(radians){
 }  
 
 
+##' @title Draw Latitude Markings
+##' @description plots radial lines, degree label for latitudes, and plots radial spokes with labels
+##' @author Brian Cohn
+##' @param radians vector of radians
+##' @param circle.rads see fitplotazimuthal
+##' @param outer.radius see fitplotazimuthal
+##' @param circle.rads see fitplotazimuthal
 draw_latitude_markings <- function(circle.rads, outer.radius, circle.rads) {
 	if (missing(circle.rads)){circle.rads <- pretty(c(0,outer.radius-.4))}
 	plot_circle_radial_lines(circle.rads)
