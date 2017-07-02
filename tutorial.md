@@ -229,7 +229,7 @@ my_retina <- retina_object(
 	#ImageJ Datapoint Calibration Measurements
 		IJcoords = IJ)
 ```
-#Visualization and Diagnostics
+# Visualization and Diagnostics
 Run your code:
 ![Minx](tutorial_pix/source_or_run_line.png "")  
 
@@ -243,16 +243,16 @@ These are fitting parameters you can also modify:
 `lambda`
 `polynomial_m`
 
-#Compute the retinal perimeter, to define the width of the plot in mm.
+# Compute the retinal perimeter, to define the width of the plot in mm.
 ret_perimeter_len <- semi_ellipse_perimeter(a=ED, b=AL)/2 
 
-#Fit diagnostics
+# Fit diagnostics
 fit_plots(my_retina$fit_data1)
 ```
 
 
 
-#Further functionality
+# Further functionality
 ```R
 ?composite_map 				#make an average of 2 maps
 ?vector_retina_composite 	#make an average of 3+ maps
@@ -267,20 +267,20 @@ https://github.com/bcohn12/retina/blob/master/demo/tricomposite.R
 And here's the source code for the function, that shows more specifics on what the input parameters can be.  There's also a map_sum function, if you want to add up all of the maps without dividing.
 
 
-#Alternative plotting projections:
+# Alternative plotting projections:
 As *retina* uses mapproj for its projections, our plotter will work with other polar projections, such as azimuthal equal-area, and geometric polar projections. This can be done by modifying the *projection* assignment in the *retina_object* and *mat_from_ret_obj* functions. Importantly, the axis labels will be innacurate, as they are based on the equidistant projection. See the options for alternative projection options in mapproj's CRAN documentation.
 
-#Adding multiple ODs or Falciform Processes in an average map.
+# Adding multiple ODs or Falciform Processes in an average map.
 The average map (Figure 3D) does not contain a combined optic nerve head or falciform process.
 When falciform processes are overlain, they are not all the same size. We did not research the concatenation or smoothing of falciform processes, and thereby exclude this from our manuscript. Users can plot multiple falciform processes atop one another by extracting them from the retinal composite, and plotting the polygons:
 ```R
-#where fc1 is the first retina’s falciform/optic disc coordinates
+# where fc1 is the first retina’s falciform/optic disc coordinates
 polygon(fc1[,1], fc1[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
 polygon(fc2[,1], fc2[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
 ```
 
 
-#Saving to a paginated PDF
+# Saving to a paginated PDF
 ```R
 pdf("maps.pdf", width=8.5, height=6)
 #Plot retina(s)
@@ -288,5 +288,5 @@ dev.off()
 ```
 
 
-#Bugs people have encountered and how to fix them:
+# Bugs people have encountered and how to fix them:
 1. When attempting to run the retina_object command, you might get this error message: `Error in Summary.factor(c(34L, 15L, 240L, 225L, 239L, 14L, 33L, 101L,  : ‘min’ not meaningful for factors` . In this case, make sure your `xyz.csv` file is 'comma separated', and not colon-separated, by opening it up in a text editor. You can use find-and-replace to convert between the two.
