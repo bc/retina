@@ -22,5 +22,5 @@ Histograms and Error scatterplots in base R
 Fields Package
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

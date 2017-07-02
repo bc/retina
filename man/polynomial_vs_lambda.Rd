@@ -31,5 +31,5 @@ Visualize the effect of polynomial number and lambda on the thin plate spline fi
 pdf documents in the working directory for each combination of lambda and m (polynomial degree)
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu} Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu} Lars Schmitz
 }

@@ -23,5 +23,5 @@ X represents the row index on the sampling grid, and Y represents the column ind
 Other munge: \code{\link{import_xyz}}
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

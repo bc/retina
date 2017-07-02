@@ -15,5 +15,5 @@ reorder_columns(X, FN)
 X_new data.frame of columns ordered in decreasing value from left to right according to each function(column)
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu} Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu} Lars Schmitz
 }

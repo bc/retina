@@ -25,5 +25,5 @@ enhance the resolution of a polygon verticies dataframe by creating a spline alo
 http://gis.stackexchange.com/questions/24827/how-to-smooth-the-polygons-in-a-contour-map
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

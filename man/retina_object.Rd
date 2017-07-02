@@ -38,5 +38,5 @@ ret_obj retinal object (list)
 \code{data.frame} with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}
+Brian Cohn \email{brian.cohn@usc.edu}
 }

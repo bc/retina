@@ -9,5 +9,5 @@
 Copyright (c) 2013-2014 Brian Cohn and Lars Schmitz
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

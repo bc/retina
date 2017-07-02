@@ -33,7 +33,7 @@ demo('spin_optimization')
 This tutorial includes screenshots from a **Mac**. This guide is still very helpful for Windows and Linux users.
 
 ###Questions, Errors, and Comments?
-[Submit a quick help ticket](https://github.com/bcohn12/retina/issues/new "") or brian_cohn14 (at) pitzer.edu
+[Submit a quick help ticket](https://github.com/bcohn12/retina/issues/new "") or brian.cohn@usc.edu
 
 
 Retinal data pre-processing

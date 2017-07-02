@@ -12,6 +12,6 @@ data(reef_fish)
 A dataset containing three retinal objects, computed using the retina package: Pmol 753,Pmol 752 and Ntae 381.
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }
 \keyword{datasets}

@@ -30,5 +30,5 @@ coordinate_IJ(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY, inversion,
 RET_count_data Retinal count data in ImageJ coordinates. $x, $y and $z
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

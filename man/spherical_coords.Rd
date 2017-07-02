@@ -27,5 +27,5 @@ Converts flat retina to a spherical representation of the data. Spherical coords
 https://r-forge.r-project.org/scm/?group_id=1436
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

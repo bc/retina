@@ -16,5 +16,5 @@ matrix reflected matrix
 Reflect matrix across vertical axis
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu} Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu} Lars Schmitz
 }

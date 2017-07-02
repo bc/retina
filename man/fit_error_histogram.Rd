@@ -17,5 +17,5 @@ fit_error_histogram(x, main = NULL, ...)
 Error histogram in base R
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

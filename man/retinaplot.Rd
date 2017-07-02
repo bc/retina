@@ -29,5 +29,5 @@ Base-R polar plot
 You can also set lambda(floating point number) and polynomial_m(integer), as well as extrapolate (TRUE, FALSE).
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

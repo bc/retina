@@ -21,5 +21,5 @@ Rim Latitude Estimation (Ellipsoidal assumption)
 Assumes an ellipsoidal eye
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

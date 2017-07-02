@@ -19,5 +19,5 @@ Ramanujan approximation divided by two.
 \eqn{p \approx \pi * [3(a+b)-\sqrt{(3a + b)(a + 3b)}]} in half
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

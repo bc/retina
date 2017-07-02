@@ -27,7 +27,7 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
     if (height != width) {
         stop("Height is not equal to Width. \n 
 \t\t\t  Must be square counting frame. \n
-\t\t\t  Email Brian_Cohn14@pitzer.edu if you want to request this feature.")
+\t\t\t  Email brian.cohn@usc.edu if you want to request this feature.")
     }
     
     
@@ -68,6 +68,6 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
     
     retina_object <- c(fit_data = fit_data, LD = LD, ED = ED, AL = AL, trimmed_data = list(trimmed_data), 
         azimuthal_data = list(falciform = list(falc_az), datapoints = list(az)))  #combine the retina (micro) and ocular (macro) data.
-    
+    message('View the walkthrough tutorial here: https://github.com/briancohn/retina/blob/master/tutorial.md')
     return(retina_object)
 }

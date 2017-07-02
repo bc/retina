@@ -20,5 +20,5 @@ rotation_mat Matrix where columns are fixed, rows are rotated. Column 1 is the f
 Fixes each retina in the inputted list of retina-objects, generating the optimal rotation (in degrees) with respect to the other retinas.
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu} and Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu} and Lars Schmitz
 }

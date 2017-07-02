@@ -26,5 +26,5 @@ cartesian_rotation(x,y,theta)
 Other trig_fns: \code{\link{add_degrees}}
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

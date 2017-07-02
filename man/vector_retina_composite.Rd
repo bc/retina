@@ -25,5 +25,5 @@ vector_retina_composite(retina_list, spin_spatial_res = 128,
 composite_mat Matrix of the composite retina, where the first element of the retina list is fixed.
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu} and Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu} and Lars Schmitz
 }

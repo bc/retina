@@ -32,5 +32,5 @@ Other species_average: \code{\link{composite_map}},
   \code{\link{optimal_rotation}}
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

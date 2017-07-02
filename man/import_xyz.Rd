@@ -19,5 +19,5 @@ Grabs the XYZ from the path
 Other munge: \code{\link{ssite_merge}}
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

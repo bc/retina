@@ -19,5 +19,5 @@ Calculates the retinal perimeter distance in same units as input, with the assum
 Assumes a spherical eye, where eye diameter approximates twice the sphere's radius.
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

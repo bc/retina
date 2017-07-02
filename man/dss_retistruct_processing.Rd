@@ -19,5 +19,5 @@ Reads in the folder, reconstructs, and returns the retinal object.
 Sterratt et. al. 2013
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}
+Brian Cohn \email{brian.cohn@usc.edu}
 }

@@ -24,5 +24,5 @@ count_to_rho(10,25,25)
 #16,000 cells/mm^2
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}
+Brian Cohn \email{brian.cohn@usc.edu}
 }

@@ -13,5 +13,5 @@ degrees(radian_coords)
 data.frame Phi and lambda in a data.frame.
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

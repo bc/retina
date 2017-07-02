@@ -28,5 +28,5 @@ Other species_average: \code{\link{optimal_rotation}},
   \code{\link{rotation_optimize}}
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

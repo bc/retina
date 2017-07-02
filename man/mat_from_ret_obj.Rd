@@ -24,5 +24,5 @@ mat A square matrix of the evaluated retina fit.
 You can decide how much to rotate the retina before returning the matrix. You can also pass arguments to the polar plotter.
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu} and Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu} and Lars Schmitz
 }

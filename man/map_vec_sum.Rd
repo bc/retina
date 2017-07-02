@@ -17,5 +17,5 @@ map_vec_sum(retina_list, rotation_indices, ...)
 sum_mat The sum of all retina objects in the list, with respect to the rotation indices.
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu} and Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu} and Lars Schmitz
 }

@@ -21,5 +21,5 @@ add_degrees(30, 180) #you should get -150
 Other trig_fns: \code{\link{cartesian_rotation}}
 }
 \author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }
