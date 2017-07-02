@@ -7,18 +7,19 @@
 map_composites(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...)
 }
 \arguments{
-  \item{MAT1}{Matrix of RGC densities} \item{MAT2}{Matrix of
-  RGC densities} \item{col_levels}{Number of levels to plot
-  (if showing plot.)} \item{showplots}{False by default.}
-  \item{...}{further arguments passed to or from other
-  methods.}
+\item{MAT1}{Matrix of RGC densities}
+
+\item{MAT2}{Matrix of RGC densities}
+
+\item{col_levels}{Number of levels to plot (if showing plot.)}
+
+\item{showplots}{False by default.}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
-MAT_composite Square matrix: Composite Map (adjusted to
-max,min of each map, with new peak equal to the mean of map1
-and map2's peaks)
+MAT_composite Square matrix: Composite Map (adjusted to max,min of each map, with new peak equal to the mean of map1 and map2's peaks)
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-

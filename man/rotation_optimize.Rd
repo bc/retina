@@ -8,33 +8,29 @@ rotation_optimize(map1, map2, spatial_res = 32, theta_interval = 30,
   projection_type = "azequidistant", ...)
 }
 \arguments{
-  \item{map1}{retinal data: This map will not be rotated,
-  and will serve as the reference.} \item{map2}{retinal
-  data: This map will be rotated and superimposed upon
-  map1. Has components $x, $y and $z in azimuthal projection
-  coordinates.} \item{spatial_res}{Defines the number of
-  pixels across the interpolation grid for every comparison.
-  Default is 16 for speed.} \item{theta_interval}{Defines the
-  interval at which the rotation value will be changed when
-  moving to the next comparison. Default is 10 in units of
-  degrees.} \item{...}{further arguments passed to or from
-  other methods. reference map. latitude in [,1], longitude in
-  [,2], rho in [,3].}
+\item{map1}{retinal data: This map will not be rotated, and will serve as the reference.}
+
+\item{map2}{retinal data: This map will be rotated and superimposed upon map1.
+Has components $x, $y and $z in azimuthal projection coordinates.}
+
+\item{spatial_res}{Defines the number of pixels across the interpolation grid for every comparison. Default is 16 for speed.}
+
+\item{theta_interval}{Defines the interval at which the rotation value will be changed when moving to the next comparison. Default is 10 in units of degrees.}
+
+\item{...}{further arguments passed to or from other methods.
+reference map. latitude in [,1], longitude in [,2], rho in [,3].}
 }
 \value{
-df_spin Matrix of errors (in second column) for a given map
-rotation.
+df_spin Matrix of errors (in second column) for a given map rotation.
 }
 \description{
-Rotates one map 360 degrees, and for every value of rotation
-between -180 to 180, the mean absolute difference between
-the maps' rho values is recorded
+Rotates one map 360 degrees, and for every value of rotation between -180 to 180, the 
+mean absolute difference between the maps' rho values is recorded
+}
+\seealso{
+Other species_average: \code{\link{composite_map}},
+  \code{\link{optimal_rotation}}
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-\seealso{
-Other species_average: \code{\link{composite_map}},
-\code{\link{optimal_rotation}}
-}
-

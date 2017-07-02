@@ -7,21 +7,17 @@
 import_xyz(path)
 }
 \arguments{
-  \item{path}{Path to a folder containing a three column comma
-  separated value database. File must be named \code{xyz.csv}}
+\item{path}{Path to a folder containing a three column comma separated value database. File must be named \code{xyz.csv}}
 }
 \value{
-dataframe with X Y and Z columns with NA's. Each row is
-a density measurement at a given XY location in ImageJ
-coordinates.
+dataframe with X Y and Z columns with NA's. Each row is a density measurement at a given XY location in ImageJ coordinates.
 }
 \description{
 Grabs the XYZ from the path
 }
-\author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
-}
 \seealso{
 Other munge: \code{\link{ssite_merge}}
 }
-
+\author{
+Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+}

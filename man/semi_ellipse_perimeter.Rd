@@ -7,16 +7,17 @@
 semi_ellipse_perimeter(a, b)
 }
 \arguments{
-  \item{a}{Major axis (longer)} \item{b}{Minor axis (shorter)}
+\item{a}{Major axis (longer)}
+
+\item{b}{Minor axis (shorter)}
 }
 \value{
 semielliptical perimeter in same units as input
 }
 \description{
-Ramanujan approximation divided by two. \eqn{p \approx \pi *
-[3(a+b)-\sqrt{(3a + b)(a + 3b)}]} in half
+Ramanujan approximation divided by two.
+\eqn{p \approx \pi * [3(a+b)-\sqrt{(3a + b)(a + 3b)}]} in half
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-

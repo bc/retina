@@ -8,29 +8,35 @@ retina_object(path, LD, ED, AL, height, width, lambda = 0.01,
   extrapolate = TRUE, spatial_res = 16, rotation_ccw = -90, IJcoords, ...)
 }
 \arguments{
-  \item{path}{string of the retinal data directory.
-  Should contain an xyz.csv file, falc.txt, and the saved
-  retistruct() markup data} \item{LD}{lens diameter mm}
-  \item{ED}{eye diameter mm} \item{AL}{axial length mm}
-  \item{height}{counting frame height in micrometers}
-  \item{width}{counting frame width in micrometers}
-  \item{lambda}{Lambda value passed to the thin plate
-  spline interpolator.} \item{extrapolate}{logical, default
-  is TRUE so values are extrapolated to the equator.}
-  \item{spatial_res}{resolution, default is 16 for speed.}
-  \item{rotation_ccw}{Dorsal is up by default at -90 degrees.}
-  \item{IJcoords}{set of imageJ coordinates, in the format
-  of data.frame(maxX=_, maxY=_, minX=_, minY=_, deltaX=_,
-  deltaY=_). Replace _ with recorded values within ImageJ.}
-  \item{...}{further arguments passed to or from other
-  methods.}
+\item{path}{string of the retinal data directory. Should contain an xyz.csv file, falc.txt, and the saved retistruct() markup data}
+
+\item{LD}{lens diameter mm}
+
+\item{ED}{eye diameter mm}
+
+\item{AL}{axial length mm}
+
+\item{height}{counting frame height in micrometers}
+
+\item{width}{counting frame width in micrometers}
+
+\item{lambda}{Lambda value passed to the thin plate spline interpolator.}
+
+\item{extrapolate}{logical, default is TRUE so values are extrapolated to the equator.}
+
+\item{spatial_res}{resolution, default is 16 for speed.}
+
+\item{rotation_ccw}{Dorsal is up by default at -90 degrees.}
+
+\item{IJcoords}{set of imageJ coordinates, in the format of data.frame(maxX=_, maxY=_, minX=_, minY=_, deltaX=_, deltaY=_). Replace _ with recorded values within ImageJ.}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
-ret_obj retinal object (list) \code{data.frame} with
-phi(latitude), lambda(longitude) and Z (cells per square
-millimeter).
+ret_obj retinal object (list)
+
+\code{data.frame} with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}
 }
-

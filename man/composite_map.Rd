@@ -8,23 +8,25 @@ composite_map(map1, map2, rotation = TRUE, spatial_res,
   plot_rotation = FALSE, projection_type = "azequidistant", ...)
 }
 \arguments{
-  \item{map1}{Fixed retina object} \item{map2}{retina object
-  subject to rotation.} \item{rotation}{Boolean, whether
-  or not spin optimization is used.} \item{spatial_res}
-  {Default is 16. A (spatial_res*spatial_res) matrix will be
-  created for spin optimization comparisons and compose the
-  average.} \item{plot_rotation}{Boolean, whether or not spin
-  optimization plot is shown.} \item{...}{further arguments
-  passed to or from other methods.}
+\item{map1}{Fixed retina object}
+
+\item{map2}{retina object subject to rotation.}
+
+\item{rotation}{Boolean, whether or not spin optimization is used.}
+
+\item{spatial_res}{Default is 16. A (spatial_res*spatial_res) matrix will be created for spin optimization comparisons and compose the average.}
+
+\item{plot_rotation}{Boolean, whether or not spin optimization plot is shown.}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
 plot Composite Plot data
 }
+\seealso{
+Other species_average: \code{\link{optimal_rotation}},
+  \code{\link{rotation_optimize}}
+}
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-\seealso{
-Other species_average: \code{\link{optimal_rotation}},
-\code{\link{rotation_optimize}}
-}
-

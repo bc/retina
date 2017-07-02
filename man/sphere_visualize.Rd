@@ -8,8 +8,7 @@ Uses retistruct to create lat/lon coordinates}
 sphere_visualize(trimmed_data)
 }
 \arguments{
-  \item{trimmed_data}{Three-column dataset with datapoint
-  locations in latitude/longitude degree format.}
+\item{trimmed_data}{Three-column dataset with datapoint locations in latitude/longitude degree format.}
 }
 \value{
 Spherical visualization
@@ -17,4 +16,3 @@ Spherical visualization
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-

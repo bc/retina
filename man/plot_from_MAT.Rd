@@ -14,30 +14,48 @@ plot_from_MAT(z1, z2, MATRIX, contours = TRUE, legend = TRUE, axes = TRUE,
   xyrelief = 1, ...)
 }
 \arguments{
-  \item{z1}{Vector of density values (used to get the
-  max and min)} \item{z2}{Vector of density values
-  (used to get the max and min)} \item{MATRIX}{Matrix
-  object containing densty values at each row and col}
-  \item{contours}{whether to plot contours.} \item{legend}
-  {Color legend with tick marks} \item{axes}{Radial axes}
-  \item{points}{whether to plot individual datapoints as
-  X's} \item{extrapolate}{By default TRUE, will make plot
-  a circle.} \item{col_breaks_source}{2 element vector with
-  max and min} \item{col_levels}{number of color levels}
-  \item{col}{colors to plot} \item{contour_breaks_source}{1
-  if data, 2 if calculated surface data} \item{contour_levels}
-  {number of contour levels} \item{outer.radius}{size of plot}
-  \item{circle.rads}{radius lines} \item{spatial_res}{Used to
-  define a spatial_res by spatial_res plotting resolution.}
-  \item{single_point_overlay}{Overlay "key" data point with
-  square (0 = No, Other = number of pt)} \item{interp.type}
-  {depreciated} \item{lambda}{lambda value for thin plate
-  spline interpolation} \item{xyrelief}{scaling factor for
-  interpolation matrix.} \item{...}{further arguments passed
-  to or from other methods.}
+\item{z1}{Vector of density values (used to get the max and min)}
+
+\item{z2}{Vector of density values (used to get the max and min)}
+
+\item{MATRIX}{Matrix object containing densty values at each row and col}
+
+\item{contours}{whether to plot contours.}
+
+\item{legend}{Color legend with tick marks}
+
+\item{axes}{Radial axes}
+
+\item{points}{whether to plot individual datapoints as X's}
+
+\item{extrapolate}{By default TRUE, will make plot a circle.}
+
+\item{col_breaks_source}{2 element vector with max and min}
+
+\item{col_levels}{number of color levels}
+
+\item{col}{colors to plot}
+
+\item{contour_breaks_source}{1 if data, 2 if calculated surface data}
+
+\item{contour_levels}{number of contour levels}
+
+\item{outer.radius}{size of plot}
+
+\item{circle.rads}{radius lines}
+
+\item{spatial_res}{Used to define a spatial_res by spatial_res plotting resolution.}
+
+\item{single_point_overlay}{Overlay "key" data point with square (0 = No, Other = number of pt)}
+
+\item{interp.type}{depreciated}
+
+\item{lambda}{lambda value for thin plate spline interpolation}
+
+\item{xyrelief}{scaling factor for interpolation matrix.}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \details{
-Takes in a square matrix of azimuthal equidistant plot
-projection points. Generates plot projection.
+Takes in a square matrix of azimuthal equidistant plot projection points. Generates plot projection.
 }
-

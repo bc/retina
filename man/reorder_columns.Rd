@@ -7,14 +7,13 @@
 reorder_columns(X, FN)
 }
 \arguments{
-  \item{X}{data.frame} \item{FN}{A function that takes in a
-  vector and returns one value.}
+\item{X}{data.frame}
+
+\item{FN}{A function that takes in a vector and returns one value.}
 }
 \value{
-X_new data.frame of columns ordered in decreasing value from
-left to right according to each function(column)
+X_new data.frame of columns ordered in decreasing value from left to right according to each function(column)
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu} Lars Schmitz
 }
-

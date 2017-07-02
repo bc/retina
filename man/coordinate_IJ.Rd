@@ -8,24 +8,27 @@ coordinate_IJ(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY, inversion,
   ...)
 }
 \arguments{
-  \item{RET_count_data}{XYZ dataframe. X and Y are integer
-  values starting at 1.} \item{maxX}{The X value of the
-  furthest sampling site at the far right of the picture.}
-  \item{maxY}{The Y value of the furthest sampling site at the
-  top of the picture} \item{minX}{The X value of the furthest
-  sampling site at the far left of the picture} \item{minY}
-  {The Y value of the furthest sampling site at the bottom of
-  the picture} \item{deltaX}{Average change in pixels in the
-  X axis between two sampling sites.} \item{deltaY}{Average
-  change in pixels in the Y axis between two sampling sites.}
-  \item{inversion}{Whether or not to invert} \item{...}
-  {arguments passed to or from other methods.}
+\item{RET_count_data}{XYZ dataframe. X and Y are integer values starting at 1.}
+
+\item{maxX}{The X value of the furthest sampling site at the far right of the picture.}
+
+\item{maxY}{The Y value of the furthest sampling site at the top of the picture}
+
+\item{minX}{The X value of the furthest sampling site at the far left of the picture}
+
+\item{minY}{The Y value of the furthest sampling site at the bottom of the picture}
+
+\item{deltaX}{Average change in pixels in the X axis between two sampling sites.}
+
+\item{deltaY}{Average change in pixels in the Y axis between two sampling sites.}
+
+\item{inversion}{Whether or not to invert}
+
+\item{...}{arguments passed to or from other methods.}
 }
 \value{
-RET_count_data Retinal count data in ImageJ coordinates. $x,
-$y and $z
+RET_count_data Retinal count data in ImageJ coordinates. $x, $y and $z
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-

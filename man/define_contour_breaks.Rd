@@ -7,17 +7,17 @@
 define_contour_breaks(contour_breaks_source, z, contour_levels, Mat)
 }
 \arguments{
-  \item{contour_breaks_source}{See fit_plot_azimuthal}
-  \item{z}{See fit_plot_azimuthal} \item{contour_levels}{See
-  fit_plot_azimuthal} \item{Mat}{See fit_plot_azimuthal}
+\item{contour_breaks_source}{See fit_plot_azimuthal}
+
+\item{z}{See fit_plot_azimuthal}
+
+\item{contour_levels}{See fit_plot_azimuthal}
+
+\item{Mat}{See fit_plot_azimuthal}
 }
 \value{
 contour_breaks See fit_plot_azimuthal
 }
 \description{
-This function will make a set of contour topography lines.
-Code from http://stackoverflow.com/questions/10856882/r-
-interpolated-polar-contour-plot was highly modified to meet
-retinal plotting funtionality.
+This function will make a set of contour topography lines. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 }
-

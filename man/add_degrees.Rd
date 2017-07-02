@@ -7,8 +7,9 @@
 add_degrees(theta, degrees)
 }
 \arguments{
-  \item{theta}{Angle in degrees} \item{degrees}{Number of
-  degrees to add to theta}
+\item{theta}{Angle in degrees}
+
+\item{degrees}{Number of degrees to add to theta}
 }
 \value{
 newtheta Adjusted between -180 and 180 degrees.
@@ -16,10 +17,9 @@ newtheta Adjusted between -180 and 180 degrees.
 \examples{
 add_degrees(30, 180) #you should get -150
 }
-\author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
-}
 \seealso{
 Other trig_fns: \code{\link{cartesian_rotation}}
 }
-
+\author{
+Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+}

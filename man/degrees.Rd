@@ -7,8 +7,7 @@
 degrees(radian_coords)
 }
 \arguments{
-  \item{radian_coords}{A data.frame with two columns- first is
-  phi, second is lambda}
+\item{radian_coords}{A data.frame with two columns- first is phi, second is lambda}
 }
 \value{
 data.frame Phi and lambda in a data.frame.
@@ -16,4 +15,3 @@ data.frame Phi and lambda in a data.frame.
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-

@@ -7,7 +7,7 @@
 reflect_across_vertical_line(mat)
 }
 \arguments{
-  \item{mat}{a matrix (doesn't have to be square)}
+\item{mat}{a matrix (doesn't have to be square)}
 }
 \value{
 matrix reflected matrix
@@ -18,4 +18,3 @@ Reflect matrix across vertical axis
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu} Lars Schmitz
 }
-

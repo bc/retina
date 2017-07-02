@@ -9,29 +9,27 @@ polynomial_vs_lambda(retina_obj, spatial_res = 1000, polynomial_m_vec = c(3,
   error_x_limits = c(1000, 7000))
 }
 \arguments{
-  \item{retina_obj}{Retinal object} \item{spatial_res}
-  {number of pixels wide the output image will be. (1000
-  by default)} \item{polynomial_m_vec}{by default c(3,4),
-  defines the polynomial degrees to try} \item{lambda_vec}
-  {by default c(0,0.001), defines the lambda values to try}
-  \item{frequency_cap}{y axis limit for the frequency (used
-  to set all plots to the same Y scale)} \item{error_x_limits}
-  {xlim 2 element vector passed for the x axis. See ?plot}
+\item{retina_obj}{Retinal object}
+
+\item{spatial_res}{number of pixels wide the output image will be. (1000 by default)}
+
+\item{polynomial_m_vec}{by default c(3,4), defines the polynomial degrees to try}
+
+\item{lambda_vec}{by default c(0,0.001), defines the lambda values to try}
+
+\item{frequency_cap}{y axis limit for the frequency (used to set all plots to the same Y scale)}
+
+\item{error_x_limits}{xlim 2 element vector passed for the x axis. See ?plot}
 }
 \value{
-DAT data.frame containing each column with a combination
-of lambda and polynomial values. Each row value is an error
-value
+DAT data.frame containing each column with a combination of lambda and polynomial values. Each row value is an error value
 }
 \description{
-Visualize the effect of polynomial number and lambda on the
-thin plate spline fit.
+Visualize the effect of polynomial number and lambda on the thin plate spline fit.
 }
 \details{
-pdf documents in the working directory for each combination
-of lambda and m (polynomial degree)
+pdf documents in the working directory for each combination of lambda and m (polynomial degree)
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu} Lars Schmitz
 }
-

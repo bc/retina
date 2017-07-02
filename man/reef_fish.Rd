@@ -9,11 +9,9 @@
 data(reef_fish)
 }
 \description{
-A dataset containing three retinal objects, computed using
-the retina package: Pmol 753,Pmol 752 and Ntae 381.
+A dataset containing three retinal objects, computed using the retina package: Pmol 753,Pmol 752 and Ntae 381.
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
 \keyword{datasets}
-

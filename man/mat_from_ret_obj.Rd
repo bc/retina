@@ -7,23 +7,22 @@
 mat_from_ret_obj(retina_object, rotation = 0, n = 1, reflect = TRUE, ...)
 }
 \arguments{
-  \item{retina_object}{A retina} \item{rotation}{in degrees.
-  By default 0; set to zero rotation.} \item{n}{the number
-  by which to divide the matrix by. Useful when generating
-  partial averages.} \item{reflect}{logical, by default it
-  is TRUE, in order to view the retina from outside the eye
-  (rather than from within.)} \item{...}{Other arguments
-  passed from other functions}
+\item{retina_object}{A retina}
+
+\item{rotation}{in degrees. By default 0; set to zero rotation.}
+
+\item{n}{the number by which to divide the matrix by. Useful when generating partial averages.}
+
+\item{reflect}{logical, by default it is TRUE, in order to view the retina from outside the eye (rather than from within.)}
+
+\item{...}{Other arguments passed from other functions}
 }
 \value{
 mat A square matrix of the evaluated retina fit.
 }
 \description{
-You can decide how much to rotate the retina before
-returning the matrix. You can also pass arguments to the
-polar plotter.
+You can decide how much to rotate the retina before returning the matrix. You can also pass arguments to the polar plotter.
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu} and Lars Schmitz
 }
-

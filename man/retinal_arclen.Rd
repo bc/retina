@@ -7,22 +7,17 @@
 retinal_arclen(ED)
 }
 \arguments{
-  \item{ED}{Eye Diameter of the eye sample, measured at the
-  widest point of the eye.}
+\item{ED}{Eye Diameter of the eye sample, measured at the widest point of the eye.}
 }
 \value{
 Retinal Arclength in millimeters
 }
 \description{
-Calculates the retinal perimeter distance in same units
-as input, with the assumption that the retinal shape is
-hemispherical.
+Calculates the retinal perimeter distance in same units as input, with the assumption that the retinal shape is hemispherical.
 }
 \details{
-Assumes a spherical eye, where eye diameter approximates
-twice the sphere's radius.
+Assumes a spherical eye, where eye diameter approximates twice the sphere's radius.
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-

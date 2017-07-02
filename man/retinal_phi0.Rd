@@ -7,10 +7,9 @@
 retinal_phi0(ED, AL)
 }
 \arguments{
-  \item{ED}{Eye Diameter of the eye sample, measured at the
-  widest points of the eye.} \item{AL}{Axial Length of the
-  eye sample, measured at the longest measure of the eye from
-  anterior to posterior.}
+\item{ED}{Eye Diameter of the eye sample, measured at the widest points of the eye.}
+
+\item{AL}{Axial Length of the eye sample, measured at the longest measure of the eye from anterior to posterior.}
 }
 \value{
 Retinal latitude in degrees
@@ -24,4 +23,3 @@ Assumes an ellipsoidal eye
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-

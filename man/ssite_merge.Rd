@@ -7,22 +7,21 @@
 ssite_merge(location, counts, ...)
 }
 \arguments{
-  \item{location}{dataframe with a column for samplingsite,
-  x and y.} \item{counts}{dataframe with a column for
-  samplingsite and count.} \item{...}{further arguments passed
-  to or from other methods.}
+\item{location}{dataframe with a column for samplingsite, x and y.}
+
+\item{counts}{dataframe with a column for samplingsite and count.}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
 xycount Dataframe of (x,y, count)
 }
 \description{
-X represents the row index on the sampling grid, and Y
-represents the column index. Numbers start at 1.
-}
-\author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+X represents the row index on the sampling grid, and Y represents the column index. Numbers start at 1.
 }
 \seealso{
 Other munge: \code{\link{import_xyz}}
 }
-
+\author{
+Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+}

@@ -7,9 +7,11 @@
 fit_error_histogram(x, main = NULL, ...)
 }
 \arguments{
-  \item{x}{the fit object} \item{main}{title of the plot, NULL
-  by default} \item{...}{further arguments passed to or from
-  other methods.}
+\item{x}{the fit object}
+
+\item{main}{title of the plot, NULL by default}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
 Error histogram in base R
@@ -17,4 +19,3 @@ Error histogram in base R
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
 }
-

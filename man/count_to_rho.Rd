@@ -7,17 +7,17 @@
 count_to_rho(count, height, width)
 }
 \arguments{
-  \item{count}{Number of retinal cells counted within the
-  counting frame.} \item{height}{Counting frame width in
-  microns} \item{width}{Counting frame width in microns}
+\item{count}{Number of retinal cells counted within the counting frame.}
+
+\item{height}{Counting frame width in microns}
+
+\item{width}{Counting frame width in microns}
 }
 \value{
-rho Density in units of retinal ganglion cells per square
-millimeter
+rho Density in units of retinal ganglion cells per square millimeter
 }
 \description{
-Uses cell count to compute density within the counting
-frame. Units are set to microns
+Uses cell count to compute density within the counting frame. Units are set to microns
 }
 \examples{
 count_to_rho(10,25,25)
@@ -26,4 +26,3 @@ count_to_rho(10,25,25)
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu}
 }
-

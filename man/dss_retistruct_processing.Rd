@@ -7,19 +7,17 @@
 dss_retistruct_processing(path)
 }
 \arguments{
-  \item{path}{string path to the folder with retinal data.}
+\item{path}{string path to the folder with retinal data.}
 }
 \value{
 rad Retinal data in radian units.
 }
 \description{
-Reads in the folder, reconstructs, and returns the retinal
-object.
-}
-\author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}
+Reads in the folder, reconstructs, and returns the retinal object.
 }
 \references{
 Sterratt et. al. 2013
 }
-
+\author{
+Brian Cohn \email{brian_cohn14@pitzer.edu}
+}

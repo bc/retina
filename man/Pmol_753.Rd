@@ -9,4 +9,3 @@
 Pseudodax 753 Retinal object
 }
 \keyword{datasets}
-

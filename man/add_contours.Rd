@@ -7,14 +7,12 @@
 add_contours(minitics, Mat, contour_breaks, xy)
 }
 \arguments{
-  \item{minitics}{See fit_plot_azimuthal} \item{Mat}
-  {See fit_plot_azimuthal} \item{contour_breaks}{See
-  fit_plot_azimuthal}
+\item{minitics}{See fit_plot_azimuthal}
+
+\item{Mat}{See fit_plot_azimuthal}
+
+\item{contour_breaks}{See fit_plot_azimuthal}
 }
 \description{
-Makes a set of contours to the retinaplot. Modified
-code from http://stackoverflow.com/questions/10856882/r-
-interpolated-polar-contour-plot was highly modified to meet
-retinal plotting funtionality.
+Makes a set of contours to the retinaplot. Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 }
-

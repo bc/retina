@@ -7,18 +7,15 @@
 map_vec_sum(retina_list, rotation_indices, ...)
 }
 \arguments{
-  \item{retina_list}{A list containing retina objects, with
-  names(retina_list) all defined.} \item{rotation_indices}
-  {Each value in this vector will correspond to the amount
-  of rotation applied to each retina in the list.} \item{...}
-  {Arguments passed from other functions. You can access the
-  thin plate spline interpolator here.}
+\item{retina_list}{A list containing retina objects, with names(retina_list) all defined.}
+
+\item{rotation_indices}{Each value in this vector will correspond to the amount of rotation applied to each retina in the list.}
+
+\item{...}{Arguments passed from other functions. You can access the thin plate spline interpolator here.}
 }
 \value{
-sum_mat The sum of all retina objects in the list, with
-respect to the rotation indices.
+sum_mat The sum of all retina objects in the list, with respect to the rotation indices.
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu} and Lars Schmitz
 }
-

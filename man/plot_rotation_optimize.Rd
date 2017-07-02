@@ -7,12 +7,9 @@
 plot_rotation_optimize(rotation_df)
 }
 \arguments{
-  \item{rotation_df}{data.frame from spin optimization}
+\item{rotation_df}{data.frame from spin optimization}
 }
 \description{
-A base-graphics plot (rotation along the x axis, Absolute
-Mean difference on the y axis) of the rotation optimization
-values, and a vertical line denoting the optimized rotation
-value.
+A base-graphics plot (rotation along the x axis,
+Absolute Mean difference on the y axis) of the rotation optimization values, and a vertical line denoting the optimized rotation value.
 }
-

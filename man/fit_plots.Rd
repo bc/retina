@@ -7,17 +7,20 @@
 fit_plots(x, digits = 4, which = 1:4, ...)
 }
 \arguments{
-  \item{x}{the fit object} \item{digits}{set to 4 arbitrarily}
-  \item{which}{set arbitrarily to 1:4} \item{...}{further
-  arguments passed to or from other methods.}
+\item{x}{the fit object}
+
+\item{digits}{set to 4 arbitrarily}
+
+\item{which}{set arbitrarily to 1:4}
+
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
 Histograms and Error scatterplots in base R
 }
-\author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
-}
 \references{
 Fields Package
 }
-
+\author{
+Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+}

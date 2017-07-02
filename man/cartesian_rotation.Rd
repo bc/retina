@@ -7,9 +7,11 @@
 cartesian_rotation(x, y, theta)
 }
 \arguments{
-  \item{x}{vector of x coordinates (int/float)} \item{y}
-  {vector of y coordinates (int/float)} \item{theta}{(float|
-  int) angle in degrees.}
+\item{x}{vector of x coordinates (int/float)}
+
+\item{y}{vector of y coordinates (int/float)}
+
+\item{theta}{(float|int) angle in degrees.}
 }
 \value{
 xy Data.Frame with $x and $y rotated coordinates
@@ -20,10 +22,9 @@ y<- c(3,3,3,3,3)
 theta <- 30
 cartesian_rotation(x,y,theta)
 }
-\author{
-Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
-}
 \seealso{
 Other trig_fns: \code{\link{add_degrees}}
 }
-
+\author{
+Brian Cohn \email{brian_cohn14@pitzer.edu}, Lars Schmitz
+}

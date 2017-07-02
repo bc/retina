@@ -423,7 +423,7 @@ add_contours <- function(minitics, Mat, contour_breaks, xy){
 	require(grDevices)
 	CL <- grDevices::contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
 	A <- lapply(CL, function(xy){
-  			lines(xy$x, xy$y, col = gray(.2), lwd = .5)
+  			graphics::lines(xy$x, xy$y, col = gray(.2), lwd = .5)
 		})
 }
 

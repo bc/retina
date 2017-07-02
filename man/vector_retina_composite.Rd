@@ -9,22 +9,21 @@ vector_retina_composite(retina_list, spin_spatial_res = 128,
   rotation_degree_list, ...)
 }
 \arguments{
-  \item{retina_list}{A list containing retina objects, with
-  names(retina_list) all defined.} \item{spin_spatial_res}
-  {Resolution passed to the spin-optimization.}
-  \item{plot_spatial_res}{Resolution passed to the final
-  plotter} \item{theta_interval}{number of degrees to traverse
-  in spin-optimization} \item{plot}{Logical, by default
-  false, but when true it will output the plot where the first
-  element in the list is fixed.} \item{...}{Arguments passed
-  from other functions. You can access the thin plate spline
-  interpolator here.}
+\item{retina_list}{A list containing retina objects, with names(retina_list) all defined.}
+
+\item{spin_spatial_res}{Resolution passed to the spin-optimization.}
+
+\item{plot_spatial_res}{Resolution passed to the final plotter}
+
+\item{theta_interval}{number of degrees to traverse in spin-optimization}
+
+\item{plot}{Logical, by default false, but when true it will output the plot where the first element in the list is fixed.}
+
+\item{...}{Arguments passed from other functions. You can access the thin plate spline interpolator here.}
 }
 \value{
-composite_mat Matrix of the composite retina, where the
-first element of the retina list is fixed.
+composite_mat Matrix of the composite retina, where the first element of the retina list is fixed.
 }
 \author{
 Brian Cohn \email{brian_cohn14@pitzer.edu} and Lars Schmitz
 }
-

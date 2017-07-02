@@ -7,9 +7,8 @@
 range_len(x)
 }
 \arguments{
-  \item{x}{vector of numbers}
+\item{x}{vector of numbers}
 }
 \value{
 the difference between the limits of the range.
 }
-
