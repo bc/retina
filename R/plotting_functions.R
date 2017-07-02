@@ -15,10 +15,10 @@ plot_falciform_process <- function(falciform_x, falciform_y){
 ##' @author Brian Cohn
 ##' @param falciform_x numeric vector of x coordinates
 ##' @param falciform_y numeric vector of y coordinates
-  plot_original_xy_locations <- function(x,y) {
-  	points(x+0.005,y,pch=4, cex=0.5, col="gainsboro")
-	points(x,y,pch=4, cex=0.5, col="black")
-  }
+plot_original_xy_locations <- function(x,y) {
+	points(x+0.005,y,pch=4, cex=0.5, col="gainsboro")
+  points(x,y,pch=4, cex=0.5, col="black")
+}
 ##' @title Interpolate Input Data with Thin Plate Spline
 ##' @description Interpolation
 ##' @author Brian Cohn
@@ -75,11 +75,11 @@ draw_line_segments <- function(endpoints, color_hex="#66666650"){
 ##' @param degree the degree that is being placed in
 ##' @param endpoints vector of 4 numerics, x,y and x',y' defining the line segment
 write_labels_at_endpoint_locations <- function(r_label, l_label, degree, endpoints){
-		  lab1 <- bquote(.(r_label) * degree)
-		  lab2 <- bquote(.(l_label) * degree)
-		  text(endpoints[1], endpoints[2], lab1, xpd = TRUE, family = "Palatino")
-		  text(endpoints[3], endpoints[4], lab2, xpd = TRUE, family = "Palatino")
-	}
+  lab1 <- bquote(.(r_label) * degree)
+  lab2 <- bquote(.(l_label) * degree)
+  text(endpoints[1], endpoints[2], lab1, xpd = TRUE, family = "Palatino")
+  text(endpoints[3], endpoints[4], lab2, xpd = TRUE, family = "Palatino")
+}
 
 
 ##' @title Remove points that are outside of the plotting circle
@@ -222,7 +222,7 @@ plot_radial_spokes_and_labels <- function(outer.radius) {
 pretty_list_not_including_max <- function(lower_limit, upper_limit){
 	radian_list <- pretty(c(lower_limit,upper_limit))
 	if (max(radian_list) > upper_limit){
-		return(a[1:length(a)-1])
+		return(radian_list[1:length(radian_list)-1])
 	} else {
 		return(radian_list)
 	}
