@@ -1,6 +1,6 @@
 ![retina_logo](https://cloud.githubusercontent.com/assets/4623063/8342959/8206dd04-1a85-11e5-8d00-d58866c99d66.jpg)
 ======
-Open-source tools for visualizing and comparing retinal cell density data.
+Visualize & compare retinal cell density data.
 
 #Project description
 
