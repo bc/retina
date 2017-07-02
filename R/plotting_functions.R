@@ -235,7 +235,7 @@ pretty_list_not_including_max <- function(lower_limit, upper_limit){
 ##' @param k Wraps K vertices around each end. n >=k
 ##' @param ... further arguments passed to or from other methods.
 ##' @return Coords More finely placed vertices for the polygon.
-##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
+##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references http://gis.stackexchange.com/questions/24827/how-to-smooth-the-polygons-in-a-contour-map
 spline.poly <- function(xy, vertices, k=3, ...) {
   n <- dim(xy)[1]
@@ -268,7 +268,7 @@ spline.poly <- function(xy, vertices, k=3, ...) {
 ##' \code{x,y,z} datapoints. File must also include \code{azimuthal_data.falciform}.
 ##' @return Base-R polar plot
 ##' 
-##' @author Brian Cohn \email{brian_cohn14@@pitzer.edu}, Lars Schmitz
+##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' 
 ##' 
 ##' @family visualization
@@ -369,7 +369,7 @@ fit_plot_azimuthal<- function(
   vals <- interpolate_input_data(minitics, x, y, z, lambda, polynomial_m, extrapolate)
   t <- vals$t ; tmp <- vals$tmp; Mat <- vals$Mat;
   if (compute_error) {
-  	error <- compute_thin_plate_spline_error(x,y,tmp)
+  	error <- compute_thin_plate_spline_error(x,y,vals$t)
   } else {
   	error <- NULL
   }
