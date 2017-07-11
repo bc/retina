@@ -246,6 +246,7 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
 ##' @param deltaX Average change in pixels in the X axis between two sampling sites.
 ##' @param deltaY Average change in pixels in the Y axis between two sampling sites.
 ##' @param inversion Whether or not to invert
+##' @todo Need to remove all imageJ calibration in an Epic
 ##' @param ... arguments passed to or from other methods.
 ##' @return RET_count_data Retinal count data in ImageJ coordinates. $x, $y and $z
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
@@ -677,7 +678,7 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     map1fit <- fit_plot_azimuthal(x1, y1, z1, spatial_res, plot_suppress = TRUE,
         extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map1$azimuthal_data.falciform[[1]],
         ...)
-    message("Fitting Tps Model for Map2")
+    message("Fitting Tps Model for Map 2")
     map2fit <- fit_plot_azimuthal(x2, y2, z2, spatial_res, plot_suppress = TRUE,
         extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map2$azimuthal_data.falciform[[1]],
         ...)
