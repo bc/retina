@@ -1,13 +1,31 @@
 
-##' @title Plot falciform process
-##' @description smooths and plots the falciform process
+##' @title Tear Markup Plot
+##' @description
+##' Shows a visualization of the outline, as well as the location of each datapoint so the user can identify where the tears are.
+##' This is especially useful when retistruct is nonfunctioning.
 ##' @author Brian Cohn
-##' @param falciform_x numeric vector of x coordinates
-##' @param falciform_y numeric vector of y coordinates
-plot_falciform_process <- function(falciform_x, falciform_y){
-	fc_smoothed <- spline.poly(cbind(falciform_x,falciform_y), 50, k=10)
-	polygon(fc_smoothed[,1], fc_smoothed[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
+##' @param path_to_retina_data_folder The path to the folder that contains the outline.roi file.
+tear_markup_plot <- function(path_to_retina_data_folder){
+	roi_object <- RImageJROI::read.ijroi(file.path(path_to_retina_data_folder, "outline.roi"))
+	plot(roi_object$coords, type="l", col='#d3d3d3', asp=1, xlab='X Pixels', ylab='Y Pixels');
+	text(roi_object$coords[,1],roi_object$coords[,2], labels=1:78, cex=0.5)
+ 	message('If you are getting this message, you are using a special feature. Contact me at brian.cohn@usc.edu and I will happily teach you how to use it.')
 }
+
+##' @title Assemble tear file
+##' @description Creates a T.csv file
+##' @author Brian Cohn
+##' @param tear_coordinates_dataframe the dataframe of 3 columns, with c("V0","VB","VF"), and n columns, where n= number of tears
+##' @param path_to_retina_data_folder The path where the T.csv file will be saved.
+assemble_tear_file <- function(tear_coordinates_dataframe, path_to_retina_data_folder){
+	output_path <- file.path(path_to_retina_data_folder, "T.csv")
+	colnames(tear_coordinates_dataframe)<- c("V0","VB","VF")
+	write.table(tear_coordinates_dataframe, output_path, sep=',', row.names = F)
+	message(paste('Wrote tear file to ',output_path, '\n Check that it exists beside your outline.roi file'))
+}
+
+
+
 
 
 ##' @title plot points of XY
@@ -38,9 +56,9 @@ plot_original_xy_locations <- function(x,y) {
 ##' @param circle.rads the number of radian circles that are drawn
 plot_degree_label_for_latitudes <- function(outer.radius, circle.rads) {
 		axis(2, pos = -1.25 * outer.radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
-		text( -1.26 * outer.radius, 
+		text( -1.26 * outer.radius,
 			sort(union(circle.rads, -circle.rads)),
-			sort(union(circle.rads, -circle.rads)), 
+			sort(union(circle.rads, -circle.rads)),
 			xpd = TRUE, pos = 2,family = "Palatino")
 }
 
@@ -92,7 +110,7 @@ write_labels_at_endpoint_locations <- function(r_label, l_label, degree, endpoin
 ##' @param falciform_y numeric vector of y coordinates
 nullify_vals_outside_the_circle <- function(minitics, spatial_res, heatmap_matrix, outer.radius){
   matrix_position_is_within_the_circle <- function() {!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius}
-  markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res) 
+  markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res)
   matrix_to_mask <- heatmap_matrix #matrix_to_mask is a mutable variable
   matrix_to_mask[matrix_position_is_within_the_circle()] <- NA #MUTABLE
   return(matrix_to_mask)
@@ -139,7 +157,7 @@ plot_longitudinal_labels <- function(axis.rad, outer.radius, r_label, l_label, d
 ##' @return RMat trigonometric positions
 RMat <- function(radians){
   return(matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2))
-}  
+}
 
 
 ##' @title Draw Latitude Markings
@@ -207,7 +225,7 @@ plot_radial_spokes_and_labels <- function(outer.radius) {
 	axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
 	r.labs <- c(90, 60, 30, 0, 330, 300)
 	l.labs <- c(270, 240, 210, 180, 150, 120)
-	for (i in 1:length(axis.rads)){ 
+	for (i in 1:length(axis.rads)){
 	  plot_longitudinal_lines(axis.rads[i], outer.radius)
 	  plot_longitudinal_labels(axis.rads[i], outer.radius, r.labs[i], l.labs[i], degree)
 	}
@@ -267,10 +285,10 @@ spline.poly <- function(xy, vertices, k=3, ...) {
 ##' @param retina_object A list containing an element \code{azimuthal_data.datapoints} with
 ##' \code{x,y,z} datapoints. File must also include \code{azimuthal_data.falciform}.
 ##' @return Base-R polar plot
-##' 
+##'
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-##' 
-##' 
+##'
+##'
 ##' @family visualization
 ##' @export
 retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_view=TRUE, return_fit=FALSE, ...){
@@ -333,7 +351,7 @@ retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_vi
 ##' @export
 fit_plot_azimuthal<- function(
   ### Plotting data already post-azimuthal transformation
-  x, y, z, 
+  x, y, z,
   ### Plot component flags
   contours=TRUE,   # Add contours to the plotted surface
   legend=TRUE,        # Plot a surface data legend?
@@ -343,25 +361,25 @@ fit_plot_azimuthal<- function(
   ### Data splitting params for color scale and contours
   col_breaks_source = 2, # Where to calculate the color breaks from (1=data,2=surface)
   # If you know the levels, input directly (i.e. c(0,1))
-  col_levels = 50,    # Number of color levels to use - must match length(col) if 
+  col_levels = 50,    # Number of color levels to use - must match length(col) if
   #col specified separately
   col = rev(colorRampPalette(brewer.pal(11,"PuOr"))(col_levels)),  # Colors to plot
   contour_breaks_source = 1, # 1=z data, 2=calculated surface data
   # If you know the levels, input directly (i.e. c(0,1))<-default
   contour_levels = col_levels+1,
   ### Plotting params
-  outer.radius = pi/2.0,  
+  outer.radius = pi/2.0,
   circle.rads = pretty_list_not_including_max(0,outer.radius), #Radius lines
   spatial_res=1000, #Resolution of fitted surface
-  single_point_overlay=0, #Overlay "key" data point with square 
+  single_point_overlay=0, #Overlay "key" data point with square
   #(0 = No, Other = number of pt)
   ### Fitting parameters
   lambda=0.001, xyrelief=1,tmp_input = NULL, plot_suppress=FALSE,
   compute_error=FALSE,
   falciform_coords=NULL,
-  falc2=NA, 
+  falc2=NA,
   polynomial_m=NULL,
-  ...){ 
+  ...){
 
   minitics <- seq(-outer.radius, outer.radius, length.out = spatial_res)
   # interpolate the data
@@ -378,14 +396,14 @@ fit_plot_azimuthal<- function(
 		return(list(t,tmp, error))
   }
   heatmap_matrix <- nullify_vals_outside_the_circle(minitics, spatial_res, Mat, outer.radius)
-  
+
   zlim <- define_color_breaks_based_on_source(col_breaks_source,z, heatmap_matrix)
 
   init_square_mat_plot(heatmap_matrix, zlim, minitics, col)
-  
+
   if (contours){ add_contours(minitics, heatmap_matrix,
   	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), xy)}
-  
+
   plot_falciform_process(falciform_coords$x, falciform_coords$y)
   if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y) #Plug in the secondary plot if it is available
   if (should_plot_points) plot_original_xy_locations(x,y)
