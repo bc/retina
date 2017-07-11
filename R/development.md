@@ -25,4 +25,4 @@ git commit -m 'I made a change to the file so it now does X. See #13'
 Be specific on the changes you made, & be sure to note what issue you are referring to via `#`.
 
 # Want to help contribute?
-Let me know at `brian.cohn@usc.edu`
+Let me know at `brian.cohn@usc.edu` and I can get you up to speed so you can implement features and extend the codebase!
