@@ -173,12 +173,11 @@ assemble_markup_file('left', path_to_retina_data_folder, nasal_outline_index=27,
 
 
 
-
-####Before continuing, press the **Save** button, and ensure that in your diagram_retina folder the T.csv, and P.csv files have been generated.
+Ensure that in your diagram_retina folder the markup.csv, T.csv, and P.csv files have been generated.
 
 ###Optional: Adding retinal perimeter latitude for highly non-hemispherical retinae
 If you would like to set the Retinal perimeter latitude, paste it into the phi0 box (in units of degrees).
-We include the retinal_phi0 function to help users make an approximation of this value with recorded eye measurements.
+We include the retinal_phi0 function to help users make an approximation of this value with recorded eye measurements. Contact brian.cohn@usc.edu if you want this feature enabled.
 
 ####Sample calculation
 ```R
