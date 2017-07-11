@@ -218,7 +218,6 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
     radian_data <- dss_retistruct_processing(path)
     dss_object <- getDss(radian_data)
     dss <- getDssRemoved(radian_data)
-    browser()
     # Extract the density measurement and falciform outline coordinates from the
     # 'datapoints' dss set.
     falciform_outline <- dss$x[((xyz_len):combined_len), ]
