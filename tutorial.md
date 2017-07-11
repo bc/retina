@@ -1,4 +1,4 @@
-**Table of Contents** 
+**Table of Contents**
 
 - [Retina Package Tutorial](#user-content-retina-package-tutorial)
 - [Overview](#user-content-overview)
@@ -42,7 +42,7 @@ Retinal data pre-processing
 ##1. Manually set up a folder containing your starting retina files
 ###Create a folder called 'diagram_retina', which will contain at first:  
 1. `diagram_retina_screenshot.png`
-A screen shot of the stereology software, showing the sampling locations on top of the retinal outline. 
+A screen shot of the stereology software, showing the sampling locations on top of the retinal outline.
 
 2. `site_counts_from_stereology.csv`
 2 column file with cell counts for each sampling location. This comes from your stereology software or from manual recording.
@@ -54,7 +54,7 @@ This is a Left Eye.
 [Site Count CSV](https://github.com/bcohn12/retina/blob/master/inst/extdata/tutorial_data/site_counts_from_stereology.csv "")
 
 
-<img src="tutorial_pix/diagram_retina_screenshot.png" width=400 alt="some_text"> 
+<img src="tutorial_pix/diagram_retina_screenshot.png" width=400 alt="some_text">
 <img src="tutorial_pix/site_counts_pic.png" width=400 alt="some_text">  
 
 
@@ -107,8 +107,8 @@ This time, use the same polygon tool to make an outline of just the falciform pr
 ![Trace the falciform process](tutorial_pix/menu_xy_coords.png "")  
 ![falc_save](https://cloud.githubusercontent.com/assets/4623063/12045122/fdced68e-ae51-11e5-8ea9-e05705ea63a9.gif)
 Once you've drawn the outline, **Don't save the falciform as .ROI.**.  
-Choose File > Save As > XY Coordinates... 
-Save as `falc.txt` to the `/diagram_retina` folder. 
+Choose File > Save As > XY Coordinates...
+Save as `falc.txt` to the `/diagram_retina` folder.
 
 # If your falciform coordinate values are totally different than the values of the sampling site coordinates:
 Use Analyze > Set Scale, and click to **Remove Scale**. This will make sure that the values in `falc.txt` are in pixel units.
@@ -132,16 +132,16 @@ Write down the minX, maxX, minY, maxY somewhere safe. You'll use it when you cal
 
 
 ```R
-# Here are ImageJ coordinates I recorded for a reef fish 
+# Here are ImageJ coordinates I recorded for a reef fish
 # specimen: http://en.wikipedia.org/wiki/Novaculichthys_taeniourus
 
-IJ<-data.frame(minX   = 42,  		# leftmost counting location's X value 
+IJ<-data.frame(minX   = 42,  		# leftmost counting location's X value
 			   maxX   = 597, 		# rightmost counting location's X value
 			   deltaX = (597-42)/17,# average ImageJ pixel distance (in the X axis) between counting locations.
 			   minY   = -584, 		# bottommost counting location's Y value
 			   maxY   = -32, 		# topmost counting location's Y value
 			   deltaY = (584-32)/17 # average ImageJ pixel distance (in the Y axis) between counting locations.
-			   ) 
+			   )
 ```
 Note: If cell counts were collected on the basis of a non-uniform sampling grid, it is still possible to use retina, even though it takes some more effort from the user. Instead of supplying the min and max values of the sampled location, it is necessary to determine the (x, y) pixel location of every single sampling site manually. You can retrieve these location in ImageJ and save the coordinates in *.csv format."
 
@@ -149,26 +149,31 @@ Note: If cell counts were collected on the basis of a non-uniform sampling grid,
 =====
 ![Set Working Directory](tutorial_pix/setwd.png "")  
 Open the R Console, load the **retina** package, and set the working directory to the folder enclosing the `diagram_retina` folder. On windows use *File > Change dir*
-```R
-library(retina)
+
+Use this function to view the indices of the outline coordinates. If you made an outline of 25 points, then the indices will be between 1 and 25. This is how we tell R where to stitch up the wholemount incision tears.
+```r
+outline_coordinates <- tear_markup_plot(path_to_retina_data_folder)
 ```
 
-```R
-retistruct() #open the retistruct graphic user interface
+```r
+#[V point of the tear, the point before it (smaller than the V point), point after it]
+#"V0","VB","VF"
+#these are the actual points for Pmol_752, as an example. You can practice on that retina in `inst/extData/Pmol_752`
+tear_coordinates_dataframe <- rbind(
+	c(31,33,30),
+	c(2,3,1),
+	c(22,23,21),
+	c(15,17,14),
+	c(10,11,9)
+																	)
+assemble_tear_file(tear_coordinates_dataframe, path_to_retina_data_folder)
+assemble_point_coordinates_file(outline_coordinates, path_to_retina_data_folder)
+assemble_markup_file('left', path_to_retina_data_folder, nasal_outline_index=27, dorsal_outline_index=NULL)
 ```
-![Retistruct Gui](tutorial_pix/retistruct_gui_open.png "")  
-Press `Open` and navigate to the `diagram_retina` folder on your hard drive.
-Ignore this error message: `Scale file does not exist. Scale bar will not be set.`
 
 
-![Minx](tutorial_pix/markup_retistruct.png "")  
-Instructions for marking up the retina [Sterratt et al 2013]:  
-> **Add tear** To add a tear, click on this button, then click on three points in turn which define a tear. The order in which the points are added does not matter. Tears contained within a tear can be marked up, but tears cannot cross over one another.  
-**Move Point** To move one of the points defining a tear, click on this button, then click on the point which you desire to move, then click on the point to which it should be moved.  
-**Remove tear** To remove a tear, click on this button, then click on the apex of the tear (marked in cyan on the plot)  
-**Mark nasal** REQUIRED STEP: To mark the nasal pole, click on this button, then click on the point which is the nasal pole. If the nasal or dorsal pole has already been marked, the marker is removed from the existing location. The nasal pole should not be in a tear. If the nasal tear is placed within a tear, no error is reported at this stage, but it will be reported later.  
 
-Set the eye to Right or Left. The example schematic retina is of a left eye.
+
 ####Before continuing, press the **Save** button, and ensure that in your diagram_retina folder the T.csv, and P.csv files have been generated.
 
 ###Optional: Adding retinal perimeter latitude for highly non-hemispherical retinae
@@ -210,16 +215,16 @@ Assemble the retina into a cohesive list object. Eye measurements from dissectio
 ```R
 my_retina <- retina_object(
 	path = "diagram_retina",
-	
+
 	#Eye Measurements from dissection
 		ED = 4.8,    #Eye diameter (mm)
 		AL = 3.43,   #Eye axial length (mm)
 		LD = 1.8,    #Eye lens diameter (mm)
-	
-	#Stereology Parameters 
+
+	#Stereology Parameters
 		height = 25 ,# height of the counting frame in microns
 		width  = 25, # width of the counting frame in microns
-	
+
 	#Plotting Parameters
 		lambda = LAMBDA_var,          #see fields::Tps for more information
 		extrapolate = TRUE ,          #Predicts densities to the equator.
@@ -244,7 +249,7 @@ These are fitting parameters you can also modify:
 `polynomial_m`
 
 # Compute the retinal perimeter, to define the width of the plot in mm.
-ret_perimeter_len <- semi_ellipse_perimeter(a=ED, b=AL)/2 
+ret_perimeter_len <- semi_ellipse_perimeter(a=ED, b=AL)/2
 
 # Fit diagnostics
 fit_plots(my_retina$fit_data1)
