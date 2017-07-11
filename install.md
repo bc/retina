@@ -28,7 +28,7 @@ brew cask install xquartz
 ```
 Run in R
 ```R
-install.packages(c("cairoDevice", "RGtk2"), type="source") 
+install.packages(c("cairoDevice", "RGtk2"), type="source")
 install.packages('devtools')
 devtools::install_github('bcohn12/retina')
 ```
@@ -36,7 +36,7 @@ Finally, install Xcode from the App Store
 
 ####2. Load dependencies from the R console:
 ```R
-install.packages('retistruct')
+install.packages('retistruct') #if you have an issue, comment on it here to get it fixed: https://github.com/davidcsterratt/retistruct/issues/new
 retistruct::retistruct() #On Windows, Accept the 'Install GTK+' popup
 install.packages('devtools')
 devtools::install_github('bcohn12/retina')

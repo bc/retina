@@ -133,7 +133,7 @@ run_all_demos <- function(path_to_demo_folder) {
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu} Lars Schmitz
 ##' @export
 
-polynomial_vs_lambda <- function(retina_obj, spatial_res = 1000, polynomial_m_vec = c(3, 
+polynomial_vs_lambda <- function(retina_obj, spatial_res = 1000, polynomial_m_vec = c(3,
     4), lambda_vec = c(0, 0.001), frequency_cap = 100, error_x_limits = c(1000, 7000)) {
     point_num <- length(retina_obj$fit_data1$y)
     DAT <- data.frame(navec = rep(NA, point_num))
@@ -143,11 +143,11 @@ polynomial_vs_lambda <- function(retina_obj, spatial_res = 1000, polynomial_m_ve
             filename = paste0("L = ", lambda_var, " M= ", polynomial_m_var)
             message(filename)
             max_density <- max(retina_obj$azimuthal_data.datapoints[[1]]$z)
-            tmp <- retinaplot(retina_obj, return_fit = TRUE, spatial_res = spatial_res, 
-                contour_breaks_source = c(0, max_density), col_breaks_source = c(0, 
-                  max_density), col_levels = 50, contour_levels = 20, rotation = 0, 
+            tmp <- retinaplot(retina_obj, return_fit = TRUE, spatial_res = spatial_res,
+                contour_breaks_source = c(0, max_density), col_breaks_source = c(0,
+                  max_density), col_levels = 50, contour_levels = 20, rotation = 0,
                 inner_eye_view = TRUE, lambda = lambda_var, polynomial_m = polynomial_m_var)
-            fit_error_histogram(tmp[[1]], sub = filename, ylim = c(0, frequency_cap), 
+            fit_error_histogram(tmp[[1]], sub = filename, ylim = c(0, frequency_cap),
                 xlim = error_x_limits)
             fit_object = tmp[[1]]
             DAT <- cbind(DAT, predictSE(fit_object))
@@ -161,7 +161,7 @@ polynomial_vs_lambda <- function(retina_obj, spatial_res = 1000, polynomial_m_ve
 ##' @title Merge Sampling Site location and Counting Frame counts.
 ##' @description
 ##' X represents the row index on the sampling grid, and Y represents the column index. Numbers start at 1.
-##' @param location dataframe with a column for samplingsite, x and y. 
+##' @param location dataframe with a column for samplingsite, x and y.
 ##' @param counts dataframe with a column for samplingsite and count.
 ##' @param ... further arguments passed to or from other methods.
 ##' @return xycount Dataframe of (x,y, count)
@@ -197,10 +197,10 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
         # If not, just put in NULL.
         falc <- data.frame()
     }
-    
-    
+
+
     # Import Counting Frame surface area in microns^2
-    xy_IJ_cols <- coordinate_IJ(xyz, IJ_limits$maxX, IJ_limits$maxY, IJ_limits$minX, 
+    xy_IJ_cols <- coordinate_IJ(xyz, IJ_limits$maxX, IJ_limits$maxY, IJ_limits$minX,
         IJ_limits$minY, IJ_limits$deltaX, IJ_limits$deltaY, inversion = FALSE)
     # Save output/species/datapoints.csv, create folder if doesnt exist #saves only
     # the x,y coordinates
@@ -213,11 +213,12 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
     # Save the points as datapoints.csv. This includes XYZ datapoints and the
     # falciform process.
     write.csv(DAT, file = paste0(path, "/datapoints.csv"), row.names = FALSE)
-    
+
     # Post-image_J_markup
     radian_data <- dss_retistruct_processing(path)
     dss_object <- getDss(radian_data)
     dss <- getDssRemoved(radian_data)
+    browser()
     # Extract the density measurement and falciform outline coordinates from the
     # 'datapoints' dss set.
     falciform_outline <- dss$x[((xyz_len):combined_len), ]
@@ -229,10 +230,10 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
     # http://stackoverflow.com/questions/4862178/remove-rows-with-nas-in-data-frame
     data_w_NA <- cbind(dss_coords, z = xyz[, 3])
     trimmed_data <- data_w_NA[complete.cases(data_w_NA[, 1:2]), ]
-    falciform_outline <- falciform_outline[complete.cases(falciform_outline[, 1:2]), 
+    falciform_outline <- falciform_outline[complete.cases(falciform_outline[, 1:2]),
         ]
     # convert to density per square millimeter
-    trimmed_data$z <- unlist(lapply(trimmed_data$z, function(x) count_to_rho(x, height = height, 
+    trimmed_data$z <- unlist(lapply(trimmed_data$z, function(x) count_to_rho(x, height = height,
         width = width)))
     return(list(trimmed_data = trimmed_data, falciform_outline = falciform_outline))
 }
@@ -249,7 +250,7 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
 ##' @param ... arguments passed to or from other methods.
 ##' @return RET_count_data Retinal count data in ImageJ coordinates. $x, $y and $z
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-coordinate_IJ <- function(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY, 
+coordinate_IJ <- function(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY,
     inversion, ...) {
     # data = XY sampling grid integer values are converted into imageJ coordinates
     # based on image.  make sure that maxY and minY are inputted as negative values.
@@ -283,18 +284,6 @@ coordinate_IJ <- function(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY
     return(RET_count_data)
 }
 
-##' @title Retistruct Wrapper
-##' @description
-##' Reads in the folder, reconstructs, and returns the retinal object.
-##' @param path string path to the folder with retinal data.
-##' @return rad Retinal data in radian units.
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}
-##' @references Sterratt et. al. 2013
-dss_retistruct_processing <- function(path) {
-    rad <- retistruct.read.markup(retistruct.read.dataset(path))
-    rad <- retistruct.reconstruct(rad)  ## Reconstruct (computation intensive)
-    return(rad)
-}
 
 ##' @title Conversion from Radians to Degrees
 ##' @param radian_coords A data.frame with two columns- first is phi, second is lambda
@@ -332,9 +321,9 @@ count_to_rho <- function(count, height, width) {
 ##' @import rgl sphereplot
 ##' @export
 sphere_visualize <- function(trimmed_data) {
-    rgl.sphgrid(radius = 1, longtype = "D", deggap = 30, col.lat = "transparent", 
+    rgl.sphgrid(radius = 1, longtype = "D", deggap = 30, col.lat = "transparent",
         col.long = "black")  #make a quick sphere
-    rgl.sphpoints(trimmed_data[, 2], trimmed_data[, 1], shininess = 50, radius = 1, 
+    rgl.sphpoints(trimmed_data[, 2], trimmed_data[, 1], shininess = 50, radius = 1,
         size = 6, deg = TRUE, col = "blue4")  #quick check to make sure it is covering the bottom hemisphere
 }
 
@@ -370,22 +359,22 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
     std.residuals <- (out$residuals * sqrt(out$weights))/out$shat.GCV
     if (any(which == 1)) {
         temp <- summary(out)
-        plot(fitted.values, out$y, ylab = "Y", xlab = " Predicted density", bty = "n", 
+        plot(fitted.values, out$y, ylab = "Y", xlab = " Predicted density", bty = "n",
             ...)
         abline(0, 1)
         hold <- par("usr")
-        text(hold[1], 0.95 * range(out$y)[2], paste(" R**2 = ", format(round(100 * 
+        text(hold[1], 0.95 * range(out$y)[2], paste(" R**2 = ", format(round(100 *
             temp$covariance, 2)), "%", sep = ""), cex = 0.8, adj = 0)
     }
     if (any(which == 2)) {
-        plot(fitted.values, std.residuals, ylab = "(STD) Residuals", xlab = " Predicted density", 
+        plot(fitted.values, std.residuals, ylab = "(STD) Residuals", xlab = " Predicted density",
             bty = "n", ...)
         yline(0)
         hold <- par("usr")
-        text(hold[1], 0.95 * range(std.residuals)[2], paste(" RMSE =", format(signif(sqrt(sum(out$residuals^2)/(temp$num.observation - 
+        text(hold[1], 0.95 * range(std.residuals)[2], paste(" RMSE =", format(signif(sqrt(sum(out$residuals^2)/(temp$num.observation -
             temp$enp)), digits))), cex = 0.8, adj = 0)
     }
-    
+
     if (any(which == 4)) {
         hist(std.residuals, main = "", col = "black", breaks = 10, xlab = "STD Residual")
     }
@@ -403,18 +392,18 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 ##' @return contour_breaks See fit_plot_azimuthal
 define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat) {
     if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 1)) {
-        contour_breaks = seq(min(z, na.rm = TRUE), max(z, na.rm = TRUE), by = (max(z, 
+        contour_breaks = seq(min(z, na.rm = TRUE), max(z, na.rm = TRUE), by = (max(z,
             na.rm = TRUE) - min(z, na.rm = TRUE))/(contour_levels - 1))
-    } else if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 
+    } else if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] ==
         2)) {
-        contour_breaks = seq(min(Mat, na.rm = TRUE), max(Mat, na.rm = TRUE), by = (max(Mat, 
+        contour_breaks = seq(min(Mat, na.rm = TRUE), max(Mat, na.rm = TRUE), by = (max(Mat,
             na.rm = TRUE) - min(Mat, na.rm = TRUE))/(contour_levels - 1))
     } else if ((length(contour_breaks_source) == 2) & (is.numeric(contour_breaks_source))) {
-        print(paste0("Manual contour range set from ", contour_breaks_source[1], 
+        print(paste0("Manual contour range set from ", contour_breaks_source[1],
             " to ", contour_breaks_source[2]))
         contour_breaks = pretty(contour_breaks_source, n = contour_levels)
-        contour_breaks = seq(contour_breaks_source[1], contour_breaks_source[2], 
-            by = (contour_breaks_source[2] - contour_breaks_source[1])/(contour_levels - 
+        contour_breaks = seq(contour_breaks_source[1], contour_breaks_source[2],
+            by = (contour_breaks_source[2] - contour_breaks_source[1])/(contour_levels -
                 1))
     } else {
         stop("Invalid selection for \"contour_breaks_source\"")
@@ -446,7 +435,7 @@ add_contours <- function(minitics, Mat, contour_breaks, xy) {
 init_square_mat_plot <- function(Mat, zlim, minitics, col) {
     Mat[which(Mat < zlim[1])] = zlim[1]
     Mat[which(Mat > zlim[2])] = zlim[2]
-    image(x = minitics, y = minitics, Mat, useRaster = TRUE, asp = 1, axes = FALSE, 
+    image(x = minitics, y = minitics, Mat, useRaster = TRUE, asp = 1, axes = FALSE,
         xlab = "", ylab = "", zlim = zlim, col = col)
 }
 
@@ -515,7 +504,7 @@ getDssRemoved <- function(r, report = message) {
 ##' @param y vector of y coordinates (int/float)
 ##' @param theta (float|int) angle in degrees.
 ##' @return xy Data.Frame with $x and $y rotated coordinates
-##' 
+##'
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @family trig_fns
 ##' @examples
@@ -559,9 +548,9 @@ add_degrees <- function(theta, degrees) {
 
 ##' @title Rotation error measurement for two similar retinal maps.
 ##' @description
-##' Rotates one map 360 degrees, and for every value of rotation between -180 to 180, the 
+##' Rotates one map 360 degrees, and for every value of rotation between -180 to 180, the
 ##' mean absolute difference between the maps' rho values is recorded
-##' @param map1 retinal data: This map will not be rotated, and will serve as the reference. 
+##' @param map1 retinal data: This map will not be rotated, and will serve as the reference.
 ##' @param map2 retinal data: This map will be rotated and superimposed upon map1.
 ##' Has components $x, $y and $z in azimuthal projection coordinates.
 ##' @param ... further arguments passed to or from other methods.
@@ -573,25 +562,25 @@ add_degrees <- function(theta, degrees) {
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @family species_average
 ##' @export
-rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30, 
+rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30,
     projection_type = "azequidistant", ...) {
     # define prediction frame for both maps
     map1 <- map1$azimuthal_data.datapoints[[1]]
     map2 <- map2$trimmed_data
     minitics <- seq(-1.6, 1.6, length.out = spatial_res)
     grid.list = list(x = minitics, y = minitics)
-    
+
     fit1 <- Tps(cbind(map1$x, map1$y), map1$z, ...)
     map1surface <- predictSurface(fit1, grid.list, extrap = FALSE)$z
     # initialize df_spin dataframe to hold the RMSE values of each rotation value
-    
+
     theta <- seq(-180, 180, by = theta_interval)
     df_spin <- matrix(nrow = length(theta), ncol = 2)
-    
+
     # loop through spin theta
     for (rotation in 1:length(theta)) {
         # Create an azimuthal equidistant map projection with 'rotation' variable.
-        az <- mapproject(x = map2[, 2], map2[, 1], projection = projection_type, 
+        az <- mapproject(x = map2[, 2], map2[, 1], projection = projection_type,
             orientation = c(-90, 0, theta[rotation]))
         az$z <- map2[, 3]
         # get prediction frame
@@ -620,11 +609,11 @@ rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30,
 optimal_rotation <- function(df_spin, quiet = TRUE) {
     optimal_degree <- df_spin[which.min(df_spin[, 2]), ]
     if (!quiet) {
-        message(paste("Absolute mean difference between maps (", optimal_degree[2], 
+        message(paste("Absolute mean difference between maps (", optimal_degree[2],
             "RGC/sqmm)  minimized when map2 ccw is ", optimal_degree[1], "degrees"))
     }
     return(optimal_degree)
-    
+
 }
 
 ##' Reflect matrix across vertical axis
@@ -652,9 +641,9 @@ reflect_across_vertical_line <- function(mat) {
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @family species_average
 ##' @export
-composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotation = FALSE, 
+composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotation = FALSE,
     projection_type = "azequidistant", ...) {
-    
+
     ### STEP 1 Convert map2 data into an azimuthal equidistant plot projection map1
     x1 <- map1$azimuthal_data.datapoints[[1]]$x
     y1 <- map1$azimuthal_data.datapoints[[1]]$y
@@ -663,10 +652,10 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     x2 <- map2$azimuthal_data.datapoints[[1]]$x
     y2 <- map2$azimuthal_data.datapoints[[1]]$y
     z2 <- map2$azimuthal_data.datapoints[[1]]$z
-    
+
     # par(mfrow=c(2,1)) retinaplot(map1, spatial_res=50) retinaplot(map2,
     # spatial_res=50) par(mfrow=c(1,1))
-    
+
     theta <- -90  #default value is -90 (no rotation)
     if (rotation) {
         message("Optimizing Rotation")
@@ -678,7 +667,7 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
         # find optimal rotation for map2 with respect to map1
         theta <- optimal_rotation(rotation_df)
         ori <- c(-90, 90, theta[1])
-        az <- mapproject(x = map2$trimmed_data[, 2], map2$trimmed_data[, 1], projection = projection_type, 
+        az <- mapproject(x = map2$trimmed_data[, 2], map2$trimmed_data[, 1], projection = projection_type,
             orientation = ori)
         x2 <- az$x
         y2 <- az$y
@@ -686,12 +675,12 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     message("Fitting Tps Model for Map1")
     ## Step 2 Interpolate map1 and map2 azimuthal data with the same interpolation
     ## options
-    map1fit <- fit_plot_azimuthal(x1, y1, z1, spatial_res, plot_suppress = TRUE, 
-        extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map1$azimuthal_data.falciform[[1]], 
+    map1fit <- fit_plot_azimuthal(x1, y1, z1, spatial_res, plot_suppress = TRUE,
+        extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map1$azimuthal_data.falciform[[1]],
         ...)
     message("Fitting Tps Model for Map2")
-    map2fit <- fit_plot_azimuthal(x2, y2, z2, spatial_res, plot_suppress = TRUE, 
-        extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map2$azimuthal_data.falciform[[1]], 
+    map2fit <- fit_plot_azimuthal(x2, y2, z2, spatial_res, plot_suppress = TRUE,
+        extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map2$azimuthal_data.falciform[[1]],
         ...)
     maps <- list(map1fit, map2fit)
     MAT1 <- maps[[1]][[2]]$z
@@ -700,7 +689,7 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     # retina. This changes the view to an inner view
     MAT1 <- reflect_across_vertical_line(MAT1)
     MAT2 <- reflect_across_vertical_line(MAT2)
-    
+
     # MAT1 <- sapply(nrow(MAT1):1, function(i) MAT1[i, ]) MAT2 <-
     # sapply(nrow(MAT2):1, function(i) MAT1[i, ]) map_composites(MAT1,MAT2, ...)
     composite_pred <- (MAT1 + MAT2)/2
@@ -747,13 +736,13 @@ map_composites <- function(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...) {
         image.plot(DIFF, col = heat.colors(col_levels), main = "Difference", useRaster = TRUE)
         image.plot(MEAN, col = heat.colors(col_levels), main = "Mean", useRaster = TRUE)
         # Relative Maps
-        image.plot(MAT1_rel, col = heat.colors(col_levels), main = "map1 relative", 
+        image.plot(MAT1_rel, col = heat.colors(col_levels), main = "map1 relative",
             useRaster = TRUE)
-        image.plot(MAT2_rel, col = heat.colors(col_levels), main = "map2 relative", 
+        image.plot(MAT2_rel, col = heat.colors(col_levels), main = "map2 relative",
             useRaster = TRUE)
-        image.plot(rel_mean, col = heat.colors(col_levels), main = "Relative density mean", 
+        image.plot(rel_mean, col = heat.colors(col_levels), main = "Relative density mean",
             useRaster = TRUE)
-        image.plot(av_adjusted, col = heat.colors(col_levels), main = "Av, adj. to mean peak RGC density", 
+        image.plot(av_adjusted, col = heat.colors(col_levels), main = "Av, adj. to mean peak RGC density",
             useRaster = TRUE)
     }
     return(av_adjusted)
@@ -766,8 +755,8 @@ map_composites <- function(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...) {
 ##' @param rotation_df data.frame from spin optimization
 ##' @export
 plot_rotation_optimize <- function(rotation_df) {
-    plot(rotation_df, xlim = c(-181, 181), pch = 20, ylim = c(min(rotation_df[, 2]) - 
-        1000, max(rotation_df[, 2])), xlab = "Rotation (ccw) [Degrees]", main = "Mean Absolute Difference", 
+    plot(rotation_df, xlim = c(-181, 181), pch = 20, ylim = c(min(rotation_df[, 2]) -
+        1000, max(rotation_df[, 2])), xlab = "Rotation (ccw) [Degrees]", main = "Mean Absolute Difference",
         ylab = expression(mu(group("|", "map1-map2", "|"))))
     abline(v = optimal_rotation(rotation_df), lty = "dotted")
 }

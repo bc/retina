@@ -1,7 +1,7 @@
 #Retinal Plotter Example Code: Brian Cohn March 28, 2014
 #Bring in package/function files
-require(testthat); require(retistruct);
-require(sphereplot); require(mapproj); require(rgl); 
+require(testthat);
+require(sphereplot); require(mapproj); require(rgl);
 require(fields); require(RColorBrewer);
 require(retina)
 
@@ -15,7 +15,7 @@ my_lambda <- 0.001
 # Set eye to Left or Right eye
 # Set a most dorsal, or most nasal point on the retina
 # 'Save' and close the retistruct GUI
-Ntae_381_coords <- data.frame(  minX   = 42,  #the leftmost counting frame's X value 
+Ntae_381_coords <- data.frame(  minX   = 42,  #the leftmost counting frame's X value
 								maxX   = 597, #the rightmost counting frame's X value (from the ImageJ outline PNG)
 								deltaX = ((597-42)/17), #the average ImageJ pixel distance (in the X axis) between counting frame locations from the outline image.
 								minY   = -584, #bottommost counting frame's Y value
