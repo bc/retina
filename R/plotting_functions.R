@@ -480,3 +480,13 @@ fit_plot_azimuthal<- function(
 
 return(list(t,tmp, error))
 }
+
+##' @title Plot falciform process
+##' @description smooths and plots the falciform process
+##' @author Brian Cohn
+##' @param falciform_x numeric vector of x coordinates
+##' @param falciform_y numeric vector of y coordinates
+plot_falciform_process <- function(falciform_x, falciform_y){
+	fc_smoothed <- spline.poly(cbind(falciform_x,falciform_y), 50, k=10)
+	polygon(fc_smoothed[,1], fc_smoothed[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
+}
