@@ -5,11 +5,27 @@
 ##' This is especially useful when retistruct is nonfunctioning.
 ##' @author Brian Cohn
 ##' @param path_to_retina_data_folder The path to the folder that contains the outline.roi file.
+##' @return roi_coordinates XY vals of pixel coordinates of the outline points, in order.
 tear_markup_plot <- function(path_to_retina_data_folder){
 	roi_object <- RImageJROI::read.ijroi(file.path(path_to_retina_data_folder, "outline.roi"))
-	plot(roi_object$coords, type="l", col='#d3d3d3', asp=1, xlab='X Pixels', ylab='Y Pixels');
-	text(roi_object$coords[,1],roi_object$coords[,2], labels=1:78, cex=0.5)
+
+
+
+#this section extracted from Retistruct (author David Sterratt)
+		## ImageJ ROI format plots has the coordinate (0, 0) in the top
+		  ## left.  We have the coordinate (0, 0) in the bottom left. We need
+		  ## to transform P so that the outline appears in the correct
+		  ## orientation.
+			im <- NULL
+		  roi_XY_coords <- roi_object$coords
+		  offset <- ifelse(is.null(im), max(roi_XY_coords[,2]), nrow(im))
+		  roi_XY_coords[,2] <- offset - roi_XY_coords[,2]
+#end section extracted from retistruct (author David Sterratt)
+
+	plot(roi_XY_coords, type="l", col='#d3d3d3', asp=1, xlab='X Pixels', ylab='Y Pixels');
+	text(roi_XY_coords[,1],roi_XY_coords[,2], labels=1:78, cex=0.5)
  	message('If you are getting this message, you are using a special feature. Contact me at brian.cohn@usc.edu and I will happily teach you how to use it.')
+	return(roi_XY_coords)
 }
 
 ##' @title Assemble tear file
@@ -23,6 +39,23 @@ assemble_tear_file <- function(tear_coordinates_dataframe, path_to_retina_data_f
 	write.table(tear_coordinates_dataframe, output_path, sep=',', row.names = F)
 	message(paste('Wrote tear file to ',output_path, '\n Check that it exists beside your outline.roi file'))
 }
+
+##' @title Assemble outline P.csv XY coordinates file
+##' @description Creates a P.csv file
+##' @author Brian Cohn
+##' @param outline_coordinates the dataframe of 2 columns with XY pixel points
+##' @param path_to_retina_data_folder The path where the P.csv file will be saved.
+assemble_point_coordinates_file <- function(outline_coordinates, path_to_retina_data_folder){
+	output_path <- file.path(path_to_retina_data_folder, "P.csv")
+	colnames(outline_coordinates)<- c("V1","V2")
+
+
+
+	write.table(outline_coordinates, output_path, sep=',', row.names = F)
+	message(paste('Wrote coordinates file to ',output_path, '\n Check that it exists beside your outline.roi file'))
+}
+
+
 
 
 
