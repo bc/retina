@@ -1,8 +1,11 @@
+
 # If spin_optimization is disabled, no rotation will be performed.
 # composite_map evaluates the density across an interpolation grid at the desired *spatial_res = n* spatial resolution, and saves this data into an n by n matrtix.
-# Finally, both matrices are added, and divided by two to produce the 'matrix average'. This map can be plotted by passing the matrix to the plot_from_MAT function. 
+# Finally, both matrices are added, and divided by two to produce the 'matrix average'. This map can be plotted by passing the matrix to the plot_from_MAT function.
 # **note: the resultant map does not contain a combined falciform process, and the original sampling site points are not visible on the species average.
 RESOLUTION_var <- 512
+
+par(mfrow=c(1,1))
 
 # pdf("composite_map_steps.pdf", width=8.5, height=6)
 
@@ -19,26 +22,26 @@ boxplot(Pmol_752$azimuthal_data.datapoints[[1]]$z,
 rho_max <- max(Pmol_av)
 rho_min <- min(Pmol_av)
 #plot the species composite for Pmol
-retinaplot(Pmol_752, 
+retinaplot(Pmol_752,
 	contour_breaks_source  =  c(rho_min,rho_max),
-	col_breaks_source      =  c(rho_min,rho_max), 
+	col_breaks_source      =  c(rho_min,rho_max),
 		col_levels=50,
 	contour_levels=20,
 	spatial_res=RESOLUTION_var)
-retinaplot(Pmol_753, 
+retinaplot(Pmol_753,
 	contour_breaks_source  =  c(rho_min,rho_max),
-	col_breaks_source      =  c(rho_min,rho_max), 
+	col_breaks_source      =  c(rho_min,rho_max),
 		col_levels=50,
 	contour_levels=20,
 	spatial_res=RESOLUTION_var)
-retinaplot(Pmol_753, 	
+retinaplot(Pmol_753,
 	contour_breaks_source  =  c(rho_min,rho_max),
-	col_breaks_source      =  c(rho_min,rho_max), 
+	col_breaks_source      =  c(rho_min,rho_max),
 		col_levels=50,
 	contour_levels=20,
 	spatial_res=RESOLUTION_var, rotation=-30)
-plot_from_MAT(Pmol_av, 
-	extrapolate=TRUE, 
+plot_from_MAT(Pmol_av,
+	extrapolate=TRUE,
 	spatial_res = RESOLUTION_var,
 	col_levels=50,
 	contour_levels=20,
