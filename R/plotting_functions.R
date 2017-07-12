@@ -471,7 +471,6 @@ fit_plot_azimuthal<- function(
 
   if (contours){ add_contours(minitics, heatmap_matrix,
   	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), xy)}
-	browser()
   plot_falciform_process(falciform_coords$x, falciform_coords$y)
   if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y) #Plug in the secondary plot if it is available
   if (should_plot_points) plot_original_xy_locations(x,y)
@@ -487,6 +486,6 @@ return(list(t,tmp, error))
 ##' @param falciform_x numeric vector of x coordinates
 ##' @param falciform_y numeric vector of y coordinates
 plot_falciform_process <- function(falciform_x, falciform_y){
-	fc_smoothed <- spline.poly(cbind(falciform_x,falciform_y), 50, k=10)
+	fc_smoothed <- spline.poly(cbind(falciform_x,falciform_y), vertices= 50)
 	polygon(fc_smoothed[,1], fc_smoothed[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
 }

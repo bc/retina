@@ -15,7 +15,6 @@ main_3hgbqg <- function(path_to_diagram_retina){
                   deltaX = (1429-108)/21,
                   deltaY = (989-85)/14)
 
-
   #assembling the retina object
   my_retina <- retina_object(
       path = path_to_diagram_retina,
@@ -41,6 +40,5 @@ main_3hgbqg <- function(path_to_diagram_retina){
 
 
   #plot
-
   retinaplot(my_retina)
 }
