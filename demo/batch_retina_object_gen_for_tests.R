@@ -3,8 +3,7 @@ load_function_and_run <- function(string_identifier){
   path_to_file <- paste0('retina/extdata/test_retinas/',
                      string_identifier,
                      '/',
-                     string_identifier,
-                     '.r')
+                     'main.r')
   path_to_retina_dir <- paste0('retina/extdata/test_retinas/',
                        string_identifier,
                        '/diagram_retina/')
