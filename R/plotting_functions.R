@@ -22,7 +22,7 @@ tear_markup_plot <- function(path_to_retina_data_folder){
 #end section extracted from retistruct (author David Sterratt)
 
 	plot(roi_XY_coords, type="l", col='#d3d3d3', asp=1, xlab='X Pixels', ylab='Y Pixels');
-	text(roi_XY_coords[,1],roi_XY_coords[,2], labels=1:78, cex=0.5)
+	text(roi_XY_coords[,1],roi_XY_coords[,2], labels=1:length(roi_XY_coords[,1]), cex=0.5)
  	message('If you are getting this message, you are using a special feature. Contact me at brian.cohn@usc.edu and I will happily teach you how to use it.')
 	return(roi_XY_coords)
 }
@@ -32,8 +32,8 @@ tear_markup_plot <- function(path_to_retina_data_folder){
 ##' @description Creates a markup.csv file. One of the dorsal_outline_index or nasal_outline_index must be filled in. Not both.
 ##' @author Brian Cohn
 ##' @param eye_left_or_right either 'left' or 'right'
-##' @param dorsal_outline_index The index of the point that points toward dorsal
-##' @param nasal_outline_index The index of the opint that points toward nasal.
+##' @param dorsal_outline_index The index of the point that points toward dorsal, or NA.
+##' @param nasal_outline_index The index of the opint that points toward nasal, or NA.
 ##' @param path_to_retina_data_folder The path where the markup.csv file will be saved.
 ##' @param markup_coordinates_dataframe markup metaparameters in retistruct format
 ##' @export
@@ -45,11 +45,9 @@ assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, 
 	   substr(x, 1, 1) <- toupper(substr(x, 1, 1))
 	x
 	}
-
-
 	markup_data<- rbind(
 		c("iD","iN","phi0","iOD","DVflip","side"),
-		c(dorsal_outline_index,nasal_outline_index,0,NA,0,firstup(eye_left_or_right))
+		c(dorsal_outline_index,nasal_outline_index,0,NA,0,firstup(eye_left_or_right)), make.row.names=FALSE
 	)
 	output_path <- file.path(path_to_retina_data_folder, "markup.csv")
 	write.table(markup_data, output_path, sep=",", row.names=FALSE, col.names=FALSE)

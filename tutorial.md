@@ -168,7 +168,7 @@ tear_coordinates_dataframe <- rbind(
 																	)
 assemble_tear_file(tear_coordinates_dataframe, path_to_retina_data_folder)
 assemble_point_coordinates_file(outline_coordinates, path_to_retina_data_folder)
-assemble_markup_file('left', path_to_retina_data_folder, nasal_outline_index=27, dorsal_outline_index=NULL)
+assemble_markup_file('left', path_to_retina_data_folder, nasal_outline_index=27, dorsal_outline_index=NA)
 ```
 
 
