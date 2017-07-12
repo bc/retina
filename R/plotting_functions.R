@@ -45,14 +45,29 @@ assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, 
 	   substr(x, 1, 1) <- toupper(substr(x, 1, 1))
 	x
 	}
-	markup_data<- rbind(
-		c("iD","iN","phi0","iOD","DVflip","side"),
-		c(dorsal_outline_index,nasal_outline_index,0,NA,0,firstup(eye_left_or_right)), make.row.names=FALSE
-	)
+	eye_side_string <- firstup(eye_left_or_right)
+	if (is.na(dorsal_outline_index)){
+	line2 <- paste0('NA,',
+									nasal_outline_index,
+									',0,NA,FALSE,"',
+									eye_side_string,
+									'"')
+	} else {
+		line2 <- paste0(dorsal_outline_index,
+										',NA',
+										',0,NA,FALSE,"',
+										eye_side_string,
+										'"')
+	}
+	line1 = '"iD","iN","phi0","iOD","DVflip","side"'
 	output_path <- file.path(path_to_retina_data_folder, "markup.csv")
-	write.table(markup_data, output_path, sep=",", row.names=FALSE, col.names=FALSE)
+	file.create(output_path)
+	write(line1,file=output_path,append=TRUE)
+	write(line2, file=output_path, append=TRUE)
 	message(paste('Wrote markup file to ',output_path, '\n Check that it exists beside your outline.roi file'))
-	return(markup_data)
+	print(line1)
+	print(line2)
+	return(0)
 
 }
 
