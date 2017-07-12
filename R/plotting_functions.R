@@ -6,10 +6,9 @@
 ##' @author Brian Cohn
 ##' @param path_to_retina_data_folder The path to the folder that contains the outline.roi file.
 ##' @return roi_coordinates XY vals of pixel coordinates of the outline points, in order.
+##' @export
 tear_markup_plot <- function(path_to_retina_data_folder){
 	roi_object <- RImageJROI::read.ijroi(file.path(path_to_retina_data_folder, "outline.roi"))
-
-
 
 #this section extracted from Retistruct (author David Sterratt)
 		## ImageJ ROI format plots has the coordinate (0, 0) in the top
