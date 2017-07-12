@@ -15,7 +15,7 @@ IJ <-data.frame(maxX = 1189,
 
 #assembling the retina object
 my_retina <- retina_object(
-    path = "diagram_retina",
+    path = path_to_diagram_retina,
 
     #Eye Measurements from dissection
         ED = 7,    #Eye diameter (mm)
