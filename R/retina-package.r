@@ -351,7 +351,6 @@ fit_error_histogram <- function(x, main = NULL, ...) {
 ##' @references Fields Package
 ##' @export
 fit_plots <- function(x, digits = 4, which = 1:4, ...) {
-    par(mfrow = c(2, 2))
     out <- x
     # don't do plots 2:4 if a fixed lambda
     if (x$fixed.model) {
@@ -655,9 +654,6 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     y2 <- map2$azimuthal_data.datapoints[[1]]$y
     z2 <- map2$azimuthal_data.datapoints[[1]]$z
 
-    # par(mfrow=c(2,1)) retinaplot(map1, spatial_res=50) retinaplot(map2,
-    # spatial_res=50) par(mfrow=c(1,1))
-
     theta <- -90  #default value is -90 (no rotation)
     if (rotation) {
         message("Optimizing Rotation")
@@ -728,8 +724,6 @@ map_composites <- function(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...) {
     av_adjusted <- rel_mean * avMAX
     message("plotting")
     if (showplots == TRUE) {
-        plot.new()
-        par(mfrow = c(3, 3))
         # Simple
         image.plot(MAT1, col = heat.colors(col_levels), main = "map1", useRaster = TRUE)
         image.plot(MAT2, col = heat.colors(col_levels), main = "map2", useRaster = TRUE)

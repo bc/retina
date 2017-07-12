@@ -141,6 +141,7 @@ plot_degree_label_for_latitudes <- function(outer.radius, circle.rads) {
 add_legend <- function(col, zlim) {
 	par(mai = c(1,1,1.5,1.5))
 	fields::image.plot(legend.only=TRUE, col=col, zlim=zlim, family = "Palatino")
+	par(mar=c(1,1,1,1))
 }
 
 ##' @title draw line segments
