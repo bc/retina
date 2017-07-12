@@ -49,13 +49,13 @@ assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, 
 	if (is.na(dorsal_outline_index)){
 	line2 <- paste0('NA,',
 									nasal_outline_index,
-									',0,NA,FALSE,"',
+									',0,NA,TRUE,"',
 									eye_side_string,
 									'"')
 	} else {
 		line2 <- paste0(dorsal_outline_index,
 										',NA',
-										',0,NA,FALSE,"',
+										',0,NA,TRUE,"',
 										eye_side_string,
 										'"')
 	}
