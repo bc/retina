@@ -4,7 +4,7 @@
 \alias{run_all_demos}
 \title{Run all demos}
 \usage{
-run_all_demos(path_to_demo_folder)
+run_all_demos(path_to_demo_folder = file.path(.libPaths(), "retina/demo"))
 }
 \arguments{
 \item{path_to_demo_folder}{include the trailing /}

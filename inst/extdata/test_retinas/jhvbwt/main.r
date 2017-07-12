@@ -1,5 +1,3 @@
-#MU180rt
-
 require(retina)
 
 retistruct()
@@ -29,7 +27,7 @@ my_retina <- retina_object(
         AL = 6.44,   #Eye axial length (mm)
         LD = 3.78,    #Eye lens diameter (mm)
 
-    #Stereology Parameters 
+    #Stereology Parameters
         height = 25 ,# height of the counting frame in microns
         width  = 25, # width of the counting frame in microns
 

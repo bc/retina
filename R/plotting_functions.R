@@ -471,7 +471,7 @@ fit_plot_azimuthal<- function(
 
   if (contours){ add_contours(minitics, heatmap_matrix,
   	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), xy)}
-
+	browser()
   plot_falciform_process(falciform_coords$x, falciform_coords$y)
   if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y) #Plug in the secondary plot if it is available
   if (should_plot_points) plot_original_xy_locations(x,y)
