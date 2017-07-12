@@ -4,9 +4,6 @@
 # Finally, both matrices are added, and divided by two to produce the 'matrix average'. This map can be plotted by passing the matrix to the plot_from_MAT function.
 # **note: the resultant map does not contain a combined falciform process, and the original sampling site points are not visible on the species average.
 RESOLUTION_var <- 512
-
-par(mfrow=c(1,1))
-
 # pdf("composite_map_steps.pdf", width=8.5, height=6)
 
 Pmol_av <- composite_map(Pmol_752, Pmol_753, rotation=TRUE, spatial_res=RESOLUTION_var)
@@ -53,4 +50,4 @@ plot_from_MAT(Pmol_av,
 
 
 
-# dev.off()
+dev.off()

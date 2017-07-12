@@ -4,7 +4,6 @@ require(testthat);
 require(sphereplot); require(mapproj); require(rgl);
 require(fields); require(RColorBrewer);
 require(retina)
-par(mfrow=c(1,1))
 #variable numbers
 RESOLUTION_var <- 512
 SPIN_resolution <- 64
@@ -96,3 +95,5 @@ Pmol_752<- retina_object(
 	rotation_ccw = -90,
 	plot_suppress=TRUE,
 	IJcoords = Pmol_752_coords)
+
+dev.off()

@@ -1,4 +1,3 @@
-par(mfrow=c(1,1))
 RES_variable <- 512
 
 # pdf(file="smoothing_combos.pdf", width=8, height=5.5, family="Palatino")
@@ -34,7 +33,7 @@ for (e in the_types) {
 	err_obj <- eval(parse(text=e))
 	boxplot(err_obj, horizontal=TRUE, las=1, col='lightgray', cex=.2, pch=20, sub=paste("n = ", sampling_location_number), cex.axis=0.4, main=paste0("Ordered by ", e))
 }
-# dev.off()
+dev.off()
 
 
 

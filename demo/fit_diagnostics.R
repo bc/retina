@@ -1,4 +1,3 @@
-par(mfrow=c(1,1))
 # generate diagnostic plots
 print(dir())
 # load('preloaded_retinas_381_752_753.rdata')
@@ -11,3 +10,4 @@ message("Preparing for Thin Plate Spline Fit Plots")
 fit_plots(Pmol_752$fit_data1)
 fit_plots(Pmol_753$fit_data1)
 fit_plots(Ntae_381$fit_data1)
+dev.off()

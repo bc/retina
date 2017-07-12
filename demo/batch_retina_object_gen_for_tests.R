@@ -1,4 +1,3 @@
-par(mfrow=c(1,1))
 load_function_and_run <- function(string_identifier){
   relative_file_path <- paste0('retina/extdata/test_retinas/',
                      string_identifier,
@@ -27,3 +26,4 @@ list_of_retina_identifiers <- c('3hgbqg',
 'raxp91')
 
 lapply(list_of_retina_identifiers, load_function_and_run)
+dev.off()

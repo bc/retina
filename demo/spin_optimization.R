@@ -1,4 +1,4 @@
-par(mfrow=c(1,1))
+
 # pdf("analysis_demo.pdf", height=7, width=8.1, useDingbats=FALSE, family="Palatino")
 
 #Lets make a species average.
@@ -18,3 +18,4 @@ rotation_df <- rotation_optimize(Pmol_753,
 								)
 plot_rotation_optimize(rotation_df)
 rotate_op <- optimal_rotation(rotation_df)[1]
+dev.off()

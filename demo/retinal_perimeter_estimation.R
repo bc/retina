@@ -1,4 +1,4 @@
-par(mfrow=c(1,1))
+
 Ntae_381_eye <- data.frame(ED=4.508, AL=3.1395)
 Pmol_753_eye <- data.frame(ED=4.8, AL=3.425)
 Pmol_752_eye <- data.frame(ED=5.225, AL=3.9)
@@ -10,3 +10,4 @@ for (i in 1:length(eyelist)) {
 	print(paste('ellipse', el_est))
 	print(paste('sphere', sph_est))
 }
+dev.off()
