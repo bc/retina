@@ -36,6 +36,7 @@ tear_markup_plot <- function(path_to_retina_data_folder){
 ##' @param nasal_outline_index The index of the opint that points toward nasal.
 ##' @param path_to_retina_data_folder The path where the markup.csv file will be saved.
 ##' @param markup_coordinates_dataframe markup metaparameters in retistruct format
+##' @export
 assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, dorsal_outline_index=NA, nasal_outline_index=NA) {
 
 
@@ -64,6 +65,7 @@ assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, 
 ##' @param tear_coordinates_dataframe the dataframe of 3 columns, with c("V0","VB","VF"), and n columns, where n= number of tears
 ##' @param path_to_retina_data_folder The path where the T.csv file will be saved.
 ##' @param tear_coordinates_dataframe Tear coords in retistruct format
+##' @export
 assemble_tear_file <- function(tear_coordinates_dataframe, path_to_retina_data_folder){
 	output_path <- file.path(path_to_retina_data_folder, "T.csv")
 	colnames(tear_coordinates_dataframe)<- c("V0","VB","VF")
@@ -78,12 +80,10 @@ assemble_tear_file <- function(tear_coordinates_dataframe, path_to_retina_data_f
 ##' @param outline_coordinates the dataframe of 2 columns with XY pixel points
 ##' @param path_to_retina_data_folder The path where the P.csv file will be saved.
 ##' @param outline_coordinates outline coords in retistruct format
+##' @export
 assemble_point_coordinates_file <- function(outline_coordinates, path_to_retina_data_folder){
 	output_path <- file.path(path_to_retina_data_folder, "P.csv")
 	colnames(outline_coordinates)<- c("V1","V2")
-
-
-
 	write.table(outline_coordinates, output_path, sep=',', row.names = F)
 	message(paste('Wrote coordinates file to ',output_path, '\n Check that it exists beside your outline.roi file'))
 	return(outline_coordinates)
