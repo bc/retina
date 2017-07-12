@@ -24,7 +24,7 @@ reference map. latitude in [,1], longitude in [,2], rho in [,3].}
 df_spin Matrix of errors (in second column) for a given map rotation.
 }
 \description{
-Rotates one map 360 degrees, and for every value of rotation between -180 to 180, the 
+Rotates one map 360 degrees, and for every value of rotation between -180 to 180, the
 mean absolute difference between the maps' rho values is recorded
 }
 \seealso{
