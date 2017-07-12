@@ -23,7 +23,7 @@ require(mapproj)
 ##' @export
 retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrapolate = TRUE,
     spatial_res = 16, rotation_ccw = -90, IJcoords, ...) {
-    
+
     if (height != width) {
         stop("Height is not equal to Width. \n
 \t\t\t  Must be square counting frame. \n
@@ -37,7 +37,7 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
     falc_coords <- sph_coords[[2]]
     # Produce an OpenGL visualizaiton of the counting frame locations, as they are
     # reconstructed upon a hemisphere
-    sphere_visualize(trimmed_data)
+    # sphere_visualize(trimmed_data)
 
     # Create an azimuthal equidistant map projection for the density locations
     az <- mapproject(x = trimmed_data[, 2], trimmed_data[, 1], projection = "azequidistant",
