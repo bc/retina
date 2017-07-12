@@ -4,7 +4,7 @@ require(testthat);
 require(sphereplot); require(mapproj); require(rgl);
 require(fields); require(RColorBrewer);
 require(retina)
-
+par(mfrow=c(1,1))
 #variable numbers
 RESOLUTION_var <- 512
 SPIN_resolution <- 64

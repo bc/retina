@@ -1,4 +1,4 @@
-
+par(mfrow=c(1,1))
 load_function_and_run <- function(string_identifier){
   relative_file_path <- paste0('retina/extdata/test_retinas/',
                      string_identifier,

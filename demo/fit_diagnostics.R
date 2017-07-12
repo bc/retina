@@ -1,3 +1,4 @@
+par(mfrow=c(1,1))
 # generate diagnostic plots
 print(dir())
 # load('preloaded_retinas_381_752_753.rdata')

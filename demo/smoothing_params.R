@@ -1,3 +1,4 @@
+par(mfrow=c(1,1))
 RES_variable <- 512
 
 # pdf(file="smoothing_combos.pdf", width=8, height=5.5, family="Palatino")
