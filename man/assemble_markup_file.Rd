@@ -12,9 +12,9 @@ assemble_markup_file(eye_left_or_right, path_to_retina_data_folder,
 
 \item{path_to_retina_data_folder}{The path where the markup.csv file will be saved.}
 
-\item{dorsal_outline_index}{The index of the point that points toward dorsal}
+\item{dorsal_outline_index}{The index of the point that points toward dorsal, or NA.}
 
-\item{nasal_outline_index}{The index of the opint that points toward nasal.}
+\item{nasal_outline_index}{The index of the opint that points toward nasal, or NA.}
 
 \item{markup_coordinates_dataframe}{markup metaparameters in retistruct format}
 }
