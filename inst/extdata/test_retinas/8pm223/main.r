@@ -1,8 +1,4 @@
-
-
-library(retina)
-retistruct()
-
+main_8pm223 <- function(path_to_diagram_retina){
 
 LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.
 RESOLUTION_var <- 500 #Plot width in pixels
@@ -14,7 +10,7 @@ IJ <-data.frame(maxX = 981,
                 deltaX = 56,
                 deltaY = 56)
 
-my_retina2 <- retina_object(
+my_retina <- retina_object(
   path = "diagram_retina",
 
   #Eye Measurements from dissection
@@ -35,5 +31,5 @@ my_retina2 <- retina_object(
   #ImageJ Datapoint Calibration Measurements
   IJcoords = IJ)
 
-x11()
-retinaplot(my_retina2)
+retinaplot(my_retina)
+}

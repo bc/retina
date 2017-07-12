@@ -1,11 +1,5 @@
+main_bjii4t <- function(path_to_diagram_retina){
 
-require(retina)
-require(retistruct)
-retistruct()
-
-
-
-#parameters
 LAMBDA_var <- 0.1 #Thin plate spline smoothing. Lambda=0 would be interpolation.
 RESOLUTION_var <- 500 #Plot width in pixels
 
@@ -53,7 +47,7 @@ findPeak <- function(my_retina){
 	return(peak)
 	}
 
-findPeak(my_retina)
+message(findPeak(my_retina))
 
 #optional arguments
   #lambda=0.001
@@ -61,3 +55,4 @@ findPeak(my_retina)
   #rotation=30
 
 #e.g. rotate map by 30 degrees: retinaplot(my_retina, rotation=30)
+}

@@ -1,9 +1,4 @@
-require(retina)
-
-retistruct()
-
-
-
+main_gv3igs <- function(path_to_diagram_retina){
 #parameters
 LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.
 RESOLUTION_var <- 500 #Plot width in pixels
@@ -44,3 +39,4 @@ my_retina <- retina_object(
 #plot
 
 retinaplot(my_retina,rotation=270)
+}

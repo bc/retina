@@ -1,7 +1,5 @@
 main_3hgbqg <- function(path_to_diagram_retina){
 
-  require(retina)
-
   #parameters
   LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.
   RESOLUTION_var <- 500 #Plot width in pixels

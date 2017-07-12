@@ -1,9 +1,4 @@
-
-
-library(retina)
-retistruct()
-
-
+main_40oik5 <- function(path_to_diagram_retina){
 LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.
 RESOLUTION_var <- 500 #Plot width in pixels
 
@@ -35,5 +30,6 @@ my_retina <- retina_object(
   #ImageJ Datapoint Calibration Measurements
   IJcoords = IJ)
 
-x11()
+
 retinaplot(my_retina, rotation=115, col_breaks_source = c(0, 35000))
+}
