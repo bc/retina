@@ -39,7 +39,6 @@ compose_tear_triplets_dataframe <- function(list_of_tear_triplets, outline_objec
 ##' @export
 update_outline_object_tears <- function(outline_object, tear_coordinates_dataframe){
 	outline_copy <- outline_object
-  browser()
 	outline_copy$V0 <- tear_coordinates_dataframe[,1]
 	outline_copy$VB <- tear_coordinates_dataframe[,2]
 	outline_copy$VF <- tear_coordinates_dataframe[,3]
