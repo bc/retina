@@ -10,4 +10,3 @@ for (i in 1:length(eyelist)) {
 	print(paste('ellipse', el_est))
 	print(paste('sphere', sph_est))
 }
-dev.off()

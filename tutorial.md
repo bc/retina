@@ -287,7 +287,7 @@ polygon(fc2[,1], fc2[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
 # Saving to a paginated PDF
 ```R
 pdf("maps.pdf", width=8.5, height=6)
-#Plot retina(s)
+	#Plot your retinal map(s)
 dev.off()
 ```
 

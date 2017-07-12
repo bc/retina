@@ -16,4 +16,3 @@ ret_list <- vector_retina_composite(retina_list,
 								  	plot_spatial_res=8,
 								  	theta_interval=180,
                     rotation_degree_list=FALSE)
-dev.off()

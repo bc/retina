@@ -33,18 +33,7 @@ for (e in the_types) {
 	err_obj <- eval(parse(text=e))
 	boxplot(err_obj, horizontal=TRUE, las=1, col='lightgray', cex=.2, pch=20, sub=paste("n = ", sampling_location_number), cex.axis=0.4, main=paste0("Ordered by ", e))
 }
-dev.off()
 
-
-
-
-
-
-
-# pdf(file="boxplot_combos.pdf", width=4, height=4, family="Palatino")
 boxplot(X_sd, horizontal=TRUE, las=1, col='lightgray', asp=1, cex=.2, pch=20, sub=paste("n = ", sampling_location_number), cex.axis=0.4, main=paste0("Ordered by sd"))
-# dev.off()
 
-# pdf(file="sd_barplot.pdf", width=4, height=4, family="Palatino")
 barplot(apply(X_sd, 2 ,sd), horiz=TRUE, las=1)
-# dev.off()

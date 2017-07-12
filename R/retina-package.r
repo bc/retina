@@ -114,7 +114,9 @@ run_all_demos <- function(path_to_demo_folder=file.path(.libPaths(), "retina/dem
                             "/smoothing_params.R",
                             "/spin_optimization.R",
                             "/tricomposite.R")
-    lapply(list_of_demo_names, function(x) {source(paste0(path_to_demo_folder,x))})
+    pdf("all_demos_output.pdf")
+      lapply(list_of_demo_names, function(x) {source(paste0(path_to_demo_folder,x))})
+    dev.off()
 }
 
 
@@ -215,7 +217,7 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
     write.csv(DAT, file = paste0(path, "/datapoints.csv"), row.names = FALSE)
 
     # Post-image_J_markup
-    radian_data <- dss_retistruct_processing(path)
+    invisible(capture.output(radian_data <- dss_retistruct_processing(path)))
     dss_object <- getDss(radian_data)
     dss <- getDssRemoved(radian_data)
     # Extract the density measurement and falciform outline coordinates from the

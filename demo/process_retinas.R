@@ -95,5 +95,3 @@ Pmol_752<- retina_object(
 	rotation_ccw = -90,
 	plot_suppress=TRUE,
 	IJcoords = Pmol_752_coords)
-
-dev.off()

@@ -24,9 +24,3 @@ retinaplot( Pmol_752,
 			spatial_res=RESOLUTION_var,
 			rotation=30,
 			inner_eye_view=TRUE)
-
-# retinaplot(Pmol_753,contour_breaks_source  =  c(0,100000),
-# 					col_breaks_source      =  c(0,100000), inner_eye_view=TRUE)
-# retinaplot(Ntae_381,contour_breaks_source  =  c(0,100000),
-# 					col_breaks_source      =  c(0,100000), inner_eye_view=TRUE)
-dev.off()

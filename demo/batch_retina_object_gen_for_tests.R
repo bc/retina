@@ -26,4 +26,3 @@ list_of_retina_identifiers <- c('3hgbqg',
 'raxp91')
 
 lapply(list_of_retina_identifiers, load_function_and_run)
-dev.off()
