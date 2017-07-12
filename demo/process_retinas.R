@@ -1,9 +1,3 @@
-#Retinal Plotter Example Code: Brian Cohn March 28, 2014
-#Bring in package/function files
-require(testthat);
-require(sphereplot); require(mapproj); require(rgl);
-require(fields); require(RColorBrewer);
-require(retina)
 #variable numbers
 RESOLUTION_var <- 512
 SPIN_resolution <- 64
@@ -46,7 +40,7 @@ Pmol_753_coords <- data.frame(  maxX=1437,
 								minY=-1029,
 								deltaX=60,
 								deltaY=61) #the average ImageJ pixel distance (in the Y axis) between counting frame locations from the outline image.
-Pmol_753<- retina_object(
+Pmol_753 <- retina_object(
 	path = system.file(package = "retina", 'extdata/Pmol_753'),
 	#Eye Measurements
 	ED = 4.8,
@@ -75,14 +69,14 @@ Pmol_752_coords <- data.frame(maxX=848,
 								deltaY=(965-48)/17) #the average ImageJ pixel distance (in the Y axis) between counting frame locations from the outline image.
 
 ## this part demonstrates how to combine sampling site count data, with your manually recorded XY location of each sampling site.
-	ssites<- read.csv(system.file(package = "retina", 'extdata/Pmol_752/Pmol_752_ssite_locations.csv'))
-	counts<- read.csv(system.file(package = "retina", 'extdata/Pmol_752/Pmol_site_counts.csv'))
+	ssites <- read.csv(system.file(package = "retina", 'extdata/Pmol_752/Pmol_752_ssite_locations.csv'))
+	counts <- read.csv(system.file(package = "retina", 'extdata/Pmol_752/Pmol_site_counts.csv'))
 	colnames(ssites) <- c("x", "y", "samplingsite")
 	colnames(counts) <- c("samplingsite", "count")
 	Pmol_752_xyz <- ssite_merge(ssites,counts)
 	colnames(Pmol_752_xyz) <- c("x","y","z")
 	write.csv(Pmol_752_xyz, system.file(package = "retina", 'extdata/Pmol_752/xyz.csv'), row.names=FALSE)
-Pmol_752<- retina_object(
+Pmol_752 <- retina_object(
 	path = system.file(package = "retina", 'extdata/Pmol_752'),
 	ED=5.225,
 	AL=3.9,

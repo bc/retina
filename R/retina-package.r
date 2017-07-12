@@ -114,7 +114,7 @@ run_all_demos <- function(path_to_demo_folder=file.path(.libPaths(), "retina/dem
                             "/smoothing_params.R",
                             "/spin_optimization.R",
                             "/tricomposite.R")
-    pdf("all_demos_output.pdf")
+    pdf("all_demos_output.pdf", width=8.5, height=11, useDingbats=FALSE)
       lapply(list_of_demo_names, function(x) {source(paste0(path_to_demo_folder,x))})
     dev.off()
 }
@@ -199,7 +199,6 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
         # If not, just put in NULL.
         falc <- data.frame()
     }
-
 
     # Import Counting Frame surface area in microns^2
     xy_IJ_cols <- coordinate_IJ(xyz, IJ_limits$maxX, IJ_limits$maxY, IJ_limits$minX,
