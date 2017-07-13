@@ -21,9 +21,10 @@ dss_retistruct_processing <- function(path) {
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
 compose_tear_triplets_dataframe <- function(list_of_tear_triplets, outline_object) {
-	permute_tear_vertices <- function(list_of_tear_triplets,outline_object){
+	permute_tear_vertices <- function(list_of_tear_triplets, outline_object){
+    my_outline <- outline_object
 		lapply(list_of_tear_triplets, function(x){
-		retistruct::labelTearPoints(outline_object,x)
+		retistruct::labelTearPoints(my_outline, x)
 			})
 		}
 
@@ -55,12 +56,12 @@ update_outline_object_tears <- function(outline_object, tear_coordinates_datafra
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
 generate_outline_with_tears <- function(outline_coordinates, list_of_tear_triplets, path_to_retina_data_folder) {
-	outline <-
+	outline_object <-
 		retistruct:::AnnotatedOutline(
 			retistruct:::Outline(outline_coordinates, scale=NA, im=NULL)
 			)
 	outline_with_tears <- update_outline_object_tears(
-			outline,
+			outline_object,
 			assemble_tear_file(
 				compose_tear_triplets_dataframe(list_of_tear_triplets, outline_object),
 					path_to_retina_data_folder)
