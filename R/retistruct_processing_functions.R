@@ -48,6 +48,7 @@ update_outline_object_tears <- function(outline_object, tear_coordinates_datafra
 ##' @title Generate outline with tears
 ##' @description
 ##' Creates a valid AnnotatedOutline, ready for retistruct
+##' @param path_to_retina_data_folder path to working directory
 ##' @param list_of_tear_triplets list of 3-element vectors
 ##' @param outline_coordinates Outline coordinates XY str generated from tear_markup_plot function
 ##' @return outline_with_tears AnnotatedOutline. See ?retistruct:::AnnotatedOutline
