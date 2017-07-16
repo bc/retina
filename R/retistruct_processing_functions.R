@@ -5,6 +5,7 @@
 ##' @return rad Retinal data in radian units.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @references Sterratt et. al. 2013
+##' @importFrom retistruct retistruct.read.markup retistruct.reconstruct
 dss_retistruct_processing <- function(path) {
     do_not_print <- function(string){}
     rad <- retistruct.read.markup(retistruct.read.dataset(path))
@@ -20,11 +21,12 @@ dss_retistruct_processing <- function(path) {
 ##' @return mat matrix of tear vals, ready for T.csv saving
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
+##' @importFrom retistruct labelTearPoints
 compose_tear_triplets_dataframe <- function(list_of_tear_triplets, outline_object) {
 	permute_tear_vertices <- function(list_of_tear_triplets, outline_object){
     my_outline <- outline_object
 		lapply(list_of_tear_triplets, function(x){
-		retistruct::labelTearPoints(my_outline, x)
+		labelTearPoints(my_outline, x)
 			})
 		}
 
@@ -55,10 +57,12 @@ update_outline_object_tears <- function(outline_object, tear_coordinates_datafra
 ##' @return outline_with_tears AnnotatedOutline. See ?retistruct:::AnnotatedOutline
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
+##' @importFrom retistruct AnnotatedOutline
+##' @importFrom retistruct Outline
 generate_outline_with_tears <- function(outline_coordinates, list_of_tear_triplets, path_to_retina_data_folder) {
 	outline_object <-
-		retistruct:::AnnotatedOutline(
-			retistruct:::Outline(outline_coordinates, scale=NA, im=NULL)
+		AnnotatedOutline(
+			Outline(outline_coordinates, scale=NA, im=NULL)
 			)
 	outline_with_tears <- update_outline_object_tears(
 			outline_object,

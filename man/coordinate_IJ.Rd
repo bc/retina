@@ -29,6 +29,9 @@ coordinate_IJ(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY, inversion,
 \value{
 RET_count_data Retinal count data in ImageJ coordinates. $x, $y and $z
 }
+\note{
+Need to remove all imageJ calibration in an Epic
+}
 \author{
 Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

@@ -28,6 +28,8 @@ tear_markup_plot <- function(path_to_retina_data_folder){
 }
 
 
+
+
 ##' @title Assemble markup file
 ##' @description Creates a markup.csv file. One of the dorsal_outline_index or nasal_outline_index must be filled in. Not both.
 ##' @author Brian Cohn

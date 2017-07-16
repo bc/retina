@@ -1,6 +1,6 @@
 Package: retina
 Title: Tools for plotting and analyzing vertebrate retinas.
-Version: 2.0.1
+Version: 2.1.0
 Date: 2017-7-1
 Copyright: 2013-2015 Brian Cohn and Lars Schmitz
 Authors@R: c( person("Brian", "Cohn", email = "brian.cohn@usc.edu", role =
@@ -10,14 +10,15 @@ Description: Tools for Plotting and Analyzing Vertebrate Retinas Refer to
     Vision July 2015, Vol.15, 19. doi:10.1167/15.9.19
 Additional_repositories: http://cran.r-project.org
 Depends:
-    R (>= 3.1.1),
-    rgl,
-    fields,
+    R (>= 3.1.1)
+Imports:
     RColorBrewer,
-    sphereplot,
+    fields,
+    geometry,
     mapproj,
-    retistruct (>= 0.5.10),
-    geometry
+    retistruct,
+    rgl,
+    sphereplot
 Suggests:
     testthat
 Roxygen: list(wrap = TRUE)
