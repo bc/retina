@@ -6,3 +6,4 @@ process_retinas   Constructs retina_objects of three retians. Includes retistruc
 smoothing_params   Demonstrate the effects of changing lambda and the polynomial degree
 tricomposite   Beta feature for making maps from 3+ retinas
 retinal_perimeter_estimation   Computation of retinal perimeter by circular and elliptical geometries.
+batch_retina_object_gen_for_tests Runs multiple retinal tests for unlabeled sample data.
