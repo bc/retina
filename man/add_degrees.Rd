@@ -14,6 +14,9 @@ add_degrees(theta, degrees)
 \value{
 newtheta Adjusted between -180 and 180 degrees.
 }
+\description{
+Add Degrees
+}
 \examples{
 add_degrees(30, 180) #you should get -150
 }
