@@ -524,6 +524,7 @@ cartesian_rotation <- function(x, y, theta) {
 
 
 ##' @title Add Degrees
+##' @description Add Degrees
 ##' @param theta Angle in degrees
 ##' @param degrees Number of degrees to add to theta
 ##' @return newtheta Adjusted between -180 and 180 degrees.

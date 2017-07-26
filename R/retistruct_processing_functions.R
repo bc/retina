@@ -57,12 +57,10 @@ update_outline_object_tears <- function(outline_object, tear_coordinates_datafra
 ##' @return outline_with_tears AnnotatedOutline. See ?retistruct:::AnnotatedOutline
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
-##' @importFrom retistruct AnnotatedOutline
-##' @importFrom retistruct Outline
 generate_outline_with_tears <- function(outline_coordinates, list_of_tear_triplets, path_to_retina_data_folder) {
 	outline_object <-
-		AnnotatedOutline(
-			Outline(outline_coordinates, scale=NA, im=NULL)
+		retistruct:::AnnotatedOutline(
+			retistruct:::Outline(outline_coordinates, scale=NA, im=NULL)
 			)
 	outline_with_tears <- update_outline_object_tears(
 			outline_object,
