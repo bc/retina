@@ -29,6 +29,9 @@ coordinate_IJ(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY, inversion,
 \value{
 RET_count_data Retinal count data in ImageJ coordinates. $x, $y and $z
 }
+\description{
+It's important for the user to communicate the dimensions of the retinal wholemount to the program that's going to reconstruct the original shape. coordinate_IJ is useful for noting what the grid looks like for a retinal wholemount, so the package can decide where to place the sampling locations with respect to the outline created in ImageJ.
+}
 \note{
 Need to remove all imageJ calibration in an Epic
 }

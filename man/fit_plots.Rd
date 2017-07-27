@@ -16,7 +16,10 @@ fit_plots(x, digits = 4, which = 1:4, ...)
 \item{...}{further arguments passed to or from other methods.}
 }
 \value{
-Histograms and Error scatterplots in base R
+predictions Evaluation of the model at the actual sampling site lat-lon coordinates.
+}
+\description{
+Visualizes histograms and error scatterplots in base R
 }
 \references{
 Fields Package

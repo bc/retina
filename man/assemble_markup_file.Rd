@@ -15,8 +15,6 @@ assemble_markup_file(eye_left_or_right, path_to_retina_data_folder,
 \item{dorsal_outline_index}{The index of the point that points toward dorsal, or NA.}
 
 \item{nasal_outline_index}{The index of the opint that points toward nasal, or NA.}
-
-\item{markup_coordinates_dataframe}{markup metaparameters in retistruct format}
 }
 \description{
 Creates a markup.csv file. One of the dorsal_outline_index or nasal_outline_index must be filled in. Not both.

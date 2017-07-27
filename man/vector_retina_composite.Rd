@@ -19,10 +19,15 @@ vector_retina_composite(retina_list, spin_spatial_res = 128,
 
 \item{plot}{Logical, by default false, but when true it will output the plot where the first element in the list is fixed.}
 
+\item{rotation_degree_list}{False or a matrix of shape (i.e. as.matrix(c(0,0,0))) which identifies how much to rotate each of the N retinas. Logical, by default false, but when true it will output the plot where the first element in the list is fixed.}
+
 \item{...}{Arguments passed from other functions. You can access the thin plate spline interpolator here.}
 }
 \value{
 composite_mat Matrix of the composite retina, where the first element of the retina list is fixed.
+}
+\description{
+Combine multiple retinal maps together. This computes a thin plate spline for each of the retinas, decides on a common XY grid to compare points at, and predicts each of the maps at those locations. Then, it takes the average of the density values at those locations.
 }
 \author{
 Brian Cohn \email{brian.cohn@usc.edu} and Lars Schmitz

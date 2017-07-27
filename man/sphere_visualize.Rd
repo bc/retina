@@ -2,8 +2,7 @@
 % Please edit documentation in R/retina-package.r
 \name{sphere_visualize}
 \alias{sphere_visualize}
-\title{Spherical Plot visualization
-Uses retistruct to create lat/lon coordinates}
+\title{Spherical Plot visualization}
 \usage{
 sphere_visualize(trimmed_data)
 }
@@ -12,6 +11,10 @@ sphere_visualize(trimmed_data)
 }
 \value{
 Spherical visualization
+}
+\description{
+To make sure that a retina is entered correctly, and that the coordinate_IJ process was performed correctly, this function is useful for seeing how the reconstruction moved the datapoints. For example, if many points are missing from one hemisphere, the user can troubleshoot with their coordinate_IJ construction.
+Uses retistruct to create lat/lon coordinates
 }
 \author{
 Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz

@@ -346,6 +346,7 @@ sphere_visualize <- function(trimmed_data) {
 ##' @return Error histogram in base R
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @export
+##' @importFrom graphics hist
 fit_error_histogram <- function(x, main = NULL, ...) {
     hist(predictSE(x), col = "black", xlab = "Fit Error (RGC/sq.mm)", ...)
 }
@@ -428,6 +429,7 @@ define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat)
 ##' @description Makes a set of contours to the retinaplot. Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
 ##' @param minitics See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
+##' @param xy two-column dataframe consisting of $x and $y datapoints
 ##' @param contour_breaks See fit_plot_azimuthal
 ##' @importFrom grDevices contourLines
 add_contours <- function(minitics, Mat, contour_breaks, xy) {
@@ -568,6 +570,7 @@ add_degrees <- function(theta, degrees) {
 ##' @param ... further arguments passed to or from other methods.
 ##' reference map. latitude in [,1], longitude in [,2], rho in [,3].
 ##' @param spatial_res Defines the number of pixels across the interpolation grid for every comparison. Default is 16 for speed.
+##' @param projection_type by default this is "azequidistant" which is used in our peer-reviewed paper/ See the mapproject project if you want to use a different projection.
 ##' @param theta_interval Defines the interval at which the rotation value will be changed when moving to the next comparison. Default is 10 in units of degrees.
 ##' @return df_spin Matrix of errors (in second column) for a given map rotation.
 ##' @import mapproj

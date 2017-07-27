@@ -5,6 +5,7 @@
 ##' @param theta_interval number of degrees to traverse in spin-optimization
 ##' @param plot_spatial_res Resolution passed to the final plotter
 ##' @param plot Logical, by default false, but when true it will output the plot where the first element in the list is fixed.
+##' @param rotation_degree_list False or a matrix of shape (i.e. as.matrix(c(0,0,0))) which identifies how much to rotate each of the N retinas. Logical, by default false, but when true it will output the plot where the first element in the list is fixed.
 ##' @param ... Arguments passed from other functions. You can access the thin plate spline interpolator here.
 ##' @return composite_mat Matrix of the composite retina, where the first element of the retina list is fixed.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu} and Lars Schmitz

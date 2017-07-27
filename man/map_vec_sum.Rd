@@ -16,6 +16,9 @@ map_vec_sum(retina_list, rotation_indices, ...)
 \value{
 sum_mat The sum of all retina objects in the list, with respect to the rotation indices.
 }
+\description{
+This is a subfunction, that is useful when creating average maps.
+}
 \author{
 Brian Cohn \email{brian.cohn@usc.edu} and Lars Schmitz
 }

@@ -37,6 +37,9 @@ ret_obj retinal object (list)
 
 \code{data.frame} with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 }
+\description{
+This is the primary way to create a retinal object, which contains all of the information required to reconstruct, map, visualize, and interpret retinal cell density data.
+}
 \author{
 Brian Cohn \email{brian.cohn@usc.edu}
 }

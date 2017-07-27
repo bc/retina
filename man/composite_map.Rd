@@ -23,6 +23,9 @@ composite_map(map1, map2, rotation = TRUE, spatial_res,
 \value{
 plot Composite Plot data
 }
+\description{
+Combines two retinal cell density maps
+}
 \seealso{
 Other species_average: \code{\link{optimal_rotation}},
   \code{\link{rotation_optimize}}

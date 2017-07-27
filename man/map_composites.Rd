@@ -20,6 +20,9 @@ map_composites(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...)
 \value{
 MAT_composite Square matrix: Composite Map (adjusted to max,min of each map, with new peak equal to the mean of map1 and map2's peaks)
 }
+\description{
+Combines two density matrices of pre-smoothed data.
+}
 \author{
 Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

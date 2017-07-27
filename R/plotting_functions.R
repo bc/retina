@@ -38,7 +38,6 @@ tear_markup_plot <- function(path_to_retina_data_folder){
 ##' @param dorsal_outline_index The index of the point that points toward dorsal, or NA.
 ##' @param nasal_outline_index The index of the opint that points toward nasal, or NA.
 ##' @param path_to_retina_data_folder The path where the markup.csv file will be saved.
-##' @param markup_coordinates_dataframe markup metaparameters in retistruct format
 ##' @export
 assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, dorsal_outline_index=NA, nasal_outline_index=NA) {
 
@@ -82,6 +81,7 @@ assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, 
 ##' @param path_to_retina_data_folder The path where the T.csv file will be saved.
 ##' @param tear_coordinates_dataframe Tear coords in retistruct format
 ##' @export
+##' @importFrom utils write.table
 assemble_tear_file <- function(tear_coordinates_dataframe, path_to_retina_data_folder){
 	output_path <- file.path(path_to_retina_data_folder, "T.csv")
 	colnames(tear_coordinates_dataframe)<- c("V0","VB","VF")
@@ -95,8 +95,9 @@ assemble_tear_file <- function(tear_coordinates_dataframe, path_to_retina_data_f
 ##' @author Brian Cohn
 ##' @param outline_coordinates the dataframe of 2 columns with XY pixel points
 ##' @param path_to_retina_data_folder The path where the P.csv file will be saved.
-##' @param outline_coordinates outline coords in retistruct format
+##' @param outline_coordinates_retistruct outline coords in retistruct format
 ##' @export
+##' @importFrom utils write.table
 assemble_point_coordinates_file <- function(outline_coordinates, path_to_retina_data_folder){
 	output_path <- file.path(path_to_retina_data_folder, "P.csv")
 	colnames(outline_coordinates)<- c("V1","V2")
@@ -153,6 +154,7 @@ plot_degree_label_for_latitudes <- function(outer.radius, circle.rads) {
 ##' @import fields
 ##' @param col Color vector
 ##' @param zlim limits of the densities
+##' @importFrom graphics par
 add_legend <- function(col, zlim) {
 	par(mai = c(1,1,1.5,1.5))
 	fields::image.plot(legend.only=TRUE, col=col, zlim=zlim, family = "Palatino")
@@ -164,6 +166,7 @@ add_legend <- function(col, zlim) {
 ##' @author Brian Cohn
 ##' @param endpoints a 4 element numeric vector descrbing the xy and x'y' for the line segment.
 ##' @param color_hex hex string
+##' @importFrom graphics segments
 draw_line_segments <- function(endpoints, color_hex="#66666650"){
   segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = color_hex )
 }
@@ -331,8 +334,8 @@ pretty_list_not_including_max <- function(lower_limit, upper_limit){
 }
 
 ##' @title Polygon Spline Fit
-##' @description Useful for making the faliform process look more smooth and refined. This is purely aesthetic.
-##' @details enhance the resolution of a polygon verticies dataframe by creating a spline along each vertex.
+##' @description Useful for making the falciform process look more smooth and refined. This is purely aesthetic.
+##' @details enhance the resolution of a polygon vertices dataframe by creating a spline along each vertex.
 ##' @param xy vertices in dataframe with x and y columns, in order (not all are used).
 ##' @param vertices Number of spline vertices to create.
 ##' @param k Wraps K vertices around each end. n >=k
@@ -434,7 +437,7 @@ retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_vi
 ##' @param ... passed arguments
 ##' @import fields rgl RColorBrewer
 ##' @export
-fit_plot_azimuthal<- function(
+fit_plot_azimuthal <- function(
   ### Plotting data already post-azimuthal transformation
   x, y, z,
   ### Plot component flags
@@ -486,7 +489,7 @@ fit_plot_azimuthal<- function(
   init_square_mat_plot(heatmap_matrix, zlim, minitics, col)
 
   if (contours){ add_contours(minitics, heatmap_matrix,
-  	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), xy)}
+  	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), Mat)}
   plot_falciform_process(falciform_coords$x, falciform_coords$y)
   if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y) #Plug in the secondary plot if it is available
   if (should_plot_points) plot_original_xy_locations(x,y)

@@ -14,6 +14,9 @@ reorder_columns(X, FN)
 \value{
 X_new data.frame of columns ordered in decreasing value from left to right according to each function(column)
 }
+\description{
+Reorders columns by function
+}
 \author{
 Brian Cohn \email{brian.cohn@usc.edu} Lars Schmitz
 }

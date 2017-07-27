@@ -16,6 +16,9 @@ cartesian_rotation(x, y, theta)
 \value{
 xy Data.Frame with $x and $y rotated coordinates
 }
+\description{
+Useful geometric transformation
+}
 \examples{
 x<- c(1,2,3,4,5)
 y<- c(3,3,3,3,3)

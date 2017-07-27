@@ -18,6 +18,9 @@ spline.poly(xy, vertices, k = 3, ...)
 \value{
 Coords More finely placed vertices for the polygon.
 }
+\description{
+Useful for making the faliform process look more smooth and refined. This is purely aesthetic.
+}
 \details{
 enhance the resolution of a polygon verticies dataframe by creating a spline along each vertex.
 }

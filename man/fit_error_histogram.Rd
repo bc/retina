@@ -16,6 +16,9 @@ fit_error_histogram(x, main = NULL, ...)
 \value{
 Error histogram in base R
 }
+\description{
+This function helps the user answer the scientific question: What is the fit performance of the Thin Plate Spline that is used to smooth the surface of the retinal density map? It is also useful for identifying systematic bias, bimodal distributions, or any other issues that could interfere with statistical rigor.
+}
 \author{
 Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

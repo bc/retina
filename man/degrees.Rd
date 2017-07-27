@@ -12,6 +12,9 @@ degrees(radian_coords)
 \value{
 data.frame Phi and lambda in a data.frame.
 }
+\description{
+This is a simple internal function used to convert radians to degrees. It does not accommodate for degrees larger than one period.
+}
 \author{
 Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

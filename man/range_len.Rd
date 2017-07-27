@@ -12,3 +12,6 @@ range_len(x)
 \value{
 the difference between the limits of the range.
 }
+\description{
+Computes the magnitude of the range
+}

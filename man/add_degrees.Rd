@@ -15,7 +15,7 @@ add_degrees(theta, degrees)
 newtheta Adjusted between -180 and 180 degrees.
 }
 \description{
-Add Degrees
+Adds degrees in a cyclical system, fixed to one period.
 }
 \examples{
 add_degrees(30, 180) #you should get -150

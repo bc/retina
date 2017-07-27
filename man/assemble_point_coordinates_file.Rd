@@ -11,7 +11,7 @@ assemble_point_coordinates_file(outline_coordinates, path_to_retina_data_folder)
 
 \item{path_to_retina_data_folder}{The path where the P.csv file will be saved.}
 
-\item{outline_coordinates}{outline coords in retistruct format}
+\item{outline_coordinates_retistruct}{outline coords in retistruct format}
 }
 \description{
 Creates a P.csv file

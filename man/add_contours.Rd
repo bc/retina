@@ -12,6 +12,8 @@ add_contours(minitics, Mat, contour_breaks, xy)
 \item{Mat}{See fit_plot_azimuthal}
 
 \item{contour_breaks}{See fit_plot_azimuthal}
+
+\item{xy}{two-column dataframe consisting of $x and $y datapoints}
 }
 \description{
 Makes a set of contours to the retinaplot. Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
