@@ -331,6 +331,7 @@ pretty_list_not_including_max <- function(lower_limit, upper_limit){
 }
 
 ##' @title Polygon Spline Fit
+##' @description Useful for making the faliform process look more smooth and refined. This is purely aesthetic.
 ##' @details enhance the resolution of a polygon verticies dataframe by creating a spline along each vertex.
 ##' @param xy vertices in dataframe with x and y columns, in order (not all are used).
 ##' @param vertices Number of spline vertices to create.

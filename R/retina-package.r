@@ -239,6 +239,7 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
 }
 
 ##' @title ImageJ Coordinate Conversion
+##' @description It's important for the user to communicate the dimensions of the retinal wholemount to the program that's going to reconstruct the original shape. coordinate_IJ is useful for noting what the grid looks like for a retinal wholemount, so the package can decide where to place the sampling locations with respect to the outline created in ImageJ.
 ##' @param RET_count_data XYZ dataframe. X and Y are integer values starting at 1.
 ##' @param maxX The X value of the furthest sampling site at the far right of the picture.
 ##' @param maxY The Y value of the furthest sampling site at the top of the picture
@@ -287,6 +288,7 @@ coordinate_IJ <- function(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY
 
 
 ##' @title Conversion from Radians to Degrees
+##' @description This is a simple internal function used to convert radians to degrees. It does not accommodate for degrees larger than one period.
 ##' @param radian_coords A data.frame with two columns- first is phi, second is lambda
 ##' @return data.frame Phi and lambda in a data.frame.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
@@ -315,6 +317,7 @@ count_to_rho <- function(count, height, width) {
 
 
 ##' @title Spherical Plot visualization
+##' @description To make sure that a retina is entered correctly, and that the coordinate_IJ process was performed correctly, this function is useful for seeing how the reconstruction moved the datapoints. For example, if many points are missing from one hemisphere, the user can troubleshoot with their coordinate_IJ construction.
 ##' Uses retistruct to create lat/lon coordinates
 ##' @param trimmed_data Three-column dataset with datapoint locations in latitude/longitude degree format.
 ##' @return Spherical visualization
@@ -329,6 +332,7 @@ sphere_visualize <- function(trimmed_data) {
 }
 
 ##' @title Single Tps Fit Error Plot
+##' @description This function helps the user answer the scientific question: What is the fit performance of the Thin Plate Spline that is used to smooth the surface of the retinal density map? It is also useful for identifying systematic bias, bimodal distributions, or any other issues that could interfere with statistical rigor.
 ##' @param x the fit object
 ##' @param main title of the plot, NULL by default
 ##' @param ... further arguments passed to or from other methods.
@@ -341,11 +345,12 @@ fit_error_histogram <- function(x, main = NULL, ...) {
 
 
 ##' @title Retinal Krig Fit Plots
+##' @description Visualizes histograms and error scatterplots in base R
 ##' @param x the fit object
 ##' @param digits set to 4 arbitrarily
 ##' @param which set arbitrarily to 1:4
 ##' @param ... further arguments passed to or from other methods.
-##' @return Histograms and Error scatterplots in base R
+##' @return predictions Evaluation of the model at the actual sampling site lat-lon coordinates.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references Fields Package
 ##' @export
@@ -523,7 +528,7 @@ cartesian_rotation <- function(x, y, theta) {
 
 
 ##' @title Add Degrees
-##' @description Add Degrees
+##' @description Adds degrees in a cyclical system, fixed to one period.
 ##' @param theta Angle in degrees
 ##' @param degrees Number of degrees to add to theta
 ##' @return newtheta Adjusted between -180 and 180 degrees.
@@ -631,6 +636,7 @@ reflect_across_vertical_line <- function(mat) {
 }
 
 ##' @title Make a Composite Map
+##' @description Combines two retinal cell density maps
 ##' @param map1 Fixed retina object
 ##' @param map2 retina object subject to rotation.
 ##' @param rotation Boolean, whether or not spin optimization is used.
@@ -695,6 +701,7 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
 
 
 ##' @title Composite two Retinal Map Matrices
+##' @description Combines two density matrices of pre-smoothed data.
 ##' @param MAT1 Matrix of RGC densities
 ##' @param MAT2 Matrix of RGC densities
 ##' @param col_levels Number of levels to plot (if showing plot.)
@@ -761,6 +768,7 @@ plot_rotation_optimize <- function(rotation_df) {
 # Utility functions:
 
 ##' @title Distance between the range
+##' @description Computes the magnitude of the range
 ##' @param x vector of numbers
 ##' @return the difference between the limits of the range.
 range_len <- function(x) {
@@ -769,6 +777,7 @@ range_len <- function(x) {
     return(diff)
 }
 ##' @title Reorder columns by function
+##' @description Reorders columns by function
 ##' @param X data.frame
 ##' @param FN A function that takes in a vector and returns one value.
 ##' @return X_new data.frame of columns ordered in decreasing value from left to right according to each function(column)
