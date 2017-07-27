@@ -499,7 +499,7 @@ getDssRemoved <- function(r, report = message) {
 
 
 ##' @title Counterclockwise rotation about the origin
-##'
+##' @description Useful geometric transformation
 ##' @param x vector of x coordinates (int/float)
 ##' @param y vector of y coordinates (int/float)
 ##' @param theta (float|int) angle in degrees.
