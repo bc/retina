@@ -417,10 +417,9 @@ define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat)
 ##' @param minitics See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
 ##' @param contour_breaks See fit_plot_azimuthal
-##' @import grDevices
+##' @importFrom grDevices contourLines
 add_contours <- function(minitics, Mat, contour_breaks, xy) {
-    require(grDevices)
-    CL <- grDevices::contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
+    CL <- contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
     A <- lapply(CL, function(xy) {
         graphics::lines(xy$x, xy$y, col = gray(0.2), lwd = 0.5)
     })
