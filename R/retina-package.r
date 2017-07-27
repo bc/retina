@@ -33,6 +33,13 @@ NULL
 #' @name Pmol_753
 NULL
 
+#' Ntae_381 Retinal object
+#' @docType data
+#' @keywords datasets
+#' @format retina_object
+#' @name Ntae_381
+NULL
+
 #' Pseudodax 752 Retinal object
 #' @docType data
 #' @keywords datasets
