@@ -32,7 +32,7 @@ xy_dataframe_splined xy dataframe coordinates, in two columns, with new points f
 \description{
 Useful for making the falciform process look more smooth and refined. This is purely aesthetic.
 
-The rows of 'xy' give coordinates of the boundary
+The rows of 'xy_dataframe' give coordinates of the boundary
 vertices, in order.  'vertices' is the number of spline vertices to create.
 (Not all are used: some are clipped from the ends.)  'k' is the number of
 points to wrap around the ends to obtain a smooth periodic spline.  reference:
