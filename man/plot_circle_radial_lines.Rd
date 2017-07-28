@@ -4,12 +4,12 @@
 \alias{plot_circle_radial_lines}
 \title{Draw circle radians about the center}
 \usage{
-plot_circle_radial_lines(radius_vals, color_hex = "#6666650")
+plot_circle_radial_lines(radius_vals, color_hex = "#666650")
 }
 \arguments{
 \item{radius_vals}{vector of radius values where the circles will be drawn}
 
-\item{color_hex}{hex color string, "#6666650" is the default}
+\item{color_hex}{hex color string, "#666650" is the default}
 }
 \description{
 Draw N radius lines (circles)
