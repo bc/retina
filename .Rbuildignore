@@ -12,6 +12,7 @@ retina.Rproj
 .travis.yml
 appveyor.yml
 tutorial.md
+tutorial2.md
 README.md
 tutorial_pix
 ^install.md$
