@@ -19,10 +19,10 @@ spline.poly(xy, vertices, k = 3, ...)
 Coords More finely placed vertices for the polygon.
 }
 \description{
-Useful for making the faliform process look more smooth and refined. This is purely aesthetic.
+Useful for making the falciform process look more smooth and refined. This is purely aesthetic.
 }
 \details{
-enhance the resolution of a polygon verticies dataframe by creating a spline along each vertex.
+enhance the resolution of a polygon vertices dataframe by creating a spline along each vertex.
 }
 \references{
 http://gis.stackexchange.com/questions/24827/how-to-smooth-the-polygons-in-a-contour-map
