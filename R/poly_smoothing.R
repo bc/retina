@@ -27,7 +27,7 @@ spline_poly <- function(xy_dataframe, vertices, k = 3, ...) {
     x <- data.spline$x
     x1 <- data.spline$y
     x2 <- spline(1:(n + 2 * k), data[, 2], n = vertices, ...)$y
-    
+
     # Retain only the middle part.
     return(cbind(x1, x2)[k < x & x <= n + k, ])
 }
