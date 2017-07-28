@@ -332,6 +332,7 @@ pretty_list_not_including_max <- function(lower_limit, upper_limit){
 ##' @param ... further arguments passed to or from other methods.
 ##' @return Coords More finely placed vertices for the polygon.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
+##' @importFrom stats spline
 ##' @references http://gis.stackexchange.com/questions/24827/how-to-smooth-the-polygons-in-a-contour-map
 spline_poly <- function(xy, vertices, k=3, ...) {
   n <- dim(xy)[1]
