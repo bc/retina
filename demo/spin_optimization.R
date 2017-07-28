@@ -1,4 +1,3 @@
-source('process_retinas.R')
 #Lets make a species average.
 # Use the *composite_map* function to make a species average of two retinae.
 # The user can enable "spin optimization", which we designed to help users overlay maps with minimal orientation error.

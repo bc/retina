@@ -1,4 +1,3 @@
-source('process_retinas.R')
 # If spin_optimization is disabled, no rotation will be performed.
 # composite_map evaluates the density across an interpolation grid at the desired *spatial_res = n* spatial resolution, and saves this data into an n by n matrtix.
 # Finally, both matrices are added, and divided by two to produce the 'matrix average'. This map can be plotted by passing the matrix to the plot_from_MAT function.

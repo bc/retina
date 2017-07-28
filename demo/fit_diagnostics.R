@@ -1,4 +1,3 @@
-source('process_retinas.R')
 # generate diagnostic plots
 print(dir())
 # load('preloaded_retinas_381_752_753.rdata')
