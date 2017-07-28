@@ -13,47 +13,6 @@ require(RColorBrewer)
 require(sphereplot)
 require(mapproj)
 
-##' Reef Fish
-##'
-##' A dataset containing three retinal objects, computed using the retina package: Pmol 753,Pmol 752 and Ntae 381.
-##'
-##'
-##' @docType data
-##' @keywords datasets
-##' @name reef_fish
-##' @usage data(reef_fish)
-##' @format A list (in retina object form)
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-NULL
-
-#' Pseudodax 753 Retinal object
-#' @docType data
-#' @keywords datasets
-#' @format retina_object
-#' @name Pmol_753
-NULL
-
-#' Ntae_381 Retinal object
-#' @docType data
-#' @keywords datasets
-#' @format retina_object
-#' @name Ntae_381
-NULL
-
-#' Pseudodax 752 Retinal object
-#' @docType data
-#' @keywords datasets
-#' @format retina_object
-#' @name Pmol_752
-NULL
-
-#' Ntae_381 Retinal object
-#' @docType data
-#' @keywords datasets
-#' @format retina_object
-#' @name Ntae_381\t
-NULL
-
 ##' @title Half ellipse perimeter approximation (ellipsoid assumption)
 ##' @description
 ##' Ramanujan approximation divided by two.
