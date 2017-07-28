@@ -259,13 +259,11 @@ fit_plots(my_retina$fit_data1)
 # Further functionality
 ```R
 ?composite_map 				#make an average of 2 maps
-?vector_retina_composite 	#make an average of 3+ maps
 ?polynomial_vs_lambda 		#compare smoothing parameters on your map
 ```
 
 #Composite Maps of many retinae
-Once you have 2 or more retinal objects from the tutorial, run the vector_retina_composite function, as in this demo:
-https://github.com/bcohn12/retina/blob/master/demo/tricomposite.R
+Please contact brian.cohn@usc.edu if this is a feature you want developed.
 
 
 And here's the source code for the function, that shows more specifics on what the input parameters can be.  There's also a map_sum function, if you want to add up all of the maps without dividing.
