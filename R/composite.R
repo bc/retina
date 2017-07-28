@@ -24,7 +24,6 @@ vector_retina_composite <- function(retina_list, spin_spatial_res = 128, plot_sp
     if (plot)
         {
             message("Plotting")
-            dev.new()
             plot_from_MAT(MATRIX = composite_mat, extrapolate = TRUE, spatial_res = plot_spatial_res,
                 col_levels = 50, contour_levels = 20, contour_breaks_source = c(min(composite_mat),
                   max(composite_mat)), col_breaks_source = c(min(composite_mat),
