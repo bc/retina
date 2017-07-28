@@ -1,7 +1,7 @@
 Package: retina
-Description: Functions and datasets to support Cohn et al,
-  "Retinal Topography Maps in R".
-Title: Support Functions and Datasets for Retinal Analysis
+Description: Functions and datasets to support Venables and Ripley,
+  "Modern Applied Statistics with S" (4th edition, 2002).
+Title: Support Functions and Datasets for Venables and Ripley's MASS
 Version: 2.2.1
 Date: 2017-7-1
 Copyright: 2013-2015 Brian Cohn and Lars Schmitz
