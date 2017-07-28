@@ -8,8 +8,8 @@ plot_from_MAT(z1, z2, MATRIX, contours = TRUE, legend = TRUE, axes = TRUE,
   points = TRUE, extrapolate = FALSE, col_breaks_source = 2,
   col_levels = 10, col = rev(colorRampPalette(brewer.pal(11,
   "PuOr"))(col_levels)), contour_breaks_source = 1,
-  contour_levels = col_levels + 1, outer.radius = pi/2,
-  circle.rads = pretty(c(0, outer.radius)), spatial_res = 128,
+  contour_levels = col_levels + 1, outer_radius = pi/2,
+  circle.rads = pretty(c(0, outer_radius)), spatial_res = 128,
   single_point_overlay = 0, interp.type = 1, lambda = 0.001,
   xyrelief = 1, ...)
 }
@@ -40,7 +40,7 @@ plot_from_MAT(z1, z2, MATRIX, contours = TRUE, legend = TRUE, axes = TRUE,
 
 \item{contour_levels}{number of contour levels}
 
-\item{outer.radius}{size of plot}
+\item{outer_radius}{size of plot}
 
 \item{circle.rads}{radius lines}
 
@@ -55,6 +55,9 @@ plot_from_MAT(z1, z2, MATRIX, contours = TRUE, legend = TRUE, axes = TRUE,
 \item{xyrelief}{scaling factor for interpolation matrix.}
 
 \item{...}{further arguments passed to or from other methods.}
+}
+\description{
+Sometimes users will want to permute their density matrices prior to plotting. This can be useful when multiplying the densities by some scaling factor, accomodating for bias, or incorporating additional noise for analysis with robustness.
 }
 \details{
 Takes in a square matrix of azimuthal equidistant plot projection points. Generates plot projection.

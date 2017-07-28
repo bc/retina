@@ -4,12 +4,12 @@
 \alias{compute_longitude_label_location}
 \title{Compute Longitude Label Location}
 \usage{
-compute_longitude_label_location(axis.rads, outer.radius)
+compute_longitude_label_location(axis.rads, outer_radius)
 }
 \arguments{
 \item{axis.rads}{axis.rads}
 
-\item{outer.radius}{numeric value for radius limit}
+\item{outer_radius}{numeric value for radius limit}
 }
 \value{
 label_locations the computed location for a label

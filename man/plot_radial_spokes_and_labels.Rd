@@ -4,10 +4,10 @@
 \alias{plot_radial_spokes_and_labels}
 \title{Plot radial axes}
 \usage{
-plot_radial_spokes_and_labels(outer.radius)
+plot_radial_spokes_and_labels(outer_radius)
 }
 \arguments{
-\item{outer.radius}{numeric value of the outer radius limit}
+\item{outer_radius}{numeric value of the outer radius limit}
 }
 \description{
 Put radial axes onto visualization

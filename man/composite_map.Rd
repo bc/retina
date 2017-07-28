@@ -18,6 +18,8 @@ composite_map(map1, map2, rotation = TRUE, spatial_res,
 
 \item{plot_rotation}{Boolean, whether or not spin optimization plot is shown.}
 
+\item{projection_type}{A mapproject mapproj projection type}
+
 \item{...}{further arguments passed to or from other methods.}
 }
 \value{
@@ -27,7 +29,8 @@ plot Composite Plot data
 Combines two retinal cell density maps
 }
 \seealso{
-Other species_average: \code{\link{optimal_rotation}},
+Other species_average: \code{\link{map_composites}},
+  \code{\link{optimal_rotation}},
   \code{\link{rotation_optimize}}
 }
 \author{

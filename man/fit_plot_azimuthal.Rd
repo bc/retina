@@ -8,8 +8,8 @@ fit_plot_azimuthal(x, y, z, contours = TRUE, legend = TRUE, axes = TRUE,
   should_plot_points = TRUE, extrapolate = TRUE, col_breaks_source = 2,
   col_levels = 50, col = rev(colorRampPalette(brewer.pal(11,
   "PuOr"))(col_levels)), contour_breaks_source = 1,
-  contour_levels = col_levels + 1, outer.radius = pi/2,
-  circle.rads = pretty_list_not_including_max(0, outer.radius),
+  contour_levels = col_levels + 1, outer_radius = pi/2,
+  circle.rads = pretty_list_not_including_max(0, outer_radius),
   spatial_res = 1000, single_point_overlay = 0, lambda = 0.001,
   xyrelief = 1, tmp_input = NULL, plot_suppress = FALSE,
   compute_error = FALSE, falciform_coords = NULL, falc2 = NA,
@@ -24,6 +24,8 @@ fit_plot_azimuthal(x, y, z, contours = TRUE, legend = TRUE, axes = TRUE,
 
 \item{axes}{Radial axes}
 
+\item{should_plot_points}{boolean, whether to plot the sampling site locations}
+
 \item{extrapolate}{By default TRUE, will make plot a circle.}
 
 \item{col_breaks_source}{2 element vector with max and min}
@@ -36,11 +38,13 @@ fit_plot_azimuthal(x, y, z, contours = TRUE, legend = TRUE, axes = TRUE,
 
 \item{contour_levels}{number of contour levels}
 
-\item{outer.radius}{size of plot}
+\item{outer_radius}{size of plot}
 
 \item{circle.rads}{radius lines}
 
 \item{spatial_res}{Used to define a spatial_res by spatial_res plotting resolution.}
+
+\item{single_point_overlay}{Overlay "key" data point with square}
 
 \item{lambda}{lambda value for thin plate spline interpolation}
 
@@ -59,8 +63,6 @@ fit_plot_azimuthal(x, y, z, contours = TRUE, legend = TRUE, axes = TRUE,
 \item{polynomial_m}{A polynomial function of degree (m-1) will be included in the model as the drift (or spatial trend) component. Default is the value such that 2m-d is greater than zero where d is the dimension of x.}
 
 \item{...}{passed arguments}
-
-\item{points}{whether to plot individual datapoints as X's}
 }
 \description{
 This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.

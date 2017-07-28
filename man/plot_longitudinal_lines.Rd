@@ -4,12 +4,12 @@
 \alias{plot_longitudinal_lines}
 \title{Plot longitudinal spoke lines}
 \usage{
-plot_longitudinal_lines(axis_radian, outer.radius)
+plot_longitudinal_lines(axis_radian, outer_radius)
 }
 \arguments{
-\item{outer.radius}{numeric value of the outer radius limit}
+\item{axis_radian}{radian}
 
-\item{axis.radian}{radian}
+\item{outer_radius}{numeric value of the outer radius limit}
 }
 \description{
 put lines across the plotting circle

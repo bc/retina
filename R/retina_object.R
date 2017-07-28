@@ -59,7 +59,7 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
     # The funciton then uses this model fit to predict what density would be across
     # the hemispherical surface. The smooth predicted surface is colored by it's
     # density; Purple:White:Orange for low to high density.
-    fit_data <- fit_plot_azimuthal(az$x, az$y, z = az$z, outer.radius = 1.6, spatial_res = spatial_res,
+    fit_data <- fit_plot_azimuthal(az$x, az$y, z = az$z, outer_radius = 1.6, spatial_res = spatial_res,
         lambda = lambda, col_levels = 50, contour_levels = 20, extrapolate = extrapolate,
         compute_error = TRUE, eye_diameter = ED, axial_len = AL, falciform_coords = falc_az,
         ...)  #plot the image, function derived from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot

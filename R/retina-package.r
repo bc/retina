@@ -100,6 +100,7 @@ retinal_phi0 <- function(ED, AL) {
 ##' @return dataframe with X Y and Z columns with NA's. Each row is a density measurement at a given XY location in ImageJ coordinates.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @family munge
+##' @importFrom utils read.csv
 import_xyz <- function(path) {
     # Input path to folder containing xyz.csv, Reads and condenses count data per
     # sampling site. Make sure you don't have a slash at the end
@@ -111,6 +112,7 @@ import_xyz <- function(path) {
 ##' @description
 ##' Runs all demos in quick succession
 ##' @param path_to_demo_folder include the trailing /
+##' @importFrom grDevices pdf dev.off
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 run_all_demos <- function(path_to_demo_folder=file.path(.libPaths(), "retina/demo")) {
     list_of_demo_names <- c("/composite_retina.R",
@@ -194,7 +196,9 @@ ssite_merge <- function(location, counts, ...) {
 ##' @return data.frame with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references https://r-forge.r-project.org/scm/?group_id=1436
-##' @import retistruct
+##' @importFrom retistruct getDss getDssRemoved
+##' @importFrom utils write.csv capture.output read.table
+##' @importFrom stats complete.cases
 ##' @export
 spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
     # Read in the xyz dataset from stereology data collection.
@@ -223,7 +227,7 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
     write.csv(DAT, file = paste0(path, "/datapoints.csv"), row.names = FALSE)
 
     # Post-image_J_markup
-    invisible(capture.output(radian_data <- dss_retistruct_processing(path)))
+    radian_data <- dss_retistruct_processing(path)
     dss_object <- getDss(radian_data)
     dss <- getDssRemoved(radian_data)
     # Extract the density measurement and falciform outline coordinates from the
@@ -361,6 +365,8 @@ fit_error_histogram <- function(x, main = NULL, ...) {
 ##' @return predictions Evaluation of the model at the actual sampling site lat-lon coordinates.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references Fields Package
+##' @importFrom graphics plot abline text
+##' @importFrom stats predict na.omit
 ##' @export
 fit_plots <- function(x, digits = 4, which = 1:4, ...) {
     out <- x
@@ -431,7 +437,7 @@ define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat)
 ##' @param Mat See fit_plot_azimuthal
 ##' @param xy two-column dataframe consisting of $x and $y datapoints
 ##' @param contour_breaks See fit_plot_azimuthal
-##' @importFrom grDevices contourLines
+##' @importFrom grDevices contourLines gray
 add_contours <- function(minitics, Mat, contour_breaks, xy) {
     CL <- contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
     A <- lapply(CL, function(xy) {
@@ -445,6 +451,7 @@ add_contours <- function(minitics, Mat, contour_breaks, xy) {
 ##' @param col See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
 ##' @param minitics See fit_plot_azimuthal
+##' @importFrom graphics image
 init_square_mat_plot <- function(Mat, zlim, minitics, col) {
     Mat[which(Mat < zlim[1])] = zlim[1]
     Mat[which(Mat > zlim[2])] = zlim[2]
@@ -651,6 +658,7 @@ reflect_across_vertical_line <- function(mat) {
 ##' @param map2 retina object subject to rotation.
 ##' @param rotation Boolean, whether or not spin optimization is used.
 ##' @param plot_rotation Boolean, whether or not spin optimization plot is shown.
+##' @param projection_type A mapproject mapproj projection type
 ##' @param spatial_res Default is 16. A (spatial_res*spatial_res) matrix will be created for spin optimization comparisons and compose the average.
 ##' @param ... further arguments passed to or from other methods.
 ##' @return plot Composite Plot data
@@ -689,11 +697,11 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     ## Step 2 Interpolate map1 and map2 azimuthal data with the same interpolation
     ## options
     map1fit <- fit_plot_azimuthal(x1, y1, z1, spatial_res, plot_suppress = TRUE,
-        extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map1$azimuthal_data.falciform[[1]],
+        extrapolate = TRUE, outer_radius = pi/2, falciform_coords = map1$azimuthal_data.falciform[[1]],
         ...)
     message("Fitting Tps Model for Map 2")
     map2fit <- fit_plot_azimuthal(x2, y2, z2, spatial_res, plot_suppress = TRUE,
-        extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map2$azimuthal_data.falciform[[1]],
+        extrapolate = TRUE, outer_radius = pi/2, falciform_coords = map2$azimuthal_data.falciform[[1]],
         ...)
     maps <- list(map1fit, map2fit)
     MAT1 <- maps[[1]][[2]]$z
@@ -719,7 +727,8 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
 ##' @param ... further arguments passed to or from other methods.
 ##' @return MAT_composite Square matrix: Composite Map (adjusted to max,min of each map, with new peak equal to the mean of map1 and map2's peaks)
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-##' @family species_averags
+##' @family species_average
+##' @importFrom grDevices heat.colors
 ##' @export
 map_composites <- function(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...) {
     # Matrix Combinations

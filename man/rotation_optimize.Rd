@@ -31,6 +31,7 @@ mean absolute difference between the maps' rho values is recorded
 }
 \seealso{
 Other species_average: \code{\link{composite_map}},
+  \code{\link{map_composites}},
   \code{\link{optimal_rotation}}
 }
 \author{

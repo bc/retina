@@ -15,7 +15,7 @@ generate_outline_with_tears(outline_coordinates, list_of_tear_triplets,
 \item{path_to_retina_data_folder}{path to working directory}
 }
 \value{
-outline_with_tears AnnotatedOutline. See ?retistruct:::AnnotatedOutline
+outline_with_tears AnnotatedOutline. See ?retistruct::AnnotatedOutline
 }
 \description{
 Creates a valid AnnotatedOutline, ready for retistruct

@@ -21,6 +21,7 @@ Computes the argmax of the min error, returning both the error and its theta rot
 }
 \seealso{
 Other species_average: \code{\link{composite_map}},
+  \code{\link{map_composites}},
   \code{\link{rotation_optimize}}
 }
 \author{

@@ -10,8 +10,9 @@ assemble_tear_file(tear_coordinates_dataframe, path_to_retina_data_folder)
 \item{tear_coordinates_dataframe}{the dataframe of 3 columns, with c("V0","VB","VF"), and n columns, where n= number of tears}
 
 \item{path_to_retina_data_folder}{The path where the T.csv file will be saved.}
-
-\item{tear_coordinates_dataframe}{Tear coords in retistruct format}
+}
+\value{
+tear_coordinates_dataframe Tear coords in retistruct format
 }
 \description{
 Creates a T.csv file

@@ -23,6 +23,11 @@ MAT_composite Square matrix: Composite Map (adjusted to max,min of each map, wit
 \description{
 Combines two density matrices of pre-smoothed data.
 }
+\seealso{
+Other species_average: \code{\link{composite_map}},
+  \code{\link{optimal_rotation}},
+  \code{\link{rotation_optimize}}
+}
 \author{
 Brian Cohn \email{brian.cohn@usc.edu}, Lars Schmitz
 }

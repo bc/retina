@@ -129,7 +129,7 @@ temp = fit_plot_azimuthal(
 AZx,
 AZy,
 AZz,
-outer.radius=1.6,
+outer_radius=1.6,
 falciform_coords=retina_object$azimuthal_data.falciform[[1]],
 falc2=NA, ...
 if (return_fit){return(temp)}

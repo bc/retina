@@ -10,8 +10,9 @@ pretty_list_not_including_max(lower_limit, upper_limit)
 \item{lower_limit}{numeric lower bound}
 
 \item{upper_limit}{numeric upper bound}
-
-\item{pretty_vec}{numeric vector}
+}
+\value{
+pretty_vec numeric vector
 }
 \description{
 Remove the last element if it exceeds the upper limit

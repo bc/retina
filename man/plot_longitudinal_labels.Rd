@@ -4,12 +4,12 @@
 \alias{plot_longitudinal_labels}
 \title{Plot longitudinal labels}
 \usage{
-plot_longitudinal_labels(axis.rad, outer.radius, r_label, l_label, degree)
+plot_longitudinal_labels(axis.rad, outer_radius, r_label, l_label, degree)
 }
 \arguments{
 \item{axis.rad}{axis radian}
 
-\item{outer.radius}{numeric value of the outer radius limit}
+\item{outer_radius}{numeric value of the outer radius limit}
 
 \item{r_label}{label number}
 

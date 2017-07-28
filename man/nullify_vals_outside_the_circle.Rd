@@ -5,16 +5,16 @@
 \title{Remove points that are outside of the plotting circle}
 \usage{
 nullify_vals_outside_the_circle(minitics, spatial_res, heatmap_matrix,
-  outer.radius)
+  outer_radius)
 }
 \arguments{
 \item{minitics}{Spherical limit info}
 
 \item{spatial_res}{spatial width in pixels of the plotted image}
 
-\item{outer.radius}{max value of the radius}
+\item{heatmap_matrix}{Matrix of predicted points on the set grid}
 
-\item{Mat}{Matrix of predicted points on the set grid}
+\item{outer_radius}{max value of the radius}
 
 \item{falciform_y}{numeric vector of y coordinates}
 }

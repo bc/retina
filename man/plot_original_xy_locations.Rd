@@ -2,17 +2,17 @@
 % Please edit documentation in R/plotting_functions.R
 \name{plot_original_xy_locations}
 \alias{plot_original_xy_locations}
-\title{plot points of XY}
+\title{Add scatter X's of XY to an existing plot}
 \usage{
 plot_original_xy_locations(x, y)
 }
 \arguments{
-\item{falciform_x}{numeric vector of x coordinates}
+\item{x}{numeric vector of x coordinates}
 
-\item{falciform_y}{numeric vector of y coordinates}
+\item{y}{numeric vector of y coordinates}
 }
 \description{
-visualize xy points
+visualize xy points as X's
 }
 \author{
 Brian Cohn

@@ -5,6 +5,7 @@ require(sphereplot)
 require(mapproj)
 
 ##' @title Plot from matrix
+##' @description Sometimes users will want to permute their density matrices prior to plotting. This can be useful when multiplying the densities by some scaling factor, accomodating for bias, or incorporating additional noise for analysis with robustness.
 ##' @param contours whether to plot contours.
 ##' @param legend Color legend with tick marks
 ##' @param axes Radial axes
@@ -15,7 +16,7 @@ require(mapproj)
 ##' @param col colors to plot
 ##' @param contour_breaks_source 1 if data, 2 if calculated surface data
 ##' @param contour_levels number of contour levels
-##' @param outer.radius size of plot
+##' @param outer_radius size of plot
 ##' @param circle.rads radius lines
 ##' @param spatial_res Used to define a spatial_res by spatial_res plotting resolution.
 ##' @param single_point_overlay Overlay "key" data point with square (0 = No, Other = number of pt)
@@ -28,7 +29,7 @@ require(mapproj)
 ##' @param ... further arguments passed to or from other methods.
 ##' @details Takes in a square matrix of azimuthal equidistant plot projection points. Generates plot projection.
 ##' @export
-plot_from_MAT<- function(
+plot_from_MAT <- function(
   ### Plotting data (in cartesian) - will be converted to polar space.
   z1, z2, MATRIX,
   ### Plot component flags
@@ -47,8 +48,8 @@ plot_from_MAT<- function(
   # If you know the levels, input directly (i.e. c(0,1))<-default
   contour_levels = col_levels+1,
   ### Plotting params
-  outer.radius = pi/2,
-  circle.rads = pretty(c(0,outer.radius)), #Radius lines
+  outer_radius = pi/2,
+  circle.rads = pretty(c(0,outer_radius)), #Radius lines
   spatial_res=128, #Resolution of fitted surface
   single_point_overlay=0, #Overlay "key" data point with square
   #(0 = No, Other = number of pt)
@@ -63,7 +64,7 @@ plot_from_MAT<- function(
   # interpolate the data
   if (interp.type == 1){
 
-	minitics <- seq(-outer.radius, outer.radius, length.out = spatial_res)
+	minitics <- seq(-outer_radius, outer_radius, length.out = spatial_res)
 	grid.list = list(x=minitics,y=minitics) #choose locations to predict at
 	Mat = MATRIX
   }
@@ -77,7 +78,7 @@ plot_from_MAT<- function(
 #   ###;; ________________________________________________________________________
   # mark cells outside circle as NA
   markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res)
-  Mat[!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius] <- NA
+  Mat[!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer_radius] <- NA
 
   ### Set contour_breaks based on requested source
   if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 1)){
@@ -136,7 +137,7 @@ plot_from_MAT<- function(
 
 	# draw circles
 	if (missing(circle.rads)){
-	  circle.rads <- pretty(c(0,outer.radius-.4))
+	  circle.rads <- pretty(c(0,outer_radius-.4))
 	}
 
 	for (i in circle.rads){
@@ -149,16 +150,16 @@ plot_from_MAT<- function(
 	l.labs <- c(270, 240, 210, 180, 150, 120)
 
 	for (i in 1:length(axis.rads)){
-	  endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+	  endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer_radius,ncol = 2)))
 	  segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = "#66666650")
-	  endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
+	  endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer_radius, ncol = 2))
 	  lab1 <- bquote(.(r.labs[i]) * degree)
 	  lab2 <- bquote(.(l.labs[i]) * degree)
 	  text(endpoints[1], endpoints[2], lab1, xpd = TRUE)
 	  text(endpoints[3], endpoints[4], lab2, xpd = TRUE)
 	}
-	axis(2, pos = -1.25 * outer.radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
-	text( -1.26 * outer.radius, sort(union(circle.rads, -circle.rads)),sort(union(circle.rads, -circle.rads)), xpd = TRUE, pos = 2)
+	axis(2, pos = -1.25 * outer_radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
+	text( -1.26 * outer_radius, sort(union(circle.rads, -circle.rads)),sort(union(circle.rads, -circle.rads)), xpd = TRUE, pos = 2)
   }
   if (legend){
 

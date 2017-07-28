@@ -4,14 +4,12 @@
 \alias{draw_latitude_markings}
 \title{Draw Latitude Markings}
 \usage{
-draw_latitude_markings(radius_vals, outer.radius)
+draw_latitude_markings(radius_vals, outer_radius)
 }
 \arguments{
 \item{radius_vals}{vector of radius values (for latitudes)}
 
-\item{outer.radius}{see fitplotazimuthal}
-
-\item{radians}{vector of radians}
+\item{outer_radius}{see fitplotazimuthal}
 }
 \description{
 plots radial lines, degree label for latitudes, and plots radial spokes with labels

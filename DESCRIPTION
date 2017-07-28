@@ -1,7 +1,7 @@
 Package: retina
-Title: Tools for plotting and analyzing vertebrate retinas
-Description: This repository represents an effort to make retinal data comparable and replicable. Flat-mounts or Wholemounts are the retina specimens that are generated from vertebrates, but it's challenging to combine data and make quantitative comparisons. Our package solves this problem.
-Version: 2.2.0
+Title: Retinal analyses
+Description: Tools for retinal visualization.
+Version: 2.2.1
 Date: 2017-7-1
 Copyright: 2013-2015 Brian Cohn and Lars Schmitz
 Authors@R: c( person("Brian", "Cohn", email = "brian.cohn@usc.edu", role =

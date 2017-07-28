@@ -79,7 +79,7 @@ assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, 
 ##' @author Brian Cohn
 ##' @param tear_coordinates_dataframe the dataframe of 3 columns, with c("V0","VB","VF"), and n columns, where n= number of tears
 ##' @param path_to_retina_data_folder The path where the T.csv file will be saved.
-##' @param tear_coordinates_dataframe Tear coords in retistruct format
+##' @return tear_coordinates_dataframe Tear coords in retistruct format
 ##' @export
 ##' @importFrom utils write.table
 assemble_tear_file <- function(tear_coordinates_dataframe, path_to_retina_data_folder){
@@ -95,7 +95,7 @@ assemble_tear_file <- function(tear_coordinates_dataframe, path_to_retina_data_f
 ##' @author Brian Cohn
 ##' @param outline_coordinates the dataframe of 2 columns with XY pixel points
 ##' @param path_to_retina_data_folder The path where the P.csv file will be saved.
-##' @param outline_coordinates_retistruct outline coords in retistruct format
+##' @return outline_coordinates_retistruct outline coords in retistruct format
 ##' @export
 ##' @importFrom utils write.table
 assemble_point_coordinates_file <- function(outline_coordinates, path_to_retina_data_folder){
@@ -112,35 +112,26 @@ assemble_point_coordinates_file <- function(outline_coordinates, path_to_retina_
 
 
 
-##' @title plot points of XY
-##' @description visualize xy points
+##' @title Add scatter X's of XY to an existing plot
+##' @description visualize xy points as X's
 ##' @author Brian Cohn
-##' @param falciform_x numeric vector of x coordinates
-##' @param falciform_y numeric vector of y coordinates
+##' @param x numeric vector of x coordinates
+##' @param y numeric vector of y coordinates
+##' @importFrom graphics points
 plot_original_xy_locations <- function(x,y) {
 	points(x+0.005,y,pch=4, cex=0.5, col="gainsboro")
   points(x,y,pch=4, cex=0.5, col="black")
 }
-##' @title Interpolate Input Data with Thin Plate Spline
-##' @description Interpolation
-##' @author Brian Cohn
-##' @param minitics values referring to the circle
-##' @param x input variable 1
-##' @param y input variable 2
-##' @param z response variable
-##' @param lambda TPS parameter
-##' @param polynomial_m TPS parameter
-##' @param extrapolate true/false whether we should interpolate past the points, all the way to the eye equator
-
 
 ##' @title Plot the degree labels for latitudes
 ##' @description Plot degree numbers
 ##' @author Brian Cohn
-##' @param outer.radius the extent of the radius of the plot
+##' @param outer_radius the extent of the radius of the plot
 ##' @param circle.rads the number of radian circles that are drawn
-plot_degree_label_for_latitudes <- function(outer.radius, circle.rads) {
-		axis(2, pos = -1.25 * outer.radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
-		text( -1.26 * outer.radius,
+##' @importFrom graphics axis text
+plot_degree_label_for_latitudes <- function(outer_radius, circle.rads) {
+		axis(2, pos = -1.25 * outer_radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
+		text( -1.26 * outer_radius,
 			sort(union(circle.rads, -circle.rads)),
 			sort(union(circle.rads, -circle.rads)),
 			xpd = TRUE, pos = 2,family = "Palatino")
@@ -192,11 +183,11 @@ write_labels_at_endpoint_locations <- function(r_label, l_label, degree, endpoin
 ##' @author Brian Cohn
 ##' @param minitics Spherical limit info
 ##' @param spatial_res spatial width in pixels of the plotted image
-##' @param Mat Matrix of predicted points on the set grid
-##' @param outer.radius max value of the radius
+##' @param heatmap_matrix Matrix of predicted points on the set grid
+##' @param outer_radius max value of the radius
 ##' @param falciform_y numeric vector of y coordinates
-nullify_vals_outside_the_circle <- function(minitics, spatial_res, heatmap_matrix, outer.radius){
-  matrix_position_is_within_the_circle <- function() {!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius}
+nullify_vals_outside_the_circle <- function(minitics, spatial_res, heatmap_matrix, outer_radius){
+  matrix_position_is_within_the_circle <- function() {!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer_radius}
   markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res)
   matrix_to_mask <- heatmap_matrix #matrix_to_mask is a mutable variable
   matrix_to_mask[matrix_position_is_within_the_circle()] <- NA #MUTABLE
@@ -208,19 +199,19 @@ nullify_vals_outside_the_circle <- function(minitics, spatial_res, heatmap_matri
 ##' @description Find the location to put the label around the circle at each of the lines
 ##' @author Brian Cohn
 ##' @param axis.rads axis.rads
-##' @param outer.radius numeric value for radius limit
+##' @param outer_radius numeric value for radius limit
 ##' @return label_locations the computed location for a label
-compute_longitude_label_location <- function(axis.rads, outer.radius){
-	return(c(RMat(axis.rads) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2)))
+compute_longitude_label_location <- function(axis.rads, outer_radius){
+	return(c(RMat(axis.rads) %*% matrix(c(1.1, 0, -1.1, 0) * outer_radius, ncol = 2)))
 }
 
 ##' @title Plot longitudinal spoke lines
 ##' @description put lines across the plotting circle
 ##' @author Brian Cohn
-##' @param axis.radian radian
-##' @param outer.radius numeric value of the outer radius limit
-plot_longitudinal_lines <- function(axis_radian, outer.radius){
-  endpoints <- zapsmall(c(RMat(axis_radian) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+##' @param axis_radian radian
+##' @param outer_radius numeric value of the outer radius limit
+plot_longitudinal_lines <- function(axis_radian, outer_radius){
+  endpoints <- zapsmall(c(RMat(axis_radian) %*% matrix(c(1, 0, -1, 0) * outer_radius,ncol = 2)))
   draw_line_segments(endpoints)
 }
 
@@ -228,12 +219,12 @@ plot_longitudinal_lines <- function(axis_radian, outer.radius){
 ##' @description put a degree label at the ends of the endpoints for each longitude
 ##' @author Brian Cohn
 ##' @param axis.rad axis radian
-##' @param outer.radius numeric value of the outer radius limit
+##' @param outer_radius numeric value of the outer radius limit
 ##' @param r_label label number
 ##' @param l_label label number
 ##' @param degree numeric, the degree of interest
-plot_longitudinal_labels <- function(axis.rad, outer.radius, r_label, l_label, degree) {
-  write_labels_at_endpoint_locations(r_label, l_label, degree, compute_longitude_label_location(axis.rad, outer.radius))
+plot_longitudinal_labels <- function(axis.rad, outer_radius, r_label, l_label, degree) {
+  write_labels_at_endpoint_locations(r_label, l_label, degree, compute_longitude_label_location(axis.rad, outer_radius))
 }
 
 
@@ -244,26 +235,24 @@ plot_longitudinal_labels <- function(axis.rad, outer.radius, r_label, l_label, d
 ##' @return RMat trigonometric positions
 RMat <- function(radians){
   return(matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2))
-}
-
+}	
 
 ##' @title Draw Latitude Markings
 ##' @description plots radial lines, degree label for latitudes, and plots radial spokes with labels
 ##' @author Brian Cohn
-##' @param radians vector of radians
 ##' @param radius_vals vector of radius values (for latitudes)
-##' @param outer.radius see fitplotazimuthal
-draw_latitude_markings <- function(radius_vals, outer.radius) {
+##' @param outer_radius see fitplotazimuthal
+draw_latitude_markings <- function(radius_vals, outer_radius) {
 	plot_circle_radial_lines(radius_vals)
-	plot_degree_label_for_latitudes(outer.radius, radius_vals)
-	plot_radial_spokes_and_labels(outer.radius)
+	plot_degree_label_for_latitudes(outer_radius, radius_vals)
+	plot_radial_spokes_and_labels(outer_radius)
 }
-
 
 ##' @title Draw circle radians about the center
 ##' @description Draw N radius lines (circles)
 ##' @author Brian Cohn
 ##' @param radius_vals vector of radius values where the circles will be drawn
+##' @importFrom graphics lines
 plot_circle_radial_lines <- function(radius_vals, color_hex = "#66666650"){
 	circle <- function(x, y, rad = 1, nvert = 500){
 	  rads <- seq(0,2*pi,length.out = nvert)
@@ -307,14 +296,14 @@ define_color_breaks_based_on_source <- function(col_breaks_source,z, Mat) {
 ##' @title Plot radial axes
 ##' @description Put radial axes onto visualization
 ##' @author Brian Cohn
-##' @param outer.radius numeric value of the outer radius limit
-plot_radial_spokes_and_labels <- function(outer.radius) {
+##' @param outer_radius numeric value of the outer radius limit
+plot_radial_spokes_and_labels <- function(outer_radius) {
 	axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
 	r.labs <- c(90, 60, 30, 0, 330, 300)
 	l.labs <- c(270, 240, 210, 180, 150, 120)
 	for (i in 1:length(axis.rads)){
-	  plot_longitudinal_lines(axis.rads[i], outer.radius)
-	  plot_longitudinal_labels(axis.rads[i], outer.radius, r.labs[i], l.labs[i], degree)
+	  plot_longitudinal_lines(axis.rads[i], outer_radius)
+	  plot_longitudinal_labels(axis.rads[i], outer_radius, r.labs[i], l.labs[i], degree)
 	}
 }
 
@@ -323,7 +312,7 @@ plot_radial_spokes_and_labels <- function(outer.radius) {
 ##' @author Brian Cohn
 ##' @param upper_limit numeric upper bound
 ##' @param lower_limit numeric lower bound
-##' @param pretty_vec numeric vector
+##' @return pretty_vec numeric vector
 pretty_list_not_including_max <- function(lower_limit, upper_limit){
 	radian_list <- pretty(c(lower_limit,upper_limit))
 	if (max(radian_list) > upper_limit){
@@ -343,7 +332,7 @@ pretty_list_not_including_max <- function(lower_limit, upper_limit){
 ##' @return Coords More finely placed vertices for the polygon.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references http://gis.stackexchange.com/questions/24827/how-to-smooth-the-polygons-in-a-contour-map
-spline.poly <- function(xy, vertices, k=3, ...) {
+spline_poly <- function(xy, vertices, k=3, ...) {
   n <- dim(xy)[1]
   if (k >= 1) {
     data <- rbind(xy[(n-k+1):n,], xy, xy[1:k, ])
@@ -401,7 +390,7 @@ retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_vi
       AZx,
       AZy,
       AZz,
-      outer.radius=1.6,
+      outer_radius=1.6,
       spatial_res=spatial_res,
       falciform_coords=retina_object$azimuthal_data.falciform[[1]],
       falc2=NA, ...
@@ -416,14 +405,13 @@ retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_vi
 ##' @param contours whether to plot contours.
 ##' @param legend Color legend with tick marks
 ##' @param axes Radial axes
-##' @param points whether to plot individual datapoints as X's
 ##' @param extrapolate By default TRUE, will make plot a circle.
 ##' @param col_breaks_source 2 element vector with max and min
 ##' @param col_levels number of color levels
 ##' @param col colors to plot
 ##' @param contour_breaks_source 1 if data, 2 if calculated surface data
 ##' @param contour_levels number of contour levels
-##' @param outer.radius size of plot
+##' @param outer_radius size of plot
 ##' @param circle.rads radius lines
 ##' @param spatial_res Used to define a spatial_res by spatial_res plotting resolution.
 ##' @param lambda lambda value for thin plate spline interpolation
@@ -433,43 +421,44 @@ retinaplot <- function(retina_object, spatial_res=1000, rotation=0, inner_eye_vi
 ##' @param compute_error whether to use fields::predictSE
 ##' @param falciform_coords vertices in xy format of the falciform process
 ##' @param falc2 a second falficorm coordinate file
+##' @param should_plot_points boolean, whether to plot the sampling site locations
+##' @param single_point_overlay Overlay "key" data point with square
 ##' @param polynomial_m A polynomial function of degree (m-1) will be included in the model as the drift (or spatial trend) component. Default is the value such that 2m-d is greater than zero where d is the dimension of x.
 ##' @param ... passed arguments
 ##' @import fields rgl RColorBrewer
+##' @importFrom grDevices colorRampPalette
 ##' @export
 fit_plot_azimuthal <- function(
   ### Plotting data already post-azimuthal transformation
   x, y, z,
   ### Plot component flags
-  contours=TRUE,   # Add contours to the plotted surface
-  legend=TRUE,        # Plot a surface data legend?
-  axes=TRUE,      # Plot axes?
-  should_plot_points=TRUE,        # Plot individual data points
-  extrapolate=TRUE, # Should we extrapolate outside data points?
+  contours=TRUE,
+  legend=TRUE,
+  axes=TRUE,
+  should_plot_points=TRUE,
+  extrapolate=TRUE,
   ### Data splitting params for color scale and contours
-  col_breaks_source = 2, # Where to calculate the color breaks from (1=data,2=surface)
-  # If you know the levels, input directly (i.e. c(0,1))
-  col_levels = 50,    # Number of color levels to use - must match length(col) if
-  #col specified separately
-  col = rev(colorRampPalette(brewer.pal(11,"PuOr"))(col_levels)),  # Colors to plot
-  contour_breaks_source = 1, # 1=z data, 2=calculated surface data
+  col_breaks_source = 2,
+  col_levels = 50,
+  col = rev(colorRampPalette(brewer.pal(11,"PuOr"))(col_levels)),
+  contour_breaks_source = 1,
   # If you know the levels, input directly (i.e. c(0,1))<-default
   contour_levels = col_levels+1,
   ### Plotting params
-  outer.radius = pi/2.0,
-  circle.rads = pretty_list_not_including_max(0,outer.radius), #Radius lines
-  spatial_res=1000, #Resolution of fitted surface
-  single_point_overlay=0, #Overlay "key" data point with square
+  outer_radius = pi/2.0,
+  circle.rads = pretty_list_not_including_max(0,outer_radius), #Radius lines
+  spatial_res=1000,
+  single_point_overlay=0,
   #(0 = No, Other = number of pt)
   ### Fitting parameters
-  lambda=0.001, xyrelief=1,tmp_input = NULL, plot_suppress=FALSE,
+  lambda=0.001, xyrelief=1, tmp_input = NULL, plot_suppress=FALSE,
   compute_error=FALSE,
   falciform_coords=NULL,
   falc2=NA,
   polynomial_m=NULL,
   ...){
 
-  minitics <- seq(-outer.radius, outer.radius, length.out = spatial_res)
+  minitics <- seq(-outer_radius, outer_radius, length.out = spatial_res)
   # interpolate the data
 
   vals <- interpolate_input_data(minitics, x, y, z, lambda, polynomial_m, extrapolate)
@@ -483,7 +472,7 @@ fit_plot_azimuthal <- function(
   if (plot_suppress == TRUE){
 		return(list(t,tmp, error))
   }
-  heatmap_matrix <- nullify_vals_outside_the_circle(minitics, spatial_res, Mat, outer.radius)
+  heatmap_matrix <- nullify_vals_outside_the_circle(minitics, spatial_res, Mat, outer_radius)
 
   zlim <- define_color_breaks_based_on_source(col_breaks_source,z, heatmap_matrix)
   init_square_mat_plot(heatmap_matrix, zlim, minitics, col)
@@ -493,7 +482,7 @@ fit_plot_azimuthal <- function(
   plot_falciform_process(falciform_coords$x, falciform_coords$y)
   if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y) #Plug in the secondary plot if it is available
   if (should_plot_points) plot_original_xy_locations(x,y)
-  if (axes) draw_latitude_markings(circle.rads, outer.radius)
+  if (axes) draw_latitude_markings(circle.rads, outer_radius)
   if (legend) add_legend(col, zlim)
 
 return(list(t,tmp, error))
@@ -504,7 +493,9 @@ return(list(t,tmp, error))
 ##' @author Brian Cohn
 ##' @param falciform_x numeric vector of x coordinates
 ##' @param falciform_y numeric vector of y coordinates
+##' @importFrom graphics polygon
+##' @importFrom grDevices rgb
 plot_falciform_process <- function(falciform_x, falciform_y){
-	fc_smoothed <- spline.poly(cbind(falciform_x,falciform_y), vertices= 50)
+	fc_smoothed <- spline_poly(cbind(falciform_x,falciform_y), vertices= 50)
 	polygon(fc_smoothed[,1], fc_smoothed[,2], col=rgb(0, 0, 0,0.5), lty="solid", border="gray42")
 }
