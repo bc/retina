@@ -1,4 +1,3 @@
-
 Ntae_381_eye <- data.frame(ED=4.508, AL=3.1395)
 Pmol_753_eye <- data.frame(ED=4.8, AL=3.425)
 Pmol_752_eye <- data.frame(ED=5.225, AL=3.9)

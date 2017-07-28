@@ -3,7 +3,6 @@ RESOLUTION_var <- 512
 SPIN_resolution <- 64
 my_lambda <- 0.001
 
-# Run retistruct()
 # Markup the retina's incisions
 # Set eye to Left or Right eye
 # Set a most dorsal, or most nasal point on the retina
@@ -15,7 +14,7 @@ Ntae_381_coords <- data.frame(  minX   = 42,  #the leftmost counting frame's X v
 								maxY   = -32, #the topmost counting frame's Y value
 								deltaY = (584-32)/17   ) #the average ImageJ pixel distance (in the Y axis) between counting frame locations from the outline image.
 
-Ntae_381<- retina_object(
+Ntae_381 <- retina_object(
 	path = system.file(package = "retina", 'extdata/Ntae_381'),
 	#Eye Measurements
 	 	LD = NULL,
@@ -89,3 +88,6 @@ Pmol_752 <- retina_object(
 	rotation_ccw = -90,
 	plot_suppress=TRUE,
 	IJcoords = Pmol_752_coords)
+
+
+devtools::use_data(Pmol_752, Pmol_753, Ntae_381)

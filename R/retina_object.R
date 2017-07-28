@@ -72,3 +72,26 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
     message('View the walkthrough tutorial here: https://github.com/briancohn/retina/blob/master/tutorial.md')
     return(retina_object)
 }
+
+
+
+#' Pseudodax 753
+#' @docType data
+#' @usage data(Pmol_753)
+#' @format An object in the form of a retina_object
+#' @keywords datasets
+"Pmol_753"
+
+#' Pseudodax 752
+#' @docType data
+#' @usage data(Pmol_752)
+#' @format An object in the form of a retina_object
+#' @keywords datasets
+"Pmol_752"
+
+#' Ntae 752
+#' @docType data
+#' @usage data(Ntae_381)
+#' @format An object in the form of a retina_object
+#' @keywords datasets
+"Ntae_381"
