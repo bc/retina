@@ -15,8 +15,9 @@ nullify_vals_outside_the_circle(minitics, spatial_res, heatmap_matrix,
 \item{heatmap_matrix}{Matrix of predicted points on the set grid}
 
 \item{outer_radius}{max value of the radius}
-
-\item{falciform_y}{numeric vector of y coordinates}
+}
+\value{
+matrix_to_mask the masking values outside of the circle
 }
 \description{
 We do not need points plotted in the corners of the plotted circle.

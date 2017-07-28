@@ -9,7 +9,7 @@
 ##' @param ... Arguments passed from other functions. You can access the thin plate spline interpolator here.
 ##' @return composite_mat Matrix of the composite retina, where the first element of the retina list is fixed.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu} and Lars Schmitz
-##' @importFrom grDevices dev.new()
+##' @importFrom grDevices dev.new
 ##' @export
 vector_retina_composite <- function(retina_list, spin_spatial_res = 128, plot_spatial_res = 512,
     theta_interval = 10, plot = FALSE, rotation_degree_list, ...) {

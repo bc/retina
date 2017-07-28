@@ -185,7 +185,7 @@ write_labels_at_endpoint_locations <- function(r_label, l_label, degree, endpoin
 ##' @param spatial_res spatial width in pixels of the plotted image
 ##' @param heatmap_matrix Matrix of predicted points on the set grid
 ##' @param outer_radius max value of the radius
-##' @param falciform_y numeric vector of y coordinates
+##' @return matrix_to_mask the masking values outside of the circle
 nullify_vals_outside_the_circle <- function(minitics, spatial_res, heatmap_matrix, outer_radius){
   matrix_position_is_within_the_circle <- function() {!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer_radius}
   markNA <- matrix(minitics, ncol = spatial_res, nrow = spatial_res)
@@ -235,7 +235,7 @@ plot_longitudinal_labels <- function(axis.rad, outer_radius, r_label, l_label, d
 ##' @return RMat trigonometric positions
 RMat <- function(radians){
   return(matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2))
-}	
+}
 
 ##' @title Draw Latitude Markings
 ##' @description plots radial lines, degree label for latitudes, and plots radial spokes with labels
@@ -252,8 +252,9 @@ draw_latitude_markings <- function(radius_vals, outer_radius) {
 ##' @description Draw N radius lines (circles)
 ##' @author Brian Cohn
 ##' @param radius_vals vector of radius values where the circles will be drawn
+##' @param color_hex hex color string, "#666650" is the default
 ##' @importFrom graphics lines
-plot_circle_radial_lines <- function(radius_vals, color_hex = "#66666650"){
+plot_circle_radial_lines <- function(radius_vals, color_hex = "#666650"){
 	circle <- function(x, y, rad = 1, nvert = 500){
 	  rads <- seq(0,2*pi,length.out = nvert)
 	  xcoords <- cos(rads) * rad + x
@@ -303,7 +304,7 @@ plot_radial_spokes_and_labels <- function(outer_radius) {
 	l.labs <- c(270, 240, 210, 180, 150, 120)
 	for (i in 1:length(axis.rads)){
 	  plot_longitudinal_lines(axis.rads[i], outer_radius)
-	  plot_longitudinal_labels(axis.rads[i], outer_radius, r.labs[i], l.labs[i], degree)
+	  plot_longitudinal_labels(axis.rads[i], outer_radius, r.labs[i], l.labs[i], i)
 	}
 }
 

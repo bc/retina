@@ -196,7 +196,7 @@ ssite_merge <- function(location, counts, ...) {
 ##' @return data.frame with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references https://r-forge.r-project.org/scm/?group_id=1436
-##' @importFrom retistruct getDss getDssRemoved
+##' @importFrom retistruct getDss
 ##' @importFrom utils write.csv capture.output read.table
 ##' @importFrom stats complete.cases
 ##' @export
@@ -487,6 +487,7 @@ compute_thin_plate_spline_error <- function(x, y, thin_plate_spline_object) {
 ##' \item{\code{Sss}}{Landmarks on reconstructed sphere in spherical coordinates}
 ##' @author David Sterratt
 ##' @import geometry
+##' @importFrom retistruct bary.to.sphere.cart sphere.cart.to.sphere.spherical
 ##' @export
 getDssRemoved <- function(r, report = message) {
     ### Function by David Sterratt, 2013
