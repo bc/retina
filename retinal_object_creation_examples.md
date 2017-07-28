@@ -1,12 +1,15 @@
-#variable numbers
+# Set fitting variable numbers
+```r
 RESOLUTION_var <- 512
 SPIN_resolution <- 64
 my_lambda <- 0.001
-
+```
 # Markup the retina's incisions
-# Set eye to Left or Right eye
-# Set a most dorsal, or most nasal point on the retina
-# 'Save' and close the retistruct GUI
+- Set eye to Left or Right eye
+- Set a most dorsal, or most nasal point on the retina
+
+
+```r
 Ntae_381_coords <- data.frame(  minX   = 42,  #the leftmost counting frame's X value
 								maxX   = 597, #the rightmost counting frame's X value (from the ImageJ outline PNG)
 								deltaX = ((597-42)/17), #the average ImageJ pixel distance (in the X axis) between counting frame locations from the outline image.
@@ -33,6 +36,10 @@ Ntae_381 <- retina_object(
 	plot_suppress=TRUE
 	#End parameter Specification
 )
+```
+
+
+```r
 Pmol_753_coords <- data.frame(  maxX=1437,
 								maxY=-45,
 								minX=469,
@@ -56,10 +63,10 @@ Pmol_753 <- retina_object(
 		plot_suppress=TRUE,
 	#ImageJ Datapoint Calibration Measurements
 	IJcoords = Pmol_753_coords)
+```
 
 
-
-
+```r
 Pmol_752_coords <- data.frame(maxX=848,
 								maxY=-48,
 								minX=40,
@@ -89,5 +96,8 @@ Pmol_752 <- retina_object(
 	plot_suppress=TRUE,
 	IJcoords = Pmol_752_coords)
 
-
+```
+  Run to refresh data files (for development)
+```r
 devtools::use_data(Pmol_752, Pmol_753, Ntae_381)
+```
