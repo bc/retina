@@ -18,3 +18,8 @@ tutorial_pix
 ^install.md$
 ^tutorial.md$
 R/development.md
+^NEWS\.md$
+^appveyor\.yml$
+^tutorial\.md$
+^tutorial2\.md$
+^install\.md$

@@ -362,7 +362,7 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 }
 ### Set contour_breaks based on requested source
 ##' @title Set Contour Breaks Based on Requested Source
-##' @description This function will make a set of contour topography lines. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @description This function will make a set of contour topography lines. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting functionality.
 ##' @param contour_breaks_source See fit_plot_azimuthal
 ##' @param z See fit_plot_azimuthal
 ##' @param contour_levels See fit_plot_azimuthal
@@ -391,7 +391,7 @@ define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat)
 
 ### Add contours to the retina plot
 ##' @title Print contour lines onto the retina plot
-##' @description Makes a set of contours to the retinaplot. Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @description Makes a set of contours to the retinaplot. Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting functionality.
 ##' @param minitics See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
 ##' @param xy two-column dataframe consisting of $x and $y datapoints
@@ -405,7 +405,7 @@ add_contours <- function(minitics, Mat, contour_breaks, xy) {
 }
 
 ##' @title Initiate the Square Matrix plot to prepare for polar plotting
-##' @description instantiates the square plotting area Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @description instantiates the square plotting area Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting functionality.
 ##' @param zlim See fit_plot_azimuthal
 ##' @param col See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal

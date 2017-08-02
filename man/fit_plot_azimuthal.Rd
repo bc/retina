@@ -65,5 +65,5 @@ fit_plot_azimuthal(x, y, z, contours = TRUE, legend = TRUE, axes = TRUE,
 \item{...}{passed arguments}
 }
 \description{
-This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+This function will make a plot. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting functionality.
 }

@@ -16,5 +16,5 @@ init_square_mat_plot(Mat, zlim, minitics, col)
 \item{col}{See fit_plot_azimuthal}
 }
 \description{
-instantiates the square plotting area Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+instantiates the square plotting area Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting functionality.
 }
