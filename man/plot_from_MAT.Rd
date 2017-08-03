@@ -18,7 +18,7 @@ plot_from_MAT(z1, z2, MATRIX, contours = TRUE, legend = TRUE, axes = TRUE,
 
 \item{z2}{Vector of density values (used to get the max and min)}
 
-\item{MATRIX}{Matrix object containing densty values at each row and col}
+\item{MATRIX}{Matrix object containing density values at each row and col}
 
 \item{contours}{whether to plot contours.}
 
@@ -57,7 +57,7 @@ plot_from_MAT(z1, z2, MATRIX, contours = TRUE, legend = TRUE, axes = TRUE,
 \item{...}{further arguments passed to or from other methods.}
 }
 \description{
-Sometimes users will want to permute their density matrices prior to plotting. This can be useful when multiplying the densities by some scaling factor, accomodating for bias, or incorporating additional noise for analysis with robustness.
+Sometimes users will want to permute their density matrices prior to plotting. This can be useful when multiplying the densities by some scaling factor, accommodating for bias, or incorporating additional noise for analysis with robustness.
 }
 \details{
 Takes in a square matrix of azimuthal equidistant plot projection points. Generates plot projection.

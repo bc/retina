@@ -7,7 +7,7 @@
 getDssRemoved(r, report = message)
 }
 \arguments{
-\item{r}{Object that of clases \code{reconstructedOutline} and
+\item{r}{Object of class \code{reconstructedOutline} and
 \code{dataset}.}
 
 \item{report}{Function used to report progress.}

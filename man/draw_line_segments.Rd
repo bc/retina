@@ -7,7 +7,7 @@
 draw_line_segments(endpoints, color_hex = "#66666650")
 }
 \arguments{
-\item{endpoints}{a 4 element numeric vector descrbing the xy and x'y' for the line segment.}
+\item{endpoints}{a 4 element numeric vector describing the xy and x'y' for the line segment.}
 
 \item{color_hex}{hex string}
 }

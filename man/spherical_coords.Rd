@@ -13,7 +13,7 @@ spherical_coords(path, height, width, IJ_limits, falciform = TRUE)
 
 \item{width}{Width in microns of the stereologic counting frame}
 
-\item{IJ_limits}{data.frame with min, max and delta values for both X and Y with respect to the contour image in ImageJ coordiantes. For setting the calibration of the sampling sites to the sphere.}
+\item{IJ_limits}{data.frame with min, max and delta values for both X and Y with respect to the contour image in ImageJ coordinates. For setting the calibration of the sampling sites to the sphere.}
 
 \item{falciform}{(boolean) True by default, meaning there is a file called falc.txt within the path.}
 }
