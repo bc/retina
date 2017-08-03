@@ -209,7 +209,7 @@ add_legend <- function(col, zlim) {
 ##' @title draw line segments
 ##' @description put the radial lines on the plot
 ##' @author Brian Cohn
-##' @param endpoints a 4 element numeric vector descrbing the xy and x'y' for the line segment.
+##' @param endpoints a 4 element numeric vector describing the xy and x'y' for the line segment.
 ##' @param color_hex hex string
 ##' @importFrom graphics segments
 draw_line_segments <- function(endpoints, color_hex="#66666650"){

@@ -150,7 +150,7 @@ ssite_merge <- function(location, counts, ...) {
 ##' @param path Directory which contains the retistruct files.
 ##' @param height Height in microns of the stereologic counting frame
 ##' @param width Width in microns of the stereologic counting frame
-##' @param IJ_limits data.frame with min, max and delta values for both X and Y with respect to the contour image in ImageJ coordiantes. For setting the calibration of the sampling sites to the sphere.
+##' @param IJ_limits data.frame with min, max and delta values for both X and Y with respect to the contour image in ImageJ coordinates. For setting the calibration of the sampling sites to the sphere.
 ##' @param falciform (boolean) True by default, meaning there is a file called falc.txt within the path.
 ##' @return data.frame with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
@@ -433,7 +433,7 @@ compute_thin_plate_spline_error <- function(x, y, thin_plate_spline_object) {
 
 ##' @title Constructor for RecontructedDataset object *EDITED
 ##' @description This function was edited by Brian Cohn on 05/30/2014 in order to return DSS. One line was added.
-##' @param r Object that of clases \code{reconstructedOutline} and
+##' @param r Object of class \code{reconstructedOutline} and
 ##' \code{dataset}.
 ##' @param report Function used to report progress.
 ##' @return \code{\link{ReconstructedDataset}} object containing the input

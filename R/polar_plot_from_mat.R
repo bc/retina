@@ -5,7 +5,7 @@ require(sphereplot)
 require(mapproj)
 
 ##' @title Plot from matrix
-##' @description Sometimes users will want to permute their density matrices prior to plotting. This can be useful when multiplying the densities by some scaling factor, accomodating for bias, or incorporating additional noise for analysis with robustness.
+##' @description Sometimes users will want to permute their density matrices prior to plotting. This can be useful when multiplying the densities by some scaling factor, accommodating for bias, or incorporating additional noise for analysis with robustness.
 ##' @param contours whether to plot contours.
 ##' @param legend Color legend with tick marks
 ##' @param axes Radial axes
@@ -25,7 +25,7 @@ require(mapproj)
 ##' @param xyrelief scaling factor for interpolation matrix.
 ##' @param z1 Vector of density values (used to get the max and min)
 ##' @param z2 Vector of density values (used to get the max and min)
-##' @param MATRIX Matrix object containing densty values at each row and col
+##' @param MATRIX Matrix object containing density values at each row and col
 ##' @param ... further arguments passed to or from other methods.
 ##' @details Takes in a square matrix of azimuthal equidistant plot projection points. Generates plot projection.
 ##' @export
