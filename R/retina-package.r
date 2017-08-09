@@ -79,8 +79,7 @@ run_all_demos <- function(path_to_demo_folder=file.path(.libPaths(), "retina/dem
                             "/retinal_perimeter_estimation.R",
                             "/retinaplot_demo.R",
                             "/smoothing_params.R",
-                            "/spin_optimization.R",
-                            "/tricomposite.R")
+                            "/spin_optimization.R")
     pdf("all_demos_output.pdf", width=8.5, height=11, useDingbats=FALSE)
       lapply(list_of_demo_names, function(x) {source(paste0(path_to_demo_folder,x))})
     dev.off()
