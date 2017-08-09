@@ -7,10 +7,11 @@
 ##' @references Sterratt et. al. 2013
 ##' @importFrom retistruct retistruct.read.markup retistruct.reconstruct retistruct.read.dataset
 dss_retistruct_processing <- function(path) {
-    do_not_print <- function(string){}
-    rad <- retistruct.read.markup(retistruct.read.dataset(path))
-    rad <- retistruct.reconstruct(rad, report=do_not_print, plot.3d=FALSE, )  ## Reconstruct (computation intensive)
-    return(rad)
+  do_not_print <- function(string) {
+  }
+  rad <- retistruct.read.markup(retistruct.read.dataset(path))
+  rad <- retistruct.reconstruct(rad, report = do_not_print, plot.3d = FALSE, )  ## Reconstruct (computation intensive)
+  return(rad)
 }
 
 ##' @title Set up tear matrix
@@ -23,14 +24,14 @@ dss_retistruct_processing <- function(path) {
 ##' @export
 ##' @importFrom retistruct labelTearPoints
 compose_tear_triplets_dataframe <- function(list_of_tear_triplets, outline_object) {
-	permute_tear_vertices <- function(list_of_tear_triplets, outline_object){
+  permute_tear_vertices <- function(list_of_tear_triplets, outline_object) {
     my_outline <- outline_object
-		lapply(list_of_tear_triplets, function(x){
-		labelTearPoints(my_outline, x)
-			})
-		}
+    lapply(list_of_tear_triplets, function(x) {
+      labelTearPoints(my_outline, x)
+    })
+  }
 
-    	do.call('rbind',permute_tear_vertices(list_of_tear_triplets, outline_object))
+  do.call("rbind", permute_tear_vertices(list_of_tear_triplets, outline_object))
 }
 ##' @title Set up tear matrix within the annotated outline object
 ##' @description
@@ -40,12 +41,12 @@ compose_tear_triplets_dataframe <- function(list_of_tear_triplets, outline_objec
 ##' @return annotated_outline See ?retistruct::labelTearPoints for documentation
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
-update_outline_object_tears <- function(outline_object, tear_coordinates_dataframe){
-	outline_copy <- outline_object
-	outline_copy$V0 <- tear_coordinates_dataframe[,1]
-	outline_copy$VB <- tear_coordinates_dataframe[,2]
-	outline_copy$VF <- tear_coordinates_dataframe[,3]
-	return(outline_copy)
+update_outline_object_tears <- function(outline_object, tear_coordinates_dataframe) {
+  outline_copy <- outline_object
+  outline_copy$V0 <- tear_coordinates_dataframe[, 1]
+  outline_copy$VB <- tear_coordinates_dataframe[, 2]
+  outline_copy$VF <- tear_coordinates_dataframe[, 3]
+  return(outline_copy)
 }
 
 ##' @title Generate outline with tears
@@ -57,14 +58,11 @@ update_outline_object_tears <- function(outline_object, tear_coordinates_datafra
 ##' @return outline_with_tears AnnotatedOutline. See ?retistruct::AnnotatedOutline
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
-generate_outline_with_tears <- function(outline_coordinates, list_of_tear_triplets, path_to_retina_data_folder) {
-  unannotated_outline <- retistruct::Outline(outline_coordinates, scale=NA, im=NULL)
-  outline_object      <- retistruct::AnnotatedOutline(unannotated_outline)
-	outline_with_tears  <- update_outline_object_tears(
-			outline_object,
-			assemble_tear_file(
-				compose_tear_triplets_dataframe(list_of_tear_triplets, outline_object),
-					path_to_retina_data_folder)
-			)
-	return(outline_with_tears)
+generate_outline_with_tears <- function(outline_coordinates, list_of_tear_triplets,
+  path_to_retina_data_folder) {
+  unannotated_outline <- retistruct::Outline(outline_coordinates, scale = NA, im = NULL)
+  outline_object <- retistruct::AnnotatedOutline(unannotated_outline)
+  outline_with_tears <- update_outline_object_tears(outline_object, assemble_tear_file(compose_tear_triplets_dataframe(list_of_tear_triplets,
+    outline_object), path_to_retina_data_folder))
+  return(outline_with_tears)
 }

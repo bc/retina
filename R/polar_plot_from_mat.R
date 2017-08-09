@@ -30,38 +30,28 @@ require(mapproj)
 ##' @details Takes in a square matrix of azimuthal equidistant plot projection points. Generates plot projection.
 ##' @export
 plot_from_MAT <- function(
-  ### Plotting data (in cartesian) - will be converted to polar space.
   z1, z2, MATRIX,
-  ### Plot component flags
-  contours=TRUE,   # Add contours to the plotted surface
-  legend=TRUE,        # Plot a surface data legend?
-  axes=TRUE,      # Plot axes?
-  points=TRUE,        # Plot individual data points
-  extrapolate=FALSE, # Should we extrapolate outside data points?
-  ### Data splitting params for color scale and contours
-  col_breaks_source = 2, # Where to calculate the color breaks from (1=data,2=surface)
-  # If you know the levels, input directly (i.e. c(0,1))
-  col_levels = 10,    # Number of color levels to use - must match length(col) if
-  #col specified separately
-  col = rev(colorRampPalette(brewer.pal(11,"PuOr"))(col_levels)),  # Colors to plot
-  contour_breaks_source = 1, # 1=z data, 2=calculated surface data
-  # If you know the levels, input directly (i.e. c(0,1))<-default
+  contours=TRUE,
+  legend=TRUE,
+  axes=TRUE,
+  points=TRUE,
+  extrapolate=FALSE,
+  col_breaks_source = 2,
+  col_levels = 10,
+  col = rev(colorRampPalette(brewer.pal(11,"PuOr"))(col_levels)),
+  contour_breaks_source = 1,
   contour_levels = col_levels+1,
-  ### Plotting params
   outer_radius = pi/2,
-  circle.rads = pretty(c(0,outer_radius)), #Radius lines
-  spatial_res=128, #Resolution of fitted surface
-  single_point_overlay=0, #Overlay "key" data point with square
-  #(0 = No, Other = number of pt)
-  ### Fitting parameters
-  interp.type = 1, #1 = Thin plate spline , null if you are inputting your own predicted surface
+  circle.rads = pretty(c(0,outer_radius)),
+  spatial_res=128,
+  single_point_overlay=0,
+  interp.type = 1,
   lambda=0.001, xyrelief=1,...) {
-
   z <- c(min(MATRIX), max(MATRIX))
   spatial_res <- length(MATRIX[,1])
-  #Used only when interp.type = 2
+# interpolate the data
 
-  # interpolate the data
+
   if (interp.type == 1){
 
 	minitics <- seq(-outer_radius, outer_radius, length.out = spatial_res)
