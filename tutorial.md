@@ -25,7 +25,6 @@ Retina Package Tutorial
 You should be able to run the demos below at this point. If not, please follow the [README Instructions](README.md "Readme instructions on bcohn12/retina")  
 ```R
 demo('fit_diagnostics')
-demo('process_retinas')
 demo('retinaplot_demo')
 demo('spin_optimization')
 ```

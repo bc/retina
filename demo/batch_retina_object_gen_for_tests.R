@@ -1,4 +1,3 @@
-source('process_retinas.R')
 load_function_and_run <- function(string_identifier){
   relative_file_path <- paste0('retina/extdata/test_retinas/',
                      string_identifier,

@@ -4214,8 +4214,7 @@ install()
 ?lineprof
 speedcheck <- function(){
 message("fit_diagnostics")
-message("process_retinas")
-source("process_retinas.R")
+
 message("retinaplot_demo")
 source("retinaplot_demo.R")
 message("smoothing_params")

@@ -76,7 +76,6 @@ import_xyz <- function(path) {
 run_all_demos <- function(path_to_demo_folder=file.path(.libPaths(), "retina/demo")) {
     list_of_demo_names <- c("/composite_retina.R",
                             "/fit_diagnostics.R",
-                            "/process_retinas.R",
                             "/retinal_perimeter_estimation.R",
                             "/retinaplot_demo.R",
                             "/smoothing_params.R",
