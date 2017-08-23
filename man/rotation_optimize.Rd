@@ -17,7 +17,7 @@ Has components $x, $y and $z in azimuthal projection coordinates.}
 
 \item{theta_interval}{Defines the interval at which the rotation value will be changed when moving to the next comparison. Default is 10 in units of degrees.}
 
-\item{projection_type}{by default this is "azequidistant" which is used in our peer-reviewed paper/ See the mapproject project if you want to use a different projection.}
+\item{projection_type}{by default this is 'azequidistant' which is used in our peer-reviewed paper/ See the mapproject project if you want to use a different projection.}
 
 \item{...}{further arguments passed to or from other methods.
 reference map. latitude in [,1], longitude in [,2], rho in [,3].}

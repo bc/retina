@@ -56,12 +56,13 @@ update_outline_object_tears <- function(outline_object, tear_coordinates_datafra
 ##' @param list_of_tear_triplets list of 3-element vectors
 ##' @param outline_coordinates Outline coordinates XY str generated from tear_markup_plot function
 ##' @return outline_with_tears AnnotatedOutline. See ?retistruct::AnnotatedOutline
+##' @importFrom retistruct AnnotatedOutline Outline
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
 generate_outline_with_tears <- function(outline_coordinates, list_of_tear_triplets,
   path_to_retina_data_folder) {
-  unannotated_outline <- retistruct::Outline(outline_coordinates, scale = NA, im = NULL)
-  outline_object <- retistruct::AnnotatedOutline(unannotated_outline)
+  unannotated_outline <- Outline(outline_coordinates, scale = NA, im = NULL)
+  outline_object <- AnnotatedOutline(unannotated_outline)
   outline_with_tears <- update_outline_object_tears(outline_object, assemble_tear_file(compose_tear_triplets_dataframe(list_of_tear_triplets,
     outline_object), path_to_retina_data_folder))
   return(outline_with_tears)
