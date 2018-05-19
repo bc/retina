@@ -183,7 +183,6 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
 
   # Post-image_J_markup
   radian_data <- dss_retistruct_processing(path)
-  dss_object <- getDss(radian_data)
   dss <- getDssRemoved(radian_data)
   # Extract the density measurement and falciform outline coordinates from the
   # 'datapoints' dss set.
