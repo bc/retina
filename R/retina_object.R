@@ -31,9 +31,11 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
 \t\t\t  Email brian.cohn@usc.edu if you want to request this feature.")
   }
 
-
-  ##' @return \code{data.frame} with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
-  sph_coords <- spherical_coords(path, height, width, IJ_limits = IJcoords)
+  xyz_df <- import_xyz(path)
+  rownames(xyz_df) <- NULL
+  # browser()
+  save_flatmount_coordinates_to_datapoints(path, xyz_df, IJcoords, falciform=TRUE)
+  sph_coords <- spherical_coords(path, xyz_df, height, width, IJ_limits = IJcoords)
   trimmed_data <- sph_coords[[1]]
   falc_coords <- sph_coords[[2]]
   # Produce an OpenGL visualizaiton of the counting frame locations, as they are
@@ -63,9 +65,6 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
     compute_error = TRUE, eye_diameter = ED, axial_len = AL, falciform_coords = falc_az,
     ...)  #plot the image, function derived from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot
 
-
-
-
   retina_object <- c(fit_data = fit_data, LD = LD, ED = ED, AL = AL, trimmed_data = list(trimmed_data),
     azimuthal_data = list(falciform = list(falc_az), datapoints = list(az)))  #combine the retina (micro) and ocular (macro) data.
   message("View the walkthrough tutorial here: https://github.com/briancohn/retina/blob/master/tutorial.md")
@@ -94,3 +93,31 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
 #' @format An object in the form of a retina_object
 #' @keywords datasets
 "Ntae_381"
+
+
+
+save_flatmount_coordinates_to_datapoints <- function(path, xyz_df, IJ_limits, falciform=TRUE){
+
+  # Read in the Falciform Process x y outline coordinates.
+  if (falciform == TRUE) {
+    falc <- read.table(paste0(path, "/falc.txt"), col.names = c("x", "cyan"))
+  } else {
+    # If not, just put in NULL.
+    falc <- data.frame()
+  }
+  # Import Counting Frame surface area in microns^2
+  xy_IJ_cols <- coordinate_IJ(xyz_df, IJ_limits$maxX, IJ_limits$maxY, IJ_limits$minX,
+    IJ_limits$minY, IJ_limits$deltaX, IJ_limits$deltaY, inversion = FALSE)
+  # Save output/species/datapoints.csv, create folder if doesnt exist #saves only
+  # the x,y coordinates
+  DAT <- data.frame(xy_IJ_cols[, 1], xy_IJ_cols[, 2])
+  xyz_len <- nrow(xy_IJ_cols)
+  # Append the falciform process to the end of the dataset.
+  colnames(DAT) <- c("x", "cyan")
+  DAT <- rbind(DAT, falc)  #Tag the falciform process onto the end
+  combined_len <- length(DAT[, 1])
+  # Save the points as datapoints.csv. This includes XYZ datapoints and the
+  # falciform process.
+  write.csv(DAT, file = paste0(path, "/datapoints.csv"), row.names=FALSE)
+  return(0)
+}

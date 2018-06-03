@@ -154,36 +154,18 @@ ssite_merge <- function(location, counts, ...) {
 ##' @importFrom retistruct getDss
 ##' @importFrom utils write.csv capture.output read.table
 ##' @importFrom stats complete.cases
+##' @importFrom magrittr %>%
 ##' @export
-spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
+spherical_coords <- function(path, xyz_df, height, width, IJ_limits, falciform = TRUE) {
   # Read in the xyz dataset from stereology data collection.
-  xyz <- import_xyz(path)
-  # Read in the Falciform Process x y outline coordinates.
-  if (falciform == TRUE) {
-    falc <- read.table(paste0(path, "/falc.txt"), col.names = c("x", "cyan"))
-  } else {
-    # If not, just put in NULL.
-    falc <- data.frame()
-  }
-
-  # Import Counting Frame surface area in microns^2
-  xy_IJ_cols <- coordinate_IJ(xyz, IJ_limits$maxX, IJ_limits$maxY, IJ_limits$minX,
-    IJ_limits$minY, IJ_limits$deltaX, IJ_limits$deltaY, inversion = FALSE)
-  # Save output/species/datapoints.csv, create folder if doesnt exist #saves only
-  # the x,y coordinates
-  DAT <- data.frame(xy_IJ_cols[, 1], xy_IJ_cols[, 2])
-  xyz_len <- length(xy_IJ_cols[, 1])
-  # Append the falciform process to the end of the dataset.
-  colnames(DAT) <- c("x", "cyan")
-  DAT <- rbind(DAT, falc)  #Tag the falciform process onto the end
-  combined_len <- length(DAT[, 1])
-  # Save the points as datapoints.csv. This includes XYZ datapoints and the
-  # falciform process.
-  write.csv(DAT, file = paste0(path, "/datapoints.csv"), row.names = FALSE)
+  
+  combined_len <- read.csv(paste0(path, "/datapoints.csv"), header=TRUE) %>% nrow
+  xyz_len <- nrow(xyz_df)
 
   # Post-image_J_markup
   radian_data <- dss_retistruct_processing(path)
   dss <- getDssRemoved(radian_data)
+
   # Extract the density measurement and falciform outline coordinates from the
   # 'datapoints' dss set.
   falciform_outline <- dss$x[((xyz_len):combined_len), ]
@@ -193,7 +175,7 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
   falciform_outline <- degrees(data.frame(falciform_outline))
   # Combine coordinates with sampling site densities Get rid of the NA points
   # http://stackoverflow.com/questions/4862178/remove-rows-with-nas-in-data-frame
-  data_w_NA <- cbind(dss_coords, z = xyz[, 3])
+  data_w_NA <- cbind(dss_coords, z = xyz_df[, 3])
   trimmed_data <- data_w_NA[complete.cases(data_w_NA[, 1:2]), ]
   falciform_outline <- falciform_outline[complete.cases(falciform_outline[, 1:2]),
     ]

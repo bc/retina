@@ -1,21 +1,22 @@
 Package: retina
 Description: Functions that are useful for making maps.
 Title: Support Functions to analyze cell densities
-Version: 2.2.1
-Date: 2017-7-1
-Copyright: 2013-2015 Brian Cohn and Lars Schmitz
+Version: 2.2.2
+Date: 2018-6-3
+Copyright: 2013-2018 Brian Cohn and Lars Schmitz
 Authors@R: c( person("Brian", "Cohn", email = "brian.cohn@usc.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut")))
 Description: Tools for Plotting and Analyzing Vertebrate Retinas Refer to
-    http://github.com/briancohn/retina for the bleeding edge edition. Journal of
+    http://github.com/bc/retina for the bleeding edge edition. Journal of
     Vision July 2015, Vol.15, 19. doi:10.1167/15.9.19
 Additional_repositories: http://cran.r-project.org
 Depends:
-    R (>= 3.1.1),
+    R (>= 3.5.0),
     retistruct
 Imports:
     RColorBrewer,
     RImageJROI,
+    magrittr,
     fields,
     geometry,
     mapproj,

@@ -1,4 +1,4 @@
-test_that("generate retina objects from input with IJ notation", {
+context("generate retina objects from input with IJ notation")
 #variable numbers
 RESOLUTION_var <- 512
 SPIN_resolution <- 64
@@ -9,6 +9,9 @@ my_lambda <- 0.001
 # Set eye to Left or Right eye
 # Set a most dorsal, or most nasal point on the retina
 # 'Save' and close the retistruct GUI
+pdf("quick.pdf")
+test_that('Ntae_381_coords works', {
+	
 Ntae_381_coords <- data.frame(  minX   = 42,  #the leftmost counting frame's X value
 								maxX   = 597, #the rightmost counting frame's X value (from the ImageJ outline PNG)
 								deltaX = ((597-42)/17), #the average ImageJ pixel distance (in the X axis) between counting frame locations from the outline image.
@@ -35,6 +38,10 @@ Ntae_381<- retina_object(
 	plot_suppress=TRUE
 	#End parameter Specification
 )
+retinaplot(Ntae_381)
+})
+test_that('Pmol_753_coords works', {
+	
 Pmol_753_coords <- data.frame(  maxX=1437,
 								maxY=-45,
 								minX=469,
@@ -59,9 +66,10 @@ Pmol_753 <- retina_object(
 	#ImageJ Datapoint Calibration Measurements
 	IJcoords = Pmol_753_coords)
 
-
-
-
+retinaplot(Pmol_753)
+})
+test_that('Pmol_752_coords works', {
+	
 Pmol_752_coords <- data.frame(maxX=848,
 								maxY=-48,
 								minX=40,
@@ -90,4 +98,7 @@ Pmol_752 <- retina_object(
 	rotation_ccw = -90,
 	plot_suppress=TRUE,
 	IJcoords = Pmol_752_coords)
+retinaplot(Pmol_752)
 })
+
+dev.off()
