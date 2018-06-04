@@ -1,3 +1,3 @@
 library(testthat)
 library(retina)
-test("retina")
+test_check("retina")

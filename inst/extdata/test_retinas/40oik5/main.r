@@ -31,6 +31,5 @@ my_retina <- retina_object(
   IJcoords = IJ)
 
 
-retinaplot(my_retina, rotation=115, col_breaks_source = c(0, 35000))
 return(my_retina)
 }

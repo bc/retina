@@ -22,6 +22,6 @@ my_retina <- retina_object(
   rotation_ccw = -90, # when set to -90 degrees, the rotation is unaltered from the measured orientation.
   plot_suppress=TRUE)
 
-retinaplot(my_retina)
+
 return(my_retina)
 }

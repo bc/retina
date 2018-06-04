@@ -532,7 +532,7 @@ fit_plot_azimuthal <- function(
 
   zlim <- define_color_breaks_based_on_source(col_breaks_source,z, heatmap_matrix)
   init_square_mat_plot(heatmap_matrix, zlim, minitics, col)
-
+  browser()
   if (contours){ add_contours(minitics, heatmap_matrix,
   	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), Mat)}
   plot_falciform_process(falciform_coords$x, falciform_coords$y)

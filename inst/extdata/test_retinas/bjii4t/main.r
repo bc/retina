@@ -38,7 +38,7 @@ my_retina <- retina_object(
 
 #plot
 
-retinaplot(my_retina)
+
 
 findPeak <- function(my_retina){
 	coord <- my_retina$trimmed_data

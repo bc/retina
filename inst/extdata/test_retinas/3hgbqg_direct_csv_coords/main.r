@@ -26,6 +26,5 @@ main_3hgbqg_direct_csv_coords <- function(path_to_diagram_retina){
           )
 
   #plot
-  retinaplot(my_retina)
   return(my_retina)
 }

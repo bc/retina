@@ -245,22 +245,22 @@ count_to_rho <- function(count, height, width) {
 }
 
 
-##' @title Spherical Plot visualization
-##' @description To make sure that a retina is entered correctly, and that the coordinate_IJ process was performed correctly, 
-##' this function is useful for seeing how the reconstruction moved the datapoints. 
-##' For example, if many points are missing from one hemisphere, the user can troubleshoot with their coordinate_IJ construction.
-##' Uses retistruct to create lat/lon coordinates
-##' @param trimmed_data Three-column dataset with datapoint locations in latitude/longitude degree format.
-##' @return Spherical visualization
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-##' @import rgl sphereplot
-##' @export
-sphere_visualize <- function(trimmed_data) {
-  rgl.sphgrid(radius = 1, longtype = "D", deggap = 30, col.lat = "transparent",
-    col.long = "black")  #make a quick sphere
-  rgl.sphpoints(trimmed_data[, 2], trimmed_data[, 1], shininess = 50, radius = 1,
-    size = 6, deg = TRUE, col = "blue4")  #quick check to make sure it is covering the bottom hemisphere
-}
+# ##' @title Spherical Plot visualization
+# ##' @description To make sure that a retina is entered correctly, and that the coordinate_IJ process was performed correctly, 
+# ##' this function is useful for seeing how the reconstruction moved the datapoints. 
+# ##' For example, if many points are missing from one hemisphere, the user can troubleshoot with their coordinate_IJ construction.
+# ##' Uses retistruct to create lat/lon coordinates
+# ##' @param trimmed_data Three-column dataset with datapoint locations in latitude/longitude degree format.
+# ##' @return Spherical visualization
+# ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
+# ##' @import rgl sphereplot
+# ##' @export
+# sphere_visualize <- function(trimmed_data) {
+#   rgl.sphgrid(radius = 1, longtype = "D", deggap = 30, col.lat = "transparent",
+#     col.long = "black")  #make a quick sphere
+#   rgl.sphpoints(trimmed_data[, 2], trimmed_data[, 1], shininess = 50, radius = 1,
+#     size = 6, deg = TRUE, col = "blue4")  #quick check to make sure it is covering the bottom hemisphere
+# }
 
 ##' @title Single Tps Fit Error Plot
 ##' @description This function helps the user answer the scientific question: What is the fit performance of the Thin Plate Spline that is used to smooth the surface of the retinal density map? It is also useful for identifying systematic bias, bimodal distributions, or any other issues that could interfere with statistical rigor.

@@ -31,6 +31,6 @@ my_retina <- retina_object(
   #ImageJ Datapoint Calibration Measurements
   IJcoords = IJ)
 
-retinaplot(my_retina)
+
 return(my_retina)
 }
