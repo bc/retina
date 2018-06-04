@@ -67,23 +67,6 @@ import_xyz <- function(path) {
   return(xyz)
 }
 
-##' @title Run all demos
-##' @description
-##' Runs all demos in quick succession
-##' @param path_to_demo_folder include the trailing /
-##' @importFrom grDevices pdf dev.off
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-run_all_demos <- function(path_to_demo_folder = file.path(.libPaths(), "retina/demo")) {
-  list_of_demo_names <- c("/composite_retina.R", "/fit_diagnostics.R", "/retinal_perimeter_estimation.R",
-    "/retinaplot_demo.R", "/smoothing_params.R", "/spin_optimization.R")
-  pdf("all_demos_output.pdf", width = 8.5, height = 11, useDingbats = FALSE)
-  lapply(list_of_demo_names, function(x) {
-    source(paste0(path_to_demo_folder, x))
-  })
-  dev.off()
-}
-
-
 ##' Polynomial vs Lambda Visualization
 ##'
 ##' @description
@@ -146,7 +129,6 @@ ssite_merge <- function(location, counts, ...) {
 ##' @param path Directory which contains the retistruct files.
 ##' @param height Height in microns of the stereologic counting frame
 ##' @param width Width in microns of the stereologic counting frame
-##' @param IJ_limits data.frame with min, max and delta values for both X and Y with respect to the contour image in ImageJ coordinates. For setting the calibration of the sampling sites to the sphere.
 ##' @param falciform (boolean) True by default, meaning there is a file called falc.txt within the path.
 ##' @return data.frame with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
@@ -156,7 +138,7 @@ ssite_merge <- function(location, counts, ...) {
 ##' @importFrom stats complete.cases
 ##' @importFrom magrittr %>%
 ##' @export
-spherical_coords <- function(path, xyz_df, height, width, IJ_limits, falciform = TRUE) {
+spherical_coords <- function(path, xyz_df, height, width, falciform = TRUE) {
   # Read in the xyz dataset from stereology data collection.
   
   combined_len <- read.csv(paste0(path, "/datapoints.csv"), header=TRUE) %>% nrow
@@ -743,3 +725,49 @@ reorder_columns <- function(X, FN) {
   X_new <- X[, c(names(sort(Xcol_fn_applied, decreasing = TRUE)))]
   return(X_new)
 }
+
+
+##' load_function_and_run
+##' useful for access of the test retina datasets'
+##' @param string_identifier character e.g. "40oik5" that represents the inst/extdata identifier folder name.
+load_function_and_run <- function(string_identifier){
+  r_file_full_path <- path_to_main_file_for_test_retina(string_identifier)
+  source(r_file_full_path)
+
+  path_to_test_retina_folder <- get_path_to_test_retina_folder(string_identifier)
+  run_command <- paste0('main_', string_identifier, "('", path_to_test_retina_folder, "')")
+  str_eval(run_command)
+}
+
+##' String evaluation via eval
+##' useful for load_function_and_run
+##' @param x a string that has the command to run. e.g. "main_40oik5("path/of/interest")"
+str_eval <- function(x) {return(eval(parse(text=x)))} # via https://goo.gl/TRpc2Y
+
+##' get_path_to_test_retina_folder
+##' useful for access of the test retina datasets'
+##' @param string_identifier character e.g. "40oik5" that represents the inst/extdata identifier folder name.
+##' @return filepath to the test_retina folder matching the string identifier variable.
+get_path_to_test_retina_folder <- function(string_identifier){
+
+path_to_retina_dir <- paste0('retina/extdata/test_retinas/',
+                       string_identifier,
+                       '/diagram_retina/')
+  #source the file from the installed packages directory
+  path_to_test_retina_folder <- file.path(.libPaths(), path_to_retina_dir)
+  return(path_to_test_retina_folder)
+}
+
+
+##' path_to_main_file_for_test_retina
+##' useful for access of the test retina datasets'
+##' @param string_identifier character e.g. "40oik5" that represents the inst/extdata identifier folder name.
+##' @return filepath to the test_retina main.r that matches the string_identifier
+path_to_main_file_for_test_retina <- function(string_identifier) {
+    relative_file_path <- paste0('retina/extdata/test_retinas/',
+                       string_identifier,
+                       '/',
+                       'main',
+                       '.r')
+    r_file_full_path <- file.path(.libPaths(), relative_file_path)
+  }

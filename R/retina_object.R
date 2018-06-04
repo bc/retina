@@ -23,7 +23,7 @@ require(mapproj)
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
 retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrapolate = TRUE,
-  spatial_res = 16, rotation_ccw = -90, IJcoords, ...) {
+  spatial_res = 16, rotation_ccw = -90, IJcoords=FALSE, ...) {
 
   if (height != width) {
     stop("Height is not equal to Width. \n
@@ -34,8 +34,8 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
   xyz_df <- import_xyz(path)
   rownames(xyz_df) <- NULL
   # browser()
-  save_flatmount_coordinates_to_datapoints(path, xyz_df, IJcoords, falciform=TRUE)
-  sph_coords <- spherical_coords(path, xyz_df, height, width, IJ_limits = IJcoords)
+  save_flatmount_coordinates_to_datapoints(path, xyz_df, IJcoords=IJcoords, falciform=TRUE)
+  sph_coords <- spherical_coords(path, xyz_df, height, width, falciform=TRUE)
   trimmed_data <- sph_coords[[1]]
   falc_coords <- sph_coords[[2]]
   # Produce an OpenGL visualizaiton of the counting frame locations, as they are
@@ -71,32 +71,7 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
   return(retina_object)
 }
 
-
-
-#' Pseudodax 753
-#' @docType data
-#' @usage data(Pmol_753)
-#' @format An object in the form of a retina_object
-#' @keywords datasets
-"Pmol_753"
-
-#' Pseudodax 752
-#' @docType data
-#' @usage data(Pmol_752)
-#' @format An object in the form of a retina_object
-#' @keywords datasets
-"Pmol_752"
-
-#' Ntae 752
-#' @docType data
-#' @usage data(Ntae_381)
-#' @format An object in the form of a retina_object
-#' @keywords datasets
-"Ntae_381"
-
-
-
-save_flatmount_coordinates_to_datapoints <- function(path, xyz_df, IJ_limits, falciform=TRUE){
+save_flatmount_coordinates_to_datapoints <- function(path, xyz_df, IJcoords, falciform=TRUE){
 
   # Read in the Falciform Process x y outline coordinates.
   if (falciform == TRUE) {
@@ -106,12 +81,18 @@ save_flatmount_coordinates_to_datapoints <- function(path, xyz_df, IJ_limits, fa
     falc <- data.frame()
   }
   # Import Counting Frame surface area in microns^2
-  xy_IJ_cols <- coordinate_IJ(xyz_df, IJ_limits$maxX, IJ_limits$maxY, IJ_limits$minX,
-    IJ_limits$minY, IJ_limits$deltaX, IJ_limits$deltaY, inversion = FALSE)
+
+  if(IJcoords==FALSE){
+    #TODO add confirmation that all points in xyz_df lie within the outline.
+    normalized_coordinates <- xyz_df
+  } else {
+    normalized_coordinates <- coordinate_IJ(xyz_df, IJcoords$maxX, IJcoords$maxY, IJcoords$minX,
+    IJcoords$minY, IJcoords$deltaX, IJcoords$deltaY, inversion = FALSE)
+  }
   # Save output/species/datapoints.csv, create folder if doesnt exist #saves only
   # the x,y coordinates
-  DAT <- data.frame(xy_IJ_cols[, 1], xy_IJ_cols[, 2])
-  xyz_len <- nrow(xy_IJ_cols)
+  DAT <- data.frame(normalized_coordinates[, 1], normalized_coordinates[, 2])
+  xyz_len <- nrow(normalized_coordinates)
   # Append the falciform process to the end of the dataset.
   colnames(DAT) <- c("x", "cyan")
   DAT <- rbind(DAT, falc)  #Tag the falciform process onto the end

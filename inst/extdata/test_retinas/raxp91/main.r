@@ -39,4 +39,5 @@ my_retina <- retina_object(
 #plot
 
 retinaplot(my_retina, lambda=0.001, polynomial_m=	2, rotation=30)
+return(my_retina)
 }

@@ -21,4 +21,3 @@ after_success:
       - Rscript -e 'library(covr); codecov()'
       - bash <(curl -s https://codecov.io/bash)
       - Rscript -e 'lintr::lint_package()'
-      - Rscript -e 'library(retina); run_all_demos("demo")'

@@ -8,8 +8,14 @@
 RESOLUTION_var <- 100
 spin_spatial_res <- 32
 theta_var <- 1
-rotation_df <- rotation_optimize(Pmol_753,
-								 Pmol_752,
+
+source("3hgbqg" %>% path_to_main_file_for_test_retina)
+retina_A <- main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
+source("40oik5" %>% path_to_main_file_for_test_retina)
+retina_B <- main_40oik5("40oik5" %>% get_path_to_test_retina_folder)
+
+rotation_df <- rotation_optimize(retina_A,
+								 retina_B,
 								 spatial_res=spin_spatial_res,
 								 theta_interval=theta_var
 								)

@@ -6,9 +6,14 @@ RES_variable <- 512
 	lambda <- c(1e-2,1e-3,1e-4,1e-5)
 	# Generate error vectors for each combination
 	# Save each plot to a PDF in the working directory
-	ERR_dat<-polynomial_vs_lambda(Ntae_381, spatial_res= RES_variable, polynomial_m_vec=poly, lambda_vec=lambda)
 
-sampling_location_number = length(Ntae_381$fit_data1$y)
+	source("3hgbqg" %>% path_to_main_file_for_test_retina)
+retina_A <- main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
+
+
+	ERR_dat<-polynomial_vs_lambda(retina_A, spatial_res= RES_variable, polynomial_m_vec=poly, lambda_vec=lambda)
+
+sampling_location_number = length(retina_A$fit_data1$y)
 
 ERR_dat <- ERR_dat[-1] #take off the NA placeholder column
 

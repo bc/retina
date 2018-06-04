@@ -32,4 +32,5 @@ my_retina <- retina_object(
   IJcoords = IJ)
 
 retinaplot(my_retina)
+return(my_retina)
 }

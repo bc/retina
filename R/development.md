@@ -11,12 +11,6 @@ If you want to load a specific branch, run `git checkout -b iss13 && git pull or
 install.packages('devtools'); library(devtools); install(); test(); load_all();
 ```
 
-## To Run all demos:
-```r
-run_all_demos('demo')
-```
-
-
 ## How to commit a new change from the terminal if you are a collaborator on the project.
 ```shell
 git add R/some_file_you_edited.R

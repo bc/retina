@@ -1,13 +1,7 @@
-main_40oik5 <- function(path_to_diagram_retina){
+main_8pm223_direct_csv_coords <- function(path_to_diagram_retina){
+
 LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.
 RESOLUTION_var <- 500 #Plot width in pixels
-
-IJ <-data.frame(maxX = 944,
-                maxY = -32,
-                minX = 41,
-                minY = -992,
-                deltaX = 56,
-                deltaY = 56)
 
 my_retina <- retina_object(
   path = path_to_diagram_retina,
@@ -25,12 +19,9 @@ my_retina <- retina_object(
   lambda = LAMBDA_var,          #see fields::Tps for more information
   extrapolate = TRUE ,          #Predicts densities to the equator.
   spatial_res = RESOLUTION_var,
-  rotation_ccw = 0, # when set to -90 degrees, the rotation is unaltered from the measured orientation.
-  plot_suppress=TRUE,
-  #ImageJ Datapoint Calibration Measurements
-  IJcoords = IJ)
+  rotation_ccw = -90, # when set to -90 degrees, the rotation is unaltered from the measured orientation.
+  plot_suppress=TRUE)
 
-
-retinaplot(my_retina, rotation=115, col_breaks_source = c(0, 35000))
+retinaplot(my_retina)
 return(my_retina)
 }

@@ -47,8 +47,9 @@ findPeak <- function(my_retina){
 	return(peak)
 	}
 
+message("PEAK DETERMINATION")
 message(findPeak(my_retina))
-
+return(my_retina)
 #optional arguments
   #lambda=0.001
   #polynomial_m=2

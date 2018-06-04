@@ -10,36 +10,7 @@ my_lambda <- 0.001
 # Set a most dorsal, or most nasal point on the retina
 # 'Save' and close the retistruct GUI
 pdf("quick.pdf")
-test_that('Ntae_381_coords works', {
-	
-Ntae_381_coords <- data.frame(  minX   = 42,  #the leftmost counting frame's X value
-								maxX   = 597, #the rightmost counting frame's X value (from the ImageJ outline PNG)
-								deltaX = ((597-42)/17), #the average ImageJ pixel distance (in the X axis) between counting frame locations from the outline image.
-								minY   = -584, #bottommost counting frame's Y value
-								maxY   = -32, #the topmost counting frame's Y value
-								deltaY = (584-32)/17   ) #the average ImageJ pixel distance (in the Y axis) between counting frame locations from the outline image.
-
-Ntae_381<- retina_object(
-	path = system.file(package = "retina", 'extdata/Ntae_381'),
-	#Eye Measurements
-	 	LD = NULL,
-		ED = 4.508 , #ED EYE DIAMETER (at the hemisphere) in mm
-		AL = 3.1395 ,#AL Axial Length (from front to back of eye) in mm
-	#Stereology Parameters
-		height = 25 ,# height of the counting frame in microns
-		width = 25, # width of the counting frame in microns
-	#Plotting Parameters
-		lambda=my_lambda ,#defines the smoothing parameter for thin plate spline interpolation (see fields::Tps for more information)
-		extrapolate=TRUE ,#when true, the plotter will create a full representation of the hemisphere even outside of the bounds of measured points.
-		spatial_res=RESOLUTION_var, #number of pixels wide the plotter will use. a value of 1000 will create a 1000x1000 pixel plot
-		rotation_ccw= -90, # when set to -90 degrees, the rotation is unaltered from the measured orientation.
-	#ImageJ Datapoint Calibration Measurements
-	IJcoords = Ntae_381_coords,
-	plot_suppress=TRUE
-	#End parameter Specification
-)
-retinaplot(Ntae_381)
-})
+context("Pmol_753_coords works")
 test_that('Pmol_753_coords works', {
 	
 Pmol_753_coords <- data.frame(  maxX=1437,
@@ -68,6 +39,7 @@ Pmol_753 <- retina_object(
 
 retinaplot(Pmol_753)
 })
+context("Pmol_752_coords works")
 test_that('Pmol_752_coords works', {
 	
 Pmol_752_coords <- data.frame(maxX=848,

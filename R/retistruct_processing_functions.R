@@ -7,10 +7,9 @@
 ##' @references Sterratt et. al. 2013
 ##' @importFrom retistruct retistruct.read.markup retistruct.reconstruct retistruct.read.dataset
 dss_retistruct_processing <- function(path) {
-  do_not_print <- function(string) {
-  }
+  do_not_print <- function(string) {}
   rad <- retistruct.read.markup(retistruct.read.dataset(path))
-  rad <- retistruct.reconstruct(rad, report = do_not_print, plot.3d = FALSE, )  ## Reconstruct (computation intensive)
+  rad <- retistruct.reconstruct(rad, report = do_not_print, plot.3d = TRUE)  ## Reconstruct (computation intensive)
   return(rad)
 }
 
