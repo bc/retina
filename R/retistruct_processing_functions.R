@@ -6,6 +6,7 @@
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @references Sterratt et. al. 2013
 ##' @importFrom retistruct retistruct.read.markup retistruct.reconstruct retistruct.read.dataset
+##' @export
 dss_retistruct_processing <- function(path) {
   do_not_print <- function(string) {}
   rad <- retistruct.read.markup(retistruct.read.dataset(path))

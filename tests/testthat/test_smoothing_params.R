@@ -21,12 +21,12 @@ sampling_location_number = length(retina_A$fit_data1$y)
 
 ERR_dat <- ERR_dat[-1] #take off the NA placeholder column
 
-X_median	<- retina::reorder_columns(ERR_dat, median)
-X_min 		<- retina::reorder_columns(ERR_dat, min)
-X_max  		<- retina::reorder_columns(ERR_dat, max)
-X_mean  	<- retina::reorder_columns(ERR_dat, mean)
-X_sd  		<- retina::reorder_columns(ERR_dat, sd)
-X_range_len <- retina::reorder_columns(ERR_dat, retina::range_len)
+X_median	<- reorder_columns(ERR_dat, median)
+X_min 		<- reorder_columns(ERR_dat, min)
+X_max  		<- reorder_columns(ERR_dat, max)
+X_mean  	<- reorder_columns(ERR_dat, mean)
+X_sd  		<- reorder_columns(ERR_dat, sd)
+X_range_len <- reorder_columns(ERR_dat, retina::range_len)
 
 the_types <- c( 'X_median',
 				'X_min',
