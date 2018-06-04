@@ -752,12 +752,12 @@ str_eval <- function(x) {return(eval(parse(text=x)))} # via https://goo.gl/TRpc2
 ##' @export
 get_path_to_test_retina_folder <- function(string_identifier){
 
-path_to_retina_dir <- paste0('retina/tests/testthat/test_retinas/',
+path_to_retina_dir <- paste0('test_retinas/',
                        string_identifier,
                        '/diagram_retina/')
   #source the file from the installed packages directory
-  path_to_test_retina_folder <- file.path(.libPaths(), path_to_retina_dir)
-  return(path_to_test_retina_folder)
+  # path_to_test_retina_folder <- file.path(.libPaths(), path_to_retina_dir)
+  return(path_to_retina_dir)
 }
 
 
