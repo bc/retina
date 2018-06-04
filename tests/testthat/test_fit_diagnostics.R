@@ -3,11 +3,8 @@ context('test_fit_diagnostics')
 
 test_that("analyze fit diagnostics", {
 pdf("test1.pdf")
-source("3hgbqg" %>% path_to_main_file_for_test_retina)
 retina_A <- main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
-source("40oik5" %>% path_to_main_file_for_test_retina)
 retina_B <- main_40oik5("40oik5" %>% get_path_to_test_retina_folder)
-source("gv3igs" %>% path_to_main_file_for_test_retina)
 retina_C <- main_gv3igs("gv3igs" %>% get_path_to_test_retina_folder)
 
 retinaplot(retina_A)

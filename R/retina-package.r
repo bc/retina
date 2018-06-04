@@ -752,7 +752,7 @@ str_eval <- function(x) {return(eval(parse(text=x)))} # via https://goo.gl/TRpc2
 ##' @export
 get_path_to_test_retina_folder <- function(string_identifier){
 
-path_to_retina_dir <- paste0('retina/extdata/test_retinas/',
+path_to_retina_dir <- paste0('retina/tests/testthat/test_retinas/',
                        string_identifier,
                        '/diagram_retina/')
   #source the file from the installed packages directory
@@ -761,25 +761,11 @@ path_to_retina_dir <- paste0('retina/extdata/test_retinas/',
 }
 
 
-##' path_to_main_file_for_test_retina
-##' useful for access of the test retina datasets'
-##' @param string_identifier character e.g. "40oik5" that represents the inst/extdata identifier folder name.
-##' @return filepath to the test_retina main.r that matches the string_identifier
-##' @export
-path_to_main_file_for_test_retina <- function(string_identifier) {
-    relative_file_path <- paste0('retina/extdata/test_retinas/',
-                       string_identifier,
-                       '/',
-                       'main',
-                       '.r')
-    r_file_full_path <- file.path(.libPaths(), relative_file_path)
-  }
 ##' banded_gecko
 ##' banded_gecko
 ##' @return retina_obj retina object for banded gecko
 ##' @export
 banded_gecko <- function(){
-  source("3hgbqg" %>% path_to_main_file_for_test_retina)
   main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
 }
 

@@ -9,10 +9,7 @@ test_that("we can combine two retinas into one", {
 # Finally, both matrices are added, and divided by two to produce the 'matrix average'. This map can be plotted by passing the matrix to the plot_from_MAT function.
 # **note: the resultant map does not contain a combined falciform process, and the original sampling site points are not visible on the species average.
 RESOLUTION_var <- 512
-
-source("3hgbqg" %>% path_to_main_file_for_test_retina)
 retina_A <- main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
-source("40oik5" %>% path_to_main_file_for_test_retina)
 retina_B <- main_40oik5("40oik5" %>% get_path_to_test_retina_folder)
 
 
