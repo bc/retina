@@ -9,7 +9,7 @@
 dss_retistruct_processing <- function(path) {
   do_not_print <- function(string) {}
   rad <- retistruct.read.markup(retistruct.read.dataset(path))
-  rad <- retistruct.reconstruct(rad, report = do_not_print, plot.3d = TRUE)  ## Reconstruct (computation intensive)
+  rad <- retistruct.reconstruct(rad, report = do_not_print, plot.3d = FALSE)  ## Reconstruct (computation intensive)
   return(rad)
 }
 
@@ -29,7 +29,6 @@ compose_tear_triplets_dataframe <- function(list_of_tear_triplets, outline_objec
       labelTearPoints(my_outline, x)
     })
   }
-
   do.call("rbind", permute_tear_vertices(list_of_tear_triplets, outline_object))
 }
 ##' @title Set up tear matrix within the annotated outline object
