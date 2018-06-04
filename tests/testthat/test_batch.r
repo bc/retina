@@ -19,5 +19,5 @@ lapply_testthat(c("3hgbqg",
                   "40oik5",
                   "gv3igs",
                   "raxp91"), 
-                load_function_and_run)
+                run_diagram_retina_folder)
 dev.off()

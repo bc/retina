@@ -730,20 +730,17 @@ reorder_columns <- function(X, FN) {
 }
 
 
-##' load_function_and_run
+##' run_diagram_retina_folder
 ##' useful for access of the test retina datasets'
 ##' @param string_identifier character e.g. "40oik5" that represents the inst/extdata identifier folder name.
-load_function_and_run <- function(string_identifier){
-  r_file_full_path <- path_to_main_file_for_test_retina(string_identifier)
-  source(r_file_full_path)
-
+run_diagram_retina_folder <- function(string_identifier){
   path_to_test_retina_folder <- get_path_to_test_retina_folder(string_identifier)
   run_command <- paste0('main_', string_identifier, "('", path_to_test_retina_folder, "')")
   str_eval(run_command)
 }
 
 ##' String evaluation via eval
-##' useful for load_function_and_run
+##' useful for run_diagram_retina_folder
 ##' @param x a string that has the command to run. e.g. "main_40oik5("path/of/interest")"
 ##' @export
 str_eval <- function(x) {return(eval(parse(text=x)))} # via https://goo.gl/TRpc2Y
