@@ -22,8 +22,11 @@ Imports:
     rgl,
     sphereplot
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 Roxygen: list(wrap = TRUE)
 License: CC BY-NC-SA 4.0
 LazyData: true
 RoxygenNote: 6.0.1
+VignetteBuilder: knitr

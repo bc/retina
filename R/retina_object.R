@@ -38,7 +38,7 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
   sph_coords <- spherical_coords(path, xyz_df, height, width, falciform=TRUE)
   trimmed_data <- sph_coords[[1]]
   falc_coords <- sph_coords[[2]]
-  # Produce an OpenGL visualizaiton of the counting frame locations, as they are
+  # Produce an OpenGL visualization of the counting frame locations, as they are
   # reconstructed upon a hemisphere sphere_visualize(trimmed_data)
 
   # Create an azimuthal equidistant map projection for the density locations

@@ -776,6 +776,7 @@ path_to_main_file_for_test_retina <- function(string_identifier) {
 ##' banded_gecko
 ##' banded_gecko
 ##' @return retina_obj retina object for banded gecko
+##' @export
 banded_gecko <- function(){
   source("3hgbqg" %>% path_to_main_file_for_test_retina)
   main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
