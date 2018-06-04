@@ -723,6 +723,7 @@ range_len <- function(x) {
 ##' @param FN A function that takes in a vector and returns one value.
 ##' @return X_new data.frame of columns ordered in decreasing value from left to right according to each function(column)
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu} Lars Schmitz
+##' @export
 reorder_columns <- function(X, FN) {
   Xcol_fn_applied <- apply(X, 2, FN)
   X_new <- X[, c(names(sort(Xcol_fn_applied, decreasing = TRUE)))]
