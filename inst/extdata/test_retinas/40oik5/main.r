@@ -1,3 +1,8 @@
+##' main_40oik5
+##' sample retina
+##' @param path_to_diagram_retina path to folder
+##' @return r result from retina_object
+##' @export
 main_40oik5 <- function(path_to_diagram_retina){
 LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.
 RESOLUTION_var <- 500 #Plot width in pixels

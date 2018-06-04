@@ -1,3 +1,8 @@
+##' 3hgbqg
+##' sample retina
+##' @param path_to_diagram_retina path to folder
+##' @return r result from retina_object
+##' @export
 main_3hgbqg <- function(path_to_diagram_retina){
 
   #parameters

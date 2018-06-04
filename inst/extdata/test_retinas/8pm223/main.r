@@ -1,3 +1,8 @@
+##' main_8pm223
+##' sample retina
+##' @param path_to_diagram_retina path to folder
+##' @return r result from retina_object
+##' @export
 main_8pm223 <- function(path_to_diagram_retina){
 
 LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.

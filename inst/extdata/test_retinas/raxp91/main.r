@@ -1,3 +1,8 @@
+##' main_raxp91
+##' sample retina
+##' @param path_to_diagram_retina path to folder
+##' @return r result from retina_object
+##' @export
 main_raxp91 <- function(path_to_diagram_retina){
 #parameters
 LAMBDA_var <- 0.1 #Thin plate spline smoothing. Lambda=0 would be interpolation.

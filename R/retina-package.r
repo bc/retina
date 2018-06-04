@@ -130,6 +130,7 @@ ssite_merge <- function(location, counts, ...) {
 ##' @param height Height in microns of the stereologic counting frame
 ##' @param width Width in microns of the stereologic counting frame
 ##' @param falciform (boolean) True by default, meaning there is a file called falc.txt within the path.
+##' @param xyz_df (data.frame) xyz values as read in by read.csv, with headers and without row.names
 ##' @return data.frame with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references https://r-forge.r-project.org/scm/?group_id=1436

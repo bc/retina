@@ -1,3 +1,8 @@
+##' main_3hgbqg_direct_csv_coords
+##' sample retina
+##' @param path_to_diagram_retina path to folder
+##' @return r result from retina_object
+##' @export
 main_3hgbqg_direct_csv_coords <- function(path_to_diagram_retina){
 
   #parameters

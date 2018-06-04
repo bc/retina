@@ -1,3 +1,8 @@
+##' main_8pm223_direct_csv_coords
+##' sample retina
+##' @param path_to_diagram_retina path to folder
+##' @return r result from retina_object
+##' @export
 main_8pm223_direct_csv_coords <- function(path_to_diagram_retina){
 
 LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.
