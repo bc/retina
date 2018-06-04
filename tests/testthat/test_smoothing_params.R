@@ -14,9 +14,7 @@ pdf(file="smoothing_combos.pdf", width=8, height=5.5, family="Palatino")
 	# Generate error vectors for each combination
 	# Save each plot to a PDF in the working directory
 
-retina_A <- main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
-
-
+retina_A <- main_3hgbqg("test_retinas/3hgbqg/diagram_retina/")
 ERR_dat <- polynomial_vs_lambda(retina_A, spatial_res= RES_variable, polynomial_m_vec=poly, lambda_vec=lambda)
 
 sampling_location_number = length(retina_A$fit_data1$y)
