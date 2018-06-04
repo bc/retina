@@ -6,11 +6,10 @@ env:
     - linux
     - osx
   matrix:
-    - RVERSION=devel
+    # - RVERSION=devel
     - RVERSION=release
-    - RVERSION=oldrel
-    - RVERSION=3.3.1
-    - RVERSION=3.3.2
+    # - RVERSION=oldrel
+    # - RVERSION=3.5.0
 notifications:
      slack: kaspectscientists:OFGveqm4qxt26CPytZrHUxSV
 r_packages:
