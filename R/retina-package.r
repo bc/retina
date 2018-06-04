@@ -712,6 +712,7 @@ plot_rotation_optimize <- function(rotation_df) {
 ##' @description Computes the magnitude of the range
 ##' @param x vector of numbers
 ##' @return the difference between the limits of the range.
+##' @export
 range_len <- function(x) {
   limits <- range(x)
   diff <- limits[2] - limits[1]

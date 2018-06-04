@@ -27,7 +27,7 @@ X_min 		<- reorder_columns(ERR_dat, min)
 X_max  		<- reorder_columns(ERR_dat, max)
 X_mean  	<- reorder_columns(ERR_dat, mean)
 X_sd  		<- reorder_columns(ERR_dat, sd)
-X_range_len <- reorder_columns(ERR_dat, retina::range_len)
+X_range_len <- reorder_columns(ERR_dat, range_len)
 
 the_types <- c( 'X_median',
 				'X_min',
