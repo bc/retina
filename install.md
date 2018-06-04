@@ -21,7 +21,7 @@ sudo apt-get -y install r-base-core r-base r-cran-rgl libgtk2.0-dev
 
 ### Mac
 
-[Install R 3.1.2](http://cran.r-project.org/bin/macosx/ "Mac OS X")<br>
+[Install R 3.5.0](http://cran.r-project.org/bin/macosx/ "Mac OS X")<br>
 Run in the terminal:
 
 ```bash
@@ -37,7 +37,7 @@ Run in R
 ```r
 install.packages(c("cairoDevice", "RGtk2"), type="source")
 install.packages('devtools')
-devtools::install_github('bcohn12/retina')
+devtools::install_github('bc/retina')
 ```
 
 Finally, install Xcode from the App Store
@@ -48,14 +48,15 @@ Finally, install Xcode from the App Store
 install.packages('retistruct') #if you have an issue, comment on it here to get it fixed: https://github.com/davidcsterratt/retistruct/issues/new
 retistruct::retistruct() #On Windows, Accept the 'Install GTK+' popup
 install.packages('devtools')
-devtools::install_github('bcohn12/retina')
+devtools::install_github('bc/retina')
 ```
 
 ## 3\. Load _retina_ and plot the retina of a reef fish (_Pseudodax moluccanus_):
 
 ```r
 library(retina)
-retinaplot(Pmol_753)
+sample_retina <- banded_gecko()
+retinaplot(sample_retina)
 ```
 
 ## Full walkthrough tutorial to use your own retina

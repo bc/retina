@@ -9,7 +9,7 @@ lapply_testthat <- function(vec_of_strings, FUN){
     })
   })
 }
-pdf("~/Downloads/out.pdf")
+pdf("out.pdf")
 lapply_testthat(c("3hgbqg",
                   "3hgbqg_direct_csv_coords",
                   "8pm223",

@@ -5,7 +5,8 @@
 \title{Retinal Object Construction}
 \usage{
 retina_object(path, LD, ED, AL, height, width, lambda = 0.01,
-  extrapolate = TRUE, spatial_res = 16, rotation_ccw = -90, IJcoords, ...)
+  extrapolate = TRUE, spatial_res = 16, rotation_ccw = -90,
+  IJcoords = FALSE, ...)
 }
 \arguments{
 \item{path}{string of the retinal data directory. Should contain an xyz.csv file, falc.txt, and the saved retistruct() markup data}
@@ -34,8 +35,6 @@ retina_object(path, LD, ED, AL, height, width, lambda = 0.01,
 }
 \value{
 ret_obj retinal object (list)
-
-\code{data.frame} with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 }
 \description{
 This is the primary way to create a retinal object, which contains all of the information required to reconstruct, map, visualize, and interpret retinal cell density data.

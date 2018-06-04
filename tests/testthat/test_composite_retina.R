@@ -1,3 +1,9 @@
+
+context('test_composite_retina')
+
+test_that("we can combine two retinas into one", {
+
+	
 # If spin_optimization is disabled, no rotation will be performed.
 # composite_map evaluates the density across an interpolation grid at the desired *spatial_res = n* spatial resolution, and saves this data into an n by n matrtix.
 # Finally, both matrices are added, and divided by two to produce the 'matrix average'. This map can be plotted by passing the matrix to the plot_from_MAT function.
@@ -51,3 +57,4 @@ plot_from_MAT(retina_composite,
 	z1 = retina_B$azimuthal_data.datapoints[[1]]$z,
 	z2 = retina_A$azimuthal_data.datapoints[[1]]$z
 	)
+})

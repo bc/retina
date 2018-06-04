@@ -1,7 +1,1 @@
-spin_optimization   Optimized a spin optimization between Pmol_753 and P_mol_752.
-fit_diagnostics   Creates diagnostics plots for a given Thin Plate Spline Fit (3 retinas shown).
-retinaplot_demo   Plots a retinal map using the retina package.
-composite_retina   Averages two retinas into one composite map.
-smoothing_params   Demonstrate the effects of changing lambda and the polynomial degree
-retinal_perimeter_estimation   Computation of retinal perimeter by circular and elliptical geometries.
-batch_retina_object_gen_for_tests Runs multiple retinal tests for unlabeled sample data.
+retinaplot show the main plotting functionality

@@ -1,13 +1,3 @@
-# generate diagnostic plots
-print(dir())
-# load('preloaded_retinas_381_752_753.rdata')
-require(retina)
-# reef_path <- system.file(package = "retina", 'inst/extdata')
-# reef_path <- paste0(reef_path, "reef_fish.rdata")
-# load(reef_path)
-message("Imported processed data")
-message("Preparing for Thin Plate Spline Fit Plots")
-
 source("3hgbqg" %>% path_to_main_file_for_test_retina)
 retina_A <- main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
 source("40oik5" %>% path_to_main_file_for_test_retina)
@@ -15,6 +5,7 @@ retina_B <- main_40oik5("40oik5" %>% get_path_to_test_retina_folder)
 source("gv3igs" %>% path_to_main_file_for_test_retina)
 retina_C <- main_gv3igs("gv3igs" %>% get_path_to_test_retina_folder)
 
+retinaplot(retina_A)
 fit_plots(retina_A$fit_data1)
 fit_plots(retina_B$fit_data1)
 fit_plots(retina_C$fit_data1)

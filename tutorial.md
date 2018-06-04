@@ -21,17 +21,15 @@ Retina Package Tutorial
 =====
 
 
-#Overview
-You should be able to run the demos below at this point. If not, please follow the [README Instructions](README.md "Readme instructions on bcohn12/retina")  
+# Overview
+You should be able to run the demos below at this point. If not, please follow the [README Instructions](README.md "Readme instructions on bc/retina")  
 ```R
-demo('fit_diagnostics')
-demo('retinaplot_demo')
-demo('spin_optimization')
+test()
 ```
 
 This tutorial includes screenshots from a **Mac**. This guide is still very helpful for Windows and Linux users.
 
-###Questions, Errors, and Comments?
+### Questions, Errors, and Comments?
 [Submit a quick help ticket](https://github.com/bcohn12/retina/issues/new "") or brian.cohn@usc.edu
 
 
@@ -129,7 +127,6 @@ Delta X and Delta Y are positive numbers.
 Write down the minX, maxX, minY, maxY somewhere safe. You'll use it when you call the retina_object function.
 
 
-
 ```R
 # Here are ImageJ coordinates I recorded for a reef fish
 # specimen: http://en.wikipedia.org/wiki/Novaculichthys_taeniourus
@@ -142,7 +139,8 @@ IJ<-data.frame(minX   = 42,  		# leftmost counting location's X value
 			   deltaY = (584-32)/17 # average ImageJ pixel distance (in the Y axis) between counting locations.
 			   )
 ```
-Note: If cell counts were collected on the basis of a non-uniform sampling grid, it is still possible to use retina, even though it takes some more effort from the user. Instead of supplying the min and max values of the sampled location, it is necessary to determine the (x, y) pixel location of every single sampling site manually. You can retrieve these location in ImageJ and save the coordinates in *.csv format."
+Note: If cell counts were collected on the basis of a non-uniform sampling grid, it is still possible to use retina, even though it takes some more effort from the user. Instead of supplying the min and max values of the sampled location, it is necessary to determine the (x, y) pixel location of every single sampling site manually. You can retrieve these location in ImageJ and save the coordinates in *.csv format."  
+
 
 4. Markup the locations of retinal incisions
 =====
