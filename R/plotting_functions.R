@@ -161,11 +161,6 @@ assemble_point_coordinates_file <- function(outline_coordinates, path_to_retina_
 }
 
 
-
-
-
-
-
 ##' @title Add scatter X's of XY to an existing plot
 ##' @description visualize xy points as X's
 ##' @author Brian Cohn

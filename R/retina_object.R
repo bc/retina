@@ -33,7 +33,6 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
 
   xyz_df <- import_xyz(path)
   rownames(xyz_df) <- NULL
-  # browser()
   save_flatmount_coordinates_to_datapoints(path, xyz_df, IJcoords=IJcoords, falciform=TRUE)
   sph_coords <- spherical_coords(path, xyz_df, height, width, falciform=TRUE)
   trimmed_data <- sph_coords[[1]]

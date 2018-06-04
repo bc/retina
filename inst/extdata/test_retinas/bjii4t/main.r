@@ -17,7 +17,6 @@ IJ <-data.frame(maxX = 1210,
                 deltaX = (1210-72)/20,
                 deltaY = (928-46)/15)
 
-
 #assembling the retina object
 my_retina <- retina_object(
     path = path_to_diagram_retina,

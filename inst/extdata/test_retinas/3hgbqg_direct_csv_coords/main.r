@@ -9,7 +9,6 @@ main_3hgbqg_direct_csv_coords <- function(path_to_diagram_retina){
   LAMBDA_var <- 0.001 #Thin plate spline smoothing. Lambda=0 would be interpolation.
   RESOLUTION_var <- 500 #Plot width in pixels
 
-
   #assembling the retina object
   my_retina <- retina_object(
       path = path_to_diagram_retina,
