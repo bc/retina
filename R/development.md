@@ -13,8 +13,11 @@ install.packages('devtools'); library(devtools); install(); test(); load_all();
 
 ## How to commit a new change from the terminal if you are a collaborator on the project.
 ```shell
+# Get an issue number (X) by github.com/bc/retina/issues/new
+git checkout -b issX
 git add R/some_file_you_edited.R
-git commit -m 'I made a change to the file so it now does X. See #13'
+git commit -m '#13 I made a change to the file so it now does X'
+git push origin issX
 ```
 Be specific on the changes you made, & be sure to note what issue you are referring to via `#`.
 
