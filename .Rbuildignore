@@ -24,5 +24,4 @@ R/development.md
 ^tutorial2\.md$
 ^install\.md$
 ^cran-comments\.md$
-^packrat/
 ^\.Rprofile$
