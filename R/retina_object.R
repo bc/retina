@@ -5,6 +5,8 @@ require(RColorBrewer)
 require(sphereplot)
 require(mapproj)
 
+options(rgl.useNULL = FALSE)
+
 ##' @title Retinal Object Construction
 ##' @description This is the primary way to create a retinal object, which contains all of the information required to reconstruct, map, visualize, and interpret retinal cell density data.
 ##' @param path string of the retinal data directory. Should contain an xyz.csv file, falc.txt, and the saved retistruct() markup data
