@@ -4,7 +4,7 @@ author: "Brian Cohn"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Retina Package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -25,7 +25,7 @@ Vignettes are long form documentation commonly included in packages. Because the
 
 ## Installation
 
-```{r, results='hide'}
+```
 install.packages(c("cairoDevice", "RGtk2"), type="source")
 install.packages('devtools')
 devtools::install_github('bc/retina')
@@ -33,7 +33,7 @@ devtools::install_github('bc/retina')
 
 # Get Retistruct working
 Retistruct is a package the retina project relies upon.
-```{r, results='hide'}
+```
 install.packages('retistruct') #if you have an issue, comment on it here to get it fixed: https://github.com/davidcsterratt/retistruct/issues/new
 retistruct::retistruct() #On Windows, Accept the 'Install GTK+' popup
 install.packages('devtools')
@@ -41,20 +41,16 @@ devtools::install_github('bc/retina')
 ```
 
 ## Retina Plot
-```{r, fig.height=5, fig.show='hold', fig.width=7, results='hide'}
-library(retina)
-retina_A <- banded_gecko()
-retinaplot(retina_A)
+{r, fig.height=5, fig.show='hold', fig.width=7, results='hide'}
+```
+retina_A <- retina::banded_gecko()
+retina::retinaplot(retina_A)
 ```
 
 # Predicting Fit Error
-```{r, fig.height=9, fig.width=7, results='hide'}
-par(mfrow=c(2,2))
-fit_plots(retina_A$fit_data1)
-par(mfrow=c(1,1))
+
 ```
-
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+par(mfrow=c(2,2))
+retina::fit_plots(retina_A$fit_data1)
+par(mfrow=c(1,1))
 ```

@@ -529,14 +529,12 @@ fit_plot_azimuthal <- function(
 		return(list(t,tmp, error))
   }
   heatmap_matrix <- nullify_vals_outside_the_circle(minitics, spatial_res, Mat, outer_radius)
-
   zlim <- define_color_breaks_based_on_source(col_breaks_source,z, heatmap_matrix)
   init_square_mat_plot(heatmap_matrix, zlim, minitics, col)
-  browser()
   if (contours){ add_contours(minitics, heatmap_matrix,
   	contour_breaks=define_contour_breaks(contour_breaks_source, z, contour_levels, heatmap_matrix), Mat)}
   plot_falciform_process(falciform_coords$x, falciform_coords$y)
-  if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y) #Plug in the secondary plot if it is available
+  if (!is.na(falc2)) plot_falciform_process(falc2$x, falc2$y) # Plug in the secondary plot if it is available
   if (should_plot_points) plot_original_xy_locations(x,y)
   if (axes) draw_latitude_markings(circle.rads, outer_radius)
   if (legend) add_legend(col, zlim)
