@@ -246,7 +246,9 @@ count_to_rho <- function(count, height, width) {
 
 
 ##' @title Spherical Plot visualization
-##' @description To make sure that a retina is entered correctly, and that the coordinate_IJ process was performed correctly, this function is useful for seeing how the reconstruction moved the datapoints. For example, if many points are missing from one hemisphere, the user can troubleshoot with their coordinate_IJ construction.
+##' @description To make sure that a retina is entered correctly, and that the coordinate_IJ process was performed correctly, 
+##' this function is useful for seeing how the reconstruction moved the datapoints. 
+##' For example, if many points are missing from one hemisphere, the user can troubleshoot with their coordinate_IJ construction.
 ##' Uses retistruct to create lat/lon coordinates
 ##' @param trimmed_data Three-column dataset with datapoint locations in latitude/longitude degree format.
 ##' @return Spherical visualization
