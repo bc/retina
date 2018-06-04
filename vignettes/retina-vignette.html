@@ -218,6 +218,18 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 
+<pre><code>load_all()
+source(&quot;3hgbqg&quot; %&gt;% path_to_main_file_for_test_retina)
+retina_A &lt;- main_3hgbqg(&quot;3hgbqg&quot; %&gt;% get_path_to_test_retina_folder)
+source(&quot;40oik5&quot; %&gt;% path_to_main_file_for_test_retina)
+retina_B &lt;- main_40oik5(&quot;40oik5&quot; %&gt;% get_path_to_test_retina_folder)
+source(&quot;gv3igs&quot; %&gt;% path_to_main_file_for_test_retina)
+retina_C &lt;- main_gv3igs(&quot;gv3igs&quot; %&gt;% get_path_to_test_retina_folder)
+
+retinaplot(retina_A)
+fit_plots(retina_A$fit_data1)
+fit_plots(retina_B$fit_data1)
+fit_plots(retina_C$fit_data1)</code></pre>
 <p>Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The <code>html_vignette</code> output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The <code>html_vignette</code> format:</p>
 <ul>
 <li>Never uses retina figures</li>
