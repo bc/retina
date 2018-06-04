@@ -1,7 +1,7 @@
 language: r
 cache: packages
 warnings_are_errors: false
-sudo: required
+sudo: false 
 git:
   depth: 1
 env:
