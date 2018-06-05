@@ -25,25 +25,25 @@ require(mapproj)
 ##' @param xyrelief scaling factor for interpolation matrix.
 ##' @param z1 Vector of density values (used to get the max and min)
 ##' @param z2 Vector of density values (used to get the max and min)
-##' @param MATRIX Matrix object containing density values at each row and col
+##' @param density_matrix Matrix object containing density values at each row and col
 ##' @param ... further arguments passed to or from other methods.
 ##' @details Takes in a square matrix of azimuthal equidistant plot projection points. Generates plot projection.
 ##' @export
-plot_from_MAT <- function(z1, z2, MATRIX, contours = TRUE, legend = TRUE, axes = TRUE, 
+plot_from_MAT <- function(z1, z2, density_matrix, contours = TRUE, legend = TRUE, axes = TRUE, 
     points = TRUE, extrapolate = FALSE, col_breaks_source = 2, col_levels = 10, col = rev(colorRampPalette(brewer.pal(11, 
         "PuOr"))(col_levels)), contour_breaks_source = 1, contour_levels = col_levels + 
         1, outer_radius = pi/2, circle.rads = pretty(c(0, outer_radius)), spatial_res = 128, 
     single_point_overlay = 0, interp.type = 1, lambda = 0.001, xyrelief = 1, ...) {
-    z <- c(min(MATRIX), max(MATRIX))
-    spatial_res <- length(MATRIX[, 1])
+    z <- c(min(density_matrix), max(density_matrix))
+    spatial_res <- length(density_matrix[, 1])
     # interpolate the data
     
     
     if (interp.type == 1) {
         
         minitics <- seq(-outer_radius, outer_radius, length.out = spatial_res)
-        grid.list = list(x = minitics, y = minitics)  #choose locations to predict at
-        Mat = MATRIX
+        grid.list <- list(x = minitics, y = minitics)  #choose locations to predict at
+        Mat <- density_matrix
     } else {
         stop("interp.type value not valid")
     }

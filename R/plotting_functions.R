@@ -99,8 +99,6 @@ tear_markup_plot <- function(path_to_retina_data_folder) {
 ##' @export
 assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, dorsal_outline_index = NA, 
     nasal_outline_index = NA) {
-    
-    
     firstup <- function(x) {
         ## firstup function sourced from
         ## https://stackoverflow.com/questions/18509527/first-letter-to-upper-case
@@ -115,16 +113,15 @@ assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, 
         line2 <- paste0(dorsal_outline_index, ",NA", ",0,NA,TRUE,\"", eye_side_string, 
             "\"")
     }
-    line1 = "\"iD\",\"iN\",\"phi0\",\"iOD\",\"DVflip\",\"side\""
+    line1 <- "\"iD\",\"iN\",\"phi0\",\"iOD\",\"DVflip\",\"side\""
     output_path <- file.path(path_to_retina_data_folder, "markup.csv")
     file.create(output_path)
     write(line1, file = output_path, append = TRUE)
     write(line2, file = output_path, append = TRUE)
-    message(paste("Wrote markup file to ", output_path, "\n Check that it exists beside your outline.roi file"))
+    message(paste("Wrote markup file to ", output_path, "\n Ensure that it exists beside your outline.roi file"))
     print(line1)
     print(line2)
     return(0)
-    
 }
 
 
@@ -342,7 +339,7 @@ interpolate_input_data <- function(minitics, x, y, z, lambda, polynomial_m, extr
     grid.list = list(x = minitics, y = minitics)  #choose locations to predict at
     t <- Tps(cbind(x, y), z, lambda = lambda, m = polynomial_m)  #computationally intensive
     tmp <- predictSurface(t, grid.list, extrap = extrapolate)
-    Mat = tmp$z
+    Mat <- tmp$z
     return(list(t = t, tmp = tmp, Mat = Mat))
 }
 
@@ -442,7 +439,7 @@ retinaplot <- function(retina_object, spatial_res = 1000, rotation = 0, inner_ey
     message(paste("rotated by", rotation, "degrees"))
     # }
     if (inner_eye_view == TRUE) {
-        AZx = AZx * -1
+        AZx <- AZx * -1
         retina_object$azimuthal_data.falciform[[1]]$x <- retina_object$azimuthal_data.falciform[[1]]$x * 
             -1
     }

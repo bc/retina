@@ -1,7 +1,6 @@
 Package: retina
 Title: Support Functions to analyze cell densities
-Version: 2.2.2
-Date: 2018-6-3
+Version: 2.2.3
 Copyright: 2013-2018 Brian Cohn and Lars Schmitz
 Authors@R: c( person("Brian", "Cohn", email = "brian.cohn@usc.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut")))
