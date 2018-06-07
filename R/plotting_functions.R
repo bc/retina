@@ -335,6 +335,16 @@ define_color_breaks_based_on_source <- function(col_breaks_source, z, Mat) {
     return(zlim)
 }
 
+
+##' @title fit & interpolate input data
+##' useful for 2-->1 mapping (i.e. xy -> pred(z))
+##' @author Brian Cohn
+##' @param minitics locations to predict at
+##' @param x,y input training data
+##' @param z training response data
+##' @param lambda param to Tps
+##' @param polynomial_m param to Tps
+##' @param extrapolate whether to predict out to the equator of the eye, even if no data exists nearby.
 interpolate_input_data <- function(minitics, x, y, z, lambda, polynomial_m, extrapolate) {
     grid.list = list(x = minitics, y = minitics)  #choose locations to predict at
     t <- Tps(cbind(x, y), z, lambda = lambda, m = polynomial_m)  #computationally intensive
@@ -407,6 +417,7 @@ spline_poly <- function(xy, vertices, k = 3, ...) {
 ##' @title Retina Plot
 ##'
 ##' @description
+##' you can also use extrapolate == TRUE to extend your plot to the boundary of the eye, but this is not advised unless you have lots of points spanning the space. The quality of the fit is not supported outside the range of the training data.
 ##' \code{retinaplot} Generates an Azimuthal Equidistant plot projection of a retina object.
 ##' You can also set lambda(floating point number) and polynomial_m(integer), as well as extrapolate (TRUE, FALSE).
 ##' @param inner_eye_view boolean, default is TRUE. If set to false, the plotted view of the retina will have the viewpoint within the skull looking at the rear of the eye. inner_eye_view has the same view as the traditional wholemount.
@@ -458,7 +469,7 @@ retinaplot <- function(retina_object, spatial_res = 1000, rotation = 0, inner_ey
 ##' @param contours whether to plot contours.
 ##' @param legend Color legend with tick marks
 ##' @param axes Radial axes
-##' @param extrapolate By default TRUE, will make plot a circle.
+##' @param extrapolate By default FALSE, will make surface within the bounds of observed datapoints within the circle.
 ##' @param col_breaks_source 2 element vector with max and min
 ##' @param col_levels number of color levels
 ##' @param col colors to plot
@@ -482,7 +493,7 @@ retinaplot <- function(retina_object, spatial_res = 1000, rotation = 0, inner_ey
 ##' @importFrom grDevices colorRampPalette
 ##' @export
 fit_plot_azimuthal <- function(x, y, z, contours = TRUE, legend = TRUE, axes = TRUE, 
-    should_plot_points = TRUE, extrapolate = TRUE, col_breaks_source = 2, col_levels = 50, 
+    should_plot_points = TRUE, extrapolate = FALSE, col_breaks_source = 2, col_levels = 50, 
     col = rev(colorRampPalette(brewer.pal(11, "PuOr"))(col_levels)), contour_breaks_source = 1, 
     contour_levels = col_levels + 1, outer_radius = pi/2, circle.rads = pretty_list_not_including_max(0, 
         outer_radius), spatial_res = 1000, single_point_overlay = 0, lambda = 0.001, 
