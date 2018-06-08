@@ -26,6 +26,16 @@ semi_ellipse_perimeter <- function(a, b) {
     p <- pi * (3 * (a + b) - sqrt((3 * a + b) * (a + 3 * b)))
     return(p/2)
 }
+##' @title (Retina) Half of the ellipse perimeter approximation (ellipsoid assumption)
+##' @description
+##' Ramanujan approximation divided by two.
+##' @param retina_object retina object
+##' @return half of the semielliptical perimeter in same units as input
+##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
+##' @export
+retina_semi_ellipse_perimeter <- function(retina_object){
+    semi_ellipse_perimeter(a=retina_object$ED, b=retina_object$AL)
+}
 
 ##' Retinal Perimeter Estimation (spherical assumption)
 ##' @description
@@ -39,17 +49,6 @@ retinal_arclen <- function(ED) {
     C_eye <- ED * pi  #assuming spherical eye with ED = sphere diameter
     retinal_arclen <- C_eye/2
     return(retinal_arclen)
-}
-
-##' Rim Latitude Estimation (Ellipsoidal assumption)
-##' @details Assumes an ellipsoidal eye
-##' @param ED Eye Diameter of the eye sample, measured at the widest points of the eye.
-##' @param AL Axial Length of the eye sample, measured at the longest measure of the eye from anterior to posterior.
-##' @return Retinal latitude in degrees
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-##' @export
-retinal_phi0 <- function(ED, AL) {
-    return(90 - 180/pi * acos(2 * (AL/ED) - 1))  ##This line written by manuscript reviewer via Journal of Vision
 }
 
 ##' @title import_xyz
@@ -275,6 +274,19 @@ fit_error_histogram <- function(x, main = NULL, ...) {
     hist(predictSE(x), col = "black", xlab = "Fit Error (RGC/sq.mm)", ...)
 }
 
+##' @title Retinal Krig Fit Plots (for retinal object)
+##' @description Visualizes histograms and error scatterplots in base R.
+##' calls fit_plots on the fit_data1 element.
+##' @param retina_object retina object
+##' @return predictions Evaluation of the model at the actual sampling site lat-lon coordinates.
+##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
+##' @references Fields Package
+##' @importFrom graphics plot abline text
+##' @importFrom stats predict na.omit
+##' @export
+retina_fit_plots <- function(retina_object, ...) {
+    fit_plots(retina_object$fit_data1,...)
+}
 
 ##' @title Retinal Krig Fit Plots
 ##' @description Visualizes histograms and error scatterplots in base R
