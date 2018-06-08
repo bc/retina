@@ -98,19 +98,18 @@ tear_markup_plot <- function(path_to_retina_data_folder) {
 ##' @param path_to_retina_data_folder The path where the markup.csv file will be saved.
 ##' @export
 assemble_markup_file <- function(eye_left_or_right, path_to_retina_data_folder, dorsal_outline_index = NA, 
-    nasal_outline_index = NA) {
+    nasal_outline_index = NA, phi0 = 0) {
     firstup <- function(x) {
-        ## firstup function sourced from
         ## https://stackoverflow.com/questions/18509527/first-letter-to-upper-case
         substr(x, 1, 1) <- toupper(substr(x, 1, 1))
         x
     }
     eye_side_string <- firstup(eye_left_or_right)
     if (is.na(dorsal_outline_index)) {
-        line2 <- paste0("NA,", nasal_outline_index, ",0,NA,TRUE,\"", eye_side_string, 
+        line2 <- paste0("NA,", nasal_outline_index, ",",phi0,",NA,TRUE,\"", eye_side_string, 
             "\"")
     } else {
-        line2 <- paste0(dorsal_outline_index, ",NA", ",0,NA,TRUE,\"", eye_side_string, 
+        line2 <- paste0(dorsal_outline_index, ",NA", ",",phi0,",NA,TRUE,\"", eye_side_string, 
             "\"")
     }
     line1 <- "\"iD\",\"iN\",\"phi0\",\"iOD\",\"DVflip\",\"side\""
