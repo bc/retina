@@ -8,9 +8,7 @@ Biologists who study vision are fascinated by the retina, the rear surface of th
 
 This project provides an accurate and rigorous tool for visualizing data from an animal's retina, the rear surface of the eye. In particular, our open-source package can be quickly installed by vision researchers worldwide using completely free software, to begin generating meaningful comparisons between different eyes. In the past, the most frequently used way to visualize data on the retina was to slice and flatten the retina onto a microscope slide, then present the data in that form. These _retinal maps_ can take several hours to construct by hand or with proprietary software, and have been the industry standard for over thirty five years, in hundreds of publications. With our software, a researcher can produce many maps in one hour, make consistent comparisons, and generate useful statistics. The software is also customizable to meet the user's specific requirements, as it is open-source. We hope our software will be useful for vision scientists and hope to receive feedback that results in further additions to the program.
 
-Linux: [![Travis-CI Build Status](https://travis-ci.org/briancohn/retina.png?branch=master)](https://travis-ci.org/bcohn12/retina)
-
-Windows: [![Build status](https://ci.appveyor.com/api/projects/status/v7vav80absnsh9jf?svg=true)](https://ci.appveyor.com/project/bcohn12/retina)
+[![Travis-CI Build Status](https://travis-ci.org/bc/retina.png?branch=master)](https://travis-ci.org/bc/retina)
 
 ![some_text](tutorial_pix/retina_plot_output_pmol753.jpg)
 
@@ -30,26 +28,10 @@ Use _retina_ to
 
 Plots were carefully designed to be readable by viewers who may have colorblindness.
 
-[Link to installation guide](install.md "Installation Page")
+[Installation Guide](install.md "Installation Page")
+[Tutorial for using your own retina](tutorial.md "Tutorial.md")
 
-## Load _retina_ and Pseudodax Moluccanus:
-
-```r
-library(retina) #see the installation guide first
-retinaplot(Pmol_753)
-```
-
-## Full walkthrough tutorial to use your own retina
-
-[Link to Tutorial on Github](tutorial.md "Tutorial.md")
-
-# Support
-
-In-package documentation
-
-```r
-?retinaplot
-```
+# Questions/Ideas/Help
 
 [Post a github issue ticket (15 seconds)](https://github.com/bcohn12/retina/issues/new "Post an issue ticket")
 
@@ -58,14 +40,6 @@ In-package documentation
 1. Sterratt et al 2013
 
 GPL-2 License
-
-# Development Notes
-
-run R from the retina directory after cloning
-
-```
-library(devtools)
-```
 
 # Press
 
