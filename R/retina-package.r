@@ -13,40 +13,6 @@ require(RColorBrewer)
 require(sphereplot)
 require(mapproj)
 
-##' Reef Fish
-##'
-##' A dataset containing three retinal objects, computed using the retina package: Pmol 753,Pmol 752 and Ntae 381.
-##'
-##'
-##' @docType data
-##' @keywords datasets
-##' @name reef_fish
-##' @usage data(reef_fish)
-##' @format A list (in retina object form)
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-NULL
-
-#' Pseudodax 753 Retinal object
-#' @docType data
-#' @keywords datasets
-#' @format retina_object
-#' @name Pmol_753
-NULL
-
-#' Pseudodax 752 Retinal object
-#' @docType data
-#' @keywords datasets
-#' @format retina_object
-#' @name Pmol_752
-NULL
-
-#' Ntae_381 Retinal object
-#' @docType data
-#' @keywords datasets
-#' @format retina_object
-#' @name Ntae_381\t
-NULL
-
 ##' @title Half ellipse perimeter approximation (ellipsoid assumption)
 ##' @description
 ##' Ramanujan approximation divided by two.
@@ -59,6 +25,16 @@ NULL
 semi_ellipse_perimeter <- function(a, b) {
     p <- pi * (3 * (a + b) - sqrt((3 * a + b) * (a + 3 * b)))
     return(p/2)
+}
+##' @title (Retina) Half of the ellipse perimeter approximation (ellipsoid assumption)
+##' @description
+##' Ramanujan approximation divided by two.
+##' @param retina_object retina object
+##' @return half of the semielliptical perimeter in same units as input
+##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
+##' @export
+retina_semi_ellipse_perimeter <- function(retina_object){
+    semi_ellipse_perimeter(a=retina_object$ED, b=retina_object$AL)
 }
 
 ##' Retinal Perimeter Estimation (spherical assumption)
@@ -75,17 +51,6 @@ retinal_arclen <- function(ED) {
     return(retinal_arclen)
 }
 
-##' Rim Latitude Estimation (Ellipsoidal assumption)
-##' @details Assumes an ellipsoidal eye
-##' @param ED Eye Diameter of the eye sample, measured at the widest points of the eye.
-##' @param AL Axial Length of the eye sample, measured at the longest measure of the eye from anterior to posterior.
-##' @return Retinal latitude in degrees
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-##' @export
-retinal_phi0 <- function(ED, AL) {
-    return(90 - 180/pi * acos(2 * (AL/ED) - 1))  ##This line written by manuscript reviewer via Journal of Vision
-}
-
 ##' @title import_xyz
 ##' @description
 ##' Grabs the XYZ from the path
@@ -93,32 +58,13 @@ retinal_phi0 <- function(ED, AL) {
 ##' @return dataframe with X Y and Z columns with NA's. Each row is a density measurement at a given XY location in ImageJ coordinates.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @family munge
+##' @importFrom utils read.csv
 import_xyz <- function(path) {
     # Input path to folder containing xyz.csv, Reads and condenses count data per
     # sampling site. Make sure you don't have a slash at the end
     xyz <- na.omit(read.csv(paste0(path, "/xyz.csv")))
     return(xyz)
 }
-
-##' @title Run all demos
-##' @description
-##' Runs all demos in quick succession
-##' @param path_to_demo_folder include the trailing /
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-run_all_demos <- function(path_to_demo_folder=file.path(.libPaths(), "retina/demo")) {
-    list_of_demo_names <- c("/composite_retina.R",
-                            "/fit_diagnostics.R",
-                            "/process_retinas.R",
-                            "/retinal_perimeter_estimation.R",
-                            "/retinaplot_demo.R",
-                            "/smoothing_params.R",
-                            "/spin_optimization.R",
-                            "/tricomposite.R")
-    pdf("all_demos_output.pdf", width=8.5, height=11, useDingbats=FALSE)
-      lapply(list_of_demo_names, function(x) {source(paste0(path_to_demo_folder,x))})
-    dev.off()
-}
-
 
 ##' Polynomial vs Lambda Visualization
 ##'
@@ -135,7 +81,7 @@ run_all_demos <- function(path_to_demo_folder=file.path(.libPaths(), "retina/dem
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu} Lars Schmitz
 ##' @export
 
-polynomial_vs_lambda <- function(retina_obj, spatial_res = 1000, polynomial_m_vec = c(3,
+polynomial_vs_lambda <- function(retina_obj, spatial_res = 1000, polynomial_m_vec = c(3, 
     4), lambda_vec = c(0, 0.001), frequency_cap = 100, error_x_limits = c(1000, 7000)) {
     point_num <- length(retina_obj$fit_data1$y)
     DAT <- data.frame(navec = rep(NA, point_num))
@@ -145,11 +91,11 @@ polynomial_vs_lambda <- function(retina_obj, spatial_res = 1000, polynomial_m_ve
             filename = paste0("L = ", lambda_var, " M= ", polynomial_m_var)
             message(filename)
             max_density <- max(retina_obj$azimuthal_data.datapoints[[1]]$z)
-            tmp <- retinaplot(retina_obj, return_fit = TRUE, spatial_res = spatial_res,
-                contour_breaks_source = c(0, max_density), col_breaks_source = c(0,
-                  max_density), col_levels = 50, contour_levels = 20, rotation = 0,
+            tmp <- retinaplot(retina_obj, return_fit = TRUE, spatial_res = spatial_res, 
+                contour_breaks_source = c(0, max_density), col_breaks_source = c(0, 
+                  max_density), col_levels = 50, contour_levels = 20, rotation = 0, 
                 inner_eye_view = TRUE, lambda = lambda_var, polynomial_m = polynomial_m_var)
-            fit_error_histogram(tmp[[1]], sub = filename, ylim = c(0, frequency_cap),
+            fit_error_histogram(tmp[[1]], sub = filename, ylim = c(0, frequency_cap), 
                 xlim = error_x_limits)
             fit_object = tmp[[1]]
             DAT <- cbind(DAT, predictSE(fit_object))
@@ -182,43 +128,27 @@ ssite_merge <- function(location, counts, ...) {
 ##' @param path Directory which contains the retistruct files.
 ##' @param height Height in microns of the stereologic counting frame
 ##' @param width Width in microns of the stereologic counting frame
-##' @param IJ_limits data.frame with min, max and delta values for both X and Y with respect to the contour image in ImageJ coordiantes. For setting the calibration of the sampling sites to the sphere.
 ##' @param falciform (boolean) True by default, meaning there is a file called falc.txt within the path.
+##' @param xyz_df (data.frame) xyz values as read in by read.csv, with headers and without row.names
 ##' @return data.frame with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references https://r-forge.r-project.org/scm/?group_id=1436
-##' @import retistruct
+##' @importFrom retistruct getDss
+##' @importFrom utils write.csv capture.output read.table
+##' @importFrom stats complete.cases
+##' @importFrom magrittr %>%
 ##' @export
-spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
+spherical_coords <- function(path, xyz_df, height, width, falciform = TRUE) {
     # Read in the xyz dataset from stereology data collection.
-    xyz <- import_xyz(path)
-    # Read in the Falciform Process x y outline coordinates.
-    if (falciform == TRUE) {
-        falc <- read.table(paste0(path, "/falc.txt"), col.names = c("x", "cyan"))
-    } else {
-        # If not, just put in NULL.
-        falc <- data.frame()
-    }
-
-    # Import Counting Frame surface area in microns^2
-    xy_IJ_cols <- coordinate_IJ(xyz, IJ_limits$maxX, IJ_limits$maxY, IJ_limits$minX,
-        IJ_limits$minY, IJ_limits$deltaX, IJ_limits$deltaY, inversion = FALSE)
-    # Save output/species/datapoints.csv, create folder if doesnt exist #saves only
-    # the x,y coordinates
-    DAT <- data.frame(xy_IJ_cols[, 1], xy_IJ_cols[, 2])
-    xyz_len <- length(xy_IJ_cols[, 1])
-    # Append the falciform process to the end of the dataset.
-    colnames(DAT) <- c("x", "cyan")
-    DAT <- rbind(DAT, falc)  #Tag the falciform process onto the end
-    combined_len <- length(DAT[, 1])
-    # Save the points as datapoints.csv. This includes XYZ datapoints and the
-    # falciform process.
-    write.csv(DAT, file = paste0(path, "/datapoints.csv"), row.names = FALSE)
-
+    
+    combined_len <- read.csv(paste0(path, "/datapoints.csv"), header = TRUE) %>% 
+        nrow
+    xyz_len <- nrow(xyz_df)
+    
     # Post-image_J_markup
-    invisible(capture.output(radian_data <- dss_retistruct_processing(path)))
-    dss_object <- getDss(radian_data)
+    radian_data <- dss_retistruct_processing(path)
     dss <- getDssRemoved(radian_data)
+    
     # Extract the density measurement and falciform outline coordinates from the
     # 'datapoints' dss set.
     falciform_outline <- dss$x[((xyz_len):combined_len), ]
@@ -228,17 +158,18 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
     falciform_outline <- degrees(data.frame(falciform_outline))
     # Combine coordinates with sampling site densities Get rid of the NA points
     # http://stackoverflow.com/questions/4862178/remove-rows-with-nas-in-data-frame
-    data_w_NA <- cbind(dss_coords, z = xyz[, 3])
+    data_w_NA <- cbind(dss_coords, z = xyz_df[, 3])
     trimmed_data <- data_w_NA[complete.cases(data_w_NA[, 1:2]), ]
-    falciform_outline <- falciform_outline[complete.cases(falciform_outline[, 1:2]),
+    falciform_outline <- falciform_outline[complete.cases(falciform_outline[, 1:2]), 
         ]
     # convert to density per square millimeter
-    trimmed_data$z <- unlist(lapply(trimmed_data$z, function(x) count_to_rho(x, height = height,
+    trimmed_data$z <- unlist(lapply(trimmed_data$z, function(x) count_to_rho(x, height = height, 
         width = width)))
     return(list(trimmed_data = trimmed_data, falciform_outline = falciform_outline))
 }
 
 ##' @title ImageJ Coordinate Conversion
+##' @description It's important for the user to communicate the dimensions of the retinal wholemount to the program that's going to reconstruct the original shape. coordinate_IJ is useful for noting what the grid looks like for a retinal wholemount, so the package can decide where to place the sampling locations with respect to the outline created in ImageJ.
 ##' @param RET_count_data XYZ dataframe. X and Y are integer values starting at 1.
 ##' @param maxX The X value of the furthest sampling site at the far right of the picture.
 ##' @param maxY The Y value of the furthest sampling site at the top of the picture
@@ -247,11 +178,11 @@ spherical_coords <- function(path, height, width, IJ_limits, falciform = TRUE) {
 ##' @param deltaX Average change in pixels in the X axis between two sampling sites.
 ##' @param deltaY Average change in pixels in the Y axis between two sampling sites.
 ##' @param inversion Whether or not to invert
-##' @todo Need to remove all imageJ calibration in an Epic
+##' @note Need to remove all imageJ calibration in an Epic
 ##' @param ... arguments passed to or from other methods.
 ##' @return RET_count_data Retinal count data in ImageJ coordinates. $x, $y and $z
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-coordinate_IJ <- function(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY,
+coordinate_IJ <- function(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY, 
     inversion, ...) {
     # data = XY sampling grid integer values are converted into imageJ coordinates
     # based on image.  make sure that maxY and minY are inputted as negative values.
@@ -287,6 +218,7 @@ coordinate_IJ <- function(RET_count_data, maxX, maxY, minX, minY, deltaX, deltaY
 
 
 ##' @title Conversion from Radians to Degrees
+##' @description This is a simple internal function used to convert radians to degrees. It does not accommodate for degrees larger than one period.
 ##' @param radian_coords A data.frame with two columns- first is phi, second is lambda
 ##' @return data.frame Phi and lambda in a data.frame.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
@@ -314,40 +246,59 @@ count_to_rho <- function(count, height, width) {
 }
 
 
-##' @title Spherical Plot visualization
-##' Uses retistruct to create lat/lon coordinates
-##' @param trimmed_data Three-column dataset with datapoint locations in latitude/longitude degree format.
-##' @return Spherical visualization
-##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-##' @import rgl sphereplot
-##' @export
-sphere_visualize <- function(trimmed_data) {
-    rgl.sphgrid(radius = 1, longtype = "D", deggap = 30, col.lat = "transparent",
-        col.long = "black")  #make a quick sphere
-    rgl.sphpoints(trimmed_data[, 2], trimmed_data[, 1], shininess = 50, radius = 1,
-        size = 6, deg = TRUE, col = "blue4")  #quick check to make sure it is covering the bottom hemisphere
-}
+# ##' @title Spherical Plot visualization ##' @description To make sure that a
+# retina is entered correctly, and that the coordinate_IJ process was performed
+# correctly, ##' this function is useful for seeing how the reconstruction moved
+# the datapoints.  ##' For example, if many points are missing from one
+# hemisphere, the user can troubleshoot with their coordinate_IJ construction.
+# ##' Uses retistruct to create lat/lon coordinates ##' @param trimmed_data
+# Three-column dataset with datapoint locations in latitude/longitude degree
+# format.  ##' @return Spherical visualization ##' @author Brian Cohn
+# \email{brian.cohn@@usc.edu}, Lars Schmitz ##' @import rgl sphereplot ##'
+# @export sphere_visualize <- function(trimmed_data) { rgl.sphgrid(radius = 1,
+# longtype = 'D', deggap = 30, col.lat = 'transparent', col.long = 'black') #make
+# a quick sphere rgl.sphpoints(trimmed_data[, 2], trimmed_data[, 1], shininess =
+# 50, radius = 1, size = 6, deg = TRUE, col = 'blue4') #quick check to make sure
+# it is covering the bottom hemisphere }
 
 ##' @title Single Tps Fit Error Plot
+##' @description This function helps the user answer the scientific question: What is the fit performance of the Thin Plate Spline that is used to smooth the surface of the retinal density map? It is also useful for identifying systematic bias, bimodal distributions, or any other issues that could interfere with statistical rigor.
 ##' @param x the fit object
 ##' @param main title of the plot, NULL by default
 ##' @param ... further arguments passed to or from other methods.
 ##' @return Error histogram in base R
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @export
+##' @importFrom graphics hist
 fit_error_histogram <- function(x, main = NULL, ...) {
     hist(predictSE(x), col = "black", xlab = "Fit Error (RGC/sq.mm)", ...)
 }
 
+##' @title Retinal Krig Fit Plots (for retinal object)
+##' @description Visualizes histograms and error scatterplots in base R.
+##' calls fit_plots on the fit_data1 element.
+##' @param retina_object retina object
+##' @return predictions Evaluation of the model at the actual sampling site lat-lon coordinates.
+##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
+##' @references Fields Package
+##' @importFrom graphics plot abline text
+##' @importFrom stats predict na.omit
+##' @export
+retina_fit_plots <- function(retina_object, ...) {
+    fit_plots(retina_object$fit_data1,...)
+}
 
 ##' @title Retinal Krig Fit Plots
+##' @description Visualizes histograms and error scatterplots in base R
 ##' @param x the fit object
 ##' @param digits set to 4 arbitrarily
 ##' @param which set arbitrarily to 1:4
 ##' @param ... further arguments passed to or from other methods.
-##' @return Histograms and Error scatterplots in base R
+##' @return predictions Evaluation of the model at the actual sampling site lat-lon coordinates.
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @references Fields Package
+##' @importFrom graphics plot abline text
+##' @importFrom stats predict na.omit
 ##' @export
 fit_plots <- function(x, digits = 4, which = 1:4, ...) {
     out <- x
@@ -359,22 +310,22 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
     std.residuals <- (out$residuals * sqrt(out$weights))/out$shat.GCV
     if (any(which == 1)) {
         temp <- summary(out)
-        plot(fitted.values, out$y, ylab = "Y", xlab = " Predicted density", bty = "n",
+        plot(fitted.values, out$y, ylab = "Y", xlab = " Predicted density", bty = "n", 
             ...)
         abline(0, 1)
         hold <- par("usr")
-        text(hold[1], 0.95 * range(out$y)[2], paste(" R**2 = ", format(round(100 *
+        text(hold[1], 0.95 * range(out$y)[2], paste(" R**2 = ", format(round(100 * 
             temp$covariance, 2)), "%", sep = ""), cex = 0.8, adj = 0)
     }
     if (any(which == 2)) {
-        plot(fitted.values, std.residuals, ylab = "(STD) Residuals", xlab = " Predicted density",
+        plot(fitted.values, std.residuals, ylab = "(STD) Residuals", xlab = " Predicted density", 
             bty = "n", ...)
         yline(0)
         hold <- par("usr")
-        text(hold[1], 0.95 * range(std.residuals)[2], paste(" RMSE =", format(signif(sqrt(sum(out$residuals^2)/(temp$num.observation -
+        text(hold[1], 0.95 * range(std.residuals)[2], paste(" RMSE =", format(signif(sqrt(sum(out$residuals^2)/(temp$num.observation - 
             temp$enp)), digits))), cex = 0.8, adj = 0)
     }
-
+    
     if (any(which == 4)) {
         hist(std.residuals, main = "", col = "black", breaks = 10, xlab = "STD Residual")
     }
@@ -384,7 +335,7 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 }
 ### Set contour_breaks based on requested source
 ##' @title Set Contour Breaks Based on Requested Source
-##' @description This function will make a set of contour topography lines. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @description This function will make a set of contour topography lines. Code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting functionality.
 ##' @param contour_breaks_source See fit_plot_azimuthal
 ##' @param z See fit_plot_azimuthal
 ##' @param contour_levels See fit_plot_azimuthal
@@ -392,18 +343,18 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
 ##' @return contour_breaks See fit_plot_azimuthal
 define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat) {
     if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 1)) {
-        contour_breaks = seq(min(z, na.rm = TRUE), max(z, na.rm = TRUE), by = (max(z,
+        contour_breaks = seq(min(z, na.rm = TRUE), max(z, na.rm = TRUE), by = (max(z, 
             na.rm = TRUE) - min(z, na.rm = TRUE))/(contour_levels - 1))
-    } else if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] ==
+    } else if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 
         2)) {
-        contour_breaks = seq(min(Mat, na.rm = TRUE), max(Mat, na.rm = TRUE), by = (max(Mat,
+        contour_breaks = seq(min(Mat, na.rm = TRUE), max(Mat, na.rm = TRUE), by = (max(Mat, 
             na.rm = TRUE) - min(Mat, na.rm = TRUE))/(contour_levels - 1))
     } else if ((length(contour_breaks_source) == 2) & (is.numeric(contour_breaks_source))) {
-        print(paste0("Manual contour range set from ", contour_breaks_source[1],
+        print(paste0("Manual contour range set from ", contour_breaks_source[1], 
             " to ", contour_breaks_source[2]))
         contour_breaks = pretty(contour_breaks_source, n = contour_levels)
-        contour_breaks = seq(contour_breaks_source[1], contour_breaks_source[2],
-            by = (contour_breaks_source[2] - contour_breaks_source[1])/(contour_levels -
+        contour_breaks = seq(contour_breaks_source[1], contour_breaks_source[2], 
+            by = (contour_breaks_source[2] - contour_breaks_source[1])/(contour_levels - 
                 1))
     } else {
         stop("Invalid selection for \"contour_breaks_source\"")
@@ -413,29 +364,30 @@ define_contour_breaks <- function(contour_breaks_source, z, contour_levels, Mat)
 
 ### Add contours to the retina plot
 ##' @title Print contour lines onto the retina plot
-##' @description Makes a set of contours to the retinaplot. Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @description Makes a set of contours to the retinaplot. Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting functionality.
 ##' @param minitics See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
+##' @param xy two-column dataframe consisting of $x and $y datapoints
 ##' @param contour_breaks See fit_plot_azimuthal
-##' @import grDevices
+##' @importFrom grDevices contourLines gray
 add_contours <- function(minitics, Mat, contour_breaks, xy) {
-    require(grDevices)
-    CL <- grDevices::contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
+    CL <- contourLines(x = minitics, y = minitics, Mat, levels = contour_breaks)
     A <- lapply(CL, function(xy) {
         graphics::lines(xy$x, xy$y, col = gray(0.2), lwd = 0.5)
     })
 }
 
 ##' @title Initiate the Square Matrix plot to prepare for polar plotting
-##' @description instantiates the square plotting area Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting funtionality.
+##' @description instantiates the square plotting area Modified code from http://stackoverflow.com/questions/10856882/r-interpolated-polar-contour-plot was highly modified to meet retinal plotting functionality.
 ##' @param zlim See fit_plot_azimuthal
 ##' @param col See fit_plot_azimuthal
 ##' @param Mat See fit_plot_azimuthal
 ##' @param minitics See fit_plot_azimuthal
+##' @importFrom graphics image
 init_square_mat_plot <- function(Mat, zlim, minitics, col) {
     Mat[which(Mat < zlim[1])] = zlim[1]
     Mat[which(Mat > zlim[2])] = zlim[2]
-    image(x = minitics, y = minitics, Mat, useRaster = TRUE, asp = 1, axes = FALSE,
+    image(x = minitics, y = minitics, Mat, useRaster = TRUE, asp = 1, axes = FALSE, 
         xlab = "", ylab = "", zlim = zlim, col = col)
 }
 
@@ -454,7 +406,7 @@ compute_thin_plate_spline_error <- function(x, y, thin_plate_spline_object) {
 
 ##' @title Constructor for RecontructedDataset object *EDITED
 ##' @description This function was edited by Brian Cohn on 05/30/2014 in order to return DSS. One line was added.
-##' @param r Object that of clases \code{reconstructedOutline} and
+##' @param r Object of class \code{reconstructedOutline} and
 ##' \code{dataset}.
 ##' @param report Function used to report progress.
 ##' @return \code{\link{ReconstructedDataset}} object containing the input
@@ -467,6 +419,7 @@ compute_thin_plate_spline_error <- function(x, y, thin_plate_spline_object) {
 ##' \item{\code{Sss}}{Landmarks on reconstructed sphere in spherical coordinates}
 ##' @author David Sterratt
 ##' @import geometry
+##' @importFrom retistruct bary.to.sphere.cart sphere.cart.to.sphere.spherical
 ##' @export
 getDssRemoved <- function(r, report = message) {
     ### Function by David Sterratt, 2013
@@ -499,7 +452,7 @@ getDssRemoved <- function(r, report = message) {
 
 
 ##' @title Counterclockwise rotation about the origin
-##'
+##' @description Useful geometric transformation
 ##' @param x vector of x coordinates (int/float)
 ##' @param y vector of y coordinates (int/float)
 ##' @param theta (float|int) angle in degrees.
@@ -524,6 +477,7 @@ cartesian_rotation <- function(x, y, theta) {
 
 
 ##' @title Add Degrees
+##' @description Adds degrees in a cyclical system, fixed to one period.
 ##' @param theta Angle in degrees
 ##' @param degrees Number of degrees to add to theta
 ##' @return newtheta Adjusted between -180 and 180 degrees.
@@ -556,31 +510,32 @@ add_degrees <- function(theta, degrees) {
 ##' @param ... further arguments passed to or from other methods.
 ##' reference map. latitude in [,1], longitude in [,2], rho in [,3].
 ##' @param spatial_res Defines the number of pixels across the interpolation grid for every comparison. Default is 16 for speed.
+##' @param projection_type by default this is 'azequidistant' which is used in our peer-reviewed paper/ See the mapproject project if you want to use a different projection.
 ##' @param theta_interval Defines the interval at which the rotation value will be changed when moving to the next comparison. Default is 10 in units of degrees.
 ##' @return df_spin Matrix of errors (in second column) for a given map rotation.
 ##' @import mapproj
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @family species_average
 ##' @export
-rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30,
+rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30, 
     projection_type = "azequidistant", ...) {
     # define prediction frame for both maps
     map1 <- map1$azimuthal_data.datapoints[[1]]
     map2 <- map2$trimmed_data
     minitics <- seq(-1.6, 1.6, length.out = spatial_res)
     grid.list = list(x = minitics, y = minitics)
-
+    
     fit1 <- Tps(cbind(map1$x, map1$y), map1$z, ...)
     map1surface <- predictSurface(fit1, grid.list, extrap = FALSE)$z
     # initialize df_spin dataframe to hold the RMSE values of each rotation value
-
+    
     theta <- seq(-180, 180, by = theta_interval)
     df_spin <- matrix(nrow = length(theta), ncol = 2)
-
+    
     # loop through spin theta
     for (rotation in 1:length(theta)) {
         # Create an azimuthal equidistant map projection with 'rotation' variable.
-        az <- mapproject(x = map2[, 2], map2[, 1], projection = projection_type,
+        az <- mapproject(x = map2[, 2], map2[, 1], projection = projection_type, 
             orientation = c(-90, 0, theta[rotation]))
         az$z <- map2[, 3]
         # get prediction frame
@@ -609,11 +564,11 @@ rotation_optimize <- function(map1, map2, spatial_res = 32, theta_interval = 30,
 optimal_rotation <- function(df_spin, quiet = TRUE) {
     optimal_degree <- df_spin[which.min(df_spin[, 2]), ]
     if (!quiet) {
-        message(paste("Absolute mean difference between maps (", optimal_degree[2],
+        message(paste("Absolute mean difference between maps (", optimal_degree[2], 
             "RGC/sqmm)  minimized when map2 ccw is ", optimal_degree[1], "degrees"))
     }
     return(optimal_degree)
-
+    
 }
 
 ##' Reflect matrix across vertical axis
@@ -631,19 +586,21 @@ reflect_across_vertical_line <- function(mat) {
 }
 
 ##' @title Make a Composite Map
+##' @description Combines two retinal cell density maps
 ##' @param map1 Fixed retina object
 ##' @param map2 retina object subject to rotation.
 ##' @param rotation Boolean, whether or not spin optimization is used.
 ##' @param plot_rotation Boolean, whether or not spin optimization plot is shown.
+##' @param projection_type A mapproject mapproj projection type
 ##' @param spatial_res Default is 16. A (spatial_res*spatial_res) matrix will be created for spin optimization comparisons and compose the average.
 ##' @param ... further arguments passed to or from other methods.
 ##' @return plot Composite Plot data
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
 ##' @family species_average
 ##' @export
-composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotation = FALSE,
+composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotation = FALSE, 
     projection_type = "azequidistant", ...) {
-
+    
     ### STEP 1 Convert map2 data into an azimuthal equidistant plot projection map1
     x1 <- map1$azimuthal_data.datapoints[[1]]$x
     y1 <- map1$azimuthal_data.datapoints[[1]]$y
@@ -652,7 +609,7 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     x2 <- map2$azimuthal_data.datapoints[[1]]$x
     y2 <- map2$azimuthal_data.datapoints[[1]]$y
     z2 <- map2$azimuthal_data.datapoints[[1]]$z
-
+    
     theta <- -90  #default value is -90 (no rotation)
     if (rotation) {
         message("Optimizing Rotation")
@@ -664,7 +621,7 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
         # find optimal rotation for map2 with respect to map1
         theta <- optimal_rotation(rotation_df)
         ori <- c(-90, 90, theta[1])
-        az <- mapproject(x = map2$trimmed_data[, 2], map2$trimmed_data[, 1], projection = projection_type,
+        az <- mapproject(x = map2$trimmed_data[, 2], map2$trimmed_data[, 1], projection = projection_type, 
             orientation = ori)
         x2 <- az$x
         y2 <- az$y
@@ -672,12 +629,12 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     message("Fitting Tps Model for Map1")
     ## Step 2 Interpolate map1 and map2 azimuthal data with the same interpolation
     ## options
-    map1fit <- fit_plot_azimuthal(x1, y1, z1, spatial_res, plot_suppress = TRUE,
-        extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map1$azimuthal_data.falciform[[1]],
+    map1fit <- fit_plot_azimuthal(x1, y1, z1, spatial_res, plot_suppress = TRUE, 
+        extrapolate = TRUE, outer_radius = pi/2, falciform_coords = map1$azimuthal_data.falciform[[1]], 
         ...)
     message("Fitting Tps Model for Map 2")
-    map2fit <- fit_plot_azimuthal(x2, y2, z2, spatial_res, plot_suppress = TRUE,
-        extrapolate = TRUE, outer.radius = pi/2, falciform_coords = map2$azimuthal_data.falciform[[1]],
+    map2fit <- fit_plot_azimuthal(x2, y2, z2, spatial_res, plot_suppress = TRUE, 
+        extrapolate = TRUE, outer_radius = pi/2, falciform_coords = map2$azimuthal_data.falciform[[1]], 
         ...)
     maps <- list(map1fit, map2fit)
     MAT1 <- maps[[1]][[2]]$z
@@ -686,7 +643,7 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
     # retina. This changes the view to an inner view
     MAT1 <- reflect_across_vertical_line(MAT1)
     MAT2 <- reflect_across_vertical_line(MAT2)
-
+    
     # MAT1 <- sapply(nrow(MAT1):1, function(i) MAT1[i, ]) MAT2 <-
     # sapply(nrow(MAT2):1, function(i) MAT1[i, ]) map_composites(MAT1,MAT2, ...)
     composite_pred <- (MAT1 + MAT2)/2
@@ -695,6 +652,7 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
 
 
 ##' @title Composite two Retinal Map Matrices
+##' @description Combines two density matrices of pre-smoothed data.
 ##' @param MAT1 Matrix of RGC densities
 ##' @param MAT2 Matrix of RGC densities
 ##' @param col_levels Number of levels to plot (if showing plot.)
@@ -702,7 +660,8 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
 ##' @param ... further arguments passed to or from other methods.
 ##' @return MAT_composite Square matrix: Composite Map (adjusted to max,min of each map, with new peak equal to the mean of map1 and map2's peaks)
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
-##' @family species_averags
+##' @family species_average
+##' @importFrom grDevices heat.colors
 ##' @export
 map_composites <- function(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...) {
     # Matrix Combinations
@@ -731,13 +690,13 @@ map_composites <- function(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...) {
         image.plot(DIFF, col = heat.colors(col_levels), main = "Difference", useRaster = TRUE)
         image.plot(MEAN, col = heat.colors(col_levels), main = "Mean", useRaster = TRUE)
         # Relative Maps
-        image.plot(MAT1_rel, col = heat.colors(col_levels), main = "map1 relative",
+        image.plot(MAT1_rel, col = heat.colors(col_levels), main = "map1 relative", 
             useRaster = TRUE)
-        image.plot(MAT2_rel, col = heat.colors(col_levels), main = "map2 relative",
+        image.plot(MAT2_rel, col = heat.colors(col_levels), main = "map2 relative", 
             useRaster = TRUE)
-        image.plot(rel_mean, col = heat.colors(col_levels), main = "Relative density mean",
+        image.plot(rel_mean, col = heat.colors(col_levels), main = "Relative density mean", 
             useRaster = TRUE)
-        image.plot(av_adjusted, col = heat.colors(col_levels), main = "Av, adj. to mean peak RGC density",
+        image.plot(av_adjusted, col = heat.colors(col_levels), main = "Av, adj. to mean peak RGC density", 
             useRaster = TRUE)
     }
     return(av_adjusted)
@@ -750,8 +709,8 @@ map_composites <- function(MAT1, MAT2, col_levels = 5, showplots = FALSE, ...) {
 ##' @param rotation_df data.frame from spin optimization
 ##' @export
 plot_rotation_optimize <- function(rotation_df) {
-    plot(rotation_df, xlim = c(-181, 181), pch = 20, ylim = c(min(rotation_df[, 2]) -
-        1000, max(rotation_df[, 2])), xlab = "Rotation (ccw) [Degrees]", main = "Mean Absolute Difference",
+    plot(rotation_df, xlim = c(-181, 181), pch = 20, ylim = c(min(rotation_df[, 2]) - 
+        1000, max(rotation_df[, 2])), xlab = "Rotation (ccw) [Degrees]", main = "Mean Absolute Difference", 
         ylab = expression(mu(group("|", "map1-map2", "|"))))
     abline(v = optimal_rotation(rotation_df), lty = "dotted")
 }
@@ -761,20 +720,66 @@ plot_rotation_optimize <- function(rotation_df) {
 # Utility functions:
 
 ##' @title Distance between the range
+##' @description Computes the magnitude of the range
 ##' @param x vector of numbers
 ##' @return the difference between the limits of the range.
+##' @export
 range_len <- function(x) {
     limits <- range(x)
     diff <- limits[2] - limits[1]
     return(diff)
 }
 ##' @title Reorder columns by function
+##' @description Reorders columns by function
 ##' @param X data.frame
 ##' @param FN A function that takes in a vector and returns one value.
 ##' @return X_new data.frame of columns ordered in decreasing value from left to right according to each function(column)
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu} Lars Schmitz
+##' @export
 reorder_columns <- function(X, FN) {
     Xcol_fn_applied <- apply(X, 2, FN)
     X_new <- X[, c(names(sort(Xcol_fn_applied, decreasing = TRUE)))]
     return(X_new)
 }
+
+
+##' run_diagram_retina_folder
+##' useful for access of the test retina datasets'
+##' @param string_identifier character e.g. '40oik5' that represents the inst/extdata identifier folder name.
+run_diagram_retina_folder <- function(string_identifier) {
+    path_to_test_retina_folder <- get_path_to_test_retina_folder(string_identifier)
+    run_command <- paste0("main_", string_identifier, "('", path_to_test_retina_folder, 
+        "')")
+    str_eval(run_command)
+}
+
+##' String evaluation via eval
+##' useful for run_diagram_retina_folder
+##' @param x a string that has the command to run. e.g. 'main_40oik5('path/of/interest')'
+##' @export
+str_eval <- function(x) {
+    return(eval(parse(text = x)))
+}  # via https://goo.gl/TRpc2Y
+
+##' get_path_to_test_retina_folder
+##' useful for access of the test retina datasets'
+##' @param string_identifier character e.g. '40oik5' that represents the inst/extdata identifier folder name.
+##' @return filepath to the test_retina folder matching the string identifier variable.
+##' @export
+get_path_to_test_retina_folder <- function(string_identifier) {
+    
+    path_to_retina_dir <- paste0("test_retinas/", string_identifier, "/diagram_retina/")
+    # source the file from the installed packages directory
+    # path_to_test_retina_folder <- file.path(.libPaths(), path_to_retina_dir)
+    return(path_to_retina_dir)
+}
+
+
+##' banded_gecko
+##' banded_gecko
+##' @return retina_obj retina object for banded gecko
+##' @export
+banded_gecko <- function() {
+    main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
+}
+

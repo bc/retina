@@ -1,26 +1,29 @@
 Package: retina
-Title: Tools for plotting and analyzing vertebrate retinas.
-Version: 2.0.1
-Date: 2017-7-1
-Copyright: 2013-2015 Brian Cohn and Lars Schmitz
+Title: Support Functions to analyze cell densities
+Version: 2.2.3
+Copyright: 2013-2018 Brian Cohn and Lars Schmitz
 Authors@R: c( person("Brian", "Cohn", email = "brian.cohn@usc.edu", role =
     c("aut", "cre")), person("Lars", "Schmitz", role = c("aut")))
-Description: Tools for Plotting and Analyzing Vertebrate Retinas Refer to
-    http://github.com/briancohn/retina for the bleeding edge edition. Journal of
-    Vision July 2015, Vol.15, 19. doi:10.1167/15.9.19
+Description: Tools for Plotting and Analyzing Vertebrate Retinas.
 Additional_repositories: http://cran.r-project.org
 Depends:
-    R (>= 3.1.1),
-    rgl,
-    fields,
+    R (>= 3.5.0),
+    retistruct
+Imports:
     RColorBrewer,
-    sphereplot,
+    RImageJROI,
+    magrittr,
+    fields,
+    geometry,
     mapproj,
-    retistruct (>= 0.5.10),
-    geometry
+    rgl,
+    sphereplot
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 Roxygen: list(wrap = TRUE)
 License: CC BY-NC-SA 4.0
 LazyData: true
 RoxygenNote: 6.0.1
+VignetteBuilder: knitr

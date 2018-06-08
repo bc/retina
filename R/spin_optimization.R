@@ -2,7 +2,7 @@
 ##' @description
 ##' Fixes each retina in the inputted list of retina-objects, generating the optimal rotation (in degrees) with respect to the other retinas.
 ##' @param retina_list list of retinal objects. for example, list(Pmol_753=Pmol_753, Pmol_752=Pmol_752, Ntae_381=Ntae_381)
-##' @param spatial_res width of the evaluation grid that's used for every combination. 
+##' @param spatial_res width of the evaluation grid that's used for every combination.
 ##' @param theta_interval This value (an integer in degrees) will generate (360/theta_interval) rotations to evaluate.
 ##' @return rotation_mat Matrix where columns are fixed, rows are rotated. Column 1 is the first element in the retina_list
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu} and Lars Schmitz

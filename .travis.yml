@@ -1,16 +1,18 @@
 language: r
+cache: packages
 warnings_are_errors: false
-sudo: required
+sudo: false 
+git:
+  depth: 1
 env:
   os:
     - linux
-    - osx
+    # - osx
   matrix:
-    - RVERSION=devel
+    # - RVERSION=devel
     - RVERSION=release
-    - RVERSION=oldrel
-    - RVERSION=3.3.1
-    - RVERSION=3.3.2
+    # - RVERSION=oldrel
+    # - RVERSION=3.5.0
 notifications:
      slack: kaspectscientists:OFGveqm4qxt26CPytZrHUxSV
 r_packages:
@@ -21,4 +23,3 @@ after_success:
       - Rscript -e 'library(covr); codecov()'
       - bash <(curl -s https://codecov.io/bash)
       - Rscript -e 'lintr::lint_package()'
-      - Rscript -e 'library(retina); run_all_demos("demo")'

@@ -1,8 +1,8 @@
-![retina_logo](https://cloud.githubusercontent.com/assets/4623063/8342959/8206dd04-1a85-11e5-8d00-d58866c99d66.jpg)
-======
+# ![retina_logo](https://cloud.githubusercontent.com/assets/4623063/8342959/8206dd04-1a85-11e5-8d00-d58866c99d66.jpg)
+
 Visualize & compare retinal cell density data.
 
-#Project description
+# Project description
 
 Biologists who study vision are fascinated by the retina, the rear surface of the eye which collects light and transmits an 'image' to the brain. Through evolution, eyes have been exceptionally diverse across the animal kingdom, yielding a wide variety of shapes, sizes, colors, and chemical processes. For this reason, the eye is often used to understand how complex traits evolve with ecology, the interactions of the animal with its environment. A retinal ganglion cell map helps biologists visualize receptive cells across the rear surface of the vertebrate eye. This topographic map shows density in a way which highlights areas of higher visual performance, and this can be used to understand what regions of an animal's visual field are most clear-in-view. For a human, we only have one point on the eye where things are clear- that's why we can really only see a few words at a time while reading, for example. Some fish have multiple centers of high visual performance, more formally referred to as a peak of retinal acuity.
 
@@ -12,57 +12,61 @@ Linux: [![Travis-CI Build Status](https://travis-ci.org/briancohn/retina.png?bra
 
 Windows: [![Build status](https://ci.appveyor.com/api/projects/status/v7vav80absnsh9jf?svg=true)](https://ci.appveyor.com/project/bcohn12/retina)
 
-<img src="tutorial_pix/retina_plot_output_pmol753.jpg" width=400 alt="some_text">
+![some_text](tutorial_pix/retina_plot_output_pmol753.jpg)
 
-Make a retinal map:
-======
+# Make a retinal map:
+
 After surveying cell density across the retina using a stereology-equipped microscope:
 
 Use _retina_ to
 
-      + Import retinal outline and sampling data
-      + Reinstate the hemispherical shape of the data (1)
-      + Make species average maps
-      + Evaluate parameters and fit of smoothing models
-      + Plot a contoured topographic heatmap
+```
+  + Import retinal outline and sampling data
+  + Reinstate the hemispherical shape of the data (1)
+  + Make species average maps
+  + Evaluate parameters and fit of smoothing models
+  + Plot a contoured topographic heatmap
+```
 
 Plots were carefully designed to be readable by viewers who may have colorblindness.
 
 [Link to installation guide](install.md "Installation Page")
 
-####Load _retina_ and  Pseudodax Moluccanus:
-```R
+## Load _retina_ and Pseudodax Moluccanus:
+
+```r
 library(retina) #see the installation guide first
 retinaplot(Pmol_753)
 ```
-####Full walkthrough tutorial to use your own retina
+
+## Full walkthrough tutorial to use your own retina
+
 [Link to Tutorial on Github](tutorial.md "Tutorial.md")
 
-Support
-=====
+# Support
+
 In-package documentation
-```R
+
+```r
 ?retinaplot
 ```
+
 [Post a github issue ticket (15 seconds)](https://github.com/bcohn12/retina/issues/new "Post an issue ticket")
 
+# References
 
-
-References
-=====
 1. Sterratt et al 2013
 
 GPL-2 License
 
+# Development Notes
 
-Development Notes
-=====
 run R from the retina directory after cloning
+
 ```
 library(devtools)
 ```
 
-Press
-=====
-[Keck Science Department Announcement](http://www.kecksci.claremont.edu/News/Newsdetail.asp?NewsID=92 "KSD")
+# Press
 
+[Keck Science Department Announcement](http://www.kecksci.claremont.edu/News/Newsdetail.asp?NewsID=92 "KSD")

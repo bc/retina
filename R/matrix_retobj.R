@@ -25,7 +25,7 @@ mat_from_ret_obj <- function(retina_object, rotation = 0, n = 1, reflect = TRUE,
     
     # Fitting models
     map2fit <- fit_plot_azimuthal(x2, y2, z2, plot_suppress = TRUE, extrapolate = TRUE, 
-        outer.radius = pi/2, falciform_coords = retina_object$azimuthal_data.falciform[[1]], 
+        outer_radius = pi/2, falciform_coords = retina_object$azimuthal_data.falciform[[1]], 
         ...)
     MAT <- map2fit[[2]]$z
     # reflect the eye
