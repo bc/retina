@@ -1,7 +1,8 @@
 # ![retina_logo](https://cloud.githubusercontent.com/assets/4623063/8342959/8206dd04-1a85-11e5-8d00-d58866c99d66.jpg)
 [![Travis-CI Build Status](https://travis-ci.org/bc/retina.png?branch=master)](https://travis-ci.org/bc/retina)
-![some_text](tutorial_pix/retina_plot_output_pmol753.jpg)
 ## The most quantitative way to compare and visualize retinal cell densities
+![Retinal Map Visualization](tutorial_pix/retina_plot_output_pmol753.jpg)
+
 After surveying cell density across the retina using a stereology-equipped microscope:
 
 Use _retina_ to
