@@ -16,8 +16,8 @@ Use _retina_ to
 ```
 
 
-[Installation Guide](install.md "Installation Page")
-[Tutorial for using your own retina](tutorial.md "Tutorial.md")
+# [Install](install.md "Installation Page")
+# [Tutorial](tutorial.md "Tutorial.md")
 
 ### Abstract
 We believe the eye is a unique window into the evolutionary process.
