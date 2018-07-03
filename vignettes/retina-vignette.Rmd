@@ -46,18 +46,9 @@ install.packages('devtools')
 devtools::install_github('bc/retina')
 ```
 
-# Get Retistruct working
-Retistruct is a package the retina project relies upon.
-```
-install.packages('retistruct') #if you have an issue, comment on it here to get it fixed: https://github.com/davidcsterratt/retistruct/issues/new
-retistruct::retistruct() #On Windows, Accept the 'Install GTK+' popup
-install.packages('devtools')
-devtools::install_github('bc/retina')
-```
-
 ## Retina Plot
-{r, fig.height=5, fig.show='hold', fig.width=7, results='hide'}
-```
+
+```{r, fig.height=5, fig.show='hold', fig.width=7, results='hide'}
 retina_A <- retina::banded_gecko()
 retina::retinaplot(retina_A)
 ```

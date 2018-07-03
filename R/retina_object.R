@@ -72,6 +72,17 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
     return(retina_object)
 }
 
+IJ_xyz_df_to_xyz_df <- function(xyz_df, IJcoords, inversion){
+	sbrowser()
+	# xyz_df$x <- IJcoords$minX + (xyz_df$x - 1) * IJcoords$deltaX
+	x <- xyz_df$x
+	y <- xyz_df$y
+	x <- (x-min(x))/(max(x)-min(x))
+	y <- (y-min(y))/(max(y)-min(y))
+	normalized_xy_df <- data.frame(x=x, y=y)
+	return(0)
+}
+
 save_flatmount_coordinates_to_datapoints <- function(path, xyz_df, IJcoords, falciform = TRUE) {
     
     # Read in the Falciform Process x y outline coordinates.
