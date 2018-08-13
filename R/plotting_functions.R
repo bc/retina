@@ -33,6 +33,8 @@ reflect_IJ_y_values_for_falciform <- function(falciform_xy_coordinates, xy_img_d
         -1 + half_of_vertical_pixels
     return(falciform_xy_coordinates_transformed)
 }
+
+
 ##' @title Traditional Flatmount Plot TODO: implement.
 ##' @description
 ##' Shows a visualization of the outline, as well as the location of each datapoint, with fit plot.
@@ -65,15 +67,23 @@ traditional_flatmount_plot <- function(pixel_xy_positions, z_vector, xy_outline_
 ##' @return roi_coordinates XY vals of pixel coordinates of the outline points, in order.
 ##' @importFrom RImageJROI read.ijroi
 ##' @export
-tear_markup_plot <- function(path_to_retina_data_folder) {
-    roi_object <- read.ijroi(file.path(path_to_retina_data_folder, "outline.roi"))
+tear_markup_plot <- function(path_to_retina_data_folder, points=FALSE) {
+    ##' helper function'
+    scale_to_neg1_pos1 <- function(xy, xyz){
+        max_of_outline <- max(abs(scale(xy, scale=FALSE)))
+        scaled_xy <- scale(xy, scale=FALSE) / max_of_outline
+        scaled_xyz <- scale(xyz[,1:2], scale=FALSE) / max_of_outline
+        return(list(outline_xy=scaled_xy, xyz=scaled_xyz))
+    }
+
+    roi_object <- retistruct:::ijroi.read.dataset(path_to_retina_data_folder)
     
     # this section extracted from Retistruct (author David Sterratt) ImageJ ROI
     # format plots has the coordinate (0, 0) in the top left.  We have the coordinate
     # (0, 0) in the bottom left. We need to transform P so that the outline appears
     # in the correct orientation.
     im <- NULL
-    roi_XY_coords <- roi_object$coords
+    roi_XY_coords <- roi_object$raw$outline
     offset <- ifelse(is.null(im), max(roi_XY_coords[, 2]), nrow(im))
     roi_XY_coords[, 2] <- offset - roi_XY_coords[, 2]
     # end section extracted from retistruct (author David Sterratt)
@@ -86,6 +96,24 @@ tear_markup_plot <- function(path_to_retina_data_folder) {
     return(roi_XY_coords)
 }
 
+##' TODO document"
+get_xyz_points <- function(path_to_retina_data_folder){
+
+    xyz <- read.csv(file.path(path_to_retina_data_folder,"xyz.csv"))
+    xy_in_outline_coord_frame <- read.csv(file.path(path_to_retina_data_folder,"datapoints.csv"))
+    
+    offset <- ifelse(is.null(im), max(xy_in_outline_coord_frame[, 2]), nrow(im))
+    xy_in_outline_coord_frame[, 2] <- offset - xy_in_outline_coord_frame[, 2]
+
+    offset <- ifelse(is.null(im), max(xy_in_outline_coord_frame[, 1]), nrow(im))
+    xy_in_outline_coord_frame[, 1] <- offset - xy_in_outline_coord_frame[, 1]
+    num_ssites <- nrow(xyz)
+
+    xy_in_outline_coord_frame$num_cells <- c(xyz[,3], rep(-1, nrow(xy)-num_ssites))
+    xy_in_outline_coord_frame$sampling_site <- 1:nrow(xy_in_outline_coord_frame)
+    colnames(xy_in_outline_coord_frame) <- c( "x","y" ,"num_cells",  "sampling_site")
+    return(xy_in_outline_coord_frame)
+    }
 
 
 
