@@ -28,7 +28,7 @@ Run in the terminal:
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install gtk+
 export PKG_CONFIG_PATH=/usr/X11/lib/pkgconfig:$PKG_CONFIG_PATH
-brew install caskroom/cask/brew-cask
+brew link gtk+
 brew cask install xquartz
 ```
 
