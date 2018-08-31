@@ -13,4 +13,3 @@ pdf("out.pdf")
 lapply_testthat(c("3hgbqg", "3hgbqg_direct_csv_coords", "8pm223", "8pm223_direct_csv_coords", 
     "bjii4t", "jhvbwt", "40oik5", "gv3igs", "raxp91"), run_diagram_retina_folder)
 dev.off()
-browser()

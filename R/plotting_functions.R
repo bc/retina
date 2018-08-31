@@ -574,3 +574,32 @@ plot_falciform_process <- function(falciform_x, falciform_y) {
     polygon(fc_smoothed[, 1], fc_smoothed[, 2], col = rgb(0, 0, 0, 0.5), lty = "solid", 
         border = "gray42")
 }
+
+##' make a composite plot
+##' if there is an NA in a position for any of the maps, it will create a NA in the output. 
+##' That way we do not show areas that were not covered by all scans of the retina
+##' @param list_of_maps list of retina objects
+##' @param map_names_vector name for each of the retina objects. Used for the boxplot
+##' @param show_boxplot whether or not to display the RGC/sqmm for all retinas
+##' @param composite matrix of the mean values. 
+##' @author Brian Cohn
+multimap_composite <- function(list_of_maps, map_names_vector, show_boxplot=TRUE){
+    num_maps <- length(list_of_maps)
+    if (show_boxplot){
+        boxplot(list_of_maps, names = map_names_vector, xlab = "Retinal ganglion cells per square mm",
+        horizontal = TRUE, pch = 20, cex = 0.5, col = "darkgrey")
+    }
+    mean_map_mat <- Reduce(function(map1,map2) {map1 + map2}, list_of_maps, 0)/num_maps
+    print_span_comparison(list_of_maps, mean_map_mat)
+    return(mean_map_mat)
+}
+
+##' make a composite plot
+##' @param list_of_maps list of retina objects
+##' @param map_names_vector name for each of the retina objects. Used for the boxplot
+##' @param show_boxplot whether or not to display the RGC/sqmm for all retinas
+plot_multimap_composite <- function(mean_map_mat, show_boxplot=TRUE){
+    matrange <- range(mean_map_mat, na.rm=TRUE)
+    spatial_res <- nrow(mean_map_mat)
+    plot_from_MAT(density_matrix=mean_map_mat, extrapolate=FALSE, spatial_res=spatial_res, col_levels=50, contour_levels = 20, contour_breaks_source=matrange,col_breaks_source=matrange)
+}

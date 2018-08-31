@@ -651,6 +651,35 @@ composite_map <- function(map1, map2, rotation = TRUE, spatial_res, plot_rotatio
 }
 
 
+##' @title Make a Composite Map
+##' @description Combines two retinal cell density maps
+##' @param map Fixed retina object
+##' @param spatial_res Default is 16. A (spatial_res*spatial_res) matrix will be created for spin optimization comparisons and compose the average.
+##' @param projection_type A mapproject mapproj projection type
+##' @param ... further arguments passed to or from other methods.
+##' @return map_matrix matrix of value predictions on the 2D plane
+##' @author Brian Cohn \email{brian.cohn@@usc.edu}, Lars Schmitz
+##' @family species_average
+##' @export
+map_to_matrix <- function(map, spatial_res, projection_type = "azequidistant", ...) {
+    
+    ### STEP 1 Convert map2 data into an azimuthal equidistant plot projection map
+    x1 <- map$azimuthal_data.datapoints[[1]]$x
+    y1 <- map$azimuthal_data.datapoints[[1]]$y
+    z1 <- map$azimuthal_data.datapoints[[1]]$z
+    ## then fit the surface at the fixed grid intervals
+    mapfit <- fit_plot_azimuthal(x1, y1, z1, spatial_res=spatial_res, plot_suppress = TRUE, 
+        outer_radius = pi/2, falciform_coords = map$azimuthal_data.falciform[[1]], ...)
+
+    # 90 degree CCW rotation reflect across a vertical line in the center of the
+    # retina. This changes the view to an inner view
+    map_matrix <- mapfit[[2]]$z %>% reflect_across_vertical_line   
+    return(map_matrix)
+}
+
+
+
+
 ##' @title Composite two Retinal Map Matrices
 ##' @description Combines two density matrices of pre-smoothed data.
 ##' @param MAT1 Matrix of RGC densities
@@ -783,3 +812,16 @@ banded_gecko <- function() {
     main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
 }
 
+##' Prints the span comparison
+##' when we make a retinal average, often there are spaces at the equator of the eye that were 
+##' sampled by some retinas and not others. This function counts the number of points for 
+##' each map, and the number of points for the final composite.
+##' @param map_matrices list of named map matrices
+##' @param composite map map matrix
+##' @export
+print_span_comparison<- function(map_matrices, composite_map){   
+    num_collected_points <- lapply(map_matrices, function(x) {sum(is.na(x)==FALSE)})
+    print("points per input map:")
+    print(rbind(num_collected_points))
+    print(sprintf('composite_num_points remaining: %s', sum(is.na(composite_map)==FALSE)))
+}

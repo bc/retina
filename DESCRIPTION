@@ -17,7 +17,8 @@ Imports:
     geometry,
     mapproj,
     rgl,
-    sphereplot
+    sphereplot,
+    ggplot2
 Suggests:
     testthat,
     knitr,
