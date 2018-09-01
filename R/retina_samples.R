@@ -152,7 +152,6 @@ main_bjii4t <- function(path_to_diagram_retina) {
     # e.g. rotate map by 30 degrees: retinaplot(my_retina, rotation=30)
 }
 
-
 ##' main_jhvbwt
 ##' sample retina
 ##' @param path_to_diagram_retina path to folder
@@ -184,7 +183,7 @@ main_raxp91 <- function(path_to_diagram_retina) {
     
     
     IJ <- data.frame(maxX = 1016, maxY = -48, minX = 25, minY = -923, deltaX = (1016 - 
-        25)/18, deltaY = (923 - 48)/17)
+        25)/17, deltaY = (923 - 48)/16)
     
     
     # assembling the retina object

@@ -18,7 +18,8 @@ Imports:
     mapproj,
     rgl,
     sphereplot,
-    ggplot2
+    ggplot2,
+    raster
 Suggests:
     testthat,
     knitr,

@@ -585,6 +585,20 @@ reflect_across_vertical_line <- function(mat) {
     return(mat)
 }
 
+##' Reflect matrix across horizontal axis
+##' @param mat a matrix (doesn't have to be square)
+##' @return matrix reflected matrix
+##' @author Brian Cohn \email{brian.cohn@@usc.edu} Lars Schmitz
+##' @family internal
+reflect_across_horizontal_line <- function(mat) {
+    num_cols <- length(mat[1, ])
+    num_rows <- length(mat[, 1])
+    for (i in 1:num_cols) {
+        mat[i, ] <- rev(mat[i, ])
+    }
+    return(mat)
+}
+
 ##' @title Make a Composite Map
 ##' @description Combines two retinal cell density maps
 ##' @param map1 Fixed retina object

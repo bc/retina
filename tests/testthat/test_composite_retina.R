@@ -1,21 +1,29 @@
 
 context("test_composite_retina")
 
+test_that('we can get a list of matrices', {
+        spatial_res <- 10
+    retina_A <- main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder)
+    retina_B <- main_40oik5("40oik5" %>% get_path_to_test_retina_folder)
+    retina_C <- main_8pm223("8pm223" %>% get_path_to_test_retina_folder)
+    retina_D <- main_gv3igs("gv3igs" %>% get_path_to_test_retina_folder)
+    retina_E <- main_jhvbwt("jhvbwt" %>% get_path_to_test_retina_folder)
+    retina_mat_A <- map_to_matrix(retina_A,spatial_res=spatial_res, projection_type='azequidistant')
+    retina_mat_B <- map_to_matrix(retina_B,spatial_res=spatial_res, projection_type='azequidistant')
+    retina_mat_C <- map_to_matrix(retina_C,spatial_res=spatial_res, projection_type='azequidistant')
+    retina_mat_D <- map_to_matrix(retina_D,spatial_res=spatial_res, projection_type='azequidistant')
+    retina_mat_E <- map_to_matrix(retina_E,spatial_res=spatial_res, projection_type='azequidistant')
+    # Example Code starts here, make a list of retina objects:
+    list_of_retina_matrices <- list(retina_mat_A=retina_mat_A,
+                                    retina_mat_B=retina_mat_B,
+                                    retina_mat_C=retina_mat_C,
+                                    retina_mat_D=retina_mat_D,
+                                    retina_mat_E=retina_mat_E)
+
+    use_data(list_of_retina_matrices, overwrite=TRUE)
+})
 test_that("we can combine 5 retinas into one", {
     spatial_res <- 10
-    retina_A <- main_3hgbqg("3hgbqg" %>% get_path_to_test_retina_folder %>% map_to_matrix(spatial_res, projection_type='azequidistant'))
-    retina_B <- main_40oik5("40oik5" %>% get_path_to_test_retina_folder %>% map_to_matrix(spatial_res, projection_type='azequidistant'))
-    retina_C <- main_8pm223("8pm223" %>% get_path_to_test_retina_folder %>% map_to_matrix(spatial_res, projection_type='azequidistant'))
-    retina_D <- main_gv3igs("gv3igs" %>% get_path_to_test_retina_folder %>% map_to_matrix(spatial_res, projection_type='azequidistant'))
-    retina_E <- main_jhvbwt("jhvbwt" %>% get_path_to_test_retina_folder %>% map_to_matrix(spatial_res, projection_type='azequidistant'))
-    
-    # Example Code:
-    list_of_retina_matrices <- list(retina_A,
-                                    retina_B,
-                                    retina_C,
-                                    retina_D,
-                                    retina_E)
-    
     mean_map_mat <- multimap_composite(list_of_retina_matrices, map_names_vector=c("3hgbqg","40oik5","8pm223","gv3igs","jhvbwt"))
     plot_multimap_composite(mean_map_mat)
 
