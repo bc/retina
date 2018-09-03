@@ -23,9 +23,10 @@ test_that('we can get a list of matrices', {
     use_data(list_of_retina_matrices, overwrite=TRUE)
 })
 test_that("we can combine 5 retinas into one", {
-    spatial_res <- 10
+    spatial_res <- 1000
     mean_map_mat <- multimap_composite(list_of_retina_matrices, map_names_vector=c("3hgbqg","40oik5","8pm223","gv3igs","jhvbwt"))
     plot_multimap_composite(mean_map_mat)
+    browser()
 
 })
 

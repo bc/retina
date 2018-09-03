@@ -28,5 +28,6 @@ test_that('flatmounts can be produced for comparison and inclusion in supplement
     outline_path <- "/Users/briancohn/Documents/GitHub/bc/retina/tests/testthat/test_retinas/raxp91/diagram_retina/outline.roi"
     
     surface <- gen_flatplot(datapoints, xyz, outline_path)
-    plot(surface)
+    print(surface)
+    
 })
