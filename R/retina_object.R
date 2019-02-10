@@ -73,7 +73,6 @@ retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrap
 }
 
 IJ_xyz_df_to_xyz_df <- function(xyz_df, IJcoords, inversion){
-	sbrowser()
 	# xyz_df$x <- IJcoords$minX + (xyz_df$x - 1) * IJcoords$deltaX
 	x <- xyz_df$x
 	y <- xyz_df$y

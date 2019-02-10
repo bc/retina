@@ -62,7 +62,8 @@ retinal_arclen <- function(ED) {
 import_xyz <- function(path) {
     # Input path to folder containing xyz.csv, Reads and condenses count data per
     # sampling site. Make sure you don't have a slash at the end
-    xyz <- na.omit(read.csv(paste0(path, "/xyz.csv")))
+    filepath <- file.path(paste0(path, "xyz.csv"))
+    xyz <- na.omit(read.csv(filepath))
     return(xyz)
 }
 
@@ -160,11 +161,12 @@ spherical_coords <- function(path, xyz_df, height, width, falciform = TRUE) {
     # http://stackoverflow.com/questions/4862178/remove-rows-with-nas-in-data-frame
     data_w_NA <- cbind(dss_coords, z = xyz_df[, 3])
     trimmed_data <- data_w_NA[complete.cases(data_w_NA[, 1:2]), ]
-    falciform_outline <- falciform_outline[complete.cases(falciform_outline[, 1:2]), 
-        ]
+    falciform_outline <- falciform_outline[complete.cases(falciform_outline[, 1:2]), ]
+    
     # convert to density per square millimeter
-    trimmed_data$z <- unlist(lapply(trimmed_data$z, function(x) count_to_rho(x, height = height, 
-        width = width)))
+    # trimmed_data$z <- unlist(lapply(trimmed_data$z, function(x) count_to_rho(x, height = height, 
+    #     width = width)))
+    
     return(list(trimmed_data = trimmed_data, falciform_outline = falciform_outline))
 }
 
@@ -791,7 +793,8 @@ reorder_columns <- function(X, FN) {
 ##' @param string_identifier character e.g. '40oik5' that represents the inst/extdata identifier folder name.
 run_diagram_retina_folder <- function(string_identifier) {
     path_to_test_retina_folder <- get_path_to_test_retina_folder(string_identifier)
-    run_command <- paste0("main_", string_identifier, "('", path_to_test_retina_folder, 
+
+    run_command <- paste0("main_", string_identifier, "('", file.path(path_to_test_retina_folder), 
         "')")
     str_eval(run_command)
 }

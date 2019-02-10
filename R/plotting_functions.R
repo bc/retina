@@ -540,12 +540,13 @@ fit_plot_azimuthal <- function(x, y, z, contours = TRUE, legend = TRUE, axes = T
     } else {
         error <- NULL
     }
+    heatmap_matrix <- nullify_vals_outside_the_circle(minitics, spatial_res, Mat, 
+        outer_radius)
     
     if (plot_suppress == TRUE) {
         return(list(t, tmp, error))
     }
-    heatmap_matrix <- nullify_vals_outside_the_circle(minitics, spatial_res, Mat, 
-        outer_radius)
+    
     zlim <- define_color_breaks_based_on_source(col_breaks_source, z, heatmap_matrix)
     init_square_mat_plot(heatmap_matrix, zlim, minitics, col)
     if (contours) {
@@ -562,7 +563,7 @@ fit_plot_azimuthal <- function(x, y, z, contours = TRUE, legend = TRUE, axes = T
     if (legend) 
         add_legend(col, zlim)
     
-    return(list(t, tmp, error))
+    return(list(t, tmp, error,heatmap_matrix=heatmap_matrix))
 }
 
 ##' @title Plot falciform process
