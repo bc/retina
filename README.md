@@ -1,6 +1,6 @@
 # ![retina_logo](https://cloud.githubusercontent.com/assets/4623063/8342959/8206dd04-1a85-11e5-8d00-d58866c99d66.jpg)
 
-Visualize & compare retinal cell density data.
+Visualize & compare retinal cell data.
 
 # Project description
 
@@ -29,7 +29,7 @@ Cohn, Brian A., et al. "Retinal topography maps in R: New tools for the analysis
 [![Travis-CI Build Status](https://travis-ci.org/bc/retina.png?branch=master)](https://travis-ci.org/bc/retina)
 ![Retinal Map Visualization](tutorial_pix/retina_plot_output_pmol753.jpg)
 
-After surveying cell density across the retina using a stereology-equipped microscope:
+After surveying cell metrics across the retina using a stereology-equipped microscope:
 
 Use _retina_ to
 

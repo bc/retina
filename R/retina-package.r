@@ -273,7 +273,7 @@ count_to_rho <- function(count, height, width) {
 ##' @export
 ##' @importFrom graphics hist
 fit_error_histogram <- function(x, main = NULL, ...) {
-    hist(predictSE(x), col = "black", xlab = "Fit Error (RGC/sq.mm)", ...)
+    hist(predictSE(x), col = "black", xlab = "Fit Error (in units of original xyz.csv)", ...)
 }
 
 ##' @title Retinal Krig Fit Plots (for retinal object)
@@ -332,7 +332,7 @@ fit_plots <- function(x, digits = 4, which = 1:4, ...) {
         hist(std.residuals, main = "", col = "black", breaks = 10, xlab = "STD Residual")
     }
     message("Predicting Fit Error")
-    hist(predictSE(x), col = "black", xlab = "Fit Error (RGC/sq.mm)", main = NULL)
+    hist(predictSE(x), col = "black", xlab = "Fit Error (in units of xyz.csv)", main = NULL)
     return(predictSE(x))
 }
 ### Set contour_breaks based on requested source
@@ -567,7 +567,7 @@ optimal_rotation <- function(df_spin, quiet = TRUE) {
     optimal_degree <- df_spin[which.min(df_spin[, 2]), ]
     if (!quiet) {
         message(paste("Absolute mean difference between maps (", optimal_degree[2], 
-            "RGC/sqmm)  minimized when map2 ccw is ", optimal_degree[1], "degrees"))
+            "[units from input])  minimized when map2 ccw is ", optimal_degree[1], "degrees"))
     }
     return(optimal_degree)
     
