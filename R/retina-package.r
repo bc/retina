@@ -127,8 +127,6 @@ ssite_merge <- function(location, counts, ...) {
 ##' @description
 ##' Converts flat retina to a spherical representation of the data. Spherical coords path must contain:  outline.roi  Datapoints in barycentric coordinates. P.csv  Datapoints on reconstructed sphere in cartesian coordinates. T.csv  Datapoints on reconstructed sphere in spherical coordinates.  xyz.csv  Cell density site locations with density measurements. Columns of x(integer column starting at 1 at the left) , y (integer column starting at 1 on the bottom) and z (counts)
 ##' @param path Directory which contains the retistruct files.
-##' @param height Height in microns of the stereologic counting frame
-##' @param width Width in microns of the stereologic counting frame
 ##' @param falciform (boolean) True by default, meaning there is a file called falc.txt within the path.
 ##' @param xyz_df (data.frame) xyz values as read in by read.csv, with headers and without row.names
 ##' @return data.frame with phi(latitude), lambda(longitude) and Z (cells per square millimeter).
@@ -139,7 +137,7 @@ ssite_merge <- function(location, counts, ...) {
 ##' @importFrom stats complete.cases
 ##' @importFrom magrittr %>%
 ##' @export
-spherical_coords <- function(path, xyz_df, height, width, falciform = TRUE) {
+spherical_coords <- function(path, xyz_df, falciform = TRUE) {
     # Read in the xyz dataset from stereology data collection.
     
     combined_len <- read.csv(paste0(path, "/datapoints.csv"), header = TRUE) %>% 
@@ -162,10 +160,6 @@ spherical_coords <- function(path, xyz_df, height, width, falciform = TRUE) {
     data_w_NA <- cbind(dss_coords, z = xyz_df[, 3])
     trimmed_data <- data_w_NA[complete.cases(data_w_NA[, 1:2]), ]
     falciform_outline <- falciform_outline[complete.cases(falciform_outline[, 1:2]), ]
-    
-    # convert to density per square millimeter
-    # trimmed_data$z <- unlist(lapply(trimmed_data$z, function(x) count_to_rho(x, height = height, 
-    #     width = width)))
     
     return(list(trimmed_data = trimmed_data, falciform_outline = falciform_outline))
 }

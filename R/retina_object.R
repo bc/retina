@@ -13,8 +13,6 @@ options(rgl.useNULL = FALSE)
 ##' @param LD lens diameter mm
 ##' @param ED eye diameter mm
 ##' @param AL axial length mm
-##' @param height counting frame height in micrometers
-##' @param width counting frame width in micrometers
 ##' @param lambda Lambda value passed to the thin plate spline interpolator.
 ##' @param extrapolate logical, default is TRUE so values are extrapolated to the equator.
 ##' @param rotation_ccw Dorsal is up by default at -90 degrees.
@@ -24,19 +22,12 @@ options(rgl.useNULL = FALSE)
 ##' @return ret_obj retinal object (list)
 ##' @author Brian Cohn \email{brian.cohn@@usc.edu}
 ##' @export
-retina_object <- function(path, LD, ED, AL, height, width, lambda = 0.01, extrapolate = TRUE, 
+retina_object <- function(path, LD, ED, AL, lambda = 0.01, extrapolate = TRUE, 
     spatial_res = 16, rotation_ccw = -90, IJcoords = FALSE, ...) {
-    
-    if (height != width) {
-        stop("Height is not equal to Width. \n
-\t\t\t  Must be square counting frame. \n
-\t\t\t  Email brian.cohn@usc.edu if you want to request this feature.")
-    }
-    
     xyz_df <- import_xyz(path)
     rownames(xyz_df) <- NULL
     save_flatmount_coordinates_to_datapoints(path, xyz_df, IJcoords = IJcoords, falciform = TRUE)
-    sph_coords <- spherical_coords(path, xyz_df, height, width, falciform = TRUE)
+    sph_coords <- spherical_coords(path, xyz_df, falciform = TRUE)
     trimmed_data <- sph_coords[[1]]
     falc_coords <- sph_coords[[2]]
     # Produce an OpenGL visualization of the counting frame locations, as they are
