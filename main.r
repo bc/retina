@@ -64,7 +64,9 @@ ggsave("output/flatplot.pdf",p,width=8, height=8)
 #remove the NA's where there were no points
 dtt_projected <- na.omit(measurement_dt, cols="azi_x")
 
-pdf("output/my_retina_figure.pdf", width=11,height=8.5, useDingbats=FALSE)
+# PDF output is cleaner
+# pdf("output/my_retina_figure.pdf", width=11,height=8.5, useDingbats=FALSE)
+png("output/my_retina_figure.png", width=800,height=600)
 fit_data <- fit_plot_azimuthal(dtt_projected$azi_x,
 	dtt_projected$azi_y,
 	z = dtt_projected$measurement,

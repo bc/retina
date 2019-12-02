@@ -2,11 +2,7 @@
 
 Visualize & compare retinal cell data.
 
-<object data="output/my_retina_figure.pdf" type="application/pdf" width="750px" height="750px">
-    <embed src="output/my_retina_figure.pdf" type="application/pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="output/my_retina_figure.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+![Retinal Map Visualization](output/my_retina_figure.png)
 # How to cite this package
 ```
 Cohn, Brian A., et al. "Retinal topography maps in R: New tools for the analysis and visualization of spatial retinal data." Journal of vision 15.9 (2015): 19-19.
@@ -33,7 +29,7 @@ This project provides an accurate and rigorous tool for visualizing data from an
 
 
 #### Questions/Ideas/Help
-[Post a github issue ticket (15 seconds)](https://github.com/bcohn12/retina/issues/new "Post an issue ticket")
+[Post a github issue ticket (15 seconds)](https://github.com/bc/retina/issues/new "Post an issue ticket")
 
 #### Notes
 1. Thank you to David Sterratt (Sterratt et. al. 2013) who designed and published the stitching algorithm. (GPL-2 License)
