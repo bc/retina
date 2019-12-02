@@ -2,7 +2,11 @@
 
 Visualize & compare retinal cell data.
 
-![Retinal Map Visualization](tutorial_pix/retina_plot_output_pmol753.jpg)
+<object data="output/my_retina_figure.pdf" type="application/pdf" width="750px" height="750px">
+    <embed src="output/my_retina_figure.pdf" type="application/pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="output/my_retina_figure.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 # How to cite this package
 ```
 Cohn, Brian A., et al. "Retinal topography maps in R: New tools for the analysis and visualization of spatial retinal data." Journal of vision 15.9 (2015): 19-19.
