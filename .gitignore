@@ -2,5 +2,4 @@
 .Rproj.user
 man/
 .Rhistory
-packrat/lib*/
 inst/doc
