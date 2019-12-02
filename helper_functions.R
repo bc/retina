@@ -740,11 +740,11 @@ return(d1)
 
 save_outline_indices_plot <- function(input_roi_path, input_measurements, input_location){
     pdf(input_location, width=10,height=10)
-    outline_indices_plot(input_roi_path, input_measurements, input_location)
+    outline_indices_plot(input_roi_path, input_measurements)
     dev.off()
 }
 
-outline_indices_plot<- function(input_roi_path, input_measurements, input_location){
+outline_indices_plot<- function(input_roi_path, input_measurements){
         plot_outline(load_roi(input_roi_path)$coords)
         points(input_measurements, pch=15,cex=0.6)
         text(input_measurements, labels = as.character(1:nrow(input_measurements)), cex = 0.2, col="white")

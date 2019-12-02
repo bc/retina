@@ -1,14 +1,12 @@
-source("helper_functions.R")
+source("helper_functions.r")
 temp_dir <- tempdir(check = TRUE)
 
 roi_path <- "sample_retina/outline.roi"
 
 # Coordinates of datapoints collected
 measurements <- fread("sample_retina/datapoints.csv")
-values <- fread("sample_retina/xyz.csv")[,3] %>% unlist %>% as.numeric
 falciform_coords_raw <- fread("sample_retina/falciform.csv")
 # Add values at each datapoint
-measurements[,measurement := values]
 
 
 #use this plot to define the tears
@@ -21,8 +19,10 @@ tear_coordinates_dataframe <- rbind(
 	c(14,11,16),
 	c(25,23,27)
 	)
+markup_information <- data.frame(eye_side=as.character("right"), nasal_outline_index=NA, dorsal_outline_index=8,phi0=0)
+markup_information$eye_side <- as.character(markup_information$eye_side)
 
-assemble_markup_file('right', temp_dir, nasal_outline_index=NA, dorsal_outline_index=8, phi0=0)
+assemble_markup_file(markup_information$eye_side, temp_dir, nasal_outline_index=markup_information$nasal_outline_index, dorsal_outline_index=markup_information$dorsal_outline_index, phi0=markup_information$phi0)
 # Create a temporary directory to hold onto the incremental work
 file.copy(roi_path, file.path(temp_dir,"outline.roi"),overwrite=TRUE)
 tear_df <- assemble_tear_file(tear_coordinates_dataframe, temp_dir)
