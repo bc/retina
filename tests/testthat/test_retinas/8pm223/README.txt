@@ -1,1 +1,0 @@
-no eye measurements for this specimen, and eye orientation is unknown (duh!)
