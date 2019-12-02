@@ -185,10 +185,8 @@ plot_outline <- function(roi_XY_coords){
         max(roi_XY_coords[,2]),
         min(roi_XY_coords[,2])
         )
-    plot(roi_XY_coords, type = "l", col = "#d3d3d3", asp = 1, xlab = "X Pixels", 
-        ylab = "Y Pixels", ylim=inverted_ylims)
-    text(roi_XY_coords[, 1], roi_XY_coords[, 2], labels = 1:length(roi_XY_coords[, 
-        1]), cex = 0.5)
+    plot(roi_XY_coords, type = "l", col = "#d3d3d3", asp = 1, xlab = "X Pixels", ylab = "Y Pixels", ylim=inverted_ylims)
+    text(roi_XY_coords[, 1], roi_XY_coords[, 2], labels = 1:length(roi_XY_coords[,1]), cex = 0.5)
 }
 
 ##' TODO document"
@@ -744,8 +742,8 @@ save_outline_indices_plot <- function(input_roi_path, input_measurements, input_
     dev.off()
 }
 
-outline_indices_plot<- function(input_roi_path, input_measurements){
-        plot_outline(load_roi(input_roi_path)$coords)
+outline_indices_plot<- function(input_roi, input_measurements){
+        plot_outline(input_roi$coords)
         points(input_measurements, pch=15,cex=0.6)
         text(input_measurements, labels = as.character(1:nrow(input_measurements)), cex = 0.2, col="white")
 }

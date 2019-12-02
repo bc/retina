@@ -10,7 +10,7 @@ falciform_coords_raw <- fread("sample_retina/falciform.csv")
 
 
 #use this plot to define the tears
-save_outline_indices_plot(roi_path,measurements,"output/outline_coordinates.pdf")
+save_outline_indices_plot(load_roi(roi_path),measurements,"output/outline_coordinates.pdf")
 
 # A tear is a row: c(middle tear point, before, after). Add commas as necessary
 tear_coordinates_dataframe <- rbind(
