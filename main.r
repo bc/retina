@@ -66,7 +66,7 @@ dtt_projected <- na.omit(measurement_dt, cols="azi_x")
 
 # PDF output is cleaner
 # pdf("output/my_retina_figure.pdf", width=11,height=8.5, useDingbats=FALSE)
-png("output/my_retina_figure.png", width=800,height=600)
+png("output/my_retina_figure.png", width=1200,height=800)
 fit_data <- fit_plot_azimuthal(dtt_projected$azi_x,
 	dtt_projected$azi_y,
 	z = dtt_projected$measurement,
