@@ -44,4 +44,5 @@ It may complain that you don't have the right packages. To install them run e.g.
 ### Deployment Notes
 ```bash
 sudo R -e "shiny::runApp(host="0.0.0.0",port=80)"
+Deploykey: https://github.com/bc/retina/settings/keys
 ```
