@@ -1,3 +1,4 @@
+print(dir())
 source("helper_functions.r")
 library(shiny)
 # roi_path <- "sample_retina/outline.roi"

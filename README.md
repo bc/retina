@@ -40,3 +40,8 @@ It may complain that you don't have the right packages. To install them run e.g.
 
 #### In Press
 [Keck Science Department Announcement](http://www.kecksci.claremont.edu/News/Newsdetail.asp?NewsID=92 "KSD")
+
+### Deployment Notes
+```bash
+sudo R -e "shiny::runApp(host="0.0.0.0",port=80)"
+```
