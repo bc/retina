@@ -132,6 +132,7 @@ traditional_flatmount_plot <- function(pixel_xy_positions, z_vector, xy_outline_
     return(fit)
 }
 
+##' @author Brian Cohn
 load_roi <- function(filepath){
     roi_object <- RImageJROI::read.ijroi(file.path(filepath))
     return(roi_object)
