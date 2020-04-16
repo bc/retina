@@ -30,6 +30,6 @@ jobs:
     - name: Run a multi-line script
       run: |
         git clone https://github.com/bc/retina.git && cd retina
+        sudo apt install r-base libcgal-dev libglu1-mesa-dev libglu1-mesa-dev
         Rscript -e 'install.packages(c("retistruct", "data.table"))' -e 'remotes::install_deps(dependencies = TRUE)'
-        sudo apt install r-base
         Rscript main.r
