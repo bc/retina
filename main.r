@@ -49,13 +49,10 @@ falciform_dt <- generate_projection_data(falciform_coordinates, r_reconstructed)
 ## Flatmount plotting
 
 p <- ggplot() + coord_fixed() + theme_classic()
-# p <- p + geom_point(aes(x,y), data = grid_dt, shape=15)
 p <- p + geom_polygon(aes(x,y), data = outline_dt, col="black", alpha=0) # show outline
 p <- p + geom_point(aes(x, cyan, col=measurement), data = measurement_dt)  + scale_colour_gradient2()
 p <- p + geom_label(aes(x,y,label=name),data=landmarks, alpha=0.5)
 p <- p + geom_polygon(aes(x,cyan),data=falciform_dt, alpha=0, col="black")
-p
-
 ggsave("output/flatplot.pdf",p,width=8, height=8)
 
 
