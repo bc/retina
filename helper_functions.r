@@ -1,9 +1,23 @@
+
+package_dependencies <- c("data.table",
+"ggplot2",
+"magrittr",
+"fields",
+"RColorBrewer",
+"grDevices",
+"retistruct")
+
+package_dependencies <- package_dependencies[!(package_dependencies %in% installed.packages()[,"Package"])]
+if(length(package_dependencies)) install.packages(package_dependencies)
+
+
 library(data.table)
 library(ggplot2)
 library(magrittr)
 library(fields)
 library(RColorBrewer)
 library(grDevices)
+library(retistruct)
 
 ### Set contour_breaks based on requested source
 ##' @title Set Contour Breaks Based on Requested Source

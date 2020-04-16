@@ -26,7 +26,7 @@ Retinal maps can take several hours to construct by hand or with proprietary sof
 
 ## Installation
 - Download the latest release
-- Open R and set the working directory to the unzipped `retina` folder
+- Open R and set the working directory with `setwd("~/Downloads/retina")` the unzipped `retina` folder. Make sure the path in quotes within setwd matches your path.
 - Run `source("main.R")`. This will run the sample map.
 
 It may complain that you don't have the right packages. To install them run e.g. `install.packages("ggplot2")`.
