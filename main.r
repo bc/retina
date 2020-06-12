@@ -56,7 +56,7 @@ p <- p + geom_polygon(aes(x,cyan),data=falciform_dt, alpha=0, col="black")
 ggsave("output/flatplot.pdf",p,width=8, height=8)
 
 
-## Reconstructed plotting
+## Reconstructed plotting of the hemisphere
 
 #remove the NA's where there were no points
 dtt_projected <- na.omit(measurement_dt, cols="azi_x")
