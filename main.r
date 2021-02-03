@@ -84,7 +84,7 @@ polygon(falciform_dt$azi_x,falciform_dt$azi_y, col="black")
 dev.off()
 
 plot(fit_data[[1]], show_boxplot=TRUE)
-plot_from_MAT_simpler(fit_data[[2]]$z) 
+# plot_from_MAT_simpler(fit_data[[2]]$z) 
 
 
 

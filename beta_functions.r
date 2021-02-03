@@ -51,6 +51,7 @@ plot_from_MAT_simpler <- function(density_matrix, contours = TRUE, legend = TRUE
     
     ### Set contour_breaks based on requested source
     if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 1)) {
+        print('choice1')
         contour_breaks = seq(min(z, na.rm = TRUE), max(z, na.rm = TRUE), by = (max(z, 
             na.rm = TRUE) - min(z, na.rm = TRUE))/(contour_levels - 1))
     } else if ((length(contour_breaks_source == 1)) & (contour_breaks_source[1] == 
