@@ -1,4 +1,5 @@
 source("helper_functions.r")
+source("beta_functions.r")
 temp_dir <- tempdir(check = TRUE)
 
 roi_path <- "sample_retina/outline.roi"
@@ -81,6 +82,10 @@ fit_data <- fit_plot_azimuthal(dtt_projected$azi_x,
 	falciform_coords = NA)
 polygon(falciform_dt$azi_x,falciform_dt$azi_y, col="black")
 dev.off()
+
+plot(fit_data[[1]], show_boxplot=TRUE)
+plot_from_MAT_simpler(fit_data[[2]]$z) 
+
 
 
 

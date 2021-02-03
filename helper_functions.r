@@ -670,7 +670,7 @@ plot_falciform_process <- function(falciform_x, falciform_y) {
 multimap_composite <- function(list_of_maps, map_names_vector, show_boxplot=TRUE){
     num_maps <- length(list_of_maps)
     mean_map_mat <- Reduce(function(map1,map2) {map1 + map2}, list_of_maps, 0) / num_maps
-    print_span_comparison(list_of_maps, mean_map_mat)
+    # print_span_comparison(list_of_maps, mean_map_mat)
 
     if (show_boxplot){
         len_with_mean <- length(list_of_maps)+1
