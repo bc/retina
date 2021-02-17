@@ -1,0 +1,216 @@
+---
+title: "Retina"
+author: "Lars Schmitz and Brian Cohn"
+date: "February 12, 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading helper functions
+
+You will need a few helper functions to plot a retina map.
+
+```{r, warning=FALSE, message=FALSE}
+source("helper_functions.r")
+source("beta_functions.r")
+temp_dir <- tempdir(check = TRUE)
+```
+
+
+## Creating a temporay directory for storage of ojects
+
+[explain why a temp dir is useful]
+
+```{r}
+temp_dir <- tempdir(check = TRUE)
+```
+
+
+## Loading required data
+
+Here is what you need:
+[list]
+
+```{r}
+# outline of the retina wholemount
+roi_path <- "sample_retina/outline.roi"
+
+# coordinates of datapoints collected
+measurements <- fread("sample_retina/datapoints.csv")
+
+#3 outlines of the optic nerve head (and falciform process if present)
+falciform_coords_raw <- fread("sample_retina/falciform.csv") #NOTE: RENAME THIS OBJECT?
+```
+
+## Defining tears of the retina wholemount
+
+It is necessary to identify the tears in the wholemount before the retistruction.
+
+```{r, warning=FALSE, message=FALSE}
+#use this plot to define the tears
+save_outline_indices_plot(load_roi(roi_path), measurements, "output/outline_coordinates.pdf")
+#we need to show this plot
+```
+
+Now enter the points that define each tear.
+Note that each tear is a row: c(middle tear point, before, after). Add commas as necessary.
+
+```{r}
+tear_coordinates_dataframe <- rbind(
+	c(34,31,35),
+	c(5,4,6),
+	c(14,11,16),
+	c(25,23,27)
+	)
+```
+
+
+## Assemble a mark up file
+
+[explain what that means]
+
+```{r}
+markup_information <- data.frame(eye_side=as.character("right"), 
+                                 nasal_outline_index=NA, 
+                                 dorsal_outline_index=8,
+                                 phi0=0)# [need annotations]
+markup_information$eye_side <- as.character(markup_information$eye_side)
+
+assemble_markup_file(markup_information$eye_side, 
+                     temp_dir, 
+                     nasal_outline_index=markup_information$nasal_outline_index,
+                     dorsal_outline_index=markup_information$dorsal_outline_index, 
+                     phi0=markup_information$phi0)
+```
+
+## Hold on to your incremental work
+
+Copy files in the temporary directory to hold on to the incremental work you have done so far.
+
+```{r, message=FALSE}
+file.copy(roi_path, file.path(temp_dir,"outline.roi"), overwrite=TRUE)
+tear_df <- assemble_tear_file(tear_coordinates_dataframe, temp_dir)
+```
+
+## Perfom "retistruction" 
+
+[explain wat that means, make reference to Sterratt's work]
+
+```{r, warning=FALSE, message=FALSE}
+r_outline <- retistruct.read.dataset(temp_dir) # expect scale bar warning
+r_markup <- retistruct.read.markup(r_outline) # make sure there is no P.csv already in the folder [??]
+r_reconstructed <- retistruct.reconstruct(r_markup)
+# projection(r_reconstructed) DO WE NEED THIS?
+```
+
+## Preparing plotting
+
+[explain what we need, why we are doing this]
+
+```{r, warning=FALSE, message=FALSE}
+grid_coordinates <- grid_within_bounding_box(load_roi(roi_path)$coords,100)
+grid_dt <- generate_projection_data(grid_coordinates, r_reconstructed)
+landmarks <- directional_landmarks(grid_dt)
+
+outline_coordinates <- extract_wholemount_outline(load_roi(roi_path))
+outline_dt <- generate_projection_data(outline_coordinates, r_reconstructed)
+
+measurement_coordinates <- apply_retistruct_inversion_to_datapoints(measurements,load_roi(roi_path))
+measurement_dt <- generate_projection_data(measurement_coordinates, r_reconstructed)
+
+falciform_coordinates <- apply_retistruct_inversion_to_datapoints(falciform_coords_raw,load_roi(roi_path))
+falciform_dt <- generate_projection_data(falciform_coordinates, r_reconstructed)
+```
+
+## Flatmount plotting
+
+[explain]
+
+```{r}
+p <- ggplot() + coord_fixed() + theme_classic()
+p <- p + geom_polygon(aes(x,y), data = outline_dt, col="black", alpha=0) # show outline
+p <- p + geom_point(aes(x, cyan, col=measurement), data = measurement_dt)  + scale_colour_gradient2()
+p <- p + geom_label(aes(x,y,label=name),data=landmarks, alpha=0.5)
+p <- p + geom_polygon(aes(x,cyan),data=falciform_dt, alpha=0, col="black")
+ggsave("output/flatplot.pdf",p,width=8, height=8)
+p
+```
+
+## Reconstructed plotting of the hemisphere
+
+[explain]
+
+```{r, warning=FALSE}
+# remove the NA's where there were no points
+dtt_projected <- na.omit(measurement_dt, cols="azi_x")
+
+#plotting
+fit_data <- fit_plot_azimuthal(dtt_projected$azi_x,
+                               dtt_projected$azi_y, 
+                               z = dtt_projected$measurement,
+                               outer_radius = 1.6,
+                               spatial_res = 1000,
+                               lambda = 0.01,
+                               col_levels = 50,
+                               contour_levels = 20,
+                               extrapolate = FALSE,
+                               compute_error = TRUE,
+                               eye_diameter = 0,
+                               axial_len = 0,
+                               falciform_coords = NA)
+polygon(falciform_dt$azi_x,falciform_dt$azi_y, col="black")
+```
+
+
+Save plot as PNG file.
+
+```{r, warning=FALSE, message=FALSE}
+png("output/my_retina_figure.png", width=1200,height=800)
+fit_data <- fit_plot_azimuthal(dtt_projected$azi_x,
+                               dtt_projected$azi_y, 
+                               z = dtt_projected$measurement,
+                               outer_radius = 1.6,
+                               spatial_res = 1000,
+                               lambda = 0.01,
+                               col_levels = 50,
+                               contour_levels = 20,
+                               extrapolate = FALSE,
+                               compute_error = TRUE,
+                               eye_diameter = 0,
+                               axial_len = 0,
+                               falciform_coords = NA)
+polygon(falciform_dt$azi_x,falciform_dt$azi_y, col="black")
+dev.off()
+```
+
+PDF output is cleaner.
+
+```{r, warning=FALSE, message=FALSE}
+pdf("output/my_retina_figure.pdf", width=11,height=8.5, useDingbats=FALSE)
+fit_data <- fit_plot_azimuthal(dtt_projected$azi_x,
+                               dtt_projected$azi_y, 
+                               z = dtt_projected$measurement,
+                               outer_radius = 1.6,
+                               spatial_res = 1000,
+                               lambda = 0.01,
+                               col_levels = 50,
+                               contour_levels = 20,
+                               extrapolate = FALSE,
+                               compute_error = TRUE,
+                               eye_diameter = 0,
+                               axial_len = 0,
+                               falciform_coords = NA)
+polygon(falciform_dt$azi_x,falciform_dt$azi_y, col="black")
+dev.off()
+```
+
+Evaluate error. [explain in more detail]
+
+```{r, warning=FALSE}
+plot(fit_data[[1]], show_boxplot=TRUE)
+# plot_from_MAT_simpler(fit_data[[2]]$z) 
+```
+
