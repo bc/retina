@@ -1,0 +1,31 @@
+name: Generate Repomix Artifact
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  generate-repomix:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install repomix
+      run: npm install -g repomix
+    
+    - name: Run repomix
+      run: repomix . -o repomix-output
+    
+    - name: Upload repomix artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: repomix-result
+        path: repomix-output
